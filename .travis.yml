@@ -1,28 +1,23 @@
 language: php
-
 php:
-  - '7.2'
-
+- '7.2'
 env:
   global:
-    - LINODE_HOST="69.164.211.156"
-    - LINODE_USER="braican"
-
+  - LINODE_HOST="69.164.211.156"
+  - LINODE_USER="braican"
 cache:
   yarn: true
   directories:
-    - node_modules
-    - vendor
-
+  - node_modules
+  - vendor
 before_install:
-  - nvm install
-
+- openssl aes-256-cbc -K $encrypted_aa6afee07e57_key -iv $encrypted_aa6afee07e57_iv
+  -in .travis/deploy_rsa.enc -out .travis/deploy_rsa -d
+- nvm install
 install:
-  - yarn test
-
+- yarn test
 script:
-  - yarn test
-
+- 
 deploy:
   provider: script
   script: bash bin/deploy.sh
