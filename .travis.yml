@@ -20,8 +20,8 @@ before_install:
 install:
   - yarn test
 
-# script:
-  # - yarn lint:scripts && yarn lint:styles
+script:
+  - yarn test
 
 deploy:
   provider: script
