@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Beth and Nick are getting married',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -26,5 +26,18 @@ module.exports = {
       },
     },
     'gatsby-plugin-offline',
+    {
+      resolve: `gatsby-source-wordpress`,
+      options: {
+        baseUrl: `api.bethandnick.us`,
+        protocol: `https`,
+
+        // is the site hosted on WordPress.com
+        hostingWPCOM: false,
+
+        // does the site use ACF?
+        useACF: true,
+      },
+    },
   ],
 }

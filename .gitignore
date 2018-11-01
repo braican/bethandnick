@@ -6,3 +6,10 @@ yarn-error.log
 # Build directory
 /public
 .DS_Store
+
+# Environment things
+.env
+
+# WordPress things
+wp-config.php
+wp/wp-content/uploads
