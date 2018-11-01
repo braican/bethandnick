@@ -1,0 +1,10 @@
+{
+    "name": "braican/bethandnick",
+    "description": "A WordPress backend for Beth and Nick's wedding",
+    "type": "wordpress-theme",
+    "autoload": {
+        "psr-4": {
+            "BethAndNick\\": "lib/"
+        }
+    }
+}

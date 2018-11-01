@@ -1,6 +1,8 @@
 <?php
 
-class BethAndNickAPI {
+namespace BethAndNick;
+
+class API {
     
     /**
      * The unique instance of the API class.
