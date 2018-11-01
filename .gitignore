@@ -9,7 +9,3 @@ yarn-error.log
 
 # Environment things
 .env
-
-# WordPress things
-wp-config.php
-wp/wp-content/uploads

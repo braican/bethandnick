@@ -28,7 +28,7 @@ before_deploy:
 - nvm install
 
 install:
-- yarn test
+- composer install
 
 script:
 - 
