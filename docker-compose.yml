@@ -1,0 +1,29 @@
+version: '3.5'
+services:
+    wordpress:
+        build:
+            context: .
+        volumes:
+            - ./wp:/var/www/html
+        depends_on:
+            - db
+        env_file: .env
+        networks:
+            - proxy
+            - default
+    db:
+        image: mysql:5.7
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            # See https://hub.docker.com/_/mysql/
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: wordpress
+            MYSQL_PASSWORD: wordpress
+volumes:
+    db_data:
+networks:
+    proxy:
+        name: ups-dock
+        external: true
