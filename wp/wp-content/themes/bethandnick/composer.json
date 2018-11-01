@@ -2,9 +2,77 @@
     "name": "braican/bethandnick",
     "description": "A WordPress backend for Beth and Nick's wedding",
     "type": "wordpress-theme",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "deliciousbrains/wp-migrate-db-pro",
+                "type": "wordpress-plugin",
+                "version": "1.8.1",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-1.8.1.zip?licence_key=193a18f8-334b-433b-8b7a-39e21b890203&site_url=dev-mit-admissions.pantheon.io"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "deliciousbrains/wp-migrate-db-pro-media-files",
+                "type": "wordpress-plugin",
+                "version": "1.4.9",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-media-files-1.4.9.zip?licence_key=193a18f8-334b-433b-8b7a-39e21b890203&site_url=dev-mit-admissions.pantheon.io"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "deliciousbrains/wp-migrate-db-pro-cli",
+                "type": "wordpress-plugin",
+                "version": "1.3.2",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://deliciousbrains.com/dl/wp-migrate-db-pro-cli-1.3.2.zip?licence_key=193a18f8-334b-433b-8b7a-39e21b890203&site_url=dev-mit-admissions.pantheon.io"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "5.6.10",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.6.10"
+                }
+            }
+        }
+    ],
+    "require": {
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.6.10",
+        "deliciousbrains/wp-migrate-db-pro": "*",
+        "deliciousbrains/wp-migrate-db-pro-media-files": "*",
+        "deliciousbrains/wp-migrate-db-pro-cli": "*",
+        "wpackagist-plugin/gutenberg": "^4.1.1"
+    },
     "autoload": {
         "psr-4": {
             "BethAndNick\\": "lib/"
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "../../plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
         }
     }
 }
