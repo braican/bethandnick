@@ -28,7 +28,8 @@ before_deploy:
 - nvm install
 
 install:
-- yarn test
+- cd wp/wp-content/themes/bethandnick
+- composer install
 
 script:
 - 

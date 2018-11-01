@@ -3,6 +3,9 @@ services:
     wordpress:
         build:
             context: .
+            args:
+                - WORDPRESS_THEME_NAME
+        working_dir: /var/www/html/wp-content/themes/${WORDPRESS_THEME_NAME}
         volumes:
             - ./wp:/var/www/html
         depends_on:
