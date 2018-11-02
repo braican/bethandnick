@@ -1,0 +1,17 @@
+.l-main {
+  width: 100%;
+  max-width: $site-width;
+  margin: 0 auto;
+}
+
+.wp-block-columns.has-2-columns {
+  display: flex;
+  .wp-block-column {
+    @include grid-child;
+    width: 50%;
+
+    &:first-child {
+      margin-top: 26vh;
+    }
+  }
+}

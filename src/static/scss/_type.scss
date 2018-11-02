@@ -1,1 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Cormorant+Upright|Gilda+Display|Goudy+Bookletter+1911|Headland+One|Katibeh|Ovo|Playfair+Display|Suranna|Vidaloka');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Cormorant+Upright|Gilda+Display|Goudy+Bookletter+1911|Headland+One|Katibeh|Ovo|Playfair+Display|Suranna|Vidaloka|Lora:400,700');
+
+html {
+  font-size: $fz-base;
+}
+
+body {
+  font-family: $ff-lora;
+  line-height: 1.6;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: $fw-bold;
+  margin-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1em;
+}

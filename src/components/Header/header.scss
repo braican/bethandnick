@@ -1,0 +1,39 @@
+@import '../../static/scss/variables';
+
+.header__banner {
+  font-size: 10vw;
+  font-family: 'Goudy Bookletter 1911', serif;
+  padding: 60px 60px 0 60px;
+  text-align: center;
+  margin-bottom: -4rem;
+
+  span {
+    position: relative;
+    display: block;
+    line-height: 0.8;
+  }
+
+  span:nth-child(1) {
+    margin-right: 0.8em;
+  }
+  span:nth-child(2) {
+    color: #aaa;
+  }
+
+  span:nth-child(3) {
+    margin-left: 0.8em;
+  }
+}
+
+.font-switcher {
+  background: #f8f8f8;
+  padding: 8px;
+  li {
+    cursor: pointer;
+    margin: 8px 0 8px 10px;
+
+    &:hover {
+      color: #888;
+    }
+  }
+}

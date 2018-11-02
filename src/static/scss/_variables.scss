@@ -1,3 +1,9 @@
+// --------------------------------------------------------------
+// Type
+// --------------------------------------------------------------
+
+$fz-base: 18px;
+
 $ff-abril: 'Abril Fatface', cursive;
 $ff-playfair: 'Playfair Display', serif;
 $ff-vidaloka: 'Vidaloka', serif;
@@ -8,3 +14,13 @@ $ff-suranna: 'Suranna', serif;
 $ff-headland: 'Headland One', serif;
 $ff-katibeh: 'Katibeh', cursive;
 $ff-cormorant: 'Cormorant Upright', serif;
+$ff-lora: 'Lora', serif;
+
+$fw-bold: 700;
+
+// --------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------
+
+$site-width: 1080px;
+$gutter: 1rem;
