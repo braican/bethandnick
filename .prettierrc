@@ -1,5 +1,12 @@
 {
-  "semi": false,
-  "singleQuote": true,
-  "trailingComma": "es5"
+  "overrides": [
+    {
+      "files": "*",
+      "options": {
+        "tabWidth": 2,
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    }
+  ]
 }
