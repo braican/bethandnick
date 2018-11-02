@@ -3,9 +3,8 @@
 .header__banner {
   font-size: 10vw;
   font-family: 'Goudy Bookletter 1911', serif;
-  padding: 60px 60px 0 60px;
+  padding: 60px;
   text-align: center;
-  margin-bottom: -4rem;
 
   span {
     position: relative;
@@ -36,4 +35,17 @@
       color: #888;
     }
   }
+}
+
+.header__nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60px;
+}
+.header__links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-left: $gutter;
 }

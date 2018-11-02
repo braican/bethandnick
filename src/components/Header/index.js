@@ -36,8 +36,6 @@ class Header extends React.Component {
   render() {
     const { siteTitle } = this.props;
 
-    console.log(this.state.fontFamily);
-
     return (
       <StaticQuery
         query={graphql`
@@ -64,15 +62,19 @@ class Header extends React.Component {
               ))}
             </h1>
 
-            <nav>
-              <Link to="/">Home</Link>
-              {data.allWordpressPage.edges
-                .filter(({ node }) => node.slug !== 'home')
-                .map(({ node }) => (
-                  <Link key={node.id} to={`/${node.slug}`}>
-                    {node.title}
-                  </Link>
-                ))}
+            <nav className="l-main header__nav">
+              <ul className="header__menu">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                {data.allWordpressPage.edges
+                  .filter(({ node }) => node.slug !== 'home')
+                  .map(({ node }) => (
+                    <li key={node.id}>
+                      <Link to={`/${node.slug}`}>{node.title}</Link>
+                    </li>
+                  ))}
+              </ul>
             </nav>
 
             {/* <div className="font-switcher">

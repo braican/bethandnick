@@ -2,12 +2,13 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import BaseLayout from '../layouts/BaseLayout';
 
-export default ({ data }) => {
+export default props => {
+  const { data } = props;
   const post = data.wordpressPage;
+  const location = props['*'] || 'home';
 
   return (
-    <BaseLayout>
-      <h1>{post.title}</h1>
+    <BaseLayout location={location}>
       <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </BaseLayout>
   );

@@ -6,7 +6,7 @@ import { decodeHtmlEntities } from '../../util/strings';
 
 import Header from '../../components/Header';
 
-const BaseLayout = ({ children }) => (
+const BaseLayout = ({ children, location }) => (
   <StaticQuery
     query={graphql`
       {
@@ -16,7 +16,7 @@ const BaseLayout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
+      <div className={`main page--${location || 'base'}`}>
         <Helmet
           title={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
           meta={[
@@ -28,13 +28,14 @@ const BaseLayout = ({ children }) => (
         </Helmet>
         <Header siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)} />
         <div className="l-main">{children}</div>
-      </>
+      </div>
     )}
   />
 );
 
 BaseLayout.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  location: PropTypes.string
 };
 
 export default BaseLayout;
