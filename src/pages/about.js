@@ -1,15 +1,15 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../layout/Base';
+import BaseLayout from '../layout/BaseLayout';
 
 export default ({ data }) => (
-  <Layout>
+  <BaseLayout>
     <div style={{ color: `teal` }}>
       <h1>About Gatsby</h1>
       <p>Such wow. Very React.</p>
       <p>{data.site.siteMetadata.title}</p>
     </div>
-  </Layout>
+  </BaseLayout>
 );
 
 export const query = graphql`

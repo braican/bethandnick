@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Layout from '../layout/Base';
+import BaseLayout from '../layout/BaseLayout';
 
 const IndexPage = () => (
-  <Layout>
+  <BaseLayout>
     <h1>Hellooo</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>
     <Link to="/about">About</Link>
-  </Layout>
+  </BaseLayout>
 );
 
 export default IndexPage;
