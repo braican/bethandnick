@@ -1,5 +1,5 @@
 import React from 'react';
-import BaseLayout from '../layout/BaseLayout';
+import BaseLayout from '../layouts/BaseLayout';
 
 const NotFoundPage = () => (
   <BaseLayout>

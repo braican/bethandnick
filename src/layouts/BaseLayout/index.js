@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 
 import Header from '../../components/Header';
 import './style.module.scss';
@@ -13,6 +13,15 @@ const BaseLayout = ({ children }) => (
         site {
           siteMetadata {
             title
+          }
+        }
+        allWordpressPage(sort: { fields: [menu_order], order: ASC }) {
+          edges {
+            node {
+              id
+              title
+              slug
+            }
           }
         }
       }
@@ -29,6 +38,11 @@ const BaseLayout = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
+        {data.allWordpressPage.edges.filter(({ node }) => node.slug !== 'home').map(({ node }) => (
+          <Link key={node.id} to={`/${node.slug}`}>
+            {node.title}
+          </Link>
+        ))}
         <div
           style={{
             margin: '0 auto',
