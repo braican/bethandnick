@@ -2,6 +2,7 @@
 
 .header {
   position: relative;
+  margin-bottom: 60px;
 
   &--has-featured {
     min-height: 50vw;
@@ -12,7 +13,7 @@
   padding: 60px;
 
   .header--has-featured & {
-    width: 60%;
+    width: 50%;
   }
 }
 
@@ -41,19 +42,10 @@
   }
 }
 
-.font-switcher {
-  background: #f8f8f8;
-  padding: 8px;
-  li {
-    cursor: pointer;
-    margin: 8px 0 8px 10px;
-
-    &:hover {
-      color: #888;
-    }
-  }
+.header__nav {
+  position: relative;
+  z-index: 10;
 }
-
 .header__link {
   font-weight: $fw-bold;
   text-decoration: none;

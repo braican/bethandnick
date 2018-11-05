@@ -28,7 +28,7 @@ const Header = ({ siteTitle, featuredImage }) => (
             ))}
           </h1>
 
-          <nav className="l-main header__nav">
+          <nav className="header__nav">
             <ul className="header__menu">
               <li>
                 <Link to="/" className="header__link">

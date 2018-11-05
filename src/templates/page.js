@@ -3,12 +3,13 @@ import { graphql } from 'gatsby';
 import BaseLayout from '../layouts/BaseLayout';
 
 export default props => {
+  const location = props['*'] || 'home';
   const { data } = props;
   const { content, page_featured_image } = data.wordpressPage;
-  const location = props['*'] || 'home';
+  const featuredImage = page_featured_image ? page_featured_image.source_url : null;
 
   return (
-    <BaseLayout location={location} featuredImage={page_featured_image.source_url}>
+    <BaseLayout location={location} featuredImage={featuredImage}>
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
