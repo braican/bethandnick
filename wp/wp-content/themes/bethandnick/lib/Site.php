@@ -28,6 +28,11 @@ class Site {
      */
     private function __construct() {
         $this->create_image_sizes();
+
+        // rearrange and hide some Admin menu links
+        add_filter('custom_menu_order', '__return_true');
+        add_filter('menu_order', array($this, 'rearrange_admin_menu'));
+        add_action('admin_menu', array($this, 'remove_admin_menu_links'));
     }
 
 
@@ -38,5 +43,24 @@ class Site {
      */
     private function create_image_sizes() {
         add_image_size('featured', 1200, 1200, false);
+    }
+
+    /**
+     * Remove links/menus from the admin sidebar menu.
+     * 
+     * @return void
+     */
+    public function remove_admin_menu_links() {
+        remove_menu_page('edit-comments.php');
+        remove_menu_page('edit.php');
+    }
+
+    /**
+     * Rearrange the `Media` menu item in the WordPress nav.
+     * 
+     * @return void
+     */
+    public function rearrange_admin_menu() {
+        return array('index.php', 'upload.php');
     }
 }
