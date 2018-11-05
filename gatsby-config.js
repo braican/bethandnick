@@ -36,9 +36,7 @@ module.exports = {
         // does the site use ACF?
         useACF: false,
 
-        includedRoutes: ['/*/*/pages'],
-        excludeRoutes: ['/wp-json/acf/v3/options/options'],
-        verboseOutput: true
+        includedRoutes: ['/*/*/pages', '/*/*/media']
       }
     }
   ]

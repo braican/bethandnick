@@ -4,12 +4,12 @@ import BaseLayout from '../layouts/BaseLayout';
 
 export default props => {
   const { data } = props;
-  const post = data.wordpressPage;
+  const { content, page_featured_image } = data.wordpressPage;
   const location = props['*'] || 'home';
 
   return (
-    <BaseLayout location={location}>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+    <BaseLayout location={location} featuredImage={page_featured_image.source_url}>
+      <div dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
 };
@@ -19,6 +19,9 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
+      page_featured_image {
+        source_url
+      }
     }
   }
 `;
