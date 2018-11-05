@@ -34,7 +34,11 @@ module.exports = {
         hostingWPCOM: false,
 
         // does the site use ACF?
-        useACF: true
+        useACF: false,
+
+        includedRoutes: ['/*/*/pages'],
+        excludeRoutes: ['/wp-json/acf/v3/options/options'],
+        verboseOutput: true
       }
     }
   ]
