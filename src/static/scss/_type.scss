@@ -18,3 +18,14 @@ h2 {
 p {
   margin-bottom: 1em;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+  box-shadow: inset 0 -3px 0 rgba($c-red, 0.6);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: inset 0 -6px 0 rgba($c-red, 0.6);
+  }
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
+
+import Nav from '../../components/Nav';
 
 import './header.scss';
 
@@ -21,32 +23,15 @@ const Header = ({ siteTitle, featuredImage }) => (
     `}
     render={data => (
       <div className={`header${featuredImage ? ' header--has-featured' : ''}`}>
-        <div className="header__meta">
+        <div className="header__meta l-main">
           <h1 className="header__banner">
             {siteTitle.split(' ').map(part => (
               <span key={part}>{part}</span>
             ))}
           </h1>
-
-          <nav className="header__nav">
-            <ul className="header__menu">
-              <li>
-                <Link to="/" className="header__link">
-                  Home
-                </Link>
-              </li>
-              {data.allWordpressPage.edges
-                .filter(({ node }) => node.slug !== 'home')
-                .map(({ node }) => (
-                  <li key={node.id}>
-                    <Link to={`/${node.slug}`} className="header__link">
-                      {node.title}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </nav>
         </div>
+
+        <Nav pages={data.allWordpressPage.edges} />
 
         {featuredImage ? (
           <div className="header__featured-img">

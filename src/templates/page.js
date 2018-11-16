@@ -10,7 +10,7 @@ export default props => {
 
   return (
     <BaseLayout location={location} featuredImage={featuredImage}>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
 };

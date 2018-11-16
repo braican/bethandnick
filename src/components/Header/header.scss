@@ -5,16 +5,16 @@
   margin-bottom: 60px;
 
   &--has-featured {
-    min-height: 50vw;
+    min-height: 60vw;
   }
 }
 
 .header__meta {
-  padding: 60px;
-
-  .header--has-featured & {
-    width: 50%;
-  }
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .header__banner {
@@ -42,21 +42,12 @@
   }
 }
 
-.header__nav {
-  position: relative;
-  z-index: 10;
-}
-.header__link {
-  font-weight: $fw-bold;
-  text-decoration: none;
-  color: inherit;
-}
-
 .header__featured-img {
   position: absolute;
-  left: 50%;
+  z-index: 1;
+  left: 40%;
   right: 0;
-  top: 0;
+  top: -20px;
 
   img {
     width: 100%;

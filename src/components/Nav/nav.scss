@@ -1,0 +1,36 @@
+@import '../../static/scss/variables';
+
+.mainnav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  width: 20%;
+  padding-left: 40px;
+  padding-right: 40px;
+  z-index: 10;
+  text-align: right;
+}
+
+.mainnav__item {
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.4s;
+
+  .mainnav--active & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @for $i from 2 through 10 {
+    &:nth-child(#{$i}n) {
+      transition-delay: #{$i * 0.05}s;
+    }
+  }
+}
+
+.mainnav__link {
+  font-weight: $fw-bold;
+  text-decoration: none;
+  color: inherit;
+}

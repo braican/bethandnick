@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
 const BaseLayout = ({ children, location, featuredImage }) => (
   <StaticQuery
@@ -30,7 +31,10 @@ const BaseLayout = ({ children, location, featuredImage }) => (
           siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
           featuredImage={featuredImage}
         />
+
         <div className="l-main">{children}</div>
+
+        <Footer />
       </div>
     )}
   />
