@@ -27,14 +27,16 @@ const BaseLayout = ({ children, location, featuredImage }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header
-          siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
-          featuredImage={featuredImage}
-        />
 
-        <div className="l-main">{children}</div>
+        <div className="splitpane__img">
+          <img src={featuredImage} alt="" />
+        </div>
 
-        <Footer />
+        <div className="splitpane__content">
+          <Header siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)} />
+          {children}
+          <Footer />
+        </div>
       </div>
     )}
   />

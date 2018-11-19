@@ -6,10 +6,9 @@ export default props => {
   const location = props['*'] || 'home';
   const { data } = props;
   const { content, page_featured_image } = data.wordpressPage;
-  const featuredImage = page_featured_image ? page_featured_image.source_url : null;
 
   return (
-    <BaseLayout location={location} featuredImage={featuredImage}>
+    <BaseLayout location={location} featuredImage={page_featured_image}>
       <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
@@ -20,9 +19,7 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
-      page_featured_image {
-        source_url
-      }
+      page_featured_image
     }
   }
 `;

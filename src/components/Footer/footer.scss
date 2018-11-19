@@ -1,5 +1,6 @@
+@import '../../static/scss/variables';
+
 .site-footer {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: $space-lg;
   opacity: 0.6;
 }

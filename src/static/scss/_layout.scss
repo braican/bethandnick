@@ -1,6 +1,20 @@
-.l-main {
-  width: 100%;
-  padding-left: 20%;
-  padding-right: 20%;
-  margin: 0 auto;
+.splitpane__img {
+  top: 0;
+  left: 0;
+  width: 50%;
+  position: fixed;
+  height: 100vh;
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+}
+.splitpane__content {
+  width: 50%;
+  margin-left: 50%;
+  padding: 40px;
 }

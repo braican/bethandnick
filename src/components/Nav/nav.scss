@@ -1,21 +1,17 @@
 @import '../../static/scss/variables';
 
 .mainnav {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 0;
-  width: 20%;
-  padding-left: 40px;
-  padding-right: 40px;
-  z-index: 10;
-  text-align: right;
+  margin-bottom: $space-lg;
 }
-
 .mainnav__item {
-  opacity: 0;
-  transform: translateX(10px);
-  transition: all 0.4s;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+
+  &:nth-child(n + 2) {
+    margin-left: 20px;
+  }
+  // opacity: 0;
 
   .mainnav--active & {
     opacity: 1;
