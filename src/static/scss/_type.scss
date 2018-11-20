@@ -1,7 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Cormorant+Upright|Gilda+Display|Goudy+Bookletter+1911|Headland+One|Katibeh|Ovo|Playfair+Display|Suranna|Vidaloka|Lora:400,700');
+@import url('https://fonts.googleapis.com/css?family=Vidaloka|Lora:400,700|Roboto+Condensed:400,700');
 
 html {
   font-size: $fz-base;
+  color: $c-gray-3;
 }
 
 body {
@@ -19,13 +20,13 @@ p {
   margin-bottom: 1em;
 }
 
-a {
+a:not(.mainnav__link) {
   text-decoration: none;
   color: inherit;
-  box-shadow: inset 0 -3px 0 rgba($c-red, 0.6);
+  box-shadow: inset 0 -2px 0 $c-lavender;
   transition: box-shadow 0.2s;
 
   &:hover {
-    box-shadow: inset 0 -6px 0 rgba($c-red, 0.6);
+    box-shadow: inset 0 -4px 0 $c-lavender;
   }
 }

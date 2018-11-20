@@ -4,6 +4,7 @@
   width: 50%;
   position: fixed;
   height: 100vh;
+  background-color: $c-purple;
 
   img {
     display: block;
@@ -16,5 +17,9 @@
 .splitpane__content {
   width: 50%;
   margin-left: 50%;
-  padding: 40px;
+  padding: $space-sm;
+
+  @include mq($bp-tablet) {
+    padding: $space-lg;
+  }
 }

@@ -29,7 +29,7 @@ const BaseLayout = ({ children, location, featuredImage }) => (
         </Helmet>
 
         <div className="splitpane__img">
-          <img src={featuredImage} alt="" />
+          {featuredImage ? <img src={featuredImage} alt="" /> : null}
         </div>
 
         <div className="splitpane__content">

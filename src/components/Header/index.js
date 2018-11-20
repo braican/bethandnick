@@ -7,8 +7,6 @@ import './header.scss';
 
 const Header = ({ siteTitle }) => (
   <div className="header">
-    <Nav />
-    
     <div className="header__meta">
       <h1 className="header__banner">
         {siteTitle.split(' ').map(part => (
@@ -16,7 +14,7 @@ const Header = ({ siteTitle }) => (
         ))}
       </h1>
     </div>
-
+    <Nav />
   </div>
 );
 

@@ -3,18 +3,9 @@
 // --------------------------------------------------------------
 
 $fz-base: 18px;
-
-$ff-abril: 'Abril Fatface', cursive;
-$ff-playfair: 'Playfair Display', serif;
 $ff-vidaloka: 'Vidaloka', serif;
-$ff-ovo: 'Ovo', serif;
-$ff-goudy: 'Goudy Bookletter 1911', serif;
-$ff-gilda: 'Gilda Display', serif;
-$ff-suranna: 'Suranna', serif;
-$ff-headland: 'Headland One', serif;
-$ff-katibeh: 'Katibeh', cursive;
-$ff-cormorant: 'Cormorant Upright', serif;
 $ff-lora: 'Lora', serif;
+$ff-roboto: 'Roboto Condensed', sans-serif;
 
 $fw-bold: 700;
 
@@ -29,10 +20,21 @@ $gutter: 1rem;
 // Colors
 // --------------------------------------------------------------
 
-$c-red: #cc0000;
+$c-gray-2: #222222;
+$c-gray-3: #333333;
+$c-gray-9: #999999;
+$c-purple: #734f96;
+$c-lavender: #bf94e4;
 
 // --------------------------------------------------------------
 // Spacing
 // --------------------------------------------------------------
 
+$space-sm: 24px;
 $space-lg: 60px;
+
+// --------------------------------------------------------------
+// Media queries
+// --------------------------------------------------------------
+
+$bp-tablet: 780px;
