@@ -3,13 +3,13 @@ import { graphql } from 'gatsby';
 import BaseLayout from '../layouts/BaseLayout';
 
 export default props => {
-  const { data } = props;
-  const post = data.wordpressPage;
   const location = props['*'] || 'home';
+  const { data } = props;
+  const { content, page_featured_image } = data.wordpressPage;
 
   return (
-    <BaseLayout location={location}>
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+    <BaseLayout location={location} featuredImage={page_featured_image}>
+      <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
 };
@@ -19,6 +19,7 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
+      page_featured_image
     }
   }
 `;

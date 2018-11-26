@@ -1,10 +1,18 @@
+@import '../../static/scss/mixins';
 @import '../../static/scss/variables';
 
+.header__meta {
+  margin-bottom: $space-lg;
+}
+
 .header__banner {
-  font-size: 10vw;
-  font-family: 'Goudy Bookletter 1911', serif;
-  padding: 60px;
-  text-align: center;
+  font-size: 4rem;
+  font-family: $ff-vidaloka;
+  display: inline-block;
+
+  @include mq($bp-mobile) {
+    font-size: 10vw;
+  }
 
   span {
     position: relative;
@@ -12,40 +20,16 @@
     line-height: 0.8;
   }
 
-  span:nth-child(1) {
-    margin-right: 0.8em;
+  span:first-child {
+    margin-bottom: -0.3em;
   }
   span:nth-child(2) {
-    color: #aaa;
+    color: $c-purple;
+    text-align: right;
+    position: relative;
+    right: -0.7em;
   }
-
   span:nth-child(3) {
-    margin-left: 0.8em;
+    margin-top: -0.3em;
   }
-}
-
-.font-switcher {
-  background: #f8f8f8;
-  padding: 8px;
-  li {
-    cursor: pointer;
-    margin: 8px 0 8px 10px;
-
-    &:hover {
-      color: #888;
-    }
-  }
-}
-
-.header__nav {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 60px;
-}
-.header__links {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding-left: $gutter;
 }

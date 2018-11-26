@@ -5,8 +5,9 @@ import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
 import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 
-const BaseLayout = ({ children, location }) => (
+const BaseLayout = ({ children, location, featuredImage }) => (
   <StaticQuery
     query={graphql`
       {
@@ -26,8 +27,16 @@ const BaseLayout = ({ children, location }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)} />
-        <div className="l-main">{children}</div>
+
+        <div className="splitpane__img">
+          {featuredImage ? <img src={featuredImage} alt="" /> : null}
+        </div>
+
+        <div className="splitpane__content">
+          <Header siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)} />
+          {children}
+          <Footer />
+        </div>
       </div>
     )}
   />
@@ -35,7 +44,8 @@ const BaseLayout = ({ children, location }) => (
 
 BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
-  location: PropTypes.string
+  location: PropTypes.string,
+  featuredImage: PropTypes.string
 };
 
 export default BaseLayout;

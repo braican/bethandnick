@@ -1,0 +1,36 @@
+@import '../../static/scss/variables';
+@import '../../static/scss/mixins';
+
+.mainnav {
+  margin-bottom: $space-lg;
+}
+.mainnav__item {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+
+  &:nth-child(n + 2) {
+    margin-left: 20px;
+  }
+
+  .mainnav--active & {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @for $i from 2 through 10 {
+    &:nth-child(#{$i}n) {
+      transition-delay: #{$i * 0.05}s;
+    }
+  }
+}
+
+.mainnav__link {
+  @include uppercase;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: $c-purple;
+  }
+}
