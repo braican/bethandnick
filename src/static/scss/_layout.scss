@@ -1,10 +1,24 @@
+$desktop-split: 50%;
+$tablet-split-main: 62%;
+$tablet-split-secondary: 100 - $tablet-split-main;
+$mobile-split-main: 80%;
+$mobile-split-secondary: 100 - $mobile-split-main;
+
 .splitpane__img {
   top: 0;
   left: 0;
-  width: 50%;
   position: fixed;
   height: 100vh;
   background-color: $c-purple;
+  width: $mobile-split-secondary;
+
+  @include mq($bp-mobile) {
+    width: $tablet-split-secondary;
+  }
+
+  @include mq($bp-desktop) {
+    width: $desktop-split;
+  }
 
   img {
     display: block;
@@ -15,11 +29,17 @@
   }
 }
 .splitpane__content {
-  width: 50%;
-  margin-left: 50%;
-  padding: $space-sm;
+  padding: 8vw;
+  width: $mobile-split-main;
+  margin-left: $mobile-split-secondary;
 
-  @include mq($bp-tablet) {
-    padding: $space-lg;
+  @include mq($bp-mobile) {
+    width: $tablet-split-main;
+    margin-left: $tablet-split-secondary;
+  }
+
+  @include mq($bp-desktop) {
+    width: $desktop-split;
+    margin-left: $desktop-split;
   }
 }

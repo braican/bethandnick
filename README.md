@@ -11,5 +11,5 @@ Navigate into your new site’s directory and start it up.
 nvm use
 
 # start up the gatsby environment
-yarn run develop
+yarn start
 ```

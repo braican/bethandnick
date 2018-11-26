@@ -1,19 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Vidaloka|Lora:400,700|Roboto+Condensed:400,700');
 
 html {
-  font-size: $fz-base;
+  font-size: $fz-base - 2;
   color: $c-gray-3;
+
+  @include mq($bp-mobile) {
+    font-size: $fz-base;
+  }
 }
 
 body {
   font-family: $ff-lora;
-  line-height: 1.6;
+  line-height: 1.8;
 }
 
 h2 {
   font-size: 2rem;
+  line-height: 1.2;
   font-weight: $fw-bold;
   margin-bottom: 0.5em;
+  font-family: $ff-vidaloka;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
 p {
@@ -35,7 +43,8 @@ a:not(.mainnav__link) {
   color: $c-purple;
   float: left;
   font-family: $ff-vidaloka;
-  font-size: 4em;
-  line-height: 0.9em;
+  font-size: 5.6em;
+  line-height: 1em;
   padding-right: 10px;
+  margin-bottom: -0.1em;
 }

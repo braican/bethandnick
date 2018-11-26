@@ -1,3 +1,4 @@
+@import '../../static/scss/mixins';
 @import '../../static/scss/variables';
 
 .header__meta {
@@ -5,15 +6,18 @@
 }
 
 .header__banner {
-  font-size: 10vw;
+  font-size: 4rem;
   font-family: $ff-vidaloka;
-
   display: inline-block;
+
+  @include mq($bp-mobile) {
+    font-size: 10vw;
+  }
 
   span {
     position: relative;
     display: block;
-    line-height: 0.7;
+    line-height: 0.8;
   }
 
   span:first-child {
