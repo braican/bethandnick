@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
 import './nav.scss';
@@ -41,9 +40,5 @@ const Nav = () => (
     )}
   />
 );
-
-Nav.propTypes = {
-  page: PropTypes.array
-};
 
 export default Nav;
