@@ -38,6 +38,12 @@ module.exports = {
 
         includedRoutes: ['/*/*/pages', '/*/*/media']
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-20596099-20'
+      }
     }
   ]
 };
