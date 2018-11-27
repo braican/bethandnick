@@ -28,6 +28,7 @@ class Site {
      */
     private function __construct() {
         $this->create_image_sizes();
+        $this->add_options_pages();
 
         // rearrange and hide some Admin menu links
         add_filter('custom_menu_order', '__return_true');
@@ -43,6 +44,16 @@ class Site {
      */
     private function create_image_sizes() {
         add_image_size('featured', 1200, 1200, false);
+    }
+
+    private function add_options_pages() {
+        if ( function_exists( 'acf_add_options_page' ) ) {
+            acf_add_options_page( array(
+                'page_title' => 'Global Content',
+                'position' => '5.1',
+                'icon_url' => 'dashicons-admin-customizer'
+            ));
+        }
     }
 
     /**
