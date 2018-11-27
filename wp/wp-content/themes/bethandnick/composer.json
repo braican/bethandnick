@@ -11,19 +11,19 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.6.10",
+                "version": "5.7.7",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.6.10"
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.7"
                 }
             }
         }
     ],
     "require": {
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.6.10",
-        "wpackagist-plugin/wp-migrate-db": "^1.0.4",
-        "wpackagist-plugin/gutenberg": "^4.1.1"
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.7.7",
+        "wpackagist-plugin/wp-migrate-db": "^1.0.7",
+        "wpackagist-plugin/gutenberg": "^4.5.1"
     },
     "autoload": {
         "psr-4": {

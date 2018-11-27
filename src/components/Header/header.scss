@@ -1,0 +1,35 @@
+@import '../../static/scss/mixins';
+@import '../../static/scss/variables';
+
+.header__meta {
+  margin-bottom: $space-lg;
+}
+
+.header__banner {
+  font-size: 4rem;
+  font-family: $ff-vidaloka;
+  display: inline-block;
+
+  @include mq($bp-mobile) {
+    font-size: 10vw;
+  }
+
+  span {
+    position: relative;
+    display: block;
+    line-height: 0.8;
+  }
+
+  span:first-child {
+    margin-bottom: -0.3em;
+  }
+  span:nth-child(2) {
+    color: $c-purple;
+    text-align: right;
+    position: relative;
+    right: -0.7em;
+  }
+  span:nth-child(3) {
+    margin-top: -0.3em;
+  }
+}

@@ -56,7 +56,12 @@ class API {
 
         // Get all ACF fields
         $fields = get_fields($post->ID);
-        
+
+        if (!isset($fields['page_featured_image']) && !$fields['page_featured_image'] && ($ft_image = get_field('site_image', 'option'))) {
+            $response_data['page_featured_image'] = $ft_image['sizes']['featured'];
+            $data->set_data($response_data);
+        }
+
         // If we have no additional fields bail early.
         if (!$fields){
             return $data;
