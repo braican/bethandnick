@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "470c8b7e9bdc4621ff0363abf0e4c678",
+    "content-hash": "3a4b377ae08e50f2364737c84c66234d",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -139,15 +139,15 @@
         },
         {
             "name": "wpackagist-plugin/gutenberg",
-            "version": "4.5.1",
+            "version": "4.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/gutenberg/",
-                "reference": "tags/4.5.1"
+                "reference": "tags/4.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/gutenberg.4.5.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.4.6.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -159,15 +159,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-migrate-db",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-migrate-db/",
-                "reference": "tags/1.0.7"
+                "reference": "tags/1.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.8.zip",
                 "reference": null,
                 "shasum": null
             },

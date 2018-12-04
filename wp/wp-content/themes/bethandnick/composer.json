@@ -23,7 +23,7 @@
     "require": {
         "advanced-custom-fields/advanced-custom-fields-pro": "5.7.7",
         "wpackagist-plugin/wp-migrate-db": "^1.0.7",
-        "wpackagist-plugin/gutenberg": "^4.5.1"
+        "wpackagist-plugin/gutenberg": "^4.6.1"
     },
     "autoload": {
         "psr-4": {
