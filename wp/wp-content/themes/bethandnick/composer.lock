@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3a4b377ae08e50f2364737c84c66234d",
+    "content-hash": "f76558b3303453c093da7346d718eefd",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -16,6 +16,38 @@
                 "shasum": null
             },
             "type": "wordpress-plugin"
+        },
+        {
+            "name": "braican/netlify-deployer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braican/wp-netlify-deployer.git",
+                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braican/wp-netlify-deployer/zipball/0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
+                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0.0"
+            },
+            "type": "wordpress-plugin",
+            "license": [
+                "MIT"
+            ],
+            "description": "Trigger deployments to a Netlify project with ease.",
+            "keywords": [
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "support": {
+                "source": "https://github.com/braican/wp-netlify-deployer/tree/1.0.0",
+                "issues": "https://github.com/braican/wp-netlify-deployer/issues"
+            },
+            "time": "2018-12-06T02:25:12+00:00"
         },
         {
             "name": "composer/installers",
@@ -181,7 +213,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "braican/netlify-deployer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
