@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "470c8b7e9bdc4621ff0363abf0e4c678",
+    "content-hash": "f76558b3303453c093da7346d718eefd",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -16,6 +16,38 @@
                 "shasum": null
             },
             "type": "wordpress-plugin"
+        },
+        {
+            "name": "braican/netlify-deployer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/braican/wp-netlify-deployer.git",
+                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/braican/wp-netlify-deployer/zipball/0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
+                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0.0"
+            },
+            "type": "wordpress-plugin",
+            "license": [
+                "MIT"
+            ],
+            "description": "Trigger deployments to a Netlify project with ease.",
+            "keywords": [
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "support": {
+                "source": "https://github.com/braican/wp-netlify-deployer/tree/1.0.0",
+                "issues": "https://github.com/braican/wp-netlify-deployer/issues"
+            },
+            "time": "2018-12-06T02:25:12+00:00"
         },
         {
             "name": "composer/installers",
@@ -139,15 +171,15 @@
         },
         {
             "name": "wpackagist-plugin/gutenberg",
-            "version": "4.5.1",
+            "version": "4.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/gutenberg/",
-                "reference": "tags/4.5.1"
+                "reference": "tags/4.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/gutenberg.4.5.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/gutenberg.4.6.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -159,15 +191,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-migrate-db",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-migrate-db/",
-                "reference": "tags/1.0.7"
+                "reference": "tags/1.0.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.8.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -181,7 +213,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "braican/netlify-deployer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

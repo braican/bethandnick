@@ -18,12 +18,17 @@
                     "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.7"
                 }
             }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/braican/wp-netlify-deployer"
         }
     ],
     "require": {
         "advanced-custom-fields/advanced-custom-fields-pro": "5.7.7",
         "wpackagist-plugin/wp-migrate-db": "^1.0.7",
-        "wpackagist-plugin/gutenberg": "^4.5.1"
+        "wpackagist-plugin/gutenberg": "^4.6.1",
+        "braican/netlify-deployer": "dev-master"
     },
     "autoload": {
         "psr-4": {
