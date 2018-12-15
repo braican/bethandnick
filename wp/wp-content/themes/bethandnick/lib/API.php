@@ -56,28 +56,40 @@ class API {
 
         // Get all ACF fields
         $fields = get_fields($post->ID);
-
-        if (!isset($fields['page_featured_image']) && !$fields['page_featured_image'] && ($ft_image = get_field('site_image', 'option'))) {
-            $response_data['page_featured_image'] = $ft_image['sizes']['featured'];
-            $data->set_data($response_data);
-        }
+        $page_image = $this->get_page_image($post->ID);
+        $response_data['page_image'] = $page_image;
 
         // If we have no additional fields bail early.
-        if (!$fields){
-            return $data;
-        }
-
-        foreach ($fields as $field_name => $value){
-            if ($field_name === 'page_featured_image' && ($img = wp_get_attachment_image_src($value, 'featured'))) {
-                $value = $img[0];
+        if ($fields){
+            foreach ($fields as $field_name => $value){
+                $response_data[$field_name] = $value;
             }
-
-            $response_data[$field_name] = $value;
         }
 
         // Commit the API result var to the API endpoint
         $data->set_data( $response_data );
 
         return $data;
+    }
+
+
+    /**
+     * Util function to get the featured image url for a page, with a global fallback if the given
+     *  page doesn't have a featured image set.
+     * 
+     * @param int  $postId  WP Post ID.
+     * 
+     * @return boolean|string False if no image exists, or the url to the image.
+     */
+    private function get_page_image($postId) {
+        $image = get_field('page_featured_image', $postId) ?: get_field('site_image', 'option');
+        if (is_array($image)) {
+            $image = $image['ID'];
+        }
+        $imageObj = wp_get_attachment_image_src($image, 'featured');
+        if (!$imageObj) {
+            return false;
+        }
+        return $imageObj[0];
     }
 }
