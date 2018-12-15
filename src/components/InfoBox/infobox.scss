@@ -1,19 +1,37 @@
 @import '../../static/scss/variables';
+@import '../../static/scss/mixins';
 
-$info-size: 180px;
+$info-size: 200px;
 
 .infobox {
-  width: $info-size;
-  position: fixed;
-  top: 8vw;
-  left: 50%;
-  margin-left: -$info_size / 1.5;
-  // border-radius: 50%;
-  z-index: 100;
-  text-align: right;
-  background-color: $c-purple;
-  color: $c-white;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -8vw;
+  margin-left: -11vw;
+  margin-right: -8vw;
+  margin-bottom: 8vw;
+  background-color: $c-lavender;
   font-family: $ff-vidaloka;
+  color: $c-white;
   line-height: 1.4;
-  padding: 20px;
+  padding: 20px 3vw;
+
+  @include mq($bp-desktop) {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    margin: 0;
+    width: $info-size;
+    top: 8vw;
+    left: 50%;
+    margin-left: -$info_size / 1.33;
+    text-align: right;
+    padding: 20px;
+    font-size: 1.2rem;
+  }
+}
+
+.infobox__wedding-info {
+  margin: 0;
 }

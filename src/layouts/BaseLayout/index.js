@@ -17,31 +17,33 @@ const BaseLayout = ({ children, location, featuredImage }) => (
         }
       }
     `}
-    render={data => (
-      <div className={`main page--${location || 'base'}`}>
-        <Helmet
-          title={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' }
-          ]}
-        >
-          <html lang="en" />
-        </Helmet>
+    render={data => {
+      const siteName = decodeHtmlEntities(data.wordpressSiteMetadata.name);
+      return (
+        <div className={`main page--${location || 'base'}`}>
+          <Helmet
+            title={siteName}
+            meta={[
+              { name: 'description', content: 'Sample' },
+              { name: 'keywords', content: 'sample, something' }
+            ]}
+          >
+            <html lang="en" />
+          </Helmet>
 
-        <InfoBox />
+          <div className="splitpane__img">
+            {featuredImage ? <img src={featuredImage} alt="" /> : null}
+          </div>
 
-        <div className="splitpane__img">
-          {featuredImage ? <img src={featuredImage} alt="" /> : null}
+          <div className="splitpane__content">
+            <InfoBox />
+            <Header siteTitle={siteName} />
+            {children}
+            <Footer />
+          </div>
         </div>
-
-        <div className="splitpane__content">
-          <Header siteTitle={decodeHtmlEntities(data.wordpressSiteMetadata.name)} />
-          {children}
-          <Footer />
-        </div>
-      </div>
-    )}
+      );
+    }}
   />
 );
 

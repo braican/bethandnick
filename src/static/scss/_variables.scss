@@ -16,6 +16,12 @@ $fw-bold: 700;
 $site-width: 1080px;
 $gutter: 1rem;
 
+$desktop-split: 50%;
+$tablet-split-main: 62%;
+$tablet-split-secondary: 100 - $tablet-split-main;
+$mobile-split-main: 80%;
+$mobile-split-secondary: 100 - $mobile-split-main;
+
 // --------------------------------------------------------------
 // Colors
 // --------------------------------------------------------------

@@ -1,3 +1,21 @@
+@import './variables';
+
+// --------------------------------------------------------------
+// Media queries
+// --------------------------------------------------------------
+
+@mixin mq($mq, $max: false) {
+  @if $max {
+    @media (max-width: $mq + 1) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $mq) {
+      @content;
+    }
+  }
+}
+
 // --------------------------------------------------------------
 // Layout
 // --------------------------------------------------------------
@@ -5,6 +23,31 @@
 @mixin grid-child {
   padding-left: $gutter;
   padding-right: $gutter;
+}
+
+@mixin content-split-main {
+  width: $mobile-split-main;
+  margin-left: $mobile-split-secondary;
+
+  @include mq($bp-mobile) {
+    width: $tablet-split-main;
+    margin-left: $tablet-split-secondary;
+  }
+
+  @include mq($bp-desktop) {
+    width: $desktop-split;
+    margin-left: $desktop-split;
+  }
+}
+
+@mixin content-split-secondary {
+  @include mq($bp-mobile) {
+    width: $tablet-split-secondary;
+  }
+
+  @include mq($bp-desktop) {
+    width: $desktop-split;
+  }
 }
 
 // --------------------------------------------------------------
@@ -16,14 +59,4 @@
   font-family: $ff-roboto;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-// --------------------------------------------------------------
-// Media queries
-// --------------------------------------------------------------
-
-@mixin mq($mq) {
-  @media (min-width: $mq) {
-    @content;
-  }
 }

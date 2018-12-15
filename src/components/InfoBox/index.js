@@ -1,5 +1,6 @@
 import React from 'react';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
 
 import Nav from '../../components/Nav';
 
@@ -20,15 +21,21 @@ const InfoBox = () => (
 
       return (
         <div className="infobox">
-          <p>
-            {wedding_date} at {venue_name}
+          <p className="infobox__wedding-info">
+            <span className="wedding-info__date">{wedding_date}</span>
+            <br />
+            <span className="wedding-info__venue">at {venue_name}</span>
           </p>
 
-          <Nav />
+          <Nav weddingDate={wedding_date} venueName={venue_name} />
         </div>
       );
     }}
   />
 );
+
+InfoBox.propTypes = {
+  siteName: PropTypes.string
+};
 
 export default InfoBox;

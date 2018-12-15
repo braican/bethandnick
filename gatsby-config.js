@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-svg-sprite`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -28,14 +28,6 @@ p {
   margin-bottom: 1em;
 }
 
-.content__main a {
-  box-shadow: inset 0 -2px 0 $c-lavender;
-  transition: box-shadow 0.2s;
-
-  &:hover {
-    box-shadow: inset 0 -4px 0 $c-lavender;
-  }
-}
 a {
   text-decoration: none;
   color: inherit;
@@ -43,6 +35,26 @@ a {
   &:hover {
     color: $c-purple;
   }
+
+  .content__main & {
+    box-shadow: inset 0 -2px 0 $c-lavender;
+    transition: box-shadow 0.2s;
+
+    &:hover {
+      box-shadow: inset 0 -4px 0 $c-lavender;
+    }
+  }
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
 }
 
 .has-drop-cap:first-letter {
