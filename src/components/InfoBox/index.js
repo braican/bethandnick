@@ -1,41 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
-
 import Nav from '../../components/Nav';
 
 import './infobox.scss';
 
-const InfoBox = () => (
-  <StaticQuery
-    query={graphql`
-      {
-        wordpressBethandnickInfo {
-          wedding_date
-          venue_name
-        }
-      }
-    `}
-    render={data => {
-      const { wedding_date, venue_name } = data.wordpressBethandnickInfo;
+const InfoBox = ({ weddingDate, venueName }) => {
+  return (
+    <div className="infobox">
+      <p className="infobox__wedding-info">
+        <span className="wedding-info__date">{weddingDate}</span>
+        <br />
+        <span className="wedding-info__venue">at {venueName}</span>
+      </p>
 
-      return (
-        <div className="infobox">
-          <p className="infobox__wedding-info">
-            <span className="wedding-info__date">{wedding_date}</span>
-            <br />
-            <span className="wedding-info__venue">at {venue_name}</span>
-          </p>
-
-          <Nav weddingDate={wedding_date} venueName={venue_name} />
-        </div>
-      );
-    }}
-  />
-);
+      <Nav weddingDate={weddingDate} venueName={venueName} />
+    </div>
+  );
+};
 
 InfoBox.propTypes = {
-  siteName: PropTypes.string
+  weddingDate: PropTypes.string,
+  venueName: PropTypes.string
 };
 
 export default InfoBox;
