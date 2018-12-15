@@ -28,14 +28,20 @@ p {
   margin-bottom: 1em;
 }
 
-a:not(.mainnav__link) {
-  text-decoration: none;
-  color: inherit;
+.content__main a {
   box-shadow: inset 0 -2px 0 $c-lavender;
   transition: box-shadow 0.2s;
 
   &:hover {
     box-shadow: inset 0 -4px 0 $c-lavender;
+  }
+}
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: $c-purple;
   }
 }
 

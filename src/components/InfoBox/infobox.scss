@@ -1,0 +1,19 @@
+@import '../../static/scss/variables';
+
+$info-size: 180px;
+
+.infobox {
+  width: $info-size;
+  position: fixed;
+  top: 8vw;
+  left: 50%;
+  margin-left: -$info_size / 1.5;
+  // border-radius: 50%;
+  z-index: 100;
+  text-align: right;
+  background-color: $c-purple;
+  color: $c-white;
+  font-family: $ff-vidaloka;
+  line-height: 1.4;
+  padding: 20px;
+}

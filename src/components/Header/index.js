@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Nav from '../../components/Nav';
-
 import './header.scss';
 
 const Header = ({ siteTitle }) => (
@@ -14,7 +12,6 @@ const Header = ({ siteTitle }) => (
         ))}
       </h1>
     </div>
-    <Nav />
   </div>
 );
 

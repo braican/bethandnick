@@ -5,6 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
 import Header from '../../components/Header';
+import InfoBox from '../../components/InfoBox';
 import Footer from '../../components/Footer';
 
 const BaseLayout = ({ children, location, featuredImage }) => (
@@ -27,6 +28,8 @@ const BaseLayout = ({ children, location, featuredImage }) => (
         >
           <html lang="en" />
         </Helmet>
+
+        <InfoBox />
 
         <div className="splitpane__img">
           {featuredImage ? <img src={featuredImage} alt="" /> : null}
