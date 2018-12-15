@@ -14,7 +14,7 @@ class API {
      * The namespace for the API
      * @var string
      */
-    public $namespace = 'bethandnick/v1';
+    private $namespace = 'bethandnick/v2';
 
     /**
      * Gets the instance of the class.
@@ -33,7 +33,11 @@ class API {
      * Constructor is private in a singleton.
      */
     private function __construct() {
+        // Filter data for the default `page` endpoint.
         add_filter('rest_prepare_page', array($this, 'add_custom_fields'), 10, 3);
+
+        // Create some custom endpoints.
+        add_action('rest_api_init', array($this, 'setup_endpoints'));
     }
 
 
@@ -71,6 +75,47 @@ class API {
 
         return $data;
     }
+
+
+    /**
+     * Register the custom endpoints.
+     * 
+     * @return void
+     */
+    public function setup_endpoints() {
+        register_rest_route($this->namespace, 'info', array(
+            'methods' => 'GET',
+            'callback' => array($this, 'get_global_info')
+        ));
+    }
+
+
+    // -------------------------------------------------
+    //
+    // API endpoint builders
+    //
+    // -------------------------------------------------
+
+
+    /**
+     * Callback method that will return the global informations.
+     * 
+     * @return array Data containing wedding information.
+     */
+    public function get_global_info() {
+        return array(
+            'wedding_date'      => get_field('wedding_date', 'option'),
+            'venue_name'        => get_field('venue_name', 'option'),
+            'venue_information' => get_field('venue_information', 'option'),
+        );
+    }
+
+
+    // -------------------------------------------------
+    //
+    // Util
+    //
+    // -------------------------------------------------
 
 
     /**

@@ -66,8 +66,8 @@
             "key": "field_5c1543106668c",
             "label": "Venue Information",
             "name": "venue_information",
-            "type": "page_link",
-            "instructions": "Choose a page to link to for more information on the venue.",
+            "type": "text",
+            "instructions": "Add a link to a page containing more information on the venue.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -75,13 +75,11 @@
                 "class": "",
                 "id": ""
             },
-            "post_type": [
-                "page"
-            ],
-            "taxonomy": "",
-            "allow_null": 1,
-            "allow_archives": 0,
-            "multiple": 0
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -101,5 +99,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1544897417
+    "modified": 1544898532
 }
