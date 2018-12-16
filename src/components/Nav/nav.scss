@@ -6,6 +6,7 @@
   top: 0;
   right: 0;
   color: $c-white;
+  z-index: 100;
 }
 
 .mainnav__trigger,
@@ -41,7 +42,6 @@
 
 .mainnav__wrapper {
   position: fixed;
-  z-index: 2;
   top: 0;
   left: 0;
   right: 0;

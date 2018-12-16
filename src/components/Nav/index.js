@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
+import Header from '../../components/Header';
+
 import closeIcon from '../../svg/close.svg';
 import hamburgerIcon from '../../svg/hamburger.svg';
 
@@ -59,19 +61,7 @@ class Nav extends React.Component {
                 </svg>
               </button>
 
-              <div className="mainnav__info">
-                <h1 className="header__banner">
-                  <span>Beth</span>
-                  <span>&amp;</span>
-                  <span>Nick</span>
-                </h1>
-
-                <p className="mainnav__wedding-info">
-                  <span className="wedding-info__date">{this.props.weddingDate}</span>
-                  <br />
-                  <span className="wedding-info__venue">at {this.props.venueName}</span>
-                </p>
-              </div>
+              <Header weddingDate={this.props.weddingDate} venueName={this.props.venueName} />
 
               <ul className="mainnav__menu">
                 <li className="mainnav__item">
