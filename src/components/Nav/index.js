@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
 import closeIcon from '../../svg/close.svg';
+import hamburgerIcon from '../../svg/hamburger.svg';
 
 import './nav.scss';
 
@@ -44,7 +45,12 @@ class Nav extends React.Component {
         render={data => (
           <nav className="mainnav">
             <button className="mainnav__trigger" onClick={this.toggleNav}>
-              Menu
+              <span className="mainnav__trigger-label">Menu</span>
+              <span className="mainnav__trigger-icon">
+                <svg>
+                  <use xlinkHref={`#${hamburgerIcon.id}`} />
+                </svg>
+              </span>
             </button>
             <div className={`mainnav__wrapper${this.state.open ? ' mainnav__wrapper--open' : ''}`}>
               <button className="mainnav__close" onClick={this.toggleNav}>
@@ -53,17 +59,20 @@ class Nav extends React.Component {
                 </svg>
               </button>
 
-              <h1 className="header__banner">
-                <span>Beth</span>
-                <span>&amp;</span>
-                <span>Nick</span>
-              </h1>
+              <div className="mainnav__info">
+                <h1 className="header__banner">
+                  <span>Beth</span>
+                  <span>&amp;</span>
+                  <span>Nick</span>
+                </h1>
 
-              <p className="infobox__wedding-info">
-                <span className="wedding-info__date">{this.props.weddingDate}</span>
-                <br />
-                <span className="wedding-info__venue">at {this.props.venueName}</span>
-              </p>
+                <p className="mainnav__wedding-info">
+                  <span className="wedding-info__date">{this.props.weddingDate}</span>
+                  <br />
+                  <span className="wedding-info__venue">at {this.props.venueName}</span>
+                </p>
+              </div>
+
               <ul className="mainnav__menu">
                 <li className="mainnav__item">
                   <Link to="/" className="mainnav__link" activeClassName="mainnav__link--active">

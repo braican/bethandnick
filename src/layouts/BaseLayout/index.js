@@ -4,8 +4,9 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
-import Header from '../../components/Header';
 import InfoBox from '../../components/InfoBox';
+import Nav from '../../components/Nav';
+import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const BaseLayout = ({ children, location, featuredImage }) => (
@@ -42,6 +43,7 @@ const BaseLayout = ({ children, location, featuredImage }) => (
 
           <div className="splitpane__content">
             <InfoBox weddingDate={wedding_date} venueName={venue_name} />
+            <Nav weddingDate={wedding_date} venueName={venue_name} />
             <Header siteTitle={siteName} weddingDate={wedding_date} venueName={venue_name} />
             {children}
             <Footer />

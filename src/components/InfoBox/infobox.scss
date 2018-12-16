@@ -4,32 +4,16 @@
 $info-size: 200px;
 
 .infobox {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin-top: -8vw;
-  margin-left: -11vw;
-  margin-right: -8vw;
-  margin-bottom: 8vw;
+  display: none;
+  z-index: 100;
   background-color: $c-lavender;
-  font-family: $ff-vidaloka;
-  color: $c-white;
-  line-height: 1.4;
-  padding: 20px 3vw;
-
-  @include mq($bp-desktop) {
-    display: block;
-    position: fixed;
-    z-index: 100;
-    margin: 0;
-    width: $info-size;
-    top: 8vw;
-    left: 50%;
-    margin-left: -$info_size / 1.33;
-    text-align: right;
-    padding: 20px;
-    font-size: 1.2rem;
-  }
+  position: fixed;
+  width: $info-size;
+  top: 8vw;
+  left: 50%;
+  margin-left: -$info_size / 1.33;
+  text-align: right;
+  padding: 20px;
 }
 
 .infobox__wedding-info {
