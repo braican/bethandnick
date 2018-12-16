@@ -28,6 +28,10 @@
     align-items: flex-end;
     padding: 40px 8vw 40px 12vw;
   }
+
+  @include mq($bp-desktop) {
+    margin-bottom: 4rem;
+  }
 }
 
 .header__banner {
