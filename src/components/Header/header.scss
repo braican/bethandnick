@@ -8,6 +8,7 @@
 .header--main .header__meta {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-end;
   margin-bottom: $space-lg;
   background-color: $c-lavender;
   margin-top: -8vw;
@@ -55,12 +56,13 @@
 }
 
 .header__wedding-info {
-  margin: 1em 0 0 0;
+  margin: 0;
   font-weight: $fw-bold;
   font-family: $ff-lora;
 
   .page--home & {
     font-size: $fz-mid;
+    margin-top: 1em;
   }
 
   .header--main & {
@@ -68,13 +70,18 @@
   }
 }
 
-.page--home .header__banner,
-.header__page-title {
+.page--home .header__banner {
   font-size: 4rem;
+  @include mq($bp-mobile) {
+    font-size: 10vw;
+  }
+}
+.header__page-title {
+  font-size: 3rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
 
   @include mq($bp-mobile) {
-    font-size: 10vw;
+    font-size: 6vw;
   }
 }
