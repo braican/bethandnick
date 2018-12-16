@@ -38,6 +38,7 @@ class Nav extends React.Component {
                 node {
                   id
                   title
+                  menu_label
                   slug
                 }
               }
@@ -78,7 +79,7 @@ class Nav extends React.Component {
                         className="mainnav__link"
                         activeClassName="mainnav__link--active"
                       >
-                        {node.title}
+                        {node.menu_label || node.title}
                       </Link>
                     </li>
                   ))}
