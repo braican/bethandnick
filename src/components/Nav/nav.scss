@@ -2,35 +2,117 @@
 @import '../../static/scss/mixins';
 
 .mainnav {
-  margin-bottom: $space-lg;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $c-white;
+  z-index: 100;
+}
+
+.mainnav__trigger,
+.mainnav__close {
+  @include uppercase;
+  font-family: $ff-roboto;
+  font-size: $fz-small;
+  background-color: $c-lavender;
+  padding: 20px;
+  top: 0;
+  right: 0;
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: $c-white;
+  }
+}
+
+.mainnav__trigger-label {
+  margin-right: 1em;
+}
+.mainnav__trigger-icon,
+.mainnav__trigger-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mainnav__close {
+  position: fixed;
+}
+
+.mainnav__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-color: $c-purple;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 8vw;
+
+  &--open {
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    height: 100vh;
+  }
+
+  @include mq($bp-mobile) {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 100px;
+  }
+
+  .mainnav__info .header__banner span {
+    color: $c-lavender;
+  }
+}
+
+.mainnav__wedding-info {
+  margin-top: 1em;
+  font-size: $fz-mid;
+  color: $c-lavender;
+}
+
+.mainnav__menu {
+  position: absolute;
+  bottom: 8vw;
+  left: 8vw;
+
+  @include mq($bp-mobile) {
+    position: static;
+    text-align: right;
+    margin-left: 40px;
+    flex: 0 0 auto;
+  }
 }
 .mainnav__item {
-  display: inline-block;
-  position: relative;
-  z-index: 10;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.4s;
 
-  &:nth-child(n + 2) {
-    margin-left: 20px;
-  }
-
-  .mainnav--active & {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  @for $i from 2 through 10 {
-    &:nth-child(#{$i}n) {
-      transition-delay: #{$i * 0.05}s;
+  @for $i from 0 through 10 {
+    .mainnav__wrapper--open &:nth-child(#{$i}) {
+      $current-delay: ($i * 0.1s) + 0.1s;
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: #{$current-delay + 0.1s};
     }
   }
 }
-
 .mainnav__link {
   @include uppercase;
-  text-decoration: none;
-  color: inherit;
+  font-size: $fz-large;
+  display: block;
+  line-height: 1;
+  margin: 0.5em 0;
 
-  &:hover {
-    color: $c-purple;
+  &:hover,
+  &--active {
+    color: $c-lavender;
   }
 }

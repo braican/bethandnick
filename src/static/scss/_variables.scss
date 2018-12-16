@@ -9,6 +9,10 @@ $ff-roboto: 'Roboto Condensed', sans-serif;
 
 $fw-bold: 700;
 
+$fz-small: 0.8rem;
+$fz-mid: 1.4rem;
+$fz-large: 2rem;
+
 // --------------------------------------------------------------
 // Layout
 // --------------------------------------------------------------
@@ -16,14 +20,22 @@ $fw-bold: 700;
 $site-width: 1080px;
 $gutter: 1rem;
 
+$desktop-split: 50%;
+$tablet-split-main: 62%;
+$tablet-split-secondary: 100 - $tablet-split-main;
+$mobile-split-main: 80%;
+$mobile-split-secondary: 100 - $mobile-split-main;
+
 // --------------------------------------------------------------
 // Colors
 // --------------------------------------------------------------
 
+$c-white: #ffffff;
 $c-gray-f6: #f6f6f6;
 $c-gray-2: #222222;
 $c-gray-3: #333333;
 $c-gray-9: #999999;
+$c-gray-c: #cccccc;
 $c-purple: #734f96;
 $c-lavender: #bf94e4;
 
@@ -32,7 +44,7 @@ $c-lavender: #bf94e4;
 // --------------------------------------------------------------
 
 $space-sm: 24px;
-$space-lg: 4rem;
+$space-lg: 2rem;
 
 // --------------------------------------------------------------
 // Media queries

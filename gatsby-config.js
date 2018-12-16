@@ -1,6 +1,7 @@
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-svg-sprite`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -36,7 +37,7 @@ module.exports = {
         // does the site use ACF?
         useACF: false,
 
-        includedRoutes: ['/*/*/pages', '/*/*/media']
+        includedRoutes: ['/*/*/pages', '/*/*/media', '/bethandnick/v2/info']
       }
     },
     {

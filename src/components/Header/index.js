@@ -1,25 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Nav from '../../components/Nav';
-
 import './header.scss';
 
-const Header = ({ siteTitle }) => (
-  <div className="header">
+const Header = ({ contextClass, weddingDate, venueName, pageTitle }) => (
+  <div className={`header ${contextClass || ''}`}>
     <div className="header__meta">
       <h1 className="header__banner">
-        {siteTitle.split(' ').map(part => (
-          <span key={part}>{part}</span>
-        ))}
+        <span>Nick</span>
+        <span>&amp;</span>
+        <span>Beth</span>
       </h1>
+      <p className="header__wedding-info">
+        <span className="wedding-info__date">{weddingDate}</span>
+        <br />
+        <span className="wedding-info__venue">at {venueName}</span>
+      </p>
     </div>
-    <Nav />
+
+    {pageTitle ? <h2 className="header__page-title">{pageTitle}</h2> : null}
   </div>
 );
 
 Header.propTypes = {
-  siteTitle: PropTypes.string
+  contextClass: PropTypes.string,
+  weddingDate: PropTypes.string,
+  venueName: PropTypes.string,
+  pageTitle: PropTypes.string
 };
 
 export default Header;

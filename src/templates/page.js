@@ -5,10 +5,10 @@ import BaseLayout from '../layouts/BaseLayout';
 export default props => {
   const location = props['*'] || 'home';
   const { data } = props;
-  const { content, page_image } = data.wordpressPage;
+  const { content, page_image, title } = data.wordpressPage;
 
   return (
-    <BaseLayout location={location} featuredImage={page_image}>
+    <BaseLayout location={location} featuredImage={page_image} pageTitle={title}>
       <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
