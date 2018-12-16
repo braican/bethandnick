@@ -6,20 +6,27 @@
 }
 
 .header--main .header__meta {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
   margin-bottom: $space-lg;
   background-color: $c-lavender;
   margin-top: -8vw;
   margin-left: -12vw;
   margin-right: -8vw;
-  padding: 40px 8vw 40px 12vw;
+  padding: 20px 8vw 20px 12vw;
   position: relative;
 
   .page--home & {
     display: block;
-    padding: 8vw 8vw 8vw 12vw;
+    padding: 60px 8vw 8vw 12vw;
+    @include mq($bp-tablet) {
+      padding-top: 8vw;
+    }
+  }
+
+  @include mq($bp-tablet) {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 40px 8vw 40px 12vw;
   }
 }
 
@@ -68,6 +75,15 @@
 
   .header--main & {
     color: $c-purple;
+    @include mq($bp-tablet, true) {
+      margin-top: 0.5em;
+    }
+  }
+
+  .header__meta & .wedding-info__venue {
+    @include mq($bp-tablet, true) {
+      display: none;
+    }
   }
 }
 
@@ -80,7 +96,7 @@
 }
 .header__page-title {
   font-size: 3rem;
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 2rem;
 
   @include mq($bp-mobile) {
