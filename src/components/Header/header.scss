@@ -60,7 +60,8 @@
   font-weight: $fw-bold;
   font-family: $ff-lora;
 
-  .page--home & {
+  .page--home &,
+  .mainnav & {
     font-size: $fz-mid;
     margin-top: 1em;
   }
@@ -70,6 +71,7 @@
   }
 }
 
+.mainnav .header__banner,
 .page--home .header__banner {
   font-size: 4rem;
   @include mq($bp-mobile) {
