@@ -14,7 +14,6 @@
   @include uppercase;
   font-family: $ff-roboto;
   font-size: $fz-small;
-  background-color: $c-secondary;
   padding: 20px;
   top: 0;
   right: 0;
@@ -49,6 +48,7 @@
 
 .mainnav__close {
   position: fixed;
+  background-color: $c-secondary;
 }
 
 .mainnav__wrapper {
@@ -63,7 +63,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  padding: $padding;
+  padding: $padding $padding;
 
   &--open {
     visibility: visible;
@@ -76,13 +76,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding-top: $offset;
-    padding-right: 0;
     overflow: auto;
+    padding-top: 80px;
+    padding-right: 0;
   }
 
   @include mq($bp-desktop) {
     left: 50 - $offset;
+    padding-top: $offset;
     padding-left: $offset;
   }
 

@@ -6,6 +6,9 @@
 }
 
 .header--main .header__meta {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
   margin-bottom: $space-lg;
   background-color: $c-secondary;
   margin-top: $inverted-padding;
@@ -14,10 +17,13 @@
   padding: $padding $padding $offset $offset;
   position: relative;
 
+  @include mq($bp-mobile, true) {
+    .main:not(.page--home) & .wedding-info__venue {
+      display: none;
+    }
+  }
+
   @include mq($bp-tablet) {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
     padding: 40px;
   }
 
@@ -43,7 +49,11 @@
   font-family: $ff-vidaloka;
   display: inline-block;
   font-size: 2rem;
-  margin-right: 60px;
+  margin-right: 1em;
+
+  @include mq($bp-tablet) {
+    margin-right: 60px;
+  }
 
   span {
     position: relative;
@@ -75,6 +85,7 @@
   margin: 0;
   font-weight: $fw-bold;
   font-family: $ff-lora;
+  line-height: 1.2;
 
   .page--home &,
   .mainnav & {
@@ -84,9 +95,6 @@
 
   .header--main & {
     color: $c-primary;
-    @include mq($bp-tablet, true) {
-      margin-top: 0.5em;
-    }
   }
 }
 
