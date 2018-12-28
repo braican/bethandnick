@@ -11,7 +11,7 @@
   margin-top: -8vw;
   margin-left: -12vw;
   margin-right: -8vw;
-  padding: 20px 8vw 20px 12vw;
+  padding: 20px 8vw 20px 4vw;
   position: relative;
 
   .page--home & {
@@ -26,7 +26,8 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 40px 8vw 40px 12vw;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   @include mq($bp-desktop) {

@@ -24,11 +24,22 @@
     width: 20px;
     height: 20px;
     fill: $c-white;
+    transition: fill $hover-timing;
+  }
+
+  &:hover {
+    svg {
+      fill: $c-primary;
+    }
+    .mainnav__trigger-label {
+      color: $c-primary;
+    }
   }
 }
 
 .mainnav__trigger-label {
   margin-right: 1em;
+  transition: color $hover-timing;
 }
 .mainnav__trigger-icon,
 .mainnav__trigger-label {
