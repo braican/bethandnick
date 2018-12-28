@@ -14,7 +14,7 @@ nvm use
 yarn start
 ```
 
-## Development notes
+## Development utilities
 
 The following commands could come in handy during development.
 
