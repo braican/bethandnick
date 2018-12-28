@@ -21,9 +21,9 @@ Page.propTypes = {
   }),
   data: PropTypes.shape({
     wordpressPage: PropTypes.shape({
+      title: PropTypes.string,
       content: PropTypes.string,
       page_image: PropTypes.string,
-      title: PropTypes.string,
     }),
   }),
 };
