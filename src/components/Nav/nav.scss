@@ -14,7 +14,6 @@
   @include uppercase;
   font-family: $ff-roboto;
   font-size: $fz-small;
-  background-color: $c-secondary;
   padding: 20px;
   top: 0;
   right: 0;
@@ -24,11 +23,22 @@
     width: 20px;
     height: 20px;
     fill: $c-white;
+    transition: fill $hover-timing;
+  }
+
+  &:hover {
+    svg {
+      fill: $c-primary;
+    }
+    .mainnav__trigger-label {
+      color: $c-primary;
+    }
   }
 }
 
 .mainnav__trigger-label {
   margin-right: 1em;
+  transition: color $hover-timing;
 }
 .mainnav__trigger-icon,
 .mainnav__trigger-label {
@@ -38,6 +48,7 @@
 
 .mainnav__close {
   position: fixed;
+  background-color: $c-secondary;
 }
 
 .mainnav__wrapper {
@@ -52,7 +63,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  padding: 8vw;
+  padding: $padding $padding;
 
   &--open {
     visibility: visible;
@@ -64,7 +75,16 @@
   @include mq($bp-mobile) {
     display: flex;
     justify-content: space-between;
-    padding-top: 100px;
+    align-items: flex-start;
+    overflow: auto;
+    padding-top: 80px;
+    padding-right: 0;
+  }
+
+  @include mq($bp-desktop) {
+    left: 50 - $offset;
+    padding-top: $offset;
+    padding-left: $offset;
   }
 
   .mainnav__info .header__banner span {
@@ -80,8 +100,8 @@
 
 .mainnav__menu {
   position: absolute;
-  bottom: 8vw;
-  left: 8vw;
+  bottom: $padding;
+  left: $padding;
 
   @include mq($bp-mobile) {
     position: static;
@@ -110,6 +130,10 @@
   display: block;
   line-height: 1;
   margin: 0.5em 0;
+
+  @include mq($bp-mobile) {
+    padding-right: 40px;
+  }
 
   &:hover,
   &--active {

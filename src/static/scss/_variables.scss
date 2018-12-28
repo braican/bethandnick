@@ -26,6 +26,11 @@ $tablet-split-secondary: 100 - $tablet-split-main;
 $mobile-split-main: 80%;
 $mobile-split-secondary: 100 - $mobile-split-main;
 
+$padding: 8vw;
+$inverted-padding: -#{$padding};
+$offset: 6vw;
+$overhang: $padding + $offset;
+
 // --------------------------------------------------------------
 // Colors
 // --------------------------------------------------------------
@@ -72,3 +77,9 @@ $space-lg: 2rem;
 $bp-desktop: 1080px;
 $bp-tablet: 780px;
 $bp-mobile: 548px;
+
+// --------------------------------------------------------------
+// Transitions
+// --------------------------------------------------------------
+
+$hover-timing: 0.2s;
