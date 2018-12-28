@@ -9,6 +9,10 @@ $ff-roboto: 'Roboto Condensed', sans-serif;
 
 $fw-bold: 700;
 
+$fz-small: 0.8rem;
+$fz-mid: 1.4rem;
+$fz-large: 2rem;
+
 // --------------------------------------------------------------
 // Layout
 // --------------------------------------------------------------
@@ -16,23 +20,55 @@ $fw-bold: 700;
 $site-width: 1080px;
 $gutter: 1rem;
 
+$desktop-split: 50%;
+$tablet-split-main: 62%;
+$tablet-split-secondary: 100 - $tablet-split-main;
+$mobile-split-main: 80%;
+$mobile-split-secondary: 100 - $mobile-split-main;
+
+$padding: 8vw;
+$inverted-padding: -#{$padding};
+$offset: 6vw;
+$overhang: $padding + $offset;
+
 // --------------------------------------------------------------
 // Colors
 // --------------------------------------------------------------
 
+$c-white: #ffffff;
 $c-gray-f6: #f6f6f6;
 $c-gray-2: #222222;
 $c-gray-3: #333333;
 $c-gray-9: #999999;
+$c-gray-c: #cccccc;
+
+// wedding colors
+
+// purple
 $c-purple: #734f96;
 $c-lavender: #bf94e4;
+
+// peacock
+$c-peacock: #035d69;
+$c-teal: #3698a6;
+
+// ink blue
+$c-ink-blue: #174c78;
+$c-quilt: #5b90bc;
+
+// jungle green
+$c-jungle-green: #00908b;
+$c-mint: #56ccc8;
+
+$c-primary: $c-peacock;
+$c-secondary: $c-teal;
 
 // --------------------------------------------------------------
 // Spacing
 // --------------------------------------------------------------
 
 $space-sm: 24px;
-$space-lg: 4rem;
+$space-lg: 2rem;
 
 // --------------------------------------------------------------
 // Media queries
@@ -41,3 +77,9 @@ $space-lg: 4rem;
 $bp-desktop: 1080px;
 $bp-tablet: 780px;
 $bp-mobile: 548px;
+
+// --------------------------------------------------------------
+// Transitions
+// --------------------------------------------------------------
+
+$hover-timing: 0.2s;
