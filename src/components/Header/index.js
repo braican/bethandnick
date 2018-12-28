@@ -1,16 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
 
 import './header.scss';
 
-const Header = ({ contextClass, weddingDate, venueName, pageTitle }) => (
+const HeaderBanner = () => (
+  <h1 className="header__banner">
+    <span>Beth</span>
+    <span>&amp;</span>
+    <span>Nick</span>
+  </h1>
+);
+const Header = ({ contextClass, weddingDate, venueName, pageTitle, linkTitle }) => (
   <div className={`header ${contextClass || ''}`}>
     <div className="header__meta">
-      <h1 className="header__banner">
-        <span>Beth</span>
-        <span>&amp;</span>
-        <span>Nick</span>
-      </h1>
+      {linkTitle ? (
+        <Link to="/">
+          <HeaderBanner />
+        </Link>
+      ) : (
+        <HeaderBanner />
+      )}
+
       <p className="header__wedding-info">
         <span className="wedding-info__date">{weddingDate}</span>
         <br />
@@ -27,6 +38,7 @@ Header.propTypes = {
   weddingDate: PropTypes.string,
   venueName: PropTypes.string,
   pageTitle: PropTypes.string,
+  linkTitle: PropTypes.bool,
 };
 
 export default Header;

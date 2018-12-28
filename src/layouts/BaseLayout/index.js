@@ -13,6 +13,9 @@ const BaseLayout = ({ location, featuredImage, pageTitle, data, children }) => {
   const { name: siteName } = wordpressSiteMetadata;
   const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
 
+  const title = location === 'home' ? null : pageTitle;
+  const linkTitle = location === 'home' ? false : true;
+
   return (
     <div className={`main page--${location || 'base'}`}>
       <Helmet
@@ -30,9 +33,10 @@ const BaseLayout = ({ location, featuredImage, pageTitle, data, children }) => {
         <Nav weddingDate={weddingDate} venueName={venueName} />
         <Header
           contextClass="header--main"
-          pageTitle={pageTitle}
+          pageTitle={title}
           weddingDate={weddingDate}
           venueName={venueName}
+          linkTitle={linkTitle}
         />
         {children}
         <Footer />
