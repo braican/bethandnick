@@ -13,3 +13,13 @@ nvm use
 # start up the gatsby environment
 yarn start
 ```
+
+## Development notes
+
+The following commands could come in handy during development.
+
+To install PHP dependencies locally, including WordPress plugins, you can use:
+
+```bash
+docker-compose exec wordpress composer install
+```
