@@ -6,22 +6,22 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`
-      }
+        path: `${__dirname}/src/static/img`,
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'beth-and-nick',
+        short_name: 'beth-and-nick',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#035d69',
+        theme_color: '#035d69',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png' // This path is relative to the root of the site.
-      }
+        icon: 'src/static/img/favicon.png', // This path is relative to the root of the site.
+      },
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-sass`,
@@ -37,14 +37,14 @@ module.exports = {
         // does the site use ACF?
         useACF: false,
 
-        includedRoutes: ['/*/*/pages', '/*/*/media', '/bethandnick/v2/info']
-      }
+        includedRoutes: ['/*/*/pages', '/*/*/media', '/bethandnick/v2/info'],
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: 'UA-20596099-20'
-      }
-    }
-  ]
+        trackingId: 'UA-20596099-20',
+      },
+    },
+  ],
 };

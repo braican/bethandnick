@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
+import favicon from '../../static/img/favicon.png';
+
 import Nav from '../../components/Nav';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -28,10 +30,8 @@ const BaseLayout = ({ children, location, featuredImage, pageTitle }) => (
         <div className={`main page--${location || 'base'}`}>
           <Helmet
             title={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
-            meta={[
-              { name: 'description', content: 'Sample' },
-              { name: 'keywords', content: 'sample, something' },
-            ]}
+            meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
+            link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
           >
             <html lang="en" />
           </Helmet>
