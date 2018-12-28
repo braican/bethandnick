@@ -36,11 +36,25 @@ $c-gray-2: #222222;
 $c-gray-3: #333333;
 $c-gray-9: #999999;
 $c-gray-c: #cccccc;
+
+// wedding colors
+
+// purple
 $c-purple: #734f96;
 $c-lavender: #bf94e4;
 
-$c-primary: $c-purple;
-$c-secondary: $c-lavender;
+// peacock
+$c-peacock: #035d69;
+$c-light-peacock: #3698a6;
+
+// ink blue
+$c-ink-blue: #174c78;
+
+// jungle green
+$c-jungle-green: #00908b;
+
+$c-primary: $c-peacock;
+$c-secondary: $c-light-peacock;
 
 // --------------------------------------------------------------
 // Spacing
