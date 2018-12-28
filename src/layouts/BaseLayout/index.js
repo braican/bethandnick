@@ -30,7 +30,7 @@ const BaseLayout = ({ children, location, featuredImage, pageTitle }) => (
             title={decodeHtmlEntities(data.wordpressSiteMetadata.name)}
             meta={[
               { name: 'description', content: 'Sample' },
-              { name: 'keywords', content: 'sample, something' }
+              { name: 'keywords', content: 'sample, something' },
             ]}
           >
             <html lang="en" />
@@ -61,7 +61,7 @@ BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
   location: PropTypes.string,
   featuredImage: PropTypes.string,
-  pageTitle: PropTypes.string
+  pageTitle: PropTypes.string,
 };
 
 export default BaseLayout;
