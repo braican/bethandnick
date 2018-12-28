@@ -9,7 +9,7 @@ const path = require(`path`);
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     graphql(`
       {
         allWordpressPage {
@@ -33,8 +33,8 @@ exports.createPages = ({ graphql, actions }) => {
           context: {
             slug: node.slug,
             title: node.title,
-            content: node.content
-          }
+            content: node.content,
+          },
         });
       });
       resolve();

@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import BaseLayout from '../layouts/BaseLayout';
 
-export default props => {
-  const location = props['*'] || 'home';
-  const { data } = props;
+const Page = props => {
+  const { data, pageContext } = props;
+  const location = pageContext.slug || 'home';
   const { content, page_image, title } = data.wordpressPage;
 
   return (
@@ -13,6 +14,21 @@ export default props => {
     </BaseLayout>
   );
 };
+
+Page.propTypes = {
+  pageContext: PropTypes.shape({
+    slug: PropTypes.string,
+  }),
+  data: PropTypes.shape({
+    wordpressPage: PropTypes.shape({
+      content: PropTypes.string,
+      page_image: PropTypes.string,
+      title: PropTypes.string,
+    }),
+  }),
+};
+
+export default Page;
 
 export const query = graphql`
   query($slug: String!) {

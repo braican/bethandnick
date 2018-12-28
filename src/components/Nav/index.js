@@ -16,7 +16,7 @@ class Nav extends React.Component {
     this.toggleNav = this.toggleNav.bind(this);
 
     this.state = {
-      open: false
+      open: false,
     };
   }
 
@@ -24,7 +24,7 @@ class Nav extends React.Component {
     event.preventDefault();
     const isOpen = this.state.open;
     this.setState({
-      open: !isOpen
+      open: !isOpen,
     });
   }
 
@@ -94,7 +94,7 @@ class Nav extends React.Component {
 
 Nav.propTypes = {
   weddingDate: PropTypes.string,
-  venueName: PropTypes.string
+  venueName: PropTypes.string,
 };
 
 export default Nav;
