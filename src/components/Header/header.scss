@@ -16,9 +16,9 @@
 
   .page--home & {
     display: block;
-    padding: 60px 8vw 8vw 12vw;
+    padding: 60px 6vw 6vw 12vw;
     @include mq($bp-tablet) {
-      padding-top: 8vw;
+      padding-top: 6vw;
     }
   }
 
