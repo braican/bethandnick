@@ -14,7 +14,7 @@
   @include uppercase;
   font-family: $ff-roboto;
   font-size: $fz-small;
-  background-color: $c-lavender;
+  background-color: $c-secondary;
   padding: 20px;
   top: 0;
   right: 0;
@@ -47,7 +47,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
-  background-color: $c-purple;
+  background-color: $c-primary;
   visibility: hidden;
   pointer-events: none;
   transform: translateY(-100%);
@@ -68,14 +68,14 @@
   }
 
   .mainnav__info .header__banner span {
-    color: $c-lavender;
+    color: $c-secondary;
   }
 }
 
 .mainnav__wedding-info {
   margin-top: 1em;
   font-size: $fz-mid;
-  color: $c-lavender;
+  color: $c-secondary;
 }
 
 .mainnav__menu {
@@ -113,6 +113,6 @@
 
   &:hover,
   &--active {
-    color: $c-lavender;
+    color: $c-secondary;
   }
 }
