@@ -23,9 +23,16 @@ class Nav extends React.Component {
   toggleNav(event) {
     event.preventDefault();
     const isOpen = this.state.open;
+
     this.setState({
       open: !isOpen,
     });
+
+    if (!isOpen) {
+      document.body.classList.add('prevent-scroll');
+    } else {
+      document.body.classList.remove('prevent-scroll');
+    }
   }
 
   render() {

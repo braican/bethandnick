@@ -75,7 +75,9 @@
   @include mq($bp-mobile) {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     padding-top: 100px;
+    overflow: auto;
   }
 
   .mainnav__info .header__banner span {

@@ -4,48 +4,42 @@ import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import { decodeHtmlEntities } from '../../util/strings';
 
-import favicon from '../../static/img/favicon.png';
-
 import Nav from '../../components/Nav';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-class BaseLayout extends React.Component {
-  render() {
-    const { location, featuredImage, pageTitle } = this.props;
-    const { wordpressSiteMetadata, wordpressBethandnickInfo } = this.props.data;
-    const { name: siteName } = wordpressSiteMetadata;
-    const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
+const BaseLayout = ({ location, featuredImage, pageTitle, data, children }) => {
+  const { wordpressSiteMetadata, wordpressBethandnickInfo } = data;
+  const { name: siteName } = wordpressSiteMetadata;
+  const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
 
-    return (
-      <div className={`main page--${location || 'base'}`}>
-        <Helmet
-          title={decodeHtmlEntities(siteName)}
-          meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
-          link={[{ rel: 'shortcut icon', type: 'image/png', href: `${favicon}` }]}
-        >
-          <html lang="en" />
-        </Helmet>
+  return (
+    <div className={`main page--${location || 'base'}`}>
+      <Helmet
+        title={decodeHtmlEntities(siteName)}
+        meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
+      >
+        <html lang="en" />
+      </Helmet>
 
-        <div className="splitpane__img">
-          {featuredImage ? <img src={featuredImage} alt="" /> : null}
-        </div>
-
-        <div className="splitpane__content">
-          <Nav weddingDate={weddingDate} venueName={venueName} />
-          <Header
-            contextClass="header--main"
-            pageTitle={pageTitle}
-            weddingDate={weddingDate}
-            venueName={venueName}
-          />
-          {this.props.children}
-          <Footer />
-        </div>
+      <div className="splitpane__img">
+        {featuredImage ? <img src={featuredImage} alt="" /> : null}
       </div>
-    );
-  }
-}
+
+      <div className="splitpane__content">
+        <Nav weddingDate={weddingDate} venueName={venueName} />
+        <Header
+          contextClass="header--main"
+          pageTitle={pageTitle}
+          weddingDate={weddingDate}
+          venueName={venueName}
+        />
+        {children}
+        <Footer />
+      </div>
+    </div>
+  );
+};
 
 BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
