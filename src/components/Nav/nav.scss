@@ -63,7 +63,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  padding: 8vw;
+  padding: $padding;
 
   &--open {
     visibility: visible;
@@ -76,8 +76,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding-top: 100px;
+    padding-top: $offset;
+    padding-right: 0;
     overflow: auto;
+  }
+
+  @include mq($bp-desktop) {
+    left: 50 - $offset;
+    padding-left: $offset;
   }
 
   .mainnav__info .header__banner span {
@@ -93,8 +99,8 @@
 
 .mainnav__menu {
   position: absolute;
-  bottom: 8vw;
-  left: 8vw;
+  bottom: $padding;
+  left: $padding;
 
   @include mq($bp-mobile) {
     position: static;
@@ -123,6 +129,10 @@
   display: block;
   line-height: 1;
   margin: 0.5em 0;
+
+  @include mq($bp-mobile) {
+    padding-right: 40px;
+  }
 
   &:hover,
   &--active {
