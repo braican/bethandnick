@@ -8,42 +8,49 @@ import Nav from '../../components/Nav';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const BaseLayout = ({ location, featuredImage, pageTitle, data, children }) => {
-  const { wordpressSiteMetadata, wordpressBethandnickInfo } = data;
-  const { name: siteName } = wordpressSiteMetadata;
-  const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
+class BaseLayout extends React.Component {
+  componentDidMount() {
+    document.body.classList.remove('prevent-scroll');
+  }
 
-  const title = location === 'home' ? null : pageTitle;
-  const linkTitle = location === 'home' ? false : true;
+  render() {
+    const { location, featuredImage, pageTitle, data, children } = this.props;
+    const { wordpressSiteMetadata, wordpressBethandnickInfo } = data;
+    const { name: siteName } = wordpressSiteMetadata;
+    const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
 
-  return (
-    <div className={`main page--${location || 'base'}`}>
-      <Helmet
-        title={decodeHtmlEntities(siteName)}
-        meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
-      >
-        <html lang="en" />
-      </Helmet>
+    const title = location === 'home' ? null : pageTitle;
+    const linkTitle = location === 'home' ? false : true;
 
-      <div className="splitpane__img">
-        {featuredImage ? <img src={featuredImage} alt="" /> : null}
+    return (
+      <div className={`main page--${location || 'base'}`}>
+        <Helmet
+          title={decodeHtmlEntities(siteName)}
+          meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
+        >
+          <html lang="en" />
+        </Helmet>
+
+        <div className="splitpane__img">
+          {featuredImage ? <img src={featuredImage} alt="" /> : null}
+        </div>
+
+        <div className="splitpane__content">
+          <Nav weddingDate={weddingDate} venueName={venueName} />
+          <Header
+            contextClass="header--main"
+            pageTitle={title}
+            weddingDate={weddingDate}
+            venueName={venueName}
+            linkTitle={linkTitle}
+          />
+          {children}
+          <Footer />
+        </div>
       </div>
-
-      <div className="splitpane__content">
-        <Nav weddingDate={weddingDate} venueName={venueName} />
-        <Header
-          contextClass="header--main"
-          pageTitle={title}
-          weddingDate={weddingDate}
-          venueName={venueName}
-          linkTitle={linkTitle}
-        />
-        {children}
-        <Footer />
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
