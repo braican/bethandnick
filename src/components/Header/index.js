@@ -26,7 +26,7 @@ Header.propTypes = {
   contextClass: PropTypes.string,
   weddingDate: PropTypes.string,
   venueName: PropTypes.string,
-  pageTitle: PropTypes.string
+  pageTitle: PropTypes.string,
 };
 
 export default Header;
