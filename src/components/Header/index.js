@@ -7,9 +7,9 @@ const Header = ({ contextClass, weddingDate, venueName, pageTitle }) => (
   <div className={`header ${contextClass || ''}`}>
     <div className="header__meta">
       <h1 className="header__banner">
-        <span>Nick</span>
-        <span>&amp;</span>
         <span>Beth</span>
+        <span>&amp;</span>
+        <span>Nick</span>
       </h1>
       <p className="header__wedding-info">
         <span className="wedding-info__date">{weddingDate}</span>
