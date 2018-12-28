@@ -14,7 +14,7 @@ if [ -z $HOST ] || [ -z $USER ]; then
   exit 1
 fi
 
-echo "Deploying WordPress theme..."
+echo "Deploying WordPress theme and core..."
 rsync \
   -rlvz \
   --exclude-from="$DEPLOYIGNORE" \
