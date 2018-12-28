@@ -2,12 +2,12 @@
 @import '../../static/scss/variables';
 
 .header {
-  color: $c-lavender;
+  color: $c-secondary;
 }
 
 .header--main .header__meta {
   margin-bottom: $space-lg;
-  background-color: $c-lavender;
+  background-color: $c-secondary;
   margin-top: -8vw;
   margin-left: -12vw;
   margin-right: -8vw;
@@ -58,7 +58,7 @@
     position: relative;
     right: -0.7em;
     .header--main & {
-      color: $c-purple;
+      color: $c-primary;
     }
   }
   span:nth-child(3) {
@@ -78,7 +78,7 @@
   }
 
   .header--main & {
-    color: $c-purple;
+    color: $c-primary;
     @include mq($bp-tablet, true) {
       margin-top: 0.5em;
     }
