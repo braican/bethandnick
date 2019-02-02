@@ -11,11 +11,11 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.7.9",
+                "version": "5.7.10",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.9"
+                    "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.10"
                 }
             }
         },
@@ -25,8 +25,8 @@
         }
     ],
     "require": {
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.7.9",
-        "wpackagist-plugin/wp-migrate-db": "^1.0.7",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.7.10",
+        "wpackagist-plugin/wp-migrate-db": "^1.0.9",
         "braican/netlify-deployer": "dev-master"
     },
     "autoload": {
