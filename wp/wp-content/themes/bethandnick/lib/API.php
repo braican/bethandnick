@@ -3,15 +3,16 @@
 namespace BethAndNick;
 
 class API {
-    
     /**
      * The unique instance of the API class.
+     *
      * @var BethAndNick\API
      */
     private static $instance;
 
     /**
      * The namespace for the API
+     *
      * @var string
      */
     private $namespace = 'bethandnick/v2';
@@ -25,7 +26,7 @@ class API {
         if (null === self::$instance) {
             self::$instance = new self();
         }
- 
+
         return self::$instance;
     }
 
@@ -43,18 +44,18 @@ class API {
 
     /**
      * Adds all the custom ACF fields to the API output.
-     * 
-     * @param WP_REST_Response  $data     Data returned via the endpoint.
-     * @param WP_Post           $post     The post from WordPress.
-     * @param WP_REST_Request   $request  API Request object.
-     * 
-     * @return WP_REST_Response  The post data with the added field values.
+     *
+     * @param WP_REST_Response $data    Data returned via the endpoint.
+     * @param WP_Post          $post    The post from WordPress.
+     * @param WP_REST_Request  $request API Request object.
+     *
+     * @return WP_REST_Response The post data with the added field values.
      */
     public function add_custom_fields($data, $post, $request) {
         $response_data = $data->get_data();
 
         // Bail early if there's an error
-        if ( $request['context'] !== 'view' || is_wp_error( $data ) ) {
+        if ($request['context'] !== 'view' || is_wp_error($data)) {
             return $data;
         }
 
@@ -64,14 +65,14 @@ class API {
         $response_data['page_image'] = $page_image;
 
         // If we have no additional fields bail early.
-        if ($fields){
-            foreach ($fields as $field_name => $value){
+        if ($fields) {
+            foreach ($fields as $field_name => $value) {
                 $response_data[$field_name] = $value;
             }
         }
 
         // Commit the API result var to the API endpoint
-        $data->set_data( $response_data );
+        $data->set_data($response_data);
 
         return $data;
     }
@@ -79,14 +80,18 @@ class API {
 
     /**
      * Register the custom endpoints.
-     * 
+     *
      * @return void
      */
     public function setup_endpoints() {
-        register_rest_route($this->namespace, 'info', array(
-            'methods' => 'GET',
-            'callback' => array($this, 'get_global_info')
-        ));
+        register_rest_route(
+            $this->namespace,
+            'info',
+            array(
+                'methods'  => 'GET',
+                'callback' => array($this, 'get_global_info'),
+            )
+        );
     }
 
 
@@ -99,7 +104,7 @@ class API {
 
     /**
      * Callback method that will return the global informations.
-     * 
+     *
      * @return array Data containing wedding information.
      */
     public function get_global_info() {
@@ -121,9 +126,9 @@ class API {
     /**
      * Util function to get the featured image url for a page, with a global fallback if the given
      *  page doesn't have a featured image set.
-     * 
-     * @param int  $postId  WP Post ID.
-     * 
+     *
+     * @param int $postId WP Post ID.
+     *
      * @return boolean|string False if no image exists, or the url to the image.
      */
     private function get_page_image($postId) {
