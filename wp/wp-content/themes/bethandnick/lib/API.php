@@ -109,6 +109,7 @@ class API {
      */
     public function get_global_info() {
         return array(
+            'wordpress_id'      => 101,
             'wedding_date'      => get_field('wedding_date', 'option'),
             'venue_name'        => get_field('venue_name', 'option'),
             'venue_information' => get_field('venue_information', 'option'),

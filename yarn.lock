@@ -3126,6 +3126,10 @@ dotenv@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
 
+dotenv@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+
 download@^6.2.2:
   version "6.2.5"
   resolved "https://registry.yarnpkg.com/download/-/download-6.2.5.tgz#acd6a542e4cd0bb42ca70cfc98c9e43b07039714"
@@ -4274,7 +4278,7 @@ gatsby-cli@^2.4.9:
     yargs "^11.1.0"
     yurnalist "^1.0.2"
 
-gatsby-image@^2.0.15:
+gatsby-image@^2.0.29:
   version "2.0.29"
   resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.29.tgz#38475842b6e9a5d58c4e3bec875179b959c7d7ab"
   dependencies:
@@ -4290,13 +4294,13 @@ gatsby-link@^2.0.10:
     "@types/reach__router" "^1.0.0"
     prop-types "^15.6.1"
 
-gatsby-plugin-google-analytics@^2.0.7:
+gatsby-plugin-google-analytics@^2.0.13:
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-google-analytics/-/gatsby-plugin-google-analytics-2.0.13.tgz#31ecf6be05815ba2047ec8cd5129f0bea9d7fd75"
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-manifest@^2.0.5:
+gatsby-plugin-manifest@^2.0.17:
   version "2.0.17"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-manifest/-/gatsby-plugin-manifest-2.0.17.tgz#1e2c3329b1a58bdf77186866dd9e94da54ac6e68"
   dependencies:
@@ -4304,7 +4308,7 @@ gatsby-plugin-manifest@^2.0.5:
     bluebird "^3.5.0"
     sharp "^0.21.3"
 
-gatsby-plugin-offline@^2.0.5:
+gatsby-plugin-offline@^2.0.22:
   version "2.0.23"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-offline/-/gatsby-plugin-offline-2.0.23.tgz#601f75c38dc0197fd9b5d108a2075fd9afea6304"
   dependencies:
@@ -4329,20 +4333,20 @@ gatsby-plugin-page-creator@^2.0.6:
     parse-filepath "^1.0.1"
     slash "^1.0.0"
 
-gatsby-plugin-react-helmet@^3.0.0:
+gatsby-plugin-react-helmet@^3.0.6:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-react-helmet/-/gatsby-plugin-react-helmet-3.0.6.tgz#552d04e4e3a99562bae950a8cdfab672987158fb"
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-sass@^2.0.3:
+gatsby-plugin-sass@^2.0.10:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-2.0.10.tgz#576c034c40ae007cb364ec3b19619dc12e62acae"
   dependencies:
     "@babel/runtime" "^7.0.0"
     sass-loader "^7.0.1"
 
-gatsby-plugin-sharp@^2.0.7:
+gatsby-plugin-sharp@^2.0.20:
   version "2.0.20"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-2.0.20.tgz#6c08558cdd7d8612a9ab9ca1abb038204499fc7f"
   dependencies:
@@ -4377,7 +4381,7 @@ gatsby-react-router-scroll@^2.0.4:
     scroll-behavior "^0.9.9"
     warning "^3.0.0"
 
-gatsby-source-filesystem@^2.0.20, gatsby-source-filesystem@^2.0.4:
+gatsby-source-filesystem@^2.0.20:
   version "2.0.20"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-2.0.20.tgz#0bb3dcf905c6856d87e7a44d73bd8ff056cd5b95"
   dependencies:
@@ -4397,7 +4401,7 @@ gatsby-source-filesystem@^2.0.20, gatsby-source-filesystem@^2.0.4:
     valid-url "^1.0.9"
     xstate "^3.1.0"
 
-gatsby-source-wordpress@^3.0.11:
+gatsby-source-wordpress@^3.0.33:
   version "3.0.33"
   resolved "https://registry.yarnpkg.com/gatsby-source-wordpress/-/gatsby-source-wordpress-3.0.33.tgz#ded3453fcf6fc34ee16008c9d026a42cc5f5f0c5"
   dependencies:
@@ -4413,7 +4417,7 @@ gatsby-source-wordpress@^3.0.11:
     minimatch "^3.0.4"
     qs "^6.4.0"
 
-gatsby-transformer-sharp@^2.1.4:
+gatsby-transformer-sharp@^2.1.13:
   version "2.1.13"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-2.1.13.tgz#ab25f2e5f73cbd715dbb86f9d095bbfda0c45961"
   dependencies:
@@ -4424,7 +4428,7 @@ gatsby-transformer-sharp@^2.1.4:
     probe-image-size "^4.0.0"
     sharp "^0.21.3"
 
-gatsby@^2.0.19:
+gatsby@^2.0.116:
   version "2.0.118"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.118.tgz#abcf280b08a0fe79142b67842eb3fa80f1873a4d"
   dependencies:

@@ -28,8 +28,11 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `api.bethandnick.us`,
-        protocol: `https`,
+        // baseUrl: `api.bethandnick.us`,
+        // protocol: `https`,
+
+        baseUrl: `bethandnick.ups.dock`,
+        protocol: `http`,
 
         // is the site hosted on WordPress.com
         hostingWPCOM: false,
@@ -37,7 +40,9 @@ module.exports = {
         // does the site use ACF?
         useACF: false,
 
-        includedRoutes: ['/*/*/pages', '/*/*/media', '/bethandnick/v2/info'],
+        verboseOutput: true,
+
+        includedRoutes: ['**/*/*/pages', '**/bethandnick/v2/info'],
       },
     },
     {
