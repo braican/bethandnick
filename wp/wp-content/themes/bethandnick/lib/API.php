@@ -71,6 +71,10 @@ class API {
             }
         }
 
+        if ($response_data['page_featured_image'] === false) {
+            $response_data['page_featured_image'] = 0;
+        }
+
         // Commit the API result var to the API endpoint
         $data->set_data($response_data);
 
@@ -130,7 +134,7 @@ class API {
      *
      * @param int $postId WP Post ID.
      *
-     * @return boolean|string False if no image exists, or the url to the image.
+     * @return string The url to the image, or an empty string if there is no image.
      */
     private function get_page_image($postId) {
         $image = get_field('page_featured_image', $postId) ?: get_field('site_image', 'option');
@@ -139,7 +143,7 @@ class API {
         }
         $imageObj = wp_get_attachment_image_src($image, 'featured');
         if (!$imageObj) {
-            return false;
+            return '';
         }
         return $imageObj[0];
     }

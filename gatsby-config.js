@@ -42,7 +42,7 @@ module.exports = {
 
         verboseOutput: true,
 
-        includedRoutes: ['**/*/*/pages', '**/bethandnick/v2/info'],
+        includedRoutes: ['**/*/*/pages', '**/*/*/media', '**/bethandnick/v2/info'],
       },
     },
     {
