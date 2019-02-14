@@ -35,7 +35,18 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
-      page_image
+      page_image {
+        photo {
+          localFile {
+            childImageSharp {
+              # Try editing the "width" and "height" values.
+              resolutions(width: 200, height: 200) {
+                src
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;
