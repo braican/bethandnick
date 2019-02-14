@@ -36,8 +36,21 @@ class API {
     private function __construct() {
         // Create some custom endpoints.
         add_action('rest_api_init', array($this, 'setup_endpoints'));
+
+        // Nullify falsey values
+        add_filter('acf/format_value/type=image', array($this, 'nullify_empty'), 100, 3);
     }
 
+    /**
+     * When
+     */
+    protected function nullify_empty($value, $post_id, $field) {
+        if (empty($value)) {
+            return null;
+        }
+
+        return $value;
+    }
 
     /**
      * Register the custom endpoints.

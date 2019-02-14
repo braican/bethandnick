@@ -1,3 +1,8 @@
+<?php
+/**
+ * Template Name: Picture page
+ */
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
