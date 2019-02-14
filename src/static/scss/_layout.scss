@@ -7,7 +7,8 @@
   background-color: $c-primary;
   width: $mobile-split-secondary;
 
-  img {
+  & > img,
+  & > .gatsby-image-wrapper {
     display: block;
     height: 100%;
     width: 100%;

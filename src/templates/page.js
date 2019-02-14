@@ -6,10 +6,11 @@ import BaseLayout from '../layouts/BaseLayout';
 const Page = props => {
   const { data, pageContext } = props;
   const location = pageContext.slug || 'home';
-  const { content, page_image, title } = data.wordpressPage;
+  const { content, acf, title } = data.wordpressPage;
+  const featuredImage = acf.page_featured_image.localFile.childImageSharp.fluid;
 
   return (
-    <BaseLayout location={location} featuredImage={page_image} pageTitle={title}>
+    <BaseLayout location={location} featuredImage={featuredImage} pageTitle={title}>
       <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
     </BaseLayout>
   );
@@ -23,7 +24,6 @@ Page.propTypes = {
     wordpressPage: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.string,
-      page_image: PropTypes.string,
     }),
   }),
 };
@@ -35,13 +35,12 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
-      page_image {
-        photo {
+      acf {
+        page_featured_image {
           localFile {
             childImageSharp {
-              # Try editing the "width" and "height" values.
-              resolutions(width: 200, height: 200) {
-                src
+              fluid(maxWidth: 680) {
+                ...GatsbyImageSharpFluid_noBase64
               }
             }
           }

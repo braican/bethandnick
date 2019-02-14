@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 import { decodeHtmlEntities } from '../../util/strings';
 
 import Nav from '../../components/Nav';
@@ -32,7 +33,9 @@ class BaseLayout extends React.Component {
         </Helmet>
 
         <div className="splitpane__img">
-          {featuredImage ? <img src={featuredImage} alt="" /> : null}
+          {featuredImage ? (
+            <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
+          ) : null}
         </div>
 
         <div className="splitpane__content">
@@ -55,7 +58,7 @@ class BaseLayout extends React.Component {
 BaseLayout.propTypes = {
   children: PropTypes.node.isRequired,
   location: PropTypes.string,
-  featuredImage: PropTypes.string,
+  featuredImage: PropTypes.object,
   pageTitle: PropTypes.string,
 
   // The following come from the static query below
