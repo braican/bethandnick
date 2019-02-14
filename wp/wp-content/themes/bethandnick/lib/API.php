@@ -42,7 +42,14 @@ class API {
     }
 
     /**
-     * When
+     * If an ACF field is empty, make sure it returns null rather than a falsey value so that
+     *  GraphQL can parse it the right way.
+     *
+     * @param mixed $value   The value loaded from the database.
+     * @param mixed $post_id The post that contains the field.
+     * @param array $field   Settings for the field.
+     *
+     * @return mixed Null if the field is false or undefined, the value otherwise.
      */
     protected function nullify_empty($value, $post_id, $field) {
         if (empty($value)) {
