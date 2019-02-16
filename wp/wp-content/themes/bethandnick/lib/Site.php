@@ -3,16 +3,16 @@
 namespace BethAndNick;
 
 class Site {
-
     /**
      * The unique instance of the Site class.
+     *
      * @var BethAndNick\Site
      */
     private static $instance;
 
     /**
      * Gets the instance of the class.
-     * 
+     *
      * @return BethAndNick\Site
      */
     public static function get_instance() {
@@ -39,26 +39,43 @@ class Site {
 
     /**
      * Set up image sizes.
-     * 
+     *
      * @return void
      */
     private function create_image_sizes() {
         add_image_size('featured', 1200, 1200, false);
     }
 
+    /**
+     * Adds options pages to the admin.
+     *
+     * @return void
+     */
     private function add_options_pages() {
-        if ( function_exists( 'acf_add_options_page' ) ) {
-            acf_add_options_page( array(
-                'page_title' => 'Global Content',
-                'position' => '5.1',
-                'icon_url' => 'dashicons-admin-customizer'
-            ));
+        if (!function_exists('acf_add_options_page')) {
+            return;
         }
+
+        acf_add_options_page(
+            array(
+                'page_title' => 'Global Content',
+                'position'   => '5.1',
+                'icon_url'   => 'dashicons-admin-customizer',
+            )
+        );
+
+        acf_add_options_page(
+            array(
+                'page_title' => 'Image Gallery',
+                'position'   => '20.1',
+                'icon_url'   => 'dashicons-images-alt2',
+            )
+        );
     }
 
     /**
      * Remove links/menus from the admin sidebar menu.
-     * 
+     *
      * @return void
      */
     public function remove_admin_menu_links() {
@@ -68,7 +85,7 @@ class Site {
 
     /**
      * Rearrange the `Media` menu item in the WordPress nav.
-     * 
+     *
      * @return void
      */
     public function rearrange_admin_menu() {

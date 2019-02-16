@@ -51,7 +51,7 @@ class API {
      *
      * @return mixed Null if the field is false or undefined, the value otherwise.
      */
-    protected function nullify_empty($value, $post_id, $field) {
+    public function nullify_empty($value, $post_id, $field) {
         if (empty($value)) {
             return null;
         }
