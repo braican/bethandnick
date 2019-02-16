@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Picture page
+ * Template Name: Hero Image Page
  */
 ?>
 <!DOCTYPE html>
