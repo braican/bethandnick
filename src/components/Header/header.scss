@@ -9,7 +9,6 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  margin-bottom: $space-lg;
   background-color: $c-secondary;
   padding: $padding $padding $offset $offset;
   position: relative;
@@ -24,14 +23,15 @@
     margin-left: -$overhang;
     margin-top: $inverted-padding;
     margin-right: $inverted-padding;
+    margin-bottom: $space-lg;
+
+    @include mq($bp-desktop) {
+      margin-bottom: 4rem;
+    }
   }
 
   @include mq($bp-tablet) {
     padding: 40px;
-  }
-
-  @include mq($bp-desktop) {
-    margin-bottom: 4rem;
   }
 
   .page--home & {
@@ -106,14 +106,5 @@
   font-size: 4rem;
   @include mq($bp-mobile) {
     font-size: 8vw;
-  }
-}
-.header__page-title {
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-
-  @include mq($bp-mobile) {
-    font-size: 6vw;
   }
 }

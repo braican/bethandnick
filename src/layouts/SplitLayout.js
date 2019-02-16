@@ -1,59 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { decodeHtmlEntities } from '../util/strings';
 
-import Nav from '../components/Nav';
+import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-class SplitLayout extends React.Component {
-  componentDidMount() {
-    document.body.classList.remove('prevent-scroll');
-  }
+const SplitLayout = ({ location, featuredImage, pageTitle, data, children }) => {
+  const { wedding_date: weddingDate, venue_name: venueName } = data.wordpressBethandnickInfo;
 
-  render() {
-    const { location, featuredImage, pageTitle, data, children } = this.props;
-    const { wordpressSiteMetadata, wordpressBethandnickInfo } = data;
-    const { name: siteName } = wordpressSiteMetadata;
-    const { wedding_date: weddingDate, venue_name: venueName } = wordpressBethandnickInfo;
+  const title = location === 'home' ? null : pageTitle;
+  const linkTitle = location === 'home' ? false : true;
 
-    const title = location === 'home' ? null : pageTitle;
-    const linkTitle = location === 'home' ? false : true;
-
-    return (
-      <div className={`main page--${location || 'base'}`}>
-        <Helmet
-          title={decodeHtmlEntities(siteName)}
-          meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
-        >
-          <html lang="en" />
-        </Helmet>
-
-        <div className="splitpane__img">
-          {featuredImage ? (
-            <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
-          ) : null}
-        </div>
-
-        <div className="splitpane__content">
-          <Nav weddingDate={weddingDate} venueName={venueName} />
-          <Header
-            contextClass="header--main"
-            pageTitle={title}
-            weddingDate={weddingDate}
-            venueName={venueName}
-            linkTitle={linkTitle}
-          />
-          {children}
-          <Footer />
-        </div>
+  return (
+    <Wrapper contextClass={`main page--${location || 'base'}`}>
+      <div className="splitpane__img">
+        {featuredImage ? (
+          <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
+        ) : null}
       </div>
-    );
-  }
-}
+
+      <div className="splitpane__content">
+        <Header
+          contextClass="header--main"
+          weddingDate={weddingDate}
+          venueName={venueName}
+          linkTitle={linkTitle}
+        />
+        {title ? <h2 className="page-title">{title}</h2> : null}
+        {children}
+        <Footer />
+      </div>
+    </Wrapper>
+  );
+};
 
 SplitLayout.propTypes = {
   children: PropTypes.node.isRequired,
@@ -77,9 +58,6 @@ const SplitLayoutStatic = props => (
   <StaticQuery
     query={graphql`
       {
-        wordpressSiteMetadata {
-          name
-        }
         wordpressBethandnickInfo {
           wedding_date
           venue_name

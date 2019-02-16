@@ -69,3 +69,14 @@ button {
   padding-right: 10px;
   margin-bottom: -0.1em;
 }
+
+.page-title {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: $c-secondary;
+
+  @include mq($bp-mobile) {
+    font-size: 6vw;
+  }
+}

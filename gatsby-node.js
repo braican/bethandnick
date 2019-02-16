@@ -33,6 +33,7 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
+    // Templates
     const pageTemplate = path.resolve('./src/templates/page.js');
     const heroPageTemplate = path.resolve('./src/templates/page-hero.js');
     const allPages = result.data.allWordpressPage.edges;
