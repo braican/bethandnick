@@ -11,9 +11,6 @@
   align-items: flex-end;
   margin-bottom: $space-lg;
   background-color: $c-secondary;
-  margin-top: $inverted-padding;
-  margin-left: -$overhang;
-  margin-right: $inverted-padding;
   padding: $padding $padding $offset $offset;
   position: relative;
 
@@ -21,6 +18,12 @@
     .main:not(.page--home) & .wedding-info__venue {
       display: none;
     }
+  }
+
+  .splitpane__content & {
+    margin-left: -$overhang;
+    margin-top: $inverted-padding;
+    margin-right: $inverted-padding;
   }
 
   @include mq($bp-tablet) {

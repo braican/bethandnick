@@ -9,7 +9,7 @@ import Nav from '../components/Nav';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-class BaseLayout extends React.Component {
+class HeroLayout extends React.Component {
   componentDidMount() {
     document.body.classList.remove('prevent-scroll');
   }
@@ -32,14 +32,7 @@ class BaseLayout extends React.Component {
           <html lang="en" />
         </Helmet>
 
-        <div className="splitpane__img">
-          {featuredImage ? (
-            <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
-          ) : null}
-        </div>
-
-        <div className="splitpane__content">
-          <Nav weddingDate={weddingDate} venueName={venueName} />
+        <div className="herolayout__hero">
           <Header
             contextClass="header--main"
             pageTitle={title}
@@ -47,15 +40,22 @@ class BaseLayout extends React.Component {
             venueName={venueName}
             linkTitle={linkTitle}
           />
+          {featuredImage ? (
+            <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
+          ) : null}
+        </div>
+
+        <div className="herolayout__content">
           {children}
           <Footer />
         </div>
+        <Nav weddingDate={weddingDate} venueName={venueName} />
       </div>
     );
   }
 }
 
-BaseLayout.propTypes = {
+HeroLayout.propTypes = {
   children: PropTypes.node.isRequired,
   location: PropTypes.string,
   featuredImage: PropTypes.object,
@@ -73,7 +73,7 @@ BaseLayout.propTypes = {
   }),
 };
 
-const BaseLayoutStatic = props => (
+const HeroLayoutStatic = props => (
   <StaticQuery
     query={graphql`
       {
@@ -86,8 +86,8 @@ const BaseLayoutStatic = props => (
         }
       }
     `}
-    render={data => <BaseLayout data={data} {...props} />}
+    render={data => <HeroLayout data={data} {...props} />}
   />
 );
 
-export default BaseLayoutStatic;
+export default HeroLayoutStatic;

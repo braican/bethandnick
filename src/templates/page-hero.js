@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import BaseLayout from '../layouts/BaseLayout';
+import HeroLayout from '../layouts/HeroLayout';
 
 const Page = props => {
   const { data, pageContext } = props;
@@ -10,9 +10,9 @@ const Page = props => {
   const featuredImage = acf.page_featured_image.localFile.childImageSharp.fluid;
 
   return (
-    <BaseLayout location={location} featuredImage={featuredImage} pageTitle={title}>
+    <HeroLayout location={location} featuredImage={featuredImage} pageTitle={title}>
       <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
-    </BaseLayout>
+    </HeroLayout>
   );
 };
 
@@ -35,8 +35,17 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
-      #acf {
-      # }
+      acf {
+        page_featured_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1600) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

@@ -1,3 +1,5 @@
+// Split Layout
+
 .splitpane__img {
   @include content-split-secondary;
   top: 0;
@@ -19,4 +21,12 @@
 .splitpane__content {
   @include content-split-main;
   padding: 8vw;
+}
+
+// Hero Layout
+
+.herolayout__hero {
+}
+
+.herolayout__content {
 }

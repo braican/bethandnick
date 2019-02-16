@@ -10,7 +10,8 @@ require('dotenv').config();
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
-  return graphql(`
+
+  const pageQuery = graphql(`
     {
       allWordpressPage {
         edges {
@@ -19,24 +20,28 @@ exports.createPages = ({ actions, graphql }) => {
             title
             content
             slug
+            template
           }
         }
       }
     }
-  `).then(result => {
+  `);
+
+  return pageQuery.then(result => {
     if (result.errors) {
       result.errors.forEach(e => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
 
     const pageTemplate = path.resolve('./src/templates/page.js');
+    const heroPageTemplate = path.resolve('./src/templates/page-hero.js');
     const allPages = result.data.allWordpressPage.edges;
 
     allPages.forEach(({ node }) => {
       const slug = node.slug === 'home' ? '/' : node.slug;
       createPage({
         path: `/${slug}/`,
-        component: pageTemplate,
+        component: node.template === 'template-hero.php' ? heroPageTemplate : pageTemplate,
         context: {
           slug: node.slug,
           title: node.title,
