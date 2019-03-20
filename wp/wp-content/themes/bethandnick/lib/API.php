@@ -11,13 +11,6 @@ class API {
     private static $instance;
 
     /**
-     * The namespace for the API
-     *
-     * @var string
-     */
-    private $namespace = 'bethandnick/v2';
-
-    /**
      * Gets the instance of the class.
      *
      * @return BethAndNick\API
@@ -35,10 +28,10 @@ class API {
      */
     private function __construct() {
         // Create some custom endpoints.
-        add_action('rest_api_init', array($this, 'setup_endpoints'));
+        add_action('rest_api_init', array($this, 'setupEndpoints'));
 
         // Nullify falsey values
-        add_filter('acf/format_value/type=image', array($this, 'nullify_empty'), 100, 3);
+        add_filter('acf/format_value/type=image', array($this, 'nullifyEmpty'), 100, 3);
     }
 
     /**
@@ -51,7 +44,7 @@ class API {
      *
      * @return mixed Null if the field is false or undefined, the value otherwise.
      */
-    public function nullify_empty($value, $post_id, $field) {
+    public function nullifyEmpty($value, $post_id, $field) {
         if (empty($value)) {
             return null;
         }
@@ -59,35 +52,14 @@ class API {
         return $value;
     }
 
+
     /**
      * Register the custom endpoints.
      *
      * @return void
      */
-    public function setup_endpoints() {
-        register_rest_route(
-            $this->namespace,
-            'info',
-            array(
-                'methods'  => 'GET',
-                'callback' => array($this, 'get_global_info'),
-            )
-        );
+    public function setupEndpoints() {
+        $globals = new \BethAndNick\Endpoint\Globals();
+        $globals = new \BethAndNick\Endpoint\Gallery();
     }
-
-
-    /**
-     * Callback method that will return the global informations.
-     *
-     * @return array Data containing wedding information.
-     */
-    public function get_global_info() {
-        return array(
-            'wordpress_id'      => 101,
-            'wedding_date'      => get_field('wedding_date', 'option'),
-            'venue_name'        => get_field('venue_name', 'option'),
-            'venue_information' => get_field('venue_information', 'option'),
-        );
-    }
-
 }

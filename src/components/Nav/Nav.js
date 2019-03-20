@@ -71,7 +71,7 @@ class Nav extends React.Component {
                 </svg>
               </button>
 
-              <Header weddingDate={this.props.weddingDate} venueName={this.props.venueName} />
+              <Header />
 
               <ul className="mainnav__menu">
                 <li className="mainnav__item">

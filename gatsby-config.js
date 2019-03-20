@@ -40,9 +40,14 @@ module.exports = {
         // does the site use ACF?
         useACF: true,
 
-        verboseOutput: true,
+        verboseOutput: false,
 
-        includedRoutes: ['**/*/*/pages', '**/*/*/media', '**/bethandnick/v2/info'],
+        includedRoutes: [
+          '**/*/*/pages',
+          '**/*/*/media',
+          '**/bethandnick/v1/info',
+          '**/bethandnick/v1/gallery',
+        ],
       },
     },
     {

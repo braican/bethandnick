@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 
 import './header.scss';
 
@@ -11,7 +11,8 @@ const HeaderBanner = () => (
     <span>Nick</span>
   </h1>
 );
-const Header = ({ contextClass, weddingDate, venueName, linkTitle }) => (
+
+const Header = ({ wordpressBethandnickInfo: info, contextClass, linkTitle }) => (
   <div className={`header ${contextClass || ''}`}>
     <div className="header__meta">
       {linkTitle ? (
@@ -23,19 +24,35 @@ const Header = ({ contextClass, weddingDate, venueName, linkTitle }) => (
       )}
 
       <p className="header__wedding-info">
-        <span className="wedding-info__date">{weddingDate}</span>
+        <span className="wedding-info__date">{info.wedding_date}</span>
         <br />
-        <span className="wedding-info__venue">at {venueName}</span>
+        <span className="wedding-info__venue">at {info.venue_name}</span>
       </p>
     </div>
   </div>
 );
 
 Header.propTypes = {
+  wordpressBethandnickInfo: PropTypes.shape({
+    wedding_date: PropTypes.string,
+    venue_name: PropTypes.string,
+  }),
   contextClass: PropTypes.string,
-  weddingDate: PropTypes.string,
-  venueName: PropTypes.string,
   linkTitle: PropTypes.bool,
 };
 
-export default Header;
+const HeaderWithQuery = () => (
+  <StaticQuery
+    query={graphql`
+      query HeaderStaticQuery {
+        wordpressBethandnickInfo {
+          wedding_date
+          venue_name
+        }
+      }
+    `}
+    render={Header}
+  />
+);
+
+export default HeaderWithQuery;
