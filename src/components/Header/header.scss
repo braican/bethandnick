@@ -2,6 +2,8 @@
 @import '../../static/scss/variables';
 
 .Header {
+  position: relative;
+  z-index: 10;
   .wedding-info {
     margin: 0;
     font-weight: $fw-bold;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
 
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
@@ -12,11 +11,10 @@ import './styles/gallery.scss';
 const GalleryPage = ({ wordpressBethandnickGallery: data }) => {
   const { gallery } = data;
 
-  const galleryWidth = gallery.reduce((prev, curr) => {
-    return prev + curr.image.localFile.childImageSharp.fixed.width;
+  const galleryWidth = gallery.reduce((prev, { image }) => {
+    const { presentationWidth } = image.localFile.childImageSharp.fluid;
+    return prev + presentationWidth;
   }, 0);
-
-  console.log(galleryWidth);
 
   return (
     <Wrapper contextClass="layout--gallery">
@@ -26,16 +24,14 @@ const GalleryPage = ({ wordpressBethandnickGallery: data }) => {
         {gallery ? (
           <div className="Gallery" style={{ width: `${galleryWidth}px` }}>
             {gallery.map(({ image }, index) => {
-              const { aspectRatio } = image.localFile.childImageSharp.fixed;
-              // let aspectClass = 'base';
+              const { src, aspectRatio } = image.localFile.childImageSharp.fluid;
+              const aspectClass = aspectRatio > 1.4 ? 'wide' : aspectRatio < 1 ? 'tall' : 'base';
 
-              // if (aspectRatio > 1.4) {
-              //   aspectClass = 'wide';
-              // } else if (aspectRatio < 1) {
-              //   aspectClass = 'tall';
-              // }
-
-              return <Img key={index} fixed={image.localFile.childImageSharp.fixed} />;
+              return (
+                <div key={index} className={`gallery-img-wrapper ${aspectClass}`}>
+                  <img src={src} alt="" />
+                </div>
+              );
             })}
           </div>
         ) : null}
@@ -69,8 +65,10 @@ const GalleryPageWithQuery = () => (
             image {
               localFile {
                 childImageSharp {
-                  fixed(height: 680) {
-                    ...GatsbyImageSharpFixed
+                  fluid(maxWidth: 980, quality: 90) {
+                    src
+                    aspectRatio
+                    presentationWidth
                   }
                 }
               }
