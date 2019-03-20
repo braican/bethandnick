@@ -2,19 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
-import './header.scss';
+import './Header.scss';
 
 const HeaderBanner = () => (
-  <h1 className="header__banner">
+  <h1 className="HeaderBanner">
     <span>Beth</span>
     <span>&amp;</span>
     <span>Nick</span>
   </h1>
 );
 
-const Header = ({ wordpressBethandnickInfo: info, contextClass, linkTitle }) => (
-  <div className={`header ${contextClass || ''}`}>
-    <div className="header__meta">
+const Header = ({ info, contextClass, linkTitle = true }) => (
+  <div className={`Header ${contextClass || ''}`}>
+    <div className="meta">
       {linkTitle ? (
         <Link to="/">
           <HeaderBanner />
@@ -23,7 +23,7 @@ const Header = ({ wordpressBethandnickInfo: info, contextClass, linkTitle }) => 
         <HeaderBanner />
       )}
 
-      <p className="header__wedding-info">
+      <p className="wedding-info">
         <span className="wedding-info__date">{info.wedding_date}</span>
         <br />
         <span className="wedding-info__venue">at {info.venue_name}</span>
@@ -33,7 +33,7 @@ const Header = ({ wordpressBethandnickInfo: info, contextClass, linkTitle }) => 
 );
 
 Header.propTypes = {
-  wordpressBethandnickInfo: PropTypes.shape({
+  info: PropTypes.shape({
     wedding_date: PropTypes.string,
     venue_name: PropTypes.string,
   }),
@@ -41,7 +41,11 @@ Header.propTypes = {
   linkTitle: PropTypes.bool,
 };
 
-const HeaderWithQuery = () => (
+Header.defaultProps = {
+  linkTitle: true,
+};
+
+const HeaderWithQuery = props => (
   <StaticQuery
     query={graphql`
       query HeaderStaticQuery {
@@ -51,7 +55,7 @@ const HeaderWithQuery = () => (
         }
       }
     `}
-    render={Header}
+    render={data => <Header {...props} info={data.wordpressBethandnickInfo} />}
   />
 );
 

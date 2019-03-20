@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import closeIcon from '../../svg/close.svg';
 import hamburgerIcon from '../../svg/hamburger.svg';
 
-import './nav.scss';
+import './Nav.scss';
 
 class Nav extends React.Component {
   constructor() {
@@ -92,6 +92,15 @@ class Nav extends React.Component {
                       </Link>
                     </li>
                   ))}
+                <li className="mainnav__item">
+                  <Link
+                    to="/gallery"
+                    className="mainnav__link"
+                    activeClassName="mainnav__link--active"
+                  >
+                    Photos
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>

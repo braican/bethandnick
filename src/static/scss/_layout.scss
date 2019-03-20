@@ -29,4 +29,12 @@
 }
 
 .herolayout__content {
+  position: relative;
+  margin-left: 40%;
+  margin-right: 80px;
+  margin-top: -200px;
+  background-color: $c-primary;
+  z-index: 10;
+  padding: $space-lg;
+  color: $c-white;
 }

@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 
 const SplitLayout = ({ location, featuredImage, pageTitle, children }) => {
   const title = location === 'home' ? null : pageTitle;
-  const linkTitle = location === 'home' ? false : true;
 
   return (
     <Wrapper contextClass={`main page--${location || 'base'}`}>
@@ -19,7 +18,7 @@ const SplitLayout = ({ location, featuredImage, pageTitle, children }) => {
       </div>
 
       <div className="splitpane__content">
-        <Header contextClass="header--main" linkTitle={linkTitle} />
+        <Header contextClass="header--main" linkTitle={location !== 'home'} />
         {title ? <h2 className="page-title">{title}</h2> : null}
         {children}
         <Footer />

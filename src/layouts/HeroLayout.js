@@ -11,19 +11,21 @@ const HeroLayout = ({ location, featuredImage, pageTitle, children }) => {
   const linkTitle = location === 'home' ? false : true;
 
   return (
-    <Wrapper contextClass={`main page--${location || 'base'}`}>
-      <div className="herolayout__hero">
-        <Header contextClass="header--main" linkTitle={linkTitle} />
-        {featuredImage ? (
+    <Wrapper contextClass={`main layout--hero page--${location || 'base'}`}>
+      <Header contextClass="header--main" linkTitle={linkTitle} />
+
+      {featuredImage && (
+        <div className="herolayout__hero">
           <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
-        ) : null}
-      </div>
+        </div>
+      )}
 
       <div className="herolayout__content">
         {title ? <h2 className="page-title">{title}</h2> : null}
         {children}
-        <Footer />
       </div>
+
+      <Footer />
     </Wrapper>
   );
 };

@@ -22,7 +22,6 @@
     display: block;
     width: 20px;
     height: 20px;
-    fill: $c-white;
     transition: fill $hover-timing;
   }
 
@@ -36,9 +35,33 @@
   }
 }
 
+.mainnav__trigger {
+  .page--home &:hover svg,
+  &:hover svg {
+    fill: $c-primary;
+  }
+
+  svg {
+    fill: $c-secondary;
+
+    .page--home & {
+      fill: $c-white;
+    }
+  }
+}
+
+.mainnav__close svg {
+  fill: $c-white;
+}
+
 .mainnav__trigger-label {
   margin-right: 1em;
+  color: $c-secondary;
   transition: color $hover-timing;
+
+  .page--home & {
+    color: $c-white;
+  }
 }
 .mainnav__trigger-icon,
 .mainnav__trigger-label {

@@ -8,7 +8,7 @@ import Header from '../components/Header';
 const GalleryPage = ({ wordpressBethandnickGallery: data }) => {
   return (
     <Wrapper>
-      <Header />
+      <Header contextClass="header--main" />
       <h1>Test</h1>
     </Wrapper>
   );

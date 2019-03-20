@@ -3,6 +3,7 @@
 html {
   font-size: $fz-base - 2;
   color: $c-gray-3;
+  -webkit-font-smoothing: antialiased;
 
   @include mq($bp-mobile) {
     font-size: $fz-base;

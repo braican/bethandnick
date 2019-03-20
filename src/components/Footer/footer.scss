@@ -3,4 +3,8 @@
 .site-footer {
   padding-top: $space-lg;
   color: $c-gray-9;
+
+  .layout--hero & {
+    padding: 2em;
+  }
 }
