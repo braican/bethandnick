@@ -1,21 +1,63 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
+import Img from 'gatsby-image';
 
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+import './styles/gallery.scss';
 
 const GalleryPage = ({ wordpressBethandnickGallery: data }) => {
+  const { gallery } = data;
+
+  const galleryWidth = gallery.reduce((prev, curr) => {
+    return prev + curr.image.localFile.childImageSharp.fixed.width;
+  }, 0);
+
+  console.log(galleryWidth);
+
   return (
-    <Wrapper>
+    <Wrapper contextClass="layout--gallery">
       <Header contextClass="header--main" />
-      <h1>Test</h1>
+
+      <main className="GalleryLayout">
+        {gallery ? (
+          <div className="Gallery" style={{ width: `${galleryWidth}px` }}>
+            {gallery.map(({ image }, index) => {
+              const { aspectRatio } = image.localFile.childImageSharp.fixed;
+              // let aspectClass = 'base';
+
+              // if (aspectRatio > 1.4) {
+              //   aspectClass = 'wide';
+              // } else if (aspectRatio < 1) {
+              //   aspectClass = 'tall';
+              // }
+
+              return <Img key={index} fixed={image.localFile.childImageSharp.fixed} />;
+            })}
+          </div>
+        ) : null}
+      </main>
+
+      <Footer />
     </Wrapper>
   );
 };
 
 GalleryPage.propTypes = {
-  wordpressBethandnickGallery: PropTypes.object,
+  wordpressBethandnickGallery: PropTypes.shape({
+    gallery: PropTypes.arrayOf(
+      PropTypes.shape({
+        image: PropTypes.shape({
+          localFile: PropTypes.shape({
+            childImageSharp: PropTypes.shape({}),
+          }),
+        }),
+      })
+    ),
+  }),
 };
 
 const GalleryPageWithQuery = () => (
@@ -27,8 +69,8 @@ const GalleryPageWithQuery = () => (
             image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 1680) {
-                    ...GatsbyImageSharpFluid
+                  fixed(height: 680) {
+                    ...GatsbyImageSharpFixed
                   }
                 }
               }

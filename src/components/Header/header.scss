@@ -27,7 +27,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-    padding: 2em;
+    padding: $space-lg;
     position: relative;
 
     @include mq($bp-mobile, true) {

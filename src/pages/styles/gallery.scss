@@ -1,0 +1,30 @@
+@import '../../static/scss/mixins';
+@import '../../static/scss/variables';
+
+.layout--gallery {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.GalleryLayout {
+  position: absolute;
+  top: 160px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  // padding: $space-lg;
+  // background-color: $c-secondary;
+}
+
+.Gallery {
+  display: flex;
+  height: 100%;
+
+  .gatsby-image-wrapper {
+    max-height: 100%;
+  }
+}
