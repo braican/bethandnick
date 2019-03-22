@@ -11,9 +11,6 @@
 
 .mainnav__trigger,
 .mainnav__close {
-  @include uppercase;
-  font-family: $ff-roboto;
-  font-size: $fz-small;
   top: 0;
   right: 0;
 
@@ -23,49 +20,51 @@
     height: 20px;
     transition: fill $hover-timing;
   }
-
-  &:hover {
-    svg {
-      fill: $c-primary;
-    }
-    .mainnav__trigger-label {
-      color: $c-primary;
-    }
-  }
 }
 
 .mainnav__trigger {
+  @include uppercase;
+  font-family: $ff-roboto;
+  font-size: $fz-small;
   padding: $space-lg;
-
-  .page--home &:hover svg,
-  &:hover svg {
-    fill: $c-primary;
-  }
+  transition: color $hover-timing;
 
   svg {
-    fill: $c-secondary;
+    fill: $c-white;
+  }
 
-    .page--home & {
-      fill: $c-white;
+  .dark-header-theme &:hover,
+  &:hover {
+    color: $c-primary;
+
+    svg {
+      fill: $c-primary;
+    }
+  }
+
+  .dark-header-theme & {
+    color: $c-secondary;
+
+    svg {
+      fill: $c-secondary;
     }
   }
 }
 
 .mainnav__close {
   padding: 20px;
+
   svg {
     fill: $c-white;
+  }
+
+  &:hover svg {
+    fill: $c-primary;
   }
 }
 
 .mainnav__trigger-label {
   margin-right: 1em;
-  color: $c-secondary;
-  transition: color $hover-timing;
-
-  .page--home & {
-    color: $c-white;
-  }
 }
 .mainnav__trigger-icon,
 .mainnav__trigger-label {

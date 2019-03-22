@@ -39,7 +39,7 @@ export const query = graphql`
         page_featured_image {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1600) {
+              fluid(maxWidth: 1600, quality: 90) {
                 ...GatsbyImageSharpFluid_noBase64
               }
             }

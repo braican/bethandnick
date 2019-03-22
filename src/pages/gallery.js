@@ -8,7 +8,7 @@ import Footer from '../components/Footer';
 import ImageGallery from '../components/ImageGallery';
 
 const GalleryPage = ({ wordpressBethandnickGallery: data }) => (
-  <Wrapper contextClass="layout--gallery">
+  <Wrapper contextClass="layout--gallery dark-header-theme">
     <Header contextClass="header--main" />
 
     <main className="gallery-main">

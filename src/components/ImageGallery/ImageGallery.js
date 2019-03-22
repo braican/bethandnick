@@ -8,10 +8,11 @@ const ImageGallery = ({ images }) => {
   const [galleryWidth, setGalleryWidth] = useState(0);
   const imageRefs = useRef([]);
 
+  const trackMarginTop = 60;
   const windowHeight = window.innerHeight;
   const windowWidth = window.innerWidth;
   const windowDiff = windowHeight - windowWidth;
-  const imgHeight = windowHeight;
+  const imgHeight = windowHeight - trackMarginTop;
   const threshold = 0.5;
   const intersection = windowWidth * threshold;
   const isMobile = windowWidth < 781;
@@ -90,6 +91,7 @@ const ImageGallery = ({ images }) => {
         style={{
           width: `${galleryWidth}px`,
           transform: `translate3d(-${galleryX}px, 0, 0)`,
+          marginTop: `${trackMarginTop}px`,
         }}
       >
         {images.map(({ image, caption }, index) => {

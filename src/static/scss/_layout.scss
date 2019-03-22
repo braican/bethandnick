@@ -6,7 +6,6 @@
   left: 0;
   position: fixed;
   height: 100vh;
-  background-color: $c-primary;
   width: $mobile-split-secondary;
 
   & > img,
@@ -32,8 +31,6 @@
     right: 0;
   }
 
-  .mainnav__trigger-label,
-  .mainnav__trigger svg,
   .HeaderBanner,
   .Header .wedding-info,
   .header--main .HeaderBanner span:nth-child(2) {
