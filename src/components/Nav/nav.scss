@@ -14,7 +14,6 @@
   @include uppercase;
   font-family: $ff-roboto;
   font-size: $fz-small;
-  padding: 20px;
   top: 0;
   right: 0;
 
@@ -36,6 +35,8 @@
 }
 
 .mainnav__trigger {
+  padding: $space-lg;
+
   .page--home &:hover svg,
   &:hover svg {
     fill: $c-primary;
@@ -50,8 +51,11 @@
   }
 }
 
-.mainnav__close svg {
-  fill: $c-white;
+.mainnav__close {
+  padding: 20px;
+  svg {
+    fill: $c-white;
+  }
 }
 
 .mainnav__trigger-label {

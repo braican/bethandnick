@@ -31,6 +31,7 @@ const GalleryPageWithQuery = () => (
       query GalleryPage {
         wordpressBethandnickGallery {
           gallery {
+            caption
             image {
               localFile {
                 childImageSharp {
