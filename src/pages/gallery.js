@@ -5,54 +5,23 @@ import { StaticQuery, graphql } from 'gatsby';
 import Wrapper from '../components/Wrapper';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import ImageGallery from '../components/ImageGallery';
 
-import './styles/gallery.scss';
+const GalleryPage = ({ wordpressBethandnickGallery: data }) => (
+  <Wrapper contextClass="layout--gallery">
+    <Header contextClass="header--main" />
 
-const GalleryPage = ({ wordpressBethandnickGallery: data }) => {
-  const { gallery } = data;
+    <main className="gallery-main">
+      <ImageGallery images={data.gallery} />
+    </main>
 
-  const galleryWidth = gallery.reduce((prev, { image }) => {
-    const { presentationWidth } = image.localFile.childImageSharp.fluid;
-    return prev + presentationWidth;
-  }, 0);
-
-  return (
-    <Wrapper contextClass="layout--gallery">
-      <Header contextClass="header--main" />
-
-      <main className="GalleryLayout">
-        {gallery ? (
-          <div className="Gallery" style={{ width: `${galleryWidth}px` }}>
-            {gallery.map(({ image }, index) => {
-              const { src, aspectRatio } = image.localFile.childImageSharp.fluid;
-              const aspectClass = aspectRatio > 1.4 ? 'wide' : aspectRatio < 1 ? 'tall' : 'base';
-
-              return (
-                <div key={index} className={`gallery-img-wrapper ${aspectClass}`}>
-                  <img src={src} alt="" />
-                </div>
-              );
-            })}
-          </div>
-        ) : null}
-      </main>
-
-      <Footer />
-    </Wrapper>
-  );
-};
+    <Footer />
+  </Wrapper>
+);
 
 GalleryPage.propTypes = {
   wordpressBethandnickGallery: PropTypes.shape({
-    gallery: PropTypes.arrayOf(
-      PropTypes.shape({
-        image: PropTypes.shape({
-          localFile: PropTypes.shape({
-            childImageSharp: PropTypes.shape({}),
-          }),
-        }),
-      })
-    ),
+    gallery: PropTypes.arrayOf(PropTypes.object),
   }),
 };
 
@@ -65,10 +34,11 @@ const GalleryPageWithQuery = () => (
             image {
               localFile {
                 childImageSharp {
-                  fluid(maxWidth: 980, quality: 90) {
+                  fluid(maxWidth: 780, quality: 90) {
                     src
                     aspectRatio
                     presentationWidth
+                    presentationHeight
                   }
                 }
               }
