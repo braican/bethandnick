@@ -24,94 +24,87 @@
 }
 
 .Gallery {
-  @include mq($bp-tablet, true) {
-    margin-top: 160px;
-    padding-left: $space-lg;
-    padding-right: $space-lg;
-  }
-
-  .track {
-    @include mq($bp-tablet) {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      display: flex;
-      align-items: flex-end;
-    }
-  }
+  min-height: 100vh;
+  padding-left: $space-lg;
+  padding-right: $space-lg;
+  margin-top: 160px;
 }
 
-.gallery-main {
-  min-height: 100vh;
+.GalleryImage {
+  display: flex;
+  align-items: center;
+  margin-bottom: 100px;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: all 0.4s;
+
+  &-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  &-fullwidth {
+    .gallery-img-wrapper {
+      width: 100% !important;
+    }
+    .caption {
+      opacity: 0;
+      width: 0;
+      width: 0;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      transition-duration: 0s;
+      transition-delay: 0s;
+    }
+  }
+
+  &.tall {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  &.square {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .gallery-fullwidth-trigger {
+    display: block;
+    width: 100%;
+    cursor: url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%3E%3Cpath%20d%3D%22M18.586%204l-5.293%205.293a.999.999%200%201%200%201.414%201.414L20%205.414V9a1%201%200%200%200%202%200V3v-.008A1.003%201.003%200%200%200%2021.009%202H15a1%201%200%200%200%200%202zM5.414%2020l5.293-5.293a.999.999%200%201%200-1.414-1.414L4%2018.586V15a1%201%200%200%200-2%200v6.009a1.003%201.003%200%200%200%20.992.991H9a1%201%200%200%200%200-2z%22%2F%3E%3C%2Fsvg%3E'),
+      pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .gallery-img-wrapper {
-  margin-bottom: $space-lg;
+  box-shadow: 0 0 70px rgba($c-black, 0.4);
+  width: 70%;
+  min-width: 480px;
+  transition: width 0.4s;
 
-  .caption {
-    display: block;
-    margin-bottom: 10px;
-    margin-top: 10px;
+  .tall & {
+    width: 40%;
   }
 
-  img {
-    box-shadow: 0 0 70px rgba($c-black, 0.4);
+  .square & {
+    width: 56%;
   }
+}
 
-  @include mq($bp-tablet) {
-    height: 100%;
-    overflow: hidden;
-    padding: 4rem;
-    margin-bottom: 0;
+.caption {
+  flex: 1;
+  display: block;
+  padding-left: $space-lg;
+  transition: opacity 0.2s 0.4s;
 
-    &:first-child {
-      padding-left: $space-lg;
-    }
-    &:last-child {
-      padding-right: $space-lg;
-    }
-
-    .gallery-img-constrictor {
-      display: flex;
-      height: 100%;
-      flex-direction: column;
-    }
-
-    &:nth-child(even) .gallery-img-constrictor {
-      justify-content: flex-start;
-      .caption {
-        margin-top: 2em;
-      }
-    }
-    &:nth-child(odd) .gallery-img-constrictor {
-      justify-content: flex-end;
-      .caption {
-        order: -1;
-        margin-bottom: 2em;
-      }
-    }
-
-    .caption {
-      opacity: 0;
-      transition: all 0.4s 0.4s;
-    }
-
-    img {
-      display: block;
-      max-height: 80%;
-      opacity: 0;
-      transform: translate3d(40px, 0, 0);
-      transition: all 0.4s;
-    }
-
-    &.active {
-      img {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-      }
-      .caption {
-        opacity: 1;
-      }
-    }
+  .GalleryImage:nth-child(odd) & {
+    order: -1;
+    padding-right: $space-lg;
+    padding-left: 0;
+    text-align: right;
   }
 }

@@ -33,7 +33,7 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-helmet": "^5.2.0",
-    "react-reveal": "^1.2.2"
+    "react-visibility-sensor": "^5.0.2"
   },
   "devDependencies": {
     "@upstatement/eslint-config": "^0.4.0",
