@@ -7,7 +7,7 @@ const Page = props => {
   const { data, pageContext } = props;
   const location = pageContext.slug || 'home';
   const { content, acf, title } = data.wordpressPage;
-  const featuredImage = acf.page_featured_image.localFile.childImageSharp.fluid;
+  const featuredImage = acf.page_featured_image ? acf.page_featured_image.localFile.childImageSharp.fluid : null;
 
   return (
     <HeroLayout location={location} featuredImage={featuredImage} pageTitle={title}>
