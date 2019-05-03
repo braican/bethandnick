@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
-import './hstyles.scss';
+import './header.scss';
 
 const HeaderBanner = () => (
   <h1 className="HeaderBanner">
