@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import closeIcon from '../../svg/close.svg';
 import hamburgerIcon from '../../svg/hamburger.svg';
 
-import './Nav.scss';
+import './navigation.scss';
 
 class Nav extends React.Component {
   constructor() {
