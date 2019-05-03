@@ -1,68 +1,85 @@
 @import '../../static/scss/mixins';
 @import '../../static/scss/variables';
 
-.header {
-  color: $c-secondary;
-}
-
-.header--main .header__meta {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-bottom: $space-lg;
-  background-color: $c-secondary;
-  margin-top: $inverted-padding;
-  margin-left: -$overhang;
-  margin-right: $inverted-padding;
-  padding: $padding $padding $offset $offset;
+.Header {
   position: relative;
+  z-index: 10;
+  .wedding-info {
+    margin: 0;
+    font-weight: $fw-bold;
+    font-family: $ff-lora;
+    line-height: 1.2;
+    color: $c-secondary;
 
-  @include mq($bp-mobile, true) {
-    .main:not(.page--home) & .wedding-info__venue {
-      display: none;
+    .page--home &,
+    .mainnav & {
+      font-size: $fz-mid;
+      margin-top: 1em;
+    }
+
+    .page--home & {
+      color: $c-primary;
+    }
+    .mainnav & {
+      color: $c-secondary;
     }
   }
 
-  @include mq($bp-tablet) {
-    padding: 40px;
-  }
+  &.header--main .meta {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: $space-lg;
+    position: relative;
 
-  @include mq($bp-desktop) {
-    margin-bottom: 4rem;
-  }
-
-  .page--home & {
-    display: block;
-    padding: 60px $padding 40px $overhang;
-
-    @include mq($bp-tablet) {
-      padding-top: $padding - 2;
-      padding-bottom: $padding - 2;
+    @include mq($bp-mobile, true) {
+      .main:not(.page--home) & .wedding-info__venue {
+        display: none;
+      }
     }
-    @include mq($bp-mobile) {
-      padding-left: $padding - 2;
+
+    .splitpane__content & {
+      margin-left: -$overhang;
+      margin-top: $inverted-padding;
+      margin-right: $inverted-padding;
+      margin-bottom: $space-lg;
+
+      @include mq($bp-desktop) {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .page--home & {
+      display: block;
+      padding: 60px $padding 40px $overhang;
+      background-color: $c-secondary;
+
+      @include mq($bp-tablet) {
+        padding-top: $padding - 2;
+        padding-bottom: $padding - 2;
+      }
+      @include mq($bp-mobile) {
+        padding-left: $padding - 2;
+      }
     }
   }
 }
 
-.header__banner {
+.HeaderBanner {
   font-family: $ff-vidaloka;
   display: inline-block;
   font-size: 2rem;
   margin-right: 1em;
+  color: $c-secondary;
 
   @include mq($bp-tablet) {
-    margin-right: 60px;
+    margin-right: 40px;
   }
 
   span {
     position: relative;
     display: block;
     line-height: 0.8;
-
-    .header--main & {
-      color: $c-white;
-    }
   }
 
   span:first-child {
@@ -79,38 +96,16 @@
   span:nth-child(3) {
     margin-top: -0.3em;
   }
-}
 
-.header__wedding-info {
-  margin: 0;
-  font-weight: $fw-bold;
-  font-family: $ff-lora;
-  line-height: 1.2;
-
-  .page--home &,
+  .mainnav &,
+  .page--home & {
+    font-size: 4rem;
+    color: $c-white;
+    @include mq($bp-mobile) {
+      font-size: 8vw;
+    }
+  }
   .mainnav & {
-    font-size: $fz-mid;
-    margin-top: 1em;
-  }
-
-  .header--main & {
-    color: $c-primary;
-  }
-}
-
-.mainnav .header__banner,
-.page--home .header__banner {
-  font-size: 4rem;
-  @include mq($bp-mobile) {
-    font-size: 8vw;
-  }
-}
-.header__page-title {
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-
-  @include mq($bp-mobile) {
-    font-size: 6vw;
+    color: $c-secondary;
   }
 }

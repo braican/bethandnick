@@ -7,7 +7,7 @@ USER=${2:-$LINODE_USER}
 BASEDIR=$(dirname "$0")
 DEPLOYIGNORE=$BASEDIR/.deployignore
 
-BUILD_DIR="$TRAVIS_BUILD_DIR/wp/"
+BUILD_DIR="./wp/"
 
 if [ -z $HOST ] || [ -z $USER ]; then
   echo "Please pass the Linode SFTP host and user name for your site, or define them using \$LINODE_HOST and \$LINODE_USER env variables."

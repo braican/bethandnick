@@ -1,6 +1,11 @@
 @import '../../static/scss/variables';
 
 .site-footer {
-  padding-top: $space-lg;
+  margin-top: $space-lg;
   color: $c-gray-9;
+  padding: $space-lg;
+
+  .splitpane__content & {
+    padding: 0;
+  }
 }

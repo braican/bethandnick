@@ -1,13 +1,15 @@
+// Split Layout
+
 .splitpane__img {
   @include content-split-secondary;
   top: 0;
   left: 0;
   position: fixed;
   height: 100vh;
-  background-color: $c-primary;
   width: $mobile-split-secondary;
 
-  img {
+  & > img,
+  & > .gatsby-image-wrapper {
     display: block;
     height: 100%;
     width: 100%;
@@ -18,4 +20,39 @@
 .splitpane__content {
   @include content-split-main;
   padding: 8vw;
+}
+
+// Hero Layout
+.layout--hero {
+  .header--main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .HeaderBanner,
+  .Header .wedding-info,
+  .header--main .HeaderBanner span:nth-child(2) {
+    color: $c-white;
+    fill: $c-white;
+  }
+}
+.herolayout__content {
+  position: relative;
+
+  margin-right: $space-lg;
+  margin-top: -200px;
+  background-color: $c-primary;
+  z-index: 10;
+  padding: $space-lg;
+  color: $c-white;
+
+  @include mq($bp-mobile) {
+    margin-left: 44vw;
+  }
+
+  a:hover {
+    color: $c-secondary;
+  }
 }

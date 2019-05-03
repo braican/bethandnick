@@ -1,11 +1,11 @@
 import React from 'react';
-import BaseLayout from '../layouts/BaseLayout';
+import SplitLayout from '../layouts/SplitLayout';
 
 const NotFoundPage = () => (
-  <BaseLayout>
+  <SplitLayout>
     <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </BaseLayout>
+    <p>Sorry, that page doesn&#39;t exist.</p>
+  </SplitLayout>
 );
 
 export default NotFoundPage;
