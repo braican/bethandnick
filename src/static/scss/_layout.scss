@@ -51,4 +51,8 @@
   @include mq($bp-mobile) {
     margin-left: 44vw;
   }
+
+  a:hover {
+    color: $c-secondary;
+  }
 }
