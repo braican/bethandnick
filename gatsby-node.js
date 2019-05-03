@@ -39,9 +39,9 @@ exports.createPages = ({ actions, graphql }) => {
     const allPages = result.data.allWordpressPage.edges;
 
     allPages.forEach(({ node }) => {
-      const slug = node.slug === 'home' ? '/' : node.slug;
+      const slug = node.slug === 'home' ? '/' : `/${node.slug}/`;
       createPage({
-        path: `/${slug}/`,
+        path: slug,
         component: node.template === 'template-hero.php' ? heroPageTemplate : pageTemplate,
         context: {
           slug: node.slug,
