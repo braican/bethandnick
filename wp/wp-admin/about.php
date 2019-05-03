@@ -27,7 +27,7 @@ include( ABSPATH . 'wp-admin/admin-header.php' );
 
 		<?php if (
 			// Was the Gutenberg plugin installed before upgrading to 5.0.x?
-			get_option( 'upgrade_500_was_gutenberg_active' ) == '1'  &&
+			get_option( 'upgrade_500_was_gutenberg_active' ) == '1' &&
 			current_user_can( 'activate_plugins' ) &&
 			// Has it not been reactivated since?
 			is_plugin_inactive( 'gutenberg/gutenberg.php' ) &&
