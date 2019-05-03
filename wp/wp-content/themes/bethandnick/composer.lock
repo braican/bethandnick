@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7cb54a1d592a968b6b2f24bd47d4152",
+    "content-hash": "06bc6f8adfd32a3ed71de0e00bd678e0",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.7.9",
+            "version": "5.7.10",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.9",
+                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.10",
                 "reference": null,
                 "shasum": null
             },
@@ -171,15 +171,15 @@
         },
         {
             "name": "wpackagist-plugin/wp-migrate-db",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wp-migrate-db/",
-                "reference": "tags/1.0.8"
+                "reference": "tags/1.0.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.8.zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.9.zip",
                 "reference": null,
                 "shasum": null
             },
