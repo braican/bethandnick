@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -28,11 +30,8 @@ module.exports = {
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        // baseUrl: `api.bethandnick.us`,
-        // protocol: `https`,
-
-        baseUrl: `bethandnick.ups.dock`,
-        protocol: `http`,
+        baseUrl: process.env.WORDPRESS_SOURCE_URL,
+        protocol: `https`,
 
         // is the site hosted on WordPress.com
         hostingWPCOM: false,
