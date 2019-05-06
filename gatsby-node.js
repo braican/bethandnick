@@ -33,16 +33,23 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors);
     }
 
-    // Templates
-    const pageTemplate = path.resolve('./src/templates/page.js');
-    const heroPageTemplate = path.resolve('./src/templates/page-hero.js');
+    // The default template.
+
     const allPages = result.data.allWordpressPage.edges;
 
     allPages.forEach(({ node }) => {
       const slug = node.slug === 'home' ? '/' : `/${node.slug}/`;
+      let template = path.resolve('./src/templates/page.js');
+
+      if (node.template === 'template-hero.php') {
+        template = path.resolve('./src/templates/page-hero.js');
+      } else if (node.template === 'template-team.php') {
+        template = path.resolve('./src/templates/page-team.js');
+      }
+
       createPage({
         path: slug,
-        component: node.template === 'template-hero.php' ? heroPageTemplate : pageTemplate,
+        component: template,
         context: {
           slug: node.slug,
           title: node.title,
