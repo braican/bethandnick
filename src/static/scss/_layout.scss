@@ -23,33 +23,26 @@
 }
 
 // Hero Layout
-.layout--hero {
-  .header--main {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .HeaderBanner,
-  .Header .wedding-info,
-  .header--main .HeaderBanner span:nth-child(2) {
-    color: $c-white;
-    fill: $c-white;
-  }
-}
 .herolayout__content {
   position: relative;
-
-  margin-right: $space-lg;
-  margin-top: -200px;
   background-color: $c-primary;
   z-index: 10;
   padding: $space-lg;
   color: $c-white;
 
-  @include mq($bp-mobile) {
+  @include mq($bp-small-mobile) {
+    margin-right: $space-lg;
+    margin-left: $space-lg;
+    margin-top: -40px;
+  }
+
+  @include mq($bp-tablet) {
     margin-left: 44vw;
+    margin-top: -200px;
+  }
+
+  @include mq($bp-desktop) {
+    padding: 4rem;
   }
 
   a:hover {

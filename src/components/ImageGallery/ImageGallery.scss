@@ -2,13 +2,6 @@
 @import '../../static/scss/variables';
 
 .layout--gallery {
-  .header--main {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
   .mainnav {
     position: fixed;
     top: 0;
@@ -27,7 +20,7 @@
   min-height: 100vh;
   padding-left: $space-lg;
   padding-right: $space-lg;
-  margin-top: 160px;
+  padding-top: 200px;
 }
 
 .GalleryImage {

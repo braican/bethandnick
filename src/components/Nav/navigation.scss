@@ -7,6 +7,10 @@
   right: 0;
   color: $c-white;
   z-index: 100;
+
+  .wedding-info {
+    color: $c-secondary;
+  }
 }
 
 .mainnav__trigger,
@@ -26,33 +30,27 @@
   @include uppercase;
   font-family: $ff-roboto;
   font-size: $fz-small;
-  padding: $space-lg;
+  padding: $space-sm;
   transition: color $hover-timing;
+  color: $c-secondary;
+
+  @include mq($bp-mobile) {
+    padding: $space-lg;
+  }
 
   svg {
-    fill: $c-white;
+    fill: currentColor;
   }
 
-  .dark-header-theme &:hover,
-  &:hover {
-    color: $c-primary;
-
-    svg {
-      fill: $c-primary;
-    }
-  }
-
-  .dark-header-theme & {
-    color: $c-secondary;
-
-    svg {
-      fill: $c-secondary;
-    }
+  .layout--hero &,
+  .page--home & {
+    color: $c-white;
   }
 }
 
 .mainnav__close {
   padding: 20px;
+  z-index: 20;
 
   svg {
     fill: $c-white;
@@ -63,13 +61,18 @@
   }
 }
 
-.mainnav__trigger-label {
-  margin-right: 1em;
-}
 .mainnav__trigger-icon,
 .mainnav__trigger-label {
   display: inline-block;
   vertical-align: middle;
+}
+
+.mainnav__trigger-label {
+  margin-right: 1em;
+
+  @include mq($bp-mobile, true) {
+    display: none;
+  }
 }
 
 .mainnav__close {
@@ -89,7 +92,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  padding: $padding $padding;
+  padding: 2rem;
 
   &--open {
     visibility: visible;
@@ -103,14 +106,12 @@
     justify-content: space-between;
     align-items: flex-start;
     overflow: auto;
-    padding-top: 80px;
-    padding-right: 0;
+    padding: $padding;
   }
 
   @include mq($bp-desktop) {
     left: 50 - $offset;
-    padding-top: $offset;
-    padding-left: $offset;
+    padding: 8vw $offset $offset;
   }
 
   .mainnav__info .header__banner span {
@@ -126,24 +127,22 @@
 
 .mainnav__menu {
   position: absolute;
-  bottom: $padding;
-  left: $padding;
+  bottom: $space-lg;
+  left: $space-lg;
 
   @include mq($bp-mobile) {
-    position: static;
-    text-align: right;
-    margin-left: 40px;
-    flex: 0 0 auto;
+    bottom: $padding;
+    left: $padding;
   }
 }
 .mainnav__item {
   opacity: 0;
-  transform: translateX(-8px);
-  transition: all 0.4s;
+  transform: translateX(-12px);
+  transition: all 0.6s;
 
   @for $i from 0 through 10 {
     .mainnav__wrapper--open &:nth-child(#{$i}) {
-      $current-delay: ($i * 0.1s) + 0.1s;
+      $current-delay: ($i * 0.1s);
       opacity: 1;
       transform: translateX(0);
       transition-delay: #{$current-delay + 0.1s};
@@ -156,10 +155,6 @@
   display: block;
   line-height: 1;
   margin: 0.5em 0;
-
-  @include mq($bp-mobile) {
-    padding-right: 40px;
-  }
 
   &:hover,
   &--active {

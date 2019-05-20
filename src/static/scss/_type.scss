@@ -20,8 +20,11 @@ h2 {
   line-height: 1;
   margin-bottom: 0.5em;
   font-family: $ff-vidaloka;
-  margin-top: 2em;
   margin-bottom: 1em;
+
+  p + & {
+    margin-top: 2em;
+  }
 }
 
 p {
@@ -82,4 +85,12 @@ button {
   @include mq($bp-mobile) {
     font-size: 6vw;
   }
+}
+
+// WordPress blocks
+// -----------
+
+.wp-block-quote {
+  padding-left: 1em;
+  border-left: 4px solid $c-secondary;
 }

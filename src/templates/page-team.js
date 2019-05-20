@@ -17,6 +17,8 @@ const Page = ({ data, pageContext }) => {
 
   return (
     <Wrapper contextClass={`main page--${location || 'base'}`}>
+      <Header linkTitle={location !== 'home'} />
+
       <div className="splitpane__img">
         {featuredImage ? (
           <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
@@ -24,7 +26,7 @@ const Page = ({ data, pageContext }) => {
       </div>
 
       <div className="splitpane__content">
-        <Header contextClass="header--main" linkTitle={location !== 'home'} />
+
         {title ? <h2 className="page-title">{title}</h2> : null}
         <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
 

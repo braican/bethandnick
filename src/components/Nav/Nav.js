@@ -29,9 +29,9 @@ class Nav extends React.Component {
     });
 
     if (!isOpen) {
-      document.body.classList.add('prevent-scroll');
+      document.body.classList.add('prevent-scroll', 'menu-is-open');
     } else {
-      document.body.classList.remove('prevent-scroll');
+      document.body.classList.remove('prevent-scroll', 'menu-is-open');
     }
   }
 
@@ -71,7 +71,7 @@ class Nav extends React.Component {
                 </svg>
               </button>
 
-              <Header />
+              <Header isNav={true} />
 
               <ul className="mainnav__menu">
                 <li className="mainnav__item">

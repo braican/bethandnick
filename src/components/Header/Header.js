@@ -4,24 +4,23 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 
 import './header.scss';
 
-const HeaderBanner = () => (
-  <h1 className="HeaderBanner">
-    <span>Beth</span>
-    <span>&amp;</span>
-    <span>Nick</span>
-  </h1>
-);
+const OptionalLink = ({ linkTitle, children }) => linkTitle ? <Link to="/">{children}</Link> : children;
 
-const Header = ({ info, contextClass, linkTitle = true }) => (
-  <div className={`Header ${contextClass || ''}`}>
-    <div className="meta">
-      {linkTitle ? (
-        <Link to="/">
-          <HeaderBanner />
-        </Link>
-      ) : (
-        <HeaderBanner />
-      )}
+OptionalLink.propTypes = {
+  linkTitle: PropTypes.bool,
+  children: PropTypes.node,
+};
+
+const Header = ({ info, contextClass, isNav, linkTitle = true }) => (
+  <div className={`Header ${contextClass || ''}${isNav ? '' : ' Header--main'}`}>
+    <div className="header__wrap">
+      <OptionalLink linkTitle={linkTitle}>
+        <h1 className="wedding-title">
+          <span>Beth</span>
+          <span>&amp;</span>
+          <span>Nick</span>
+        </h1>
+      </OptionalLink>
 
       <p className="wedding-info">
         <span className="wedding-info__date">{info.wedding_date}</span>
@@ -37,6 +36,7 @@ Header.propTypes = {
     wedding_date: PropTypes.string,
     venue_name: PropTypes.string,
   }),
+  isNav: PropTypes.bool,
   contextClass: PropTypes.string,
   linkTitle: PropTypes.bool,
 };
