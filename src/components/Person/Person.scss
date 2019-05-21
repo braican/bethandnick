@@ -2,19 +2,40 @@
 @import '../../static/scss/variables';
 
 .Person {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+  @include mq($bp-desktop) {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+
+  @include mq($bp-desktop, true) {
+    margin-top: 100px;
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -1em;
+      left: 0;
+      width: 40px;
+      height: 4px;
+      background-color: $c-primary;
+    }
+  }
 }
 
 .person__pics {
-  @include content-split-secondary;
-  top: 0;
-  left: 0;
-  position: fixed;
-  height: 100vh;
-  width: $mobile-split-secondary;
-  text-align: center;
+  margin-top: $space-lg;
+
+  @include mq($bp-desktop) {
+    @include content-split-secondary;
+    margin: 0;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+    width: $mobile-split-secondary;
+    text-align: center;
+  }
 
   &.person__pics--1 {
     display: flex;
@@ -23,19 +44,29 @@
 }
 
 .person-pic {
-  margin: $space-lg;
-  max-height: 40vh;
+  display: inline-block;
+  margin-bottom: $space-lg;
   border: 4px solid $c-white;
   box-shadow: 0 0 70px rgba($c-black, 0.4);
   transform-origin: 50% 50%;
-  opacity: 0;
-  transform: translate3d(0, 60px, 40px) rotate(0deg);
-  transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1),
-    transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.4s;
 
-  .is-visible & {
-    transition-duration: 0.8s;
-    opacity: 1;
+  @include mq($bp-desktop) {
+    display: block;
+    margin: $space-lg;
+    max-height: 40vh;
+    opacity: 0;
+    transform: translate3d(0, 60px, 40px) rotate(0deg);
+    transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+      transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.4s;
+
+    .is-visible & {
+      transition-duration: 0.8s;
+      opacity: 1;
+    }
+  }
+
+  img {
+    display: block;
   }
 }
 
@@ -78,29 +109,61 @@
   }
 }
 
-// 3 pics
-// -----------
+@include mq($bp-desktop, true) {
+  .Person:nth-child(even) {
+    .person-pic--0 {
+      transform: translate3d(0, 0, 0) rotate(-3deg);
+    }
+    .person-pic--1 {
+      margin-top: -80px;
+      transform: rotate(2deg) translate3d(0, 0, 0);
+    }
+    .person-pic--2 {
+      margin-top: -50px;
+      transform: rotate(-4deg) translate3d(0, 0, 0);
+    }
+  }
 
-.Person:nth-child(even) .person__pics--3 {
-  .person-pic--0 {
-    margin-top: -6vh;
-  }
-  .person-pic--1 {
-    margin-top: -140px;
-  }
-  .person-pic--2 {
-    margin-top: -60px;
+  .Person:nth-child(odd) {
+    .person-pic--0 {
+      transform: translate3d(0, 0, 0) rotate(3deg);
+    }
+    .person-pic--1 {
+      margin-top: -20px;
+      transform: rotate(-6deg) translate3d(0, 0, 0);
+    }
+    .person-pic--2 {
+      margin-top: -80px;
+      transform: rotate(2deg) translate3d(0, 0, 0);
+    }
   }
 }
 
-.Person:nth-child(odd) .person__pics--3 {
-  .person-pic--0 {
-    margin-top: -6vh;
+// 3 pics
+// -----------
+
+@include mq($bp-desktop) {
+  .Person:nth-child(even) .person__pics--3 {
+    .person-pic--0 {
+      margin-top: -6vh;
+    }
+    .person-pic--1 {
+      margin-top: -140px;
+    }
+    .person-pic--2 {
+      margin-top: -60px;
+    }
   }
-  .person-pic--1 {
-    margin-top: -120px;
-  }
-  .person-pic--2 {
-    margin-top: -90px;
+
+  .Person:nth-child(odd) .person__pics--3 {
+    .person-pic--0 {
+      margin-top: -6vh;
+    }
+    .person-pic--1 {
+      margin-top: -120px;
+    }
+    .person-pic--2 {
+      margin-top: -90px;
+    }
   }
 }

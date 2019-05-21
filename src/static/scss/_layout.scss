@@ -1,6 +1,5 @@
 // Split Layout
 
-.teampage__imagepane,
 .splitpane__img {
   @include content-split-secondary;
   top: 0;
@@ -8,9 +7,7 @@
   position: fixed;
   height: 100vh;
   width: $mobile-split-secondary;
-}
 
-.splitpane__img {
   & > img,
   & > .gatsby-image-wrapper {
     display: block;

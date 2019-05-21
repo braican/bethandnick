@@ -38,10 +38,6 @@ const Page = ({ data, pageContext }) => {
 
       <Wrapper contextClass={`main page--${location || 'base'}`}>
 
-        <div className="teampage__imagepane">
-          {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
-        </div>
-
         <div className="teampage__contentpane">
 
           {title ? <h2 className="page-title">{title}</h2> : null}
@@ -50,6 +46,10 @@ const Page = ({ data, pageContext }) => {
             <button onClick={() => setActiveGroup(the_guys)}>Groomsman</button> |
             <button onClick={() => setActiveGroup(the_girls)}>Bridesmaids</button> |
             <button onClick={() => setActiveGroup(the_family)}>Families</button>
+          </div>
+
+          <div className="teampage__imagepane">
+            {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
           </div>
 
           {the_girls && (

@@ -1,7 +1,16 @@
 .teampage__imagepane {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
+
+  @include mq($bp-desktop) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $desktop-split;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 100vh;
+  }
 }
 
 .teampage__contentpane {
@@ -27,10 +36,14 @@
 }
 
 .team__contents {
-  min-height: 50vh;
+  @include mq($bp-desktop) {
+    min-height: 50vh;
+  }
 }
 
 .team__footer {
-  padding-top: 50vh;
-  padding-bottom: 50vh;
+  @include mq($bp-desktop) {
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+  }
 }

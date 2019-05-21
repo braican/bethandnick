@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { isDesktop } from '../../util/responsive';
+
 import './Person.scss';
 
 const Person = ({ person, updateVisibleCount }) => {
@@ -12,7 +14,8 @@ const Person = ({ person, updateVisibleCount }) => {
   const [isVisible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!el.current || pictures.length === 0) {
+
+    if (!isDesktop() || !el.current || pictures.length === 0) {
       return;
     }
 
@@ -44,7 +47,7 @@ const Person = ({ person, updateVisibleCount }) => {
         <p>{role}</p>
       </div>
       <div className={`person__pics person__pics--${picCount}`}>
-        {picCount > 0 && pictures.map((pic, index) => <img alt="" className={`person-pic person-pic--${index}`} src={pic.image.localFile.publicURL} key={index} />)}
+        {picCount > 0 && pictures.map((pic, index) => <div className={`person-pic person-pic--${index}`} key={index}><img alt="" src={pic.image.localFile.publicURL} /></div>)}
       </div>
     </li>
   );
