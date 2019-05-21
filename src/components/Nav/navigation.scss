@@ -42,7 +42,12 @@
     fill: currentColor;
   }
 
-  .layout--hero &,
+  @include mq($bp-mobile) {
+    .layout--hero & {
+      color: $c-white;
+    }
+  }
+
   .page--home & {
     color: $c-white;
   }

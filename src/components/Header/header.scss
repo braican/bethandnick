@@ -2,12 +2,26 @@
 @import '../../static/scss/variables';
 
 .Header {
-  position: absolute;
   z-index: 10;
+
+  @include mid-mq($bp-mobile, $bp-desktop) {
+    display: inline-block;
+  }
+
+  @include mq($bp-desktop) {
+    position: absolute;
+  }
+
+  .layout--hero & {
+    @include mq($bp-mobile) {
+      position: absolute;
+    }
+  }
 
   &.header--home {
     background-color: $c-secondary;
     padding: 2rem;
+    display: block;
 
     @include mq($bp-mobile) {
       margin-left: $tablet-split-secondary - $offset;

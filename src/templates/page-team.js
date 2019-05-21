@@ -38,11 +38,11 @@ const Page = ({ data, pageContext }) => {
 
       <Wrapper contextClass={`main page--${location || 'base'}`}>
 
-        <div className="splitpane__pictures">
+        <div className="teampage__imagepane">
           {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
         </div>
 
-        <div className="splitpane__content">
+        <div className="teampage__contentpane">
 
           {title ? <h2 className="page-title">{title}</h2> : null}
           <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
