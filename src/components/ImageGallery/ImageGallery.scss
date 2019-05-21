@@ -82,7 +82,7 @@
   box-shadow: 0 0 70px rgba($c-black, 0.4);
   width: 70%;
   min-width: 480px;
-  transition: width 0.4s;
+  transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 
   .tall & {
     width: 40%;
@@ -97,7 +97,7 @@
   flex: 1;
   display: block;
   margin-left: $space-lg;
-  transition: opacity 0.6s 0.6s;
+  transition: opacity 0.6s 0.4s;
   font-family: $ff-roboto;
   color: $c-gray-3;
   position: relative;

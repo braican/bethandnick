@@ -84,7 +84,7 @@ class Nav extends React.Component {
                   .map(({ node }) => (
                     <li key={node.id} className="mainnav__item">
                       <Link
-                        to={`/${node.slug}`}
+                        to={`/${node.slug}/`}
                         className="mainnav__link"
                         activeClassName="mainnav__link--active"
                       >
@@ -94,7 +94,7 @@ class Nav extends React.Component {
                   ))}
                 <li className="mainnav__item">
                   <Link
-                    to="/gallery"
+                    to="/gallery/"
                     className="mainnav__link"
                     activeClassName="mainnav__link--active"
                   >
