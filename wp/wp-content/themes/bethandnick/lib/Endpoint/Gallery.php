@@ -24,7 +24,7 @@ class Gallery extends Base {
 	 *
 	 * @return void
 	 */
-	public function setEndpointContent() {
+	public function set_endpoint_content() {
 		$this->endpoint_content = array(
 			'gallery' => get_field( 'image_gallery', 'option' ),
 		);

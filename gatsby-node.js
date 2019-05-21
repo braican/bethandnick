@@ -59,3 +59,18 @@ exports.createPages = ({ actions, graphql }) => {
     });
   });
 };
+
+
+/**
+ * Add optional fields to existing post types.
+ */
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    wordpress__PAGEWedding_partyThe_guys: {
+      pictures: {
+        type: '[wordpress__PAGEWedding_partyThe_guysPictures]',
+      },
+    },
+  });
+};
+

@@ -23,7 +23,7 @@ class Globals extends Base {
 	 *
 	 * @return void
 	 */
-	public function setEndpointContent() {
+	public function set_endpoint_content() {
 		$this->endpoint_content = array(
 			'wedding_date'      => get_field( 'wedding_date', 'option' ),
 			'venue_name'        => get_field( 'venue_name', 'option' ),

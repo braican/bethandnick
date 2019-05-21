@@ -11,8 +11,8 @@ import Person from '../components/Person';
 
 const Page = ({ data, pageContext }) => {
   const location = pageContext.slug || 'home';
-  const { content, acf, title } = data.wordpressPage;
-  const { the_girls, the_guys, the_family, page_featured_image } = acf;
+  const { title, content, wedding_party, acf: { page_featured_image } } = data.wordpressPage;
+  const { the_girls, the_guys, the_family } = wedding_party;
   const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
 
   const [splitImage, setSplitImage] = useState(featuredImage);
@@ -100,14 +100,18 @@ export const query = graphql`
             }
           }
         }
+      }
+      wedding_party {
         the_girls {
           name
           role
-          picture {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 680, quality: 90) {
-                  ...GatsbyImageSharpFluid_noBase64
+          pictures {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 680, quality: 90) {
+                    ...GatsbyImageSharpFluid_noBase64
+                  }
                 }
               }
             }
@@ -116,11 +120,13 @@ export const query = graphql`
         the_guys {
           name
           role
-          picture {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 680, quality: 90) {
-                  ...GatsbyImageSharpFluid_noBase64
+          pictures {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 680, quality: 90) {
+                    ...GatsbyImageSharpFluid_noBase64
+                  }
                 }
               }
             }
@@ -129,11 +135,13 @@ export const query = graphql`
         the_family {
           name
           role
-          picture {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 680, quality: 90) {
-                  ...GatsbyImageSharpFluid_noBase64
+          pictures {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 680, quality: 90) {
+                    ...GatsbyImageSharpFluid_noBase64
+                  }
                 }
               }
             }

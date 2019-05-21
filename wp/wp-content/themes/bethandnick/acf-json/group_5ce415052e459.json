@@ -70,7 +70,7 @@
             "key": "field_5ce415395ed13",
             "label": "Team",
             "name": "wedding_team",
-            "type": "select",
+            "type": "radio",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -84,13 +84,12 @@
                 "Groomsman": "Groomsman",
                 "Family": "Family"
             },
-            "default_value": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
+            "allow_null": 1,
+            "other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal",
             "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
+            "save_other_choice": 0
         }
     ],
     "location": [
@@ -110,5 +109,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1558451565
+    "modified": 1558458780
 }
