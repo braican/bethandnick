@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -15,59 +15,57 @@ const Page = ({ data, pageContext }) => {
   const { the_girls, the_guys, the_family } = wedding_party;
   const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
 
-  const [splitImage, setSplitImage] = useState(featuredImage);
-  const [imageVisible, setImageVisibility] = useState(true);
+  // State
+  const [activeGroup, setActiveGroup] = useState(the_girls);
+  const [visibleCount, setVisibleCount] = useState(0);
 
-  const updateImage = img => {
-    setSplitImage(img);
-  //   setImageVisibility(false);
-  //   setTimeout(() => setSplitImage(img), 400);
-  //   setTimeout(() => setImageVisibility(true), 400);
+  let vc = 0;
+
+  const updateVisibleCount = isVisible => {
+    vc = vc + isVisible;
+
+    if (vc < 0) {
+      vc = 0;
+    }
+
+    setVisibleCount(vc);
   };
 
-  const loadImage = src => new Promise(resolve => {
-    const img = new Image();
-    img.onload = () => resolve();
-    img.src = src;
-  });
-
-
-  const loadImages = () => {
-    const deferredImages = the_girls.filter(girl => girl.picture).map(girl => loadImage(girl.picture.localFile.childImageSharp.fluid));
-    Promise.all(deferredImages).then(() => {
-      console.log('all have been loaded');
-
-    });
-
-  };
-
-  useEffect(() => {
-    loadImages();
-  }, []);
 
   return (
-    <Wrapper contextClass={`main page--${location || 'base'}`}>
+    <>
       <Header linkTitle={location !== 'home'} />
 
-      <div className="splitpane__img">
-        {splitImage ? <Img className={`person-image ${imageVisible ? 'person-image--visible' : ''}`} fluid={splitImage} /> : null}
-      </div>
+      <Wrapper contextClass={`main page--${location || 'base'}`}>
 
-      <div className="splitpane__content">
+        <div className="splitpane__pictures">
+          {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
+        </div>
 
-        {title ? <h2 className="page-title">{title}</h2> : null}
-        <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
-        <div>Groomsman | Bridesmaids | Families</div>
+        <div className="splitpane__content">
 
-        {the_girls && (
-          <ul>
-            {the_girls.map( girl => <Person key={girl.name} person={girl} updateImage={updateImage} />)}
-          </ul>
-        )}
+          {title ? <h2 className="page-title">{title}</h2> : null}
+          <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
+          <div className="team__contents">
+            <button onClick={() => setActiveGroup(the_guys)}>Groomsman</button> |
+            <button onClick={() => setActiveGroup(the_girls)}>Bridesmaids</button> |
+            <button onClick={() => setActiveGroup(the_family)}>Families</button>
+          </div>
 
-        <Footer />
-      </div>
-    </Wrapper>
+          {the_girls && (
+            <ul>
+              {activeGroup.map(person => <Person key={person.name} person={person} updateVisibleCount={updateVisibleCount} />)}
+            </ul>
+          )}
+
+          <div className="team__footer">
+          Groomsman | Bridesmaids | Families
+          </div>
+
+          <Footer />
+        </div>
+      </Wrapper>
+    </>
   );
 };
 
@@ -108,6 +106,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
+                publicURL
                 childImageSharp {
                   fluid(maxWidth: 680, quality: 90) {
                     ...GatsbyImageSharpFluid_noBase64
@@ -123,6 +122,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
+                publicURL
                 childImageSharp {
                   fluid(maxWidth: 680, quality: 90) {
                     ...GatsbyImageSharpFluid_noBase64
@@ -138,6 +138,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
+                publicURL
                 childImageSharp {
                   fluid(maxWidth: 680, quality: 90) {
                     ...GatsbyImageSharpFluid_noBase64
