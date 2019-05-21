@@ -8,6 +8,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Person from '../components/Person';
 
+import bridesmaidIcon from '../svg/bridesmaid.svg';
+import groomsmanIcon from '../svg/groomsman.svg';
+import familyIcon from '../svg/family.svg';
+
 
 const Page = ({ data, pageContext }) => {
   const location = pageContext.slug || 'home';
@@ -18,6 +22,7 @@ const Page = ({ data, pageContext }) => {
   // State
   const [activeGroup, setActiveGroup] = useState(the_girls);
   const [visibleCount, setVisibleCount] = useState(0);
+  const [isScrolling, setScrolling] = useState(false);
 
   let vc = 0;
 
@@ -31,36 +36,58 @@ const Page = ({ data, pageContext }) => {
     setVisibleCount(vc);
   };
 
+  const handleNavClick = group => {
+    setActiveGroup(group);
+
+    setScrolling(true);
+    setTimeout(() => setScrolling(false), 1000);
+
+    document.querySelector('#active-group').scrollIntoView({
+      behavior: 'smooth',
+    });
+  };
+
+  // eslint-disable-next-line
+  const Nav = ({ footer }) => (
+    <div className={`team__nav team__nav--${footer ? 'footer' : 'main' }`}>
+      <button onClick={() => handleNavClick(the_girls)} className={`team__navlink${activeGroup === the_girls ? ' active' : ''}`}>
+        <svg><use xlinkHref={`#${bridesmaidIcon.id}`} /></svg>
+        <span>Bridesmaids</span>
+      </button>
+      <button onClick={() => handleNavClick(the_guys)} className={`team__navlink${activeGroup === the_guys ? ' active' : ''}`}>
+        <svg><use xlinkHref={`#${groomsmanIcon.id}`} /></svg>
+        <span>Groomsmen</span>
+      </button>
+      <button onClick={() => handleNavClick(the_family)} className={`team__navlink${activeGroup === the_family ? ' active' : ''}`}>
+        <svg><use xlinkHref={`#${familyIcon.id}`} /></svg>
+        <span>Families</span>
+      </button>
+    </div>
+  );
 
   return (
     <>
       <Header linkTitle={location !== 'home'} />
 
-      <Wrapper contextClass={`main page--${location || 'base'}`}>
+      <Wrapper contextClass={`main page--${location || 'base'}${isScrolling ? ' scrolling-to-content' : ''}`}>
 
         <div className="teampage__contentpane">
 
           {title ? <h2 className="page-title">{title}</h2> : null}
           <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
-          <div className="team__contents">
-            <button onClick={() => setActiveGroup(the_guys)}>Groomsman</button> |
-            <button onClick={() => setActiveGroup(the_girls)}>Bridesmaids</button> |
-            <button onClick={() => setActiveGroup(the_family)}>Families</button>
-          </div>
+          <Nav />
 
           <div className="teampage__imagepane">
             {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
           </div>
 
-          {the_girls && (
-            <ul>
+          {activeGroup && (
+            <ul id="active-group">
               {activeGroup.map(person => <Person key={person.name} person={person} updateVisibleCount={updateVisibleCount} />)}
             </ul>
           )}
 
-          <div className="team__footer">
-          Groomsman | Bridesmaids | Families
-          </div>
+          <Nav footer />
 
           <Footer />
         </div>
