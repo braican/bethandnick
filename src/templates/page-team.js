@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
@@ -15,24 +15,53 @@ const Page = ({ data, pageContext }) => {
   const { the_girls, the_guys, the_family, page_featured_image } = acf;
   const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
 
+  const [splitImage, setSplitImage] = useState(featuredImage);
+  const [imageVisible, setImageVisibility] = useState(true);
+
+  const updateImage = img => {
+    setSplitImage(img);
+  //   setImageVisibility(false);
+  //   setTimeout(() => setSplitImage(img), 400);
+  //   setTimeout(() => setImageVisibility(true), 400);
+  };
+
+  const loadImage = src => new Promise(resolve => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.src = src;
+  });
+
+
+  const loadImages = () => {
+    const deferredImages = the_girls.filter(girl => girl.picture).map(girl => loadImage(girl.picture.localFile.childImageSharp.fluid));
+    Promise.all(deferredImages).then(() => {
+      console.log('all have been loaded');
+
+    });
+
+  };
+
+  useEffect(() => {
+    loadImages();
+  }, []);
+
   return (
     <Wrapper contextClass={`main page--${location || 'base'}`}>
       <Header linkTitle={location !== 'home'} />
 
       <div className="splitpane__img">
-        {featuredImage ? (
-          <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
-        ) : null}
+        {splitImage ? <Img className={`person-image ${imageVisible ? 'person-image--visible' : ''}`} fluid={splitImage} /> : null}
       </div>
 
       <div className="splitpane__content">
 
         {title ? <h2 className="page-title">{title}</h2> : null}
         <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
+        <div>Groomsman | Bridesmaids | Families</div>
 
         {the_girls && (
           <ul>
-            {the_girls.map( girl => <Person person={girl} key={girl.name} />)}
+            {the_girls.map( girl => <Person key={girl.name} person={girl} updateImage={updateImage} />)}
           </ul>
         )}
 

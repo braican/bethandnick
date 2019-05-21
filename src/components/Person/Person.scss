@@ -1,5 +1,16 @@
+@import '../../static/scss/mixins';
+@import '../../static/scss/variables';
+
 .Person {
   height: 100vh;
   display: flex;
   align-items: center;
+}
+
+.person-image {
+  transition: opacity 0.4s;
+  opacity: 0;
+}
+.person-image--visible {
+  opacity: 1;
 }
