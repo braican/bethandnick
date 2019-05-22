@@ -12,7 +12,7 @@ const HeroLayout = ({ location, featuredImage, pageTitle, children }) => {
 
   return (
     <Wrapper contextClass={`main layout--hero page--${location || 'base'}`}>
-      <Header contextClass="header--main" linkTitle={linkTitle} />
+      <Header linkTitle={linkTitle} />
 
       {featuredImage && (
         <div className="herolayout__hero">

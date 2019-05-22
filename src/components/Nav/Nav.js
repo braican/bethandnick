@@ -29,9 +29,9 @@ class Nav extends React.Component {
     });
 
     if (!isOpen) {
-      document.body.classList.add('prevent-scroll');
+      document.body.classList.add('prevent-scroll', 'menu-is-open');
     } else {
-      document.body.classList.remove('prevent-scroll');
+      document.body.classList.remove('prevent-scroll', 'menu-is-open');
     }
   }
 
@@ -71,7 +71,7 @@ class Nav extends React.Component {
                 </svg>
               </button>
 
-              <Header />
+              <Header isNav={true} />
 
               <ul className="mainnav__menu">
                 <li className="mainnav__item">
@@ -84,7 +84,7 @@ class Nav extends React.Component {
                   .map(({ node }) => (
                     <li key={node.id} className="mainnav__item">
                       <Link
-                        to={`/${node.slug}`}
+                        to={`/${node.slug}/`}
                         className="mainnav__link"
                         activeClassName="mainnav__link--active"
                       >
@@ -94,7 +94,7 @@ class Nav extends React.Component {
                   ))}
                 <li className="mainnav__item">
                   <Link
-                    to="/gallery"
+                    to="/gallery/"
                     className="mainnav__link"
                     activeClassName="mainnav__link--active"
                   >

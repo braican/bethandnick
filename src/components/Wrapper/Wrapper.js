@@ -8,7 +8,7 @@ import Nav from '../Nav';
 
 const Wrapper = ({ contextClass, data, children }) => {
   useEffect(() => {
-    document.body.classList.remove('prevent-scroll');
+    document.body.classList.remove('prevent-scroll', 'menu-is-open');
   }, []);
 
   const siteName = data.wordpressSiteMetadata.name;
@@ -19,9 +19,7 @@ const Wrapper = ({ contextClass, data, children }) => {
       <Helmet
         title={decodeHtmlEntities(siteName)}
         meta={[{ name: 'description', content: 'Beth and Nick are getting married.' }]}
-      >
-        <html lang="en" />
-      </Helmet>
+      />
       {children}
       <Nav weddingDate={weddingDate} venueName={venueName} />
     </div>

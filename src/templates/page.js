@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import SplitLayout from '../layouts/SplitLayout';
 
-const Page = props => {
-  const { data, pageContext } = props;
+const Page = ({ data, pageContext }) => {
   const location = pageContext.slug || 'home';
   const { content, acf, title } = data.wordpressPage;
   const featuredImage = acf.page_featured_image ? acf.page_featured_image.localFile.childImageSharp.fluid : null;

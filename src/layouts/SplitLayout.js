@@ -10,20 +10,23 @@ const SplitLayout = ({ location, featuredImage, pageTitle, children }) => {
   const title = location === 'home' ? null : pageTitle;
 
   return (
-    <Wrapper contextClass={`main page--${location || 'base'}`}>
-      <div className="splitpane__img">
-        {featuredImage ? (
-          <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
-        ) : null}
-      </div>
+    <>
+      <Header contextClass={`header--${location}`} linkTitle={location !== 'home'} />
 
-      <div className="splitpane__content">
-        <Header contextClass="header--main" linkTitle={location !== 'home'} />
-        {title ? <h2 className="page-title">{title}</h2> : null}
-        {children}
-        <Footer />
-      </div>
-    </Wrapper>
+      <Wrapper contextClass={`main page--${location || 'base'}`}>
+        <div className="splitpane__img">
+          {featuredImage ? (
+            <Img src={featuredImage.src} size={featuredImage} fluid={featuredImage} />
+          ) : null}
+        </div>
+
+        <div className="splitpane__content">
+          {title ? <h2 className="page-title">{title}</h2> : null}
+          {children}
+          <Footer />
+        </div>
+      </Wrapper>
+    </>
   );
 };
 

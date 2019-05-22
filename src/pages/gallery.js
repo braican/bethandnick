@@ -6,8 +6,8 @@ import Footer from '../components/Footer';
 import ImageGallery from '../components/ImageGallery';
 
 const GalleryPage = () => (
-  <Wrapper contextClass="layout--gallery dark-header-theme">
-    <Header contextClass="header--main" />
+  <Wrapper contextClass="layout--gallery">
+    <Header />
 
     <main className="gallery-main">
       <ImageGallery />
