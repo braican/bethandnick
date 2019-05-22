@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import BaseLayout from '../layouts/BaseLayout';
+import SplitLayout from '../layouts/SplitLayout';
 
-const Page = props => {
-  const { data, pageContext } = props;
+const Page = ({ data, pageContext }) => {
   const location = pageContext.slug || 'home';
-  const { content, page_image, title } = data.wordpressPage;
+  const { content, acf, title } = data.wordpressPage;
+  const featuredImage = acf.page_featured_image ? acf.page_featured_image.localFile.childImageSharp.fluid : null;
 
   return (
-    <BaseLayout location={location} featuredImage={page_image} pageTitle={title}>
+    <SplitLayout location={location} featuredImage={featuredImage} pageTitle={title}>
       <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
-    </BaseLayout>
+    </SplitLayout>
   );
 };
 
@@ -23,7 +23,6 @@ Page.propTypes = {
     wordpressPage: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.string,
-      page_image: PropTypes.string,
     }),
   }),
 };
@@ -35,7 +34,17 @@ export const query = graphql`
     wordpressPage(slug: { eq: $slug }) {
       title
       content
-      page_image
+      acf {
+        page_featured_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 680, quality: 90) {
+                ...GatsbyImageSharpFluid_noBase64
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,6 +13,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -23,21 +26,26 @@ module.exports = {
         icon: 'src/static/img/favicon.png', // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: `api.bethandnick.us`,
+        baseUrl: process.env.WORDPRESS_SOURCE_URL,
         protocol: `https`,
 
         // is the site hosted on WordPress.com
         hostingWPCOM: false,
 
         // does the site use ACF?
-        useACF: false,
+        useACF: true,
 
-        includedRoutes: ['/*/*/pages', '/*/*/media', '/bethandnick/v2/info'],
+        verboseOutput: false,
+
+        includedRoutes: [
+          '**/*/*/pages',
+          '**/*/*/media',
+          '**/bethandnick/v1/info',
+          '**/bethandnick/v1/gallery',
+        ],
       },
     },
     {

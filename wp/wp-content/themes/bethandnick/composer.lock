@@ -4,50 +4,18 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7cb54a1d592a968b6b2f24bd47d4152",
+    "content-hash": "8aa69da94dd1c1abe5abac9a00318462",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.7.9",
+            "version": "5.7.13",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.9",
+                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9ODExODZ8dHlwZT1wZXJzb25hbHxkYXRlPTIwMTYtMDUtMDkgMTI6NTM6Mzk=&t=5.7.13",
                 "reference": null,
                 "shasum": null
             },
             "type": "wordpress-plugin"
-        },
-        {
-            "name": "braican/netlify-deployer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/braican/wp-netlify-deployer.git",
-                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/braican/wp-netlify-deployer/zipball/0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
-                "reference": "0f1a765303ac675c7ea49f5122aa78a9eeeff53b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.0.0"
-            },
-            "type": "wordpress-plugin",
-            "license": [
-                "MIT"
-            ],
-            "description": "Trigger deployments to a Netlify project with ease.",
-            "keywords": [
-                "wordpress",
-                "wordpress-plugin"
-            ],
-            "support": {
-                "source": "https://github.com/braican/wp-netlify-deployer/tree/1.0.0",
-                "issues": "https://github.com/braican/wp-netlify-deployer/issues"
-            },
-            "time": "2018-12-06T02:25:12+00:00"
         },
         {
             "name": "composer/installers",
@@ -170,16 +138,36 @@
             "time": "2018-08-27T06:10:37+00:00"
         },
         {
-            "name": "wpackagist-plugin/wp-migrate-db",
-            "version": "1.0.8",
+            "name": "wpackagist-plugin/acf-to-rest-api",
+            "version": "3.1.0",
             "source": {
                 "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wp-migrate-db/",
-                "reference": "tags/1.0.8"
+                "url": "https://plugins.svn.wordpress.org/acf-to-rest-api/",
+                "reference": "tags/3.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.8.zip",
+                "url": "https://downloads.wordpress.org/plugin/acf-to-rest-api.3.1.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/acf-to-rest-api/"
+        },
+        {
+            "name": "wpackagist-plugin/wp-migrate-db",
+            "version": "1.0.11",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/wp-migrate-db/",
+                "reference": "tags/1.0.11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/wp-migrate-db.1.0.11.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -193,9 +181,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "braican/netlify-deployer": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

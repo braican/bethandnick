@@ -20,16 +20,15 @@ $fz-large: 2rem;
 $site-width: 1080px;
 $gutter: 1rem;
 
-$desktop-split: 50%;
-$tablet-split-main: 62%;
+$desktop-split: 50vw;
+$tablet-split-main: 62vw;
 $tablet-split-secondary: 100 - $tablet-split-main;
-$mobile-split-main: 80%;
+$mobile-split-main: 80vw;
 $mobile-split-secondary: 100 - $mobile-split-main;
 
 $padding: 8vw;
 $inverted-padding: -#{$padding};
 $offset: 6vw;
-$overhang: $padding + $offset;
 
 // --------------------------------------------------------------
 // Colors
@@ -41,6 +40,7 @@ $c-gray-2: #222222;
 $c-gray-3: #333333;
 $c-gray-9: #999999;
 $c-gray-c: #cccccc;
+$c-black: $c-gray-2;
 
 // wedding colors
 
@@ -50,6 +50,7 @@ $c-lavender: #bf94e4;
 
 // peacock
 $c-peacock: #035d69;
+// $c-teal: #478d9e;
 $c-teal: #3698a6;
 
 // ink blue
@@ -76,7 +77,8 @@ $space-lg: 2rem;
 
 $bp-desktop: 1080px;
 $bp-tablet: 780px;
-$bp-mobile: 548px;
+$bp-mobile: 600px;
+$bp-small-mobile: 420px;
 
 // --------------------------------------------------------------
 // Transitions
