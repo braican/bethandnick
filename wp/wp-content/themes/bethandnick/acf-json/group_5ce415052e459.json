@@ -65,31 +65,6 @@
                     "mime_types": ""
                 }
             ]
-        },
-        {
-            "key": "field_5ce415395ed13",
-            "label": "Team",
-            "name": "wedding_team",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "Bridesmaid": "Bridesmaid",
-                "Groomsman": "Groomsman",
-                "Family": "Family"
-            },
-            "allow_null": 1,
-            "other_choice": 0,
-            "default_value": "",
-            "layout": "horizontal",
-            "return_format": "value",
-            "save_other_choice": 0
         }
     ],
     "location": [
@@ -109,5 +84,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1558458780
+    "modified": 1558483689
 }

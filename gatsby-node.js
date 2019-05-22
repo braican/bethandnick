@@ -71,6 +71,11 @@ exports.createResolvers = ({ createResolvers }) => {
         type: '[wordpress__PAGEWedding_partyThe_guysPictures]',
       },
     },
+    wordpress__PAGEWedding_partyThe_guysPictures: {
+      image: {
+        type: 'wordpress__wp_media',
+      },
+    },
   });
 };
 
