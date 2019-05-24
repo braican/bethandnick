@@ -1,0 +1,24 @@
+{
+  "name": "netlify-deployer",
+  "version": "1.0.0",
+  "description": "Trigger deployments to a Netlify project with ease.",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "dev": "gulp watch",
+    "build": "gulp build"
+  },
+  "author": "Upstatement <https://www.upstatement.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "node-sass": "^4.10.0"
+  }
+}
