@@ -47,7 +47,7 @@ const Person = ({ person, updateVisibleCount }) => {
         <p>{role}</p>
       </div>
       <div className={`person__pics person__pics--${picCount}`}>
-        {picCount > 0 && pictures.map((pic, index) => <div className={`person-pic person-pic--${index}`} key={index}><img alt="" src={pic.image.localFile.publicURL} /></div>)}
+        {picCount > 0 && pictures.filter(pic => pic && pic.image).map((pic, index) => <div className={`person-pic person-pic--${index}`} key={index}><img alt="" src={pic.image.localFile.publicURL} /></div>)}
       </div>
     </li>
   );
