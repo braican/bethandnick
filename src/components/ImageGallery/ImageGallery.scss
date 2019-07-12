@@ -1,18 +1,10 @@
 @import '../../static/scss/mixins';
 @import '../../static/scss/variables';
 
-.layout--gallery {
-  .mainnav {
-    position: fixed;
-    top: 0;
-    right: 0;
-  }
-
-  .site-footer {
-    @include mq($bp-tablet) {
-      margin: 0;
-      height: 120px;
-    }
+.layout--gallery .site-footer {
+  @include mq($bp-tablet) {
+    margin: 0;
+    height: 120px;
   }
 }
 
@@ -37,7 +29,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: flex-end;
-    margin-bottom: 100px;
+    margin-bottom: 180px;
   }
 
   &:nth-child(even) {
@@ -91,7 +83,7 @@
 }
 
 .gallery-img-wrapper {
-  box-shadow: 0 0 70px rgba($c-black, 0.4);
+  @include img-shadow;
 
   @include mq($bp-tablet) {
     width: 70%;
@@ -115,27 +107,34 @@
   font-family: $ff-roboto;
   color: $c-gray-3;
   position: relative;
-  margin-top: $space-lg;
+  margin-top: $space-sm;
   max-width: 20em;
+  padding-top: 1em;
 
   @include mq($bp-tablet) {
-    margin-top: 100px;
     margin-left: $space-lg;
+    margin-top: 0;
 
     .GalleryImage:nth-child(odd) & {
       order: -1;
       margin-right: $space-lg;
       margin-left: 0;
+      text-align: right;
     }
   }
 
   &:before {
     content: '';
     position: absolute;
-    top: -1em;
+    top: 0;
     left: 0;
     width: 40px;
     height: 4px;
     background-color: $c-secondary;
+
+    .GalleryImage:nth-child(odd) & {
+      left: auto;
+      right: 0;
+    }
   }
 }
