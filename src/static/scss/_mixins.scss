@@ -66,3 +66,11 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+
+// --------------------------------------------------------------
+// Shadows
+// --------------------------------------------------------------
+
+@mixin img-shadow {
+  box-shadow: 0 0 70px rgba($c-black, 0.4);
+}

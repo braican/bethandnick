@@ -13,7 +13,6 @@
     min-height: 100vh;
     display: flex;
     align-items: center;
-    margin-left: 10vw;
   }
 
   @include mq($bp-desktop, true) {
@@ -42,7 +41,7 @@
     top: 0;
     left: 0;
     position: fixed;
-    width: 66vw;
+    width: 50vw;
     height: 100vh;
   }
 
@@ -57,7 +56,7 @@
   margin-bottom: $space-lg;
 
   img {
-    box-shadow: 0 0 70px rgba($c-black, 0.4);
+    @include img-shadow;
   }
 
   @include mq($bp-desktop) {
@@ -115,5 +114,9 @@
   .person__pics--3 .person-pic--1 {
     width: 30%;
     display: inline-block;
+  }
+
+  .person__pics--3 .person-pic--2 {
+    margin-top: 0;
   }
 }

@@ -11,6 +11,13 @@
   .wedding-info {
     color: $c-secondary;
   }
+
+  .layout--gallery &,
+  .page--the-team & {
+    position: fixed;
+    top: 0;
+    right: 0;
+  }
 }
 
 .mainnav__trigger,
