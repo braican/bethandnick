@@ -102,3 +102,15 @@ button {
   padding-left: 1em;
   border-left: 4px solid $c-secondary;
 }
+
+// Specifics
+// -----------
+
+.address {
+  @include uppercase;
+  margin-bottom: 2em;
+}
+
+.page--the-venue .content__main > .address:first-child {
+  margin-top: -1.4em;
+}
