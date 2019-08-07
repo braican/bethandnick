@@ -2,6 +2,7 @@
 @import '../../static/scss/variables';
 
 .Header {
+  position: relative;
   z-index: 10;
 
   @include mid-mq($bp-mobile, $bp-desktop) {

@@ -23,6 +23,9 @@ Page.propTypes = {
     wordpressPage: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.string,
+      acf: PropTypes.shape({
+        page_featured_image: PropTypes.object,
+      }),
     }),
   }),
 };
