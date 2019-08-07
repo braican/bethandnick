@@ -1,0 +1,16 @@
+{
+  "name": "guestlist-wp-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Nick Braica <nick.braica@gmail.com>",
+  "license": "GPL",
+  "scripts": {},
+  "devDependencies": {
+    "@upstatement/eslint-config": "^0.4.0",
+    "@upstatement/prettier-config": "^0.3.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-prettier": "^4.0.0",
+    "prettier": "^1.16.4"
+  }
+}
