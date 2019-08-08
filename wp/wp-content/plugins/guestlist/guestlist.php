@@ -25,10 +25,10 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'GUESTLIST_VERSION', '0.0.1' );
-
+define( 'GUESTLIST_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 // Load the autoloader.
-require_once plugin_dir_path( __FILE__ ) . 'autoloader.php';
+require_once GUESTLIST_PATH . 'autoloader.php';
 
 /**
  * Core functionality for the plugin.
@@ -38,9 +38,8 @@ class Guestlist {
 	 * Setup
 	 */
 	public function __construct() {
-		error_log(print_r('test', true));
+		$admin = new Admin();
 	}
-
 }
 
 /**
@@ -52,3 +51,6 @@ add_action(
 		$guestlist = new Guestlist();
 	}
 );
+
+add_action( 'init', 'Guestlist\GuestType::create' );
+add_action( 'admin_menu', 'Guestlist\Admin::create' );
