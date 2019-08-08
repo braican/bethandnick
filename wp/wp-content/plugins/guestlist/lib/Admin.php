@@ -33,6 +33,26 @@ class Admin {
 			'dashicons-groups'
 		);
 	}
+
+	/**
+	 * Enqueue static scripts and styles.
+	 */
+	public static function enqueue() {
+		wp_enqueue_style(
+			'guestlist_admin_css',
+			GUESTLIST_URI . 'static/style.css',
+			array(),
+			GUESTLIST_VERSION
+		);
+
+		wp_enqueue_script(
+			'guestlist_admin_js',
+			GUESTLIST_URI . 'static/scripts.js',
+			array( 'jquery' ),
+			GUESTLIST_VERSION,
+			true
+		);
+	}
 }
 
 

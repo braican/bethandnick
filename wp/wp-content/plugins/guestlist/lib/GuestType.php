@@ -26,7 +26,7 @@ class GuestType {
 					'add_new_item'  => 'Add new guest',
 					'not_found'     => 'No guests found',
 				),
-				'public'   => false,
+				'public'   => true,
 				'supports' => array( 'title' ),
 			)
 		);

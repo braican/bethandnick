@@ -26,6 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 define( 'GUESTLIST_VERSION', '0.0.1' );
 define( 'GUESTLIST_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'GUESTLIST_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 // Load the autoloader.
 require_once GUESTLIST_PATH . 'autoloader.php';
@@ -38,7 +39,6 @@ class Guestlist {
 	 * Setup
 	 */
 	public function __construct() {
-		$admin = new Admin();
 	}
 }
 
@@ -54,3 +54,4 @@ add_action(
 
 add_action( 'init', 'Guestlist\GuestType::create' );
 add_action( 'admin_menu', 'Guestlist\Admin::create' );
+add_action( 'admin_enqueue_scripts', 'Guestlist\Admin::enqueue' );
