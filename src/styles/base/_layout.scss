@@ -7,6 +7,7 @@ main {
 
 .amp-accent {
   position: relative;
+  min-height: 100vh;
 
   &:after {
     content: '';

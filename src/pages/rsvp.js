@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import SplitLayout from '../layouts/SplitLayout';
+import SplitLayout from '../layouts/Split';
 
 const RsvpPage = ({ data }) => {
   console.log(data);
