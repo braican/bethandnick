@@ -1,0 +1,115 @@
+@import '../../styles/abstracts';
+
+.nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.menuToggle {
+  @include transition(color);
+  color: $c--secondary;
+
+  &:hover {
+    color: $c--primary;
+  }
+}
+.navwhite .menuToggle {
+  color: $c--white;
+
+  &:hover {
+    color: $c--primary;
+  }
+}
+
+.navWrapper {
+  @include transition($func: $in-out-nice);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  background-color: $c--primary;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-100%);
+  padding: 2rem;
+
+  @include mq($bp-mobile) {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    overflow: auto;
+    padding: $padding;
+  }
+
+  @include mq($bp-desktop) {
+    left: 50 - $offset;
+    padding: spacing(6) $offset $offset;
+  }
+}
+
+.navWrapperOpen {
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  height: 100vh;
+  transition-duration: $t-duration-slow;
+}
+
+.closeNav {
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.menu {
+  position: absolute;
+  bottom: spacing(2);
+  left: spacing(2);
+
+  @include mq($bp-mobile) {
+    bottom: $offset;
+    left: $offset;
+  }
+}
+
+.menuItem {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: all 0.6s;
+
+  @for $i from 0 through 10 {
+    .navWrapperOpen &:nth-child(#{$i}) {
+      $current-delay: ($i * 0.1s);
+      opacity: 1;
+      transform: translateX(0);
+      transition-delay: #{$current-delay + 0.1s};
+    }
+  }
+}
+.link {
+  @include uppercase;
+  font-size: $fz--lg;
+  display: block;
+  line-height: 1;
+  margin: 0.5em 0;
+  color: $c--secondary;
+
+  &:hover {
+    color: $c--white;
+  }
+}
+
+.linkActive {
+  color: $c--white;
+}
+
+.mainnav__wedding-info {
+  margin-top: 1em;
+  font-size: $fz--base;
+  color: $c--secondary;
+}
