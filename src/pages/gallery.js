@@ -1,20 +1,14 @@
 import React from 'react';
 
-import Wrapper from '../components/Wrapper';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Seo from '../components/Seo';
+import SimpleLayout from '../layouts/Simple';
 import ImageGallery from '../components/ImageGallery';
 
 const GalleryPage = () => (
-  <Wrapper contextClass="layout--gallery">
-    <Header />
-
-    <main className="gallery-main">
-      <ImageGallery />
-    </main>
-
-    <Footer />
-  </Wrapper>
+  <SimpleLayout>
+    <Seo title="Gallery" />
+    <ImageGallery />
+  </SimpleLayout>
 );
 
 export default GalleryPage;

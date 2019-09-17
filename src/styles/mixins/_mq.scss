@@ -1,0 +1,17 @@
+@mixin mq($mq, $max: false) {
+  @if $max {
+    @media (max-width: $mq + 1) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $mq) {
+      @content;
+    }
+  }
+}
+
+@mixin mid-mq($min, $max) {
+  @media (min-width: $min) and (max-width: $max - 1) {
+    @content;
+  }
+}

@@ -1,0 +1,13 @@
+@import '../../styles/abstracts';
+
+.gallery {
+  min-height: 100vh;
+  padding-left: spacing(2);
+  padding-right: spacing(2);
+  padding-top: spacing(12);
+  margin-bottom: spacing(8);
+
+  @include mq($bp-desktop) {
+    padding-top: 200px;
+  }
+}
