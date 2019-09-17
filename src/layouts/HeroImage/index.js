@@ -11,7 +11,7 @@ const HeroLayout = ({ featuredImage, pageTitle, children }) => (
 
     {featuredImage && (
       <div className="herolayout__hero">
-        <Img fluid={featuredImage} />
+        <Img fluid={featuredImage} objectFit="cover" />
       </div>
     )}
 

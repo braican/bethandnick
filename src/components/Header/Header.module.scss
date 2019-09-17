@@ -10,15 +10,29 @@
 
 .defaultHeader {
   @include box-shadow();
-  padding: spacing(1.5) spacing(2) spacing(2);
-  position: absolute;
-  top: spacing(0.5);
-  left: spacing(0.5);
+  padding: spacing(1.25);
+  display: inline-block;
   background-color: $c--primary;
+
+  @include mq($bp-mobile) {
+    margin-top: spacing(0.5);
+    margin-left: spacing(0.5);
+  }
 
   .title,
   .info {
+    display: inline-block;
+    vertical-align: baseline;
     color: $c--secondary;
+  }
+
+  .info {
+    margin-top: 0;
+    margin-left: spacing(2);
+
+    @include mq($bp-mobile, max) {
+      display: none;
+    }
   }
 
   .ampersand {
@@ -44,7 +58,7 @@
 .bigHeader {
   @include box-shadow(16px, $c--primary);
   background-color: $c--secondary;
-  padding: spacing(2);
+  padding: spacing(3) spacing(2) spacing(2);
 
   @include mq($bp-mobile) {
     margin-left: $tablet-split-secondary - $offset;
@@ -53,6 +67,11 @@
 
   @include mq($bp-desktop) {
     margin-left: $desktop-split - $offset;
+  }
+
+  @include mq($bp-mobile, max) {
+    margin-left: 20%;
+    margin-left: calc(20% - 16px);
   }
 
   .title {
@@ -69,17 +88,19 @@
 .inNavHeader,
 .bigHeader {
   .title {
-    @include fluid-type(600px, 1400px, 62px, 86px);
+    @include fluid-type(600px, 1400px, 48px, 108px);
     line-height: 1;
   }
 
   .ampersand {
     width: 4vw;
-    min-width: 44px;
+    min-width: 36px;
   }
 
   .info {
-    font-size: $fz--lg;
+    @include mq($bp-tablet) {
+      font-size: $fz--lg;
+    }
   }
 }
 
@@ -136,123 +157,3 @@
 .date {
   font-weight: $fw--bold;
 }
-
-// .Header {
-//   z-index: 10;
-
-//   @include mid-mq($bp-mobile, $bp-desktop) {
-//     display: inline-block;
-//   }
-
-//   @include mq($bp-desktop) {
-//     position: absolute;
-//   }
-
-//   .layout--hero & {
-//     @include mq($bp-mobile) {
-//       position: absolute;
-//     }
-//   }
-
-//   &.header--home,
-//   .mainnav & {
-//     position: relative;
-
-//     .header__wrap {
-//       padding: 0;
-//     }
-//   }
-
-//   &.Header--main:not(.header--home) {
-//     background-color: $c--primary;
-//     transform: translate3d(0, 0, 0);
-//     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-
-//     @include mq($bp-mobile, true) {
-//       width: 100%;
-//     }
-
-//     @include mq($bp-mobile) {
-//       .menu-is-open & {
-//         transform: translate3d(0, -100%, 0);
-//       }
-//     }
-//   }
-// }
-
-// .header__wrap {
-//   padding: 20px spacing(2);
-//   position: relative;
-//   display: flex;
-//   justify-content: flex-start;
-//   align-items: flex-end;
-
-//   @include mq($bp-mobile, true) {
-//     padding: 20px;
-
-//     .mainnav & {
-//       display: block;
-//     }
-
-//     .Header--main & .wedding-info__venue {
-//       display: none;
-//     }
-//   }
-
-//   &:hover .wedding-title {
-//     color: $c--white;
-//   }
-// }
-
-// .wedding-title {
-//   font-family: $ff--headline;
-//   display: inline-block;
-//   font-size: 2rem;
-//   margin-right: 1em;
-//   color: $c--secondary;
-//   transition: color $hover-timing;
-
-//   @include mq($bp-tablet) {
-//     .Header--home & {
-//       margin-right: 5vw;
-//     }
-//   }
-
-//   .header--home & {
-//     font-size: 2rem;
-//     color: $c--white;
-
-//     @include mq($bp-mobile) {
-//       font-size: 6vw;
-//     }
-//   }
-//   .mainnav & {
-//     color: $c--secondary;
-//     font-size: 4rem;
-
-//     @include mq($bp-mobile) {
-//       font-size: 6vw;
-//     }
-//   }
-// }
-
-// .wedding-info {
-//   margin: 0;
-//   font-weight: $fw--bold;
-//   font-family: $ff--base;
-//   line-height: 1.2;
-//   color: $c--secondary;
-
-//   .header--home & {
-//     color: $c--primary;
-//   }
-
-//   .mainnav &,
-//   .header--home & {
-//     margin-top: 1em;
-
-//     @include mq($bp-tablet) {
-//       font-size: 2vw;
-//     }
-//   }
-// }

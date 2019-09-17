@@ -1,53 +1,18 @@
-.teampage__imagepane {
-  display: none;
+@import '../../../styles/abstracts';
 
-  @include mq($bp-desktop) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: $desktop-split;
-    top: 0;
-    left: 0;
-    position: fixed;
-    height: 100vh;
-  }
-}
-
-.teampage__contentpane {
-  padding: spacing(2);
-
-  @include mq($bp-desktop) {
-    width: $desktop-split;
-    margin-left: $desktop-split;
-    padding: 8vw;
-  }
-}
-
-.team__default-img {
-  @include img-shadow;
-  width: 80%;
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-
-  &.is-visible {
-    opacity: 1;
-  }
-}
-
-.team__nav {
-  margin-top: 60px;
-  margin-bottom: 40px;
+.nav {
+  width: 100%;
+  max-width: 1020px;
+  margin: auto;
+  padding: 0 spacing(2);
 
   @include mq($bp-mobile) {
     display: flex;
     align-items: flex-start;
   }
-  @include mq($bp-desktop) {
-    min-height: 50vh;
-  }
 }
 
-.team__navlink {
+.button {
   @include transition();
   position: relative;
   flex: 1;
@@ -55,11 +20,7 @@
   width: 100%;
   background-color: transparent;
   padding: spacing();
-  color: $c--secondary;
-
-  @include mq($bp-mobile) {
-    margin: 12px;
-  }
+  color: $c--gray-c;
 
   span {
     font-weight: $fw--bold;
@@ -70,31 +31,33 @@
     @include transition();
     width: 100%;
     display: block;
-    fill: $c--secondary;
-    stroke: $c--secondary;
+    fill: $c--gray-c;
+    stroke: $c--gray-c;
   }
 
   &:hover {
-    color: $c--primary;
+    color: $c--secondary;
     svg {
       transform: scale(1.1);
+      fill: $c--secondary;
+      stroke: $c--secondary;
     }
   }
 
   &.active,
   &:focus {
     outline: none;
-    color: $c--primary;
+    color: $c--secondary;
 
     svg {
       transform: scale(1.1);
-      fill: $c--primary;
-      stroke: $c--primary;
+      fill: $c--secondary;
+      stroke: $c--secondary;
     }
   }
 
-  .team__nav--main &:after {
-    @include transition();
+  .navTop &:after {
+    @include transition;
     content: '';
     display: block;
     width: 24px;
@@ -109,7 +72,8 @@
     background-size: contain;
     opacity: 0;
   }
-  .team__nav--main &.active:after {
+
+  .navTop &.active:after {
     opacity: 1;
   }
 }

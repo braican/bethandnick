@@ -17,6 +17,10 @@
 }
 .navwhite .menuToggle {
   color: $c--white;
+
+  &:hover {
+    color: $c--primary;
+  }
 }
 
 .navWrapper {

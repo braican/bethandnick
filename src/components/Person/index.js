@@ -1,55 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import Img from 'gatsby-image';
 
-import { isDesktop, className } from '../../util';
+import { className } from '../../util';
 
 import styles from './Person.module.scss';
 
-const Person = ({ person, updateVisibleCount }) => {
-  const el = useRef();
+const Person = ({ person }) => {
   const { name, role, pictures } = person;
-  const picCount = pictures ? pictures.length : [];
-
-  // State
-  const [isVisible, setVisible] = useState(false);
-
-  useEffect(() => {
-
-    if (!isDesktop() || !el.current || pictures.length === 0) {
-      return;
-    }
-
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: [0.5],
-    };
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const isInView = entry.intersectionRatio > .5;
-        setVisible(isInView);
-        updateVisibleCount(isInView ? 1 : -1);
-      });
-    }, observerOptions);
-    observer.observe(el.current);
-
-    return () => {
-      observer.unobserve(el.current);
-    };
-
-  }, []);
+  const photos = pictures.filter(pic => pic && pic.image);
 
   return (
-    <li {...className(styles.person, isVisible && styles.personVisible)} ref={el} data-person={name}>
-      <div>
-        <h6 className={styles.name}>{name}</h6>
-        <p>{role}</p>
+    <div className={styles.person} data-person={name}>
+      <div className={styles.about}>
+        <div className={styles.aboutWrap}>
+          <h6 className={styles.name}>{name}</h6>
+          <p>{role}</p>
+        </div>
       </div>
-      <div {...className(styles.pics)}>
-        {picCount > 0 && pictures.filter(pic => pic && pic.image).map((pic, index) => <div className={styles.pic} key={index}><img alt="" src={pic.image.localFile.publicURL} /></div>)}
+      <div className={styles.pics}>
+        {photos.length > 0 && photos.map(({ image }, index) => {
+          const { aspectRatio } = image.localFile.childImageSharp.fluid;
+          return <div {...className(styles.pic, aspectRatio > 1.1 && styles.picWide)} key={index}><Img fluid={image.localFile.childImageSharp.fluid} /></div>;
+        })}
       </div>
-    </li>
+    </div>
   );
 };
 
@@ -59,7 +34,6 @@ Person.propTypes = {
     role: PropTypes.string,
     picture: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
-  updateVisibleCount: PropTypes.func.isRequired,
 };
 
 export default Person;

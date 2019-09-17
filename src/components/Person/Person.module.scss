@@ -3,11 +3,12 @@
 .person {
   position: relative;
   z-index: 1;
+  padding: spacing(2);
 
   @include mq($bp-desktop) {
-    min-height: 100vh;
     display: flex;
-    align-items: center;
+    padding: spacing(2);
+    margin-top: 15vh;
   }
 
   @include mq($bp-desktop, true) {
@@ -20,8 +21,9 @@
 }
 
 .name {
-  @include fluid-type(600px, 1400px, 36px, 72px);
+  @include fluid-type(600px, 1400px, 36px, 62px);
   position: relative;
+  margin-bottom: 0.5rem;
 
   &:before {
     content: '';
@@ -40,98 +42,45 @@
   }
 }
 
-.pics {
-  margin-top: spacing(2);
+.about {
+  margin-bottom: spacing(2);
 
+  @include mq($bp-desktop) {
+    padding-left: spacing(6);
+    width: 40%;
+    margin-top: 20vh;
+    margin-bottom: 0;
+  }
+}
+
+.aboutWrap {
+  @include mq($bp-desktop) {
+    position: sticky;
+    top: 20vh;
+  }
+}
+
+.pics {
   @include mq($bp-desktop) {
     margin: 0;
     top: 0;
     left: 0;
-    position: fixed;
-    width: 50vw;
-    height: 100vh;
-  }
-
-  &.person__pics--1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 60%;
+    order: -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-column-gap: spacing(2);
+    grid-auto-flow: row dense;
   }
 }
 
 .pic {
-  margin-bottom: spacing(2);
-
-  img {
+  margin-bottom: spacing(4);
+  > div {
     @include img-shadow;
   }
 }
 
-// .person-pic {
-//   margin-bottom: spacing(2);
-
-//   img {
-//     @include img-shadow;
-//   }
-
-//   @include mq($bp-desktop) {
-//     margin: 4vh;
-//     opacity: 0;
-//     transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-
-//     .is-visible & {
-//       transition-duration: 0.8s;
-//       opacity: 1;
-//     }
-
-//     img {
-//       max-height: 80vh;
-
-//       .person__pics:not(.person__pics--1) & {
-//         max-height: 44vh;
-//       }
-//     }
-//   }
-
-//   img {
-//     display: block;
-//   }
-
-//   .scrolling-to-content & {
-//     opacity: 0 !important;
-//   }
-// }
-
-// .Person.is-visible {
-//   .person-pic--0 {
-//     transition-delay: 0s;
-//   }
-//   .person-pic--1 {
-//     transition-delay: 0.1s;
-//   }
-//   .person-pic--2 {
-//     transition-delay: 0.2s;
-//   }
-// }
-
-// // Layouts
-
-// @include mq($bp-desktop) {
-//   .person__pics--2 .person-pic--1 img {
-//     margin-left: auto;
-//   }
-
-//   .person__pics--3 .person-pic--0 {
-//     width: 52%;
-//     display: inline-block;
-//     margin-right: 0;
-//   }
-//   .person__pics--3 .person-pic--1 {
-//     width: 30%;
-//     display: inline-block;
-//   }
-
-//   .person__pics--3 .person-pic--2 {
-//     margin-top: 0;
-//   }
-// }
+.picWide {
+  grid-column: 1/3;
+}
