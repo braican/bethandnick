@@ -1,0 +1,159 @@
+@import '../../styles/abstracts';
+
+.header {
+  position: relative;
+  z-index: 10;
+}
+
+// Default
+// -----------
+
+.defaultHeader {
+  @include box-shadow();
+  padding: spacing(1.25);
+  display: inline-block;
+  background-color: $c--primary;
+
+  @include mq($bp-mobile) {
+    margin-top: spacing(0.5);
+    margin-left: spacing(0.5);
+  }
+
+  .title,
+  .info {
+    display: inline-block;
+    vertical-align: baseline;
+    color: $c--secondary;
+  }
+
+  .info {
+    margin-top: 0;
+    margin-left: spacing(2);
+
+    @include mq($bp-mobile, max) {
+      display: none;
+    }
+  }
+
+  .ampersand {
+    width: 24px;
+    svg {
+      fill: $c--secondary;
+    }
+  }
+
+  a:hover > & {
+    .title {
+      color: $c--white;
+    }
+    .ampersand svg {
+      fill: $c--white;
+    }
+  }
+}
+
+// Big
+// -----------
+
+.bigHeader {
+  @include box-shadow(16px, $c--primary);
+  background-color: $c--secondary;
+  padding: spacing(3) spacing(2) spacing(2);
+
+  @include mq($bp-mobile) {
+    margin-left: $tablet-split-secondary - $offset;
+    padding: spacing(6) spacing(2) spacing(6) $offset;
+  }
+
+  @include mq($bp-desktop) {
+    margin-left: $desktop-split - $offset;
+  }
+
+  @include mq($bp-mobile, max) {
+    margin-left: 20%;
+    margin-left: calc(20% - 16px);
+  }
+
+  .title {
+    color: $c--white;
+  }
+
+  .ampersand svg {
+    fill: $c--primary;
+  }
+}
+
+// Big and in nav
+// -----------
+.inNavHeader,
+.bigHeader {
+  .title {
+    @include fluid-type(600px, 1400px, 48px, 108px);
+    line-height: 1;
+  }
+
+  .ampersand {
+    width: 4vw;
+    min-width: 36px;
+  }
+
+  .info {
+    @include mq($bp-tablet) {
+      font-size: $fz--lg;
+    }
+  }
+}
+
+// In nav
+// -----------
+.inNavHeader {
+  .title,
+  .info {
+    color: $c--secondary;
+  }
+
+  .ampersand svg {
+    fill: $c--secondary;
+  }
+}
+
+// Base
+// -----------
+
+.title {
+  @include transition(color);
+  font-size: $fz--lg;
+  line-height: 1;
+}
+
+.ampersand {
+  display: inline-block;
+  svg {
+    @include transition(fill);
+    width: 100%;
+    display: block;
+  }
+}
+
+.title {
+  font-family: $ff--headline;
+
+  span {
+    vertical-align: baseline;
+  }
+}
+
+.info {
+  color: $c--primary;
+  margin: 0;
+  line-height: 1.2;
+  margin-top: spacing();
+
+  p {
+    margin: 0;
+  }
+}
+
+.date {
+  font-weight: $fw--bold;
+}

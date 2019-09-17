@@ -1,0 +1,99 @@
+// --------------------------------------------------------------
+// Type
+// --------------------------------------------------------------
+
+$fz-base: 18px;
+
+$ff--headline: orpheuspro, serif;
+$ff--base: work-sans, sans-serif;
+
+$fw--base: 400;
+$fw--bold: 700;
+
+$fz--sm: 0.8rem;
+$fz--base: 1.4rem;
+$fz--lg: 2rem;
+
+// --------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------
+
+$site-width: 1080px;
+$gutter: 1rem;
+
+$desktop-split: 50vw;
+$tablet-split-main: 62vw;
+$tablet-split-secondary: 100 - $tablet-split-main;
+$mobile-split-main: 80vw;
+$mobile-split-secondary: 100 - $mobile-split-main;
+
+$padding: 8vw;
+$inverted-padding: -#{$padding};
+$offset: 6vw;
+
+// --------------------------------------------------------------
+// Colors
+// --------------------------------------------------------------
+
+$c--white: #ffffff;
+$c--gray-f6: #f6f6f6;
+$c--gray-2: #222222;
+$c--gray-3: #333333;
+$c--gray-4: #444444;
+$c--gray-9: #999999;
+$c--gray-c: #cccccc;
+$c--black: $c--gray-2;
+
+// wedding colors
+
+// purple
+$c-purple: #734f96;
+$c-lavender: #bf94e4;
+
+// peacock
+$c-peacock: #035d69;
+// $c-teal: #478d9e;
+$c-teal: #3698a6;
+
+// ink blue
+$c-ink-blue: #174c78;
+$c-quilt: #5b90bc;
+
+// jungle green
+$c-jungle-green: #00908b;
+$c-mint: #56ccc8;
+
+$c--primary: $c-peacock;
+$c--secondary: $c-teal;
+
+// --------------------------------------------------------------
+// Spacing
+// --------------------------------------------------------------
+
+$spacing--base: 1rem;
+
+// --------------------------------------------------------------
+// Media queries
+// --------------------------------------------------------------
+
+$bp-desktop: 1080px;
+$bp-tablet: 780px;
+$bp-mobile: 600px;
+$bp-small-mobile: 420px;
+
+// --------------------------------------------------------------
+// Transitions
+// --------------------------------------------------------------
+
+// Easings
+// In ascending order of accelaration.
+$in-out-sine: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+$in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+$in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+$in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+$in-out-nice: cubic-bezier(0.19, 1, 0.22, 1);
+
+// Transition Durations
+$t-duration: 0.2s;
+$t-duration-fast: $t-duration / 2;
+$t-duration-slow: $t-duration * 2;
