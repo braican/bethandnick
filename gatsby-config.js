@@ -11,7 +11,7 @@ const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL;
 
 module.exports = {
   siteMetadata: {
-    title: 'Beth & Nick get married',
+    title: 'Beth & Nick are getting married',
     description: 'Beth & Nick are getting married on October 17, 2020 in Groton, Massachusetts.',
     siteUrl,
   },

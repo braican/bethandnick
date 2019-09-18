@@ -21,7 +21,7 @@ const Person = ({ person }) => {
       <div className={styles.pics}>
         {photos.length > 0 && photos.map(({ image }, index) => {
           const { aspectRatio } = image.localFile.childImageSharp.fluid;
-          return <div {...className(styles.pic, aspectRatio > 1.1 && styles.picWide)} key={index}><Img fluid={image.localFile.childImageSharp.fluid} /></div>;
+          return <div {...className(styles.pic, aspectRatio > 1.1 && styles.picWide)} key={index}><Img style={{ overflow: 'visible' }} fluid={image.localFile.childImageSharp.fluid} /></div>;
         })}
       </div>
     </div>
@@ -32,7 +32,7 @@ Person.propTypes = {
   person: PropTypes.shape({
     name: PropTypes.string,
     role: PropTypes.string,
-    picture: PropTypes.arrayOf(PropTypes.object),
+    pictures: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
 };
 

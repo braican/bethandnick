@@ -7,15 +7,14 @@ import Seo from '../components/Seo';
 import Team from '../components/Team';
 
 const Page = ({ data }) => {
-  const { title, content, wedding_party } = data.wordpressPage;
-  const { the_girls, the_guys, the_family } = wedding_party;
+  const { title, content, wedding_party: { the_girls, the_guys, the_family } } = data.wordpressPage;
 
   return (
     <SimpleLayout>
       <Seo title="The Team" />
 
       <div className="simplelayout__main">
-        {title && <h2 className="page-title">{title}</h2>}
+        {title && <h2 className="page-title" title={title}>{title}</h2>}
         <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
@@ -29,6 +28,11 @@ Page.propTypes = {
     wordpressPage: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.string,
+      wedding_party: PropTypes.shape({
+        the_girls: PropTypes.array,
+        the_guys: PropTypes.array,
+        the_family: PropTypes.array,
+      }),
     }),
   }),
 };
@@ -36,18 +40,23 @@ Page.propTypes = {
 export default Page;
 
 export const query = graphql`
-  query($slug: String!) {
+  fragment PersonImage on File {
+    publicURL
+    childImageSharp {
+      fluid(maxWidth: 680, quality: 90) {
+        ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+  }
+
+  query TeamPageQuery($slug: String!) {
     wordpressPage(slug: { eq: $slug }) {
       title
       content
       acf {
         page_featured_image {
           localFile {
-            childImageSharp {
-              fluid(maxWidth: 680, quality: 90) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
+            ...PersonImage
           }
         }
       }
@@ -58,12 +67,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
               }
             }
           }
@@ -74,12 +78,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
               }
             }
           }
@@ -90,12 +89,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
               }
             }
           }

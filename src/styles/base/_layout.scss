@@ -118,12 +118,47 @@ main {
 
   .page-title {
     position: relative;
-    font-family: $ff--base;
-    font-weight: $fw--bold;
+    // font-family: $ff--base;
+    // font-weight: $fw--bold;
     font-size: 16vw;
-    opacity: 0.2;
     line-height: 1;
     margin: 0;
+    // opacity: 0.2;
+    color: $c--primary;
+    // color: $c--gray-secondary;
+
+    // $shadow: -1px -2px 0 $c--primary, -2px -1px 0 $c--primary;
+    $shadow: ();
+
+    @for $i from 4 through 8 {
+      $num: $i + px;
+      // $color: $c--white;
+
+      // @if $i > 10 {
+      $color: $c--secondary;
+      // }
+
+      $sh: $num $num $color;
+      $shadow: append($shadow, $sh, comma);
+    }
+
+    text-shadow: $shadow;
+
+    // &:before,
+    // &:after {
+    //   content: attr(title);
+    //   color: rgba(255, 255, 255, 0.1);
+    //   position: absolute;
+    // }
+
+    // &:before {
+    //   top: 2px;
+    //   left: 2px;
+    // }
+    // &:after {
+    //   top: 4px;
+    //   left: 4px;
+    // }
   }
 
   .content__main {

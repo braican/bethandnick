@@ -76,9 +76,7 @@
 
 .pic {
   margin-bottom: spacing(4);
-  > div {
-    @include img-shadow;
-  }
+  @include img-shadow;
 }
 
 .picWide {
