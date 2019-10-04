@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import bridesmaidIcon from '../../../svg/bridesmaid.svg';
 import groomsmanIcon from '../../../svg/groomsman.svg';
 import familyIcon from '../../../svg/family.svg';
+import officiantIcon from '../../../svg/officiant.svg';
 
 import { TeamContext } from '../index';
 
@@ -27,6 +28,10 @@ const TeamNav = ({ top }) => {
       <button {...className(styles.button, activeGroup === 'family' && styles.active)} onClick={() => setActiveGroup('family')}>
         <svg><use xlinkHref={`#${familyIcon.id}`} /></svg>
         <span>Families</span>
+      </button>
+      <button {...className(styles.button, activeGroup === 'officiant' && styles.active)} onClick={() => setActiveGroup('officiant')}>
+        <svg><use xlinkHref={`#${officiantIcon.id}`} /></svg>
+        <span>Officiant</span>
       </button>
     </div>
   );

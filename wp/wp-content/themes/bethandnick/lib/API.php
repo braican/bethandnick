@@ -90,11 +90,13 @@ class API {
 					$the_girls = get_field( 'the_girls', $object['id'] );
 					$the_guys = get_field( 'the_guys', $object['id'] );
 					$the_family = get_field( 'the_family', $object['id'] );
+					$the_officiant = get_field( 'the_officiant', $object['id'] );
 
 					return array(
-						'the_girls'  => $the_girls ? array_map( array( $this, 'format_wedding_party' ), $the_girls ) : null,
-						'the_guys'   => $the_guys ? array_map( array( $this, 'format_wedding_party' ), $the_guys ) : null,
-						'the_family' => $the_family ? array_map( array( $this, 'format_wedding_party' ), $the_family ) : null,
+						'the_girls'     => $the_girls ? array_map( array( $this, 'format_wedding_party' ), $the_girls ) : null,
+						'the_guys'      => $the_guys ? array_map( array( $this, 'format_wedding_party' ), $the_guys ) : null,
+						'the_family'    => $the_family ? array_map( array( $this, 'format_wedding_party' ), $the_family ) : null,
+						'the_officiant' => $the_officiant ? array_map( array( $this, 'format_wedding_party' ), $the_officiant ) : null,
 					);
 				},
 			)

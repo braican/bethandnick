@@ -68,6 +68,16 @@ exports.createPages = ({ actions, graphql }) => {
  */
 exports.createResolvers = ({ createResolvers }) => {
   createResolvers({
+    wordpress__PAGEWedding_partyThe_officiantPictures: {
+      image: {
+        type: 'wordpress__wp_media',
+      },
+    },
+    wordpress__PAGEWedding_partyThe_officiant: {
+      pictures: {
+        type: '[wordpress__PAGEWedding_partyThe_officiantPictures]',
+      },
+    },
     wordpress__PAGEWedding_partyThe_guys: {
       pictures: {
         type: '[wordpress__PAGEWedding_partyThe_guysPictures]',
@@ -78,6 +88,7 @@ exports.createResolvers = ({ createResolvers }) => {
         type: 'wordpress__wp_media',
       },
     },
+
   });
 };
 

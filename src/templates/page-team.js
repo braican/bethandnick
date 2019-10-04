@@ -7,7 +7,7 @@ import Seo from '../components/Seo';
 import Team from '../components/Team';
 
 const Page = ({ data }) => {
-  const { title, content, wedding_party: { the_girls, the_guys, the_family } } = data.wordpressPage;
+  const { title, content, wedding_party: { the_girls, the_guys, the_family, the_officiant } } = data.wordpressPage;
 
   return (
     <SimpleLayout>
@@ -18,7 +18,7 @@ const Page = ({ data }) => {
         <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
       </div>
 
-      <Team girls={the_girls} guys={the_guys} family={the_family} />
+      <Team girls={the_girls} guys={the_guys} family={the_family} officiant={the_officiant} />
     </SimpleLayout>
   );
 };
@@ -32,6 +32,7 @@ Page.propTypes = {
         the_girls: PropTypes.array,
         the_guys: PropTypes.array,
         the_family: PropTypes.array,
+        the_officiant: PropTypes.array,
       }),
     }),
   }),
@@ -84,6 +85,17 @@ export const query = graphql`
           }
         }
         the_family {
+          name
+          role
+          pictures {
+            image {
+              localFile {
+                ...PersonImage
+              }
+            }
+          }
+        }
+        the_officiant {
           name
           role
           pictures {
