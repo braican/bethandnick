@@ -1,0 +1,12 @@
+@import '../../styles/abstracts';
+
+.theTeam {
+  margin-bottom: spacing(4);
+}
+
+.scrollAnchor {
+  @include mq($bp-desktop) {
+    position: relative;
+    top: 10vh;
+  }
+}

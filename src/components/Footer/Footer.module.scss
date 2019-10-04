@@ -1,0 +1,12 @@
+@import '../../styles/abstracts';
+
+.footer {
+  margin-top: spacing(2);
+  color: $c--gray-9;
+  padding: spacing(2);
+}
+
+:global(.splitpane__content) .footer {
+  padding-left: 0;
+  padding-right: 0;
+}

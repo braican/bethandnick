@@ -1,6 +1,20 @@
 require('dotenv').config();
 
+const {
+  NODE_ENV,
+  URL = 'https://bethandnick.us',
+  DEPLOY_PRIME_URL = URL,
+} = process.env;
+
+const isProduction = NODE_ENV === 'production';
+const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL;
+
 module.exports = {
+  siteMetadata: {
+    title: 'Beth & Nick are getting married',
+    description: 'Beth & Nick are getting married on October 17, 2020 in Groton, Massachusetts.',
+    siteUrl,
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-svg-sprite`,
@@ -8,7 +22,13 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/static/img`,
+        path: `${__dirname}/src/img`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/Base.js`),
       },
     },
     `gatsby-transformer-sharp`,
@@ -23,7 +43,15 @@ module.exports = {
         background_color: '#035d69',
         theme_color: '#035d69',
         display: 'minimal-ui',
-        icon: 'src/static/img/favicon.png', // This path is relative to the root of the site.
+        icon: 'src/img/favicon.png', // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          id: 'azi6wkt',
+        },
       },
     },
     {

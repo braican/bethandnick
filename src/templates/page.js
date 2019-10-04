@@ -1,29 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import SplitLayout from '../layouts/SplitLayout';
+import SplitLayout from '../layouts/Split';
+import Seo from '../components/Seo';
 
-const Page = ({ data, pageContext }) => {
-  const location = pageContext.slug || 'home';
-  const { content, acf, title } = data.wordpressPage;
-  const featuredImage = acf.page_featured_image ? acf.page_featured_image.localFile.childImageSharp.fluid : null;
+const Page = ({ data, pageContext: { slug } }) => {
+  const { content, title, acf: { page_featured_image } } = data.wordpressPage;
+  const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
+  const filteredContent = content.replace(/(((S|s)eason\s\d)\s(&#8211;)\s)/g, '<span class="overline">$2</span>');
 
   return (
-    <SplitLayout location={location} featuredImage={featuredImage} pageTitle={title}>
-      <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
+    <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
+      <Seo title={title} />
+      <div className="content__main" dangerouslySetInnerHTML={{ __html: filteredContent }} />
     </SplitLayout>
   );
 };
 
 Page.propTypes = {
-  pageContext: PropTypes.shape({
-    slug: PropTypes.string,
-  }),
   data: PropTypes.shape({
     wordpressPage: PropTypes.shape({
-      title: PropTypes.string,
       content: PropTypes.string,
+      title: PropTypes.string,
+      acf: PropTypes.shape({
+        page_featured_image: PropTypes.object,
+      }),
     }),
+  }),
+  pageContext: PropTypes.shape({
+    slug: PropTypes.string,
   }),
 };
 
@@ -39,7 +44,7 @@ export const query = graphql`
           localFile {
             childImageSharp {
               fluid(maxWidth: 680, quality: 90) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }

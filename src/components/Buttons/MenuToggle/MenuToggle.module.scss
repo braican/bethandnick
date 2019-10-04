@@ -1,0 +1,32 @@
+@import '../../../styles/abstracts';
+
+.button {
+  @include uppercase;
+  font-size: $fz--sm;
+  padding: spacing();
+
+  @include mq($bp-mobile) {
+    padding: spacing(2);
+  }
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+}
+
+.label,
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.label {
+  margin-right: 1em;
+
+  @include mq($bp-mobile, true) {
+    display: none;
+  }
+}

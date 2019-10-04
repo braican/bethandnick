@@ -1,0 +1,124 @@
+html {
+  font-size: 16px;
+  color: $c--gray-3;
+  -webkit-font-smoothing: antialiased;
+
+  @include mq($bp-mobile) {
+    font-size: 18px;
+  }
+}
+
+body {
+  font-family: $ff--base;
+  line-height: 1.4;
+}
+
+.h1,
+h2 {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  font-family: $ff--headline;
+  margin-bottom: 1em;
+
+  p + & {
+    margin-top: 2em;
+  }
+}
+
+.overline {
+  font-size: $fz--base;
+  color: $c--gray-c;
+  display: block;
+  font-family: $ff--base;
+  font-weight: $fw--bold;
+  margin-bottom: 0.5em;
+}
+
+h6 {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 0.5em;
+  font-family: $ff--headline;
+  color: $c--secondary;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: $c--primary;
+  }
+
+  .site-footer &,
+  .content__main & {
+    box-shadow: inset 0 -2px 0 $c--secondary;
+    transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: inset 0 -3px 0 $c--secondary;
+    }
+  }
+}
+
+.content__main {
+  line-height: 1.8;
+}
+
+button {
+  cursor: pointer;
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.has-drop-cap:first-letter {
+  color: $c--primary;
+  float: left;
+  font-family: $ff--headline;
+  font-size: 5.6em;
+  line-height: 1em;
+  padding-right: 10px;
+  margin-bottom: -0.1em;
+}
+
+.page-title {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+  color: $c--secondary;
+
+  @include mq($bp-mobile) {
+    font-size: 6vw;
+  }
+}
+
+// WordPress blocks
+// -----------
+
+.wp-block-quote {
+  padding-left: 1em;
+  border-left: 4px solid $c--secondary;
+}
+
+// Specifics
+// -----------
+
+.address {
+  @include uppercase;
+  margin-bottom: 2em;
+}
+
+.page--the-venue .content__main > .address:first-child {
+  margin-top: -1.4em;
+}

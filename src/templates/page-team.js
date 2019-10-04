@@ -1,109 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
 
-import Wrapper from '../components/Wrapper';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Person from '../components/Person';
+import SimpleLayout from '../layouts/Simple';
+import Seo from '../components/Seo';
+import Team from '../components/Team';
 
-import bridesmaidIcon from '../svg/bridesmaid.svg';
-import groomsmanIcon from '../svg/groomsman.svg';
-import familyIcon from '../svg/family.svg';
-
-
-const Page = ({ data, pageContext }) => {
-  const location = pageContext.slug || 'home';
-  const { title, content, wedding_party, acf: { page_featured_image } } = data.wordpressPage;
-  const { the_girls, the_guys, the_family } = wedding_party;
-  const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
-
-  // State
-  const [activeGroup, setActiveGroup] = useState(the_girls);
-  const [visibleCount, setVisibleCount] = useState(0);
-  const [isScrolling, setScrolling] = useState(false);
-
-  let vc = 0;
-
-  const updateVisibleCount = isVisible => {
-    vc = vc + isVisible;
-
-    if (vc < 0) {
-      vc = 0;
-    }
-
-    setVisibleCount(vc);
-  };
-
-  const handleNavClick = group => {
-    setActiveGroup(group);
-
-    setScrolling(true);
-    setTimeout(() => setScrolling(false), 1000);
-
-    document.querySelector('#active-group').scrollIntoView({
-      behavior: 'smooth',
-    });
-  };
-
-  // eslint-disable-next-line
-  const Nav = ({ footer }) => (
-    <div className={`team__nav team__nav--${footer ? 'footer' : 'main' }`}>
-      <button onClick={() => handleNavClick(the_girls)} className={`team__navlink${activeGroup === the_girls ? ' active' : ''}`}>
-        <svg><use xlinkHref={`#${bridesmaidIcon.id}`} /></svg>
-        <span>Bridesmaids</span>
-      </button>
-      <button onClick={() => handleNavClick(the_guys)} className={`team__navlink${activeGroup === the_guys ? ' active' : ''}`}>
-        <svg><use xlinkHref={`#${groomsmanIcon.id}`} /></svg>
-        <span>Groomsmen</span>
-      </button>
-      <button onClick={() => handleNavClick(the_family)} className={`team__navlink${activeGroup === the_family ? ' active' : ''}`}>
-        <svg><use xlinkHref={`#${familyIcon.id}`} /></svg>
-        <span>Families</span>
-      </button>
-    </div>
-  );
+const Page = ({ data }) => {
+  const { title, content, wedding_party: { the_girls, the_guys, the_family, the_officiant } } = data.wordpressPage;
 
   return (
-    <>
-      <Header linkTitle={location !== 'home'} />
+    <SimpleLayout>
+      <Seo title="The Team" />
 
-      <Wrapper contextClass={`main page--${location || 'base'}${isScrolling ? ' scrolling-to-content' : ''}`}>
+      <div className="simplelayout__main">
+        {title && <h2 className="page-title" title={title}>{title}</h2>}
+        <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
+      </div>
 
-        <div className="teampage__contentpane">
-
-          {title ? <h2 className="page-title">{title}</h2> : null}
-          <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
-          <Nav />
-
-          <div className="teampage__imagepane">
-            {featuredImage && <Img className={`team__default-img${visibleCount === 0 ? ' is-visible' : ''}`} fluid={featuredImage} />}
-          </div>
-
-          {activeGroup && (
-            <ul id="active-group">
-              {activeGroup.map(person => <Person key={person.name} person={person} updateVisibleCount={updateVisibleCount} />)}
-            </ul>
-          )}
-
-          <Nav footer />
-
-          <Footer />
-        </div>
-      </Wrapper>
-    </>
+      <Team girls={the_girls} guys={the_guys} family={the_family} officiant={the_officiant} />
+    </SimpleLayout>
   );
 };
 
 Page.propTypes = {
-  pageContext: PropTypes.shape({
-    slug: PropTypes.string,
-  }),
   data: PropTypes.shape({
     wordpressPage: PropTypes.shape({
       title: PropTypes.string,
       content: PropTypes.string,
+      wedding_party: PropTypes.shape({
+        the_girls: PropTypes.array,
+        the_guys: PropTypes.array,
+        the_family: PropTypes.array,
+        the_officiant: PropTypes.array,
+      }),
     }),
   }),
 };
@@ -111,18 +41,23 @@ Page.propTypes = {
 export default Page;
 
 export const query = graphql`
-  query($slug: String!) {
+  fragment PersonImage on File {
+    publicURL
+    childImageSharp {
+      fluid(maxWidth: 680, quality: 90) {
+        ...GatsbyImageSharpFluid_withWebp
+      }
+    }
+  }
+
+  query TeamPageQuery($slug: String!) {
     wordpressPage(slug: { eq: $slug }) {
       title
       content
       acf {
         page_featured_image {
           localFile {
-            childImageSharp {
-              fluid(maxWidth: 680, quality: 90) {
-                ...GatsbyImageSharpFluid_noBase64
-              }
-            }
+            ...PersonImage
           }
         }
       }
@@ -133,12 +68,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
               }
             }
           }
@@ -149,12 +79,7 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
               }
             }
           }
@@ -165,12 +90,18 @@ export const query = graphql`
           pictures {
             image {
               localFile {
-                publicURL
-                childImageSharp {
-                  fluid(maxWidth: 680, quality: 90) {
-                    ...GatsbyImageSharpFluid_noBase64
-                  }
-                }
+                ...PersonImage
+              }
+            }
+          }
+        }
+        the_officiant {
+          name
+          role
+          pictures {
+            image {
+              localFile {
+                ...PersonImage
               }
             }
           }
