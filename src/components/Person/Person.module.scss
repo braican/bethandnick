@@ -81,7 +81,10 @@
 
 .pic {
   margin-bottom: spacing(4);
-  @include img-shadow;
+
+  img {
+    @include img-shadow;
+  }
 }
 
 .picWide {
