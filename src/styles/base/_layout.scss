@@ -59,6 +59,13 @@ main {
 // -----------
 
 .herolayout__content {
+  @include mq($bp-tablet) {
+    margin-left: 44vw;
+    padding-top: 36vh;
+  }
+}
+
+.herolayout__wrapper {
   @include box-shadow(16px);
   position: relative;
   background-color: $c--primary;
@@ -69,12 +76,7 @@ main {
   @include mq($bp-small-mobile) {
     margin-right: spacing(2);
     margin-left: spacing(2);
-    margin-top: 50vh;
-  }
-
-  @include mq($bp-tablet) {
-    margin-left: 44vw;
-    margin-top: 36vh;
+    margin-top: -5vh;
   }
 
   @include mq($bp-desktop) {
@@ -98,10 +100,6 @@ main {
       height: 100%;
     }
   }
-
-  @include mq($bp-tablet, max) {
-    margin-top: -72px;
-  }
 }
 
 // Simple page
@@ -118,47 +116,8 @@ main {
 
   .page-title {
     position: relative;
-    // font-family: $ff--base;
-    // font-weight: $fw--bold;
-    font-size: 16vw;
+    font-size: 9vw;
     line-height: 1;
-    margin: 0;
-    // opacity: 0.2;
-    color: $c--primary;
-    // color: $c--gray-secondary;
-
-    // $shadow: -1px -2px 0 $c--primary, -2px -1px 0 $c--primary;
-    $shadow: ();
-
-    @for $i from 4 through 8 {
-      $num: $i + px;
-      // $color: $c--white;
-
-      // @if $i > 10 {
-      $color: $c--secondary;
-      // }
-
-      $sh: $num $num $color;
-      $shadow: append($shadow, $sh, comma);
-    }
-
-    text-shadow: $shadow;
-
-    // &:before,
-    // &:after {
-    //   content: attr(title);
-    //   color: rgba(255, 255, 255, 0.1);
-    //   position: absolute;
-    // }
-
-    // &:before {
-    //   top: 2px;
-    //   left: 2px;
-    // }
-    // &:after {
-    //   top: 4px;
-    //   left: 4px;
-    // }
   }
 
   .content__main {
