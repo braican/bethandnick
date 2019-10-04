@@ -39,10 +39,16 @@ exports.createPages = ({ actions, graphql }) => {
 
     allPages.forEach(({ node }) => {
       const slug = node.slug === 'home' ? '/' : `/${node.slug}/`;
+      const context = {
+        slug: node.slug,
+        title: node.title,
+        content: node.content,
+      };
       let template = path.resolve('./src/templates/page.js');
 
       if (node.template === 'template-hero.php') {
         template = path.resolve('./src/templates/page-hero.js');
+        context.layout = 'hero';
       } else if (node.template === 'template-team.php') {
         template = path.resolve('./src/templates/page-team.js');
       }
@@ -50,11 +56,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: slug,
         component: template,
-        context: {
-          slug: node.slug,
-          title: node.title,
-          content: node.content,
-        },
+        context,
       });
     });
   });

@@ -42,6 +42,11 @@
   }
 }
 
+.role {
+  margin-top: 1em;
+  color: $c--gray-4;
+}
+
 .about {
   margin-bottom: spacing(2);
 
@@ -76,9 +81,7 @@
 
 .pic {
   margin-bottom: spacing(4);
-  > div {
-    @include img-shadow;
-  }
+  @include img-shadow;
 }
 
 .picWide {

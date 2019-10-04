@@ -6,7 +6,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
 const SplitLayout = ({ featuredImage, bigHeader, children }) => (
-  <div className="amp-accent amp-accent--split">
+  <div className="amp-accent amp-accent--split amp-accent--overflow">
     <Header big={bigHeader} />
 
     <div className="splitpane__img">
