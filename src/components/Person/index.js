@@ -15,7 +15,7 @@ const Person = ({ person }) => {
       <div className={styles.about}>
         <div className={styles.aboutWrap}>
           <h6 className={styles.name}>{name}</h6>
-          <p>{role}</p>
+          <p className={styles.role}>{role}</p>
         </div>
       </div>
       <div className={styles.pics}>

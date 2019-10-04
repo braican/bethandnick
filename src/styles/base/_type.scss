@@ -26,6 +26,15 @@ h2 {
   }
 }
 
+.overline {
+  font-size: $fz--base;
+  color: $c--gray-c;
+  display: block;
+  font-family: $ff--base;
+  font-weight: $fw--bold;
+  margin-bottom: 0.5em;
+}
+
 h6 {
   font-size: 2rem;
   line-height: 1;

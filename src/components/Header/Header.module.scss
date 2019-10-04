@@ -42,7 +42,7 @@
     fill: $c--secondary;
   }
 
-  a:hover > & {
+  a:hover {
     .title {
       color: $c--white;
     }

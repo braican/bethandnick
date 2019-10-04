@@ -7,11 +7,12 @@ import Seo from '../components/Seo';
 const Page = ({ data, pageContext: { slug } }) => {
   const { content, title, acf: { page_featured_image } } = data.wordpressPage;
   const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
+  const filteredContent = content.replace(/(((S|s)eason\s\d)\s(&#8211;)\s)/g, '<span class="overline">$2</span>');
 
   return (
     <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
       <Seo title={title} />
-      <div className="content__main" dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="content__main" dangerouslySetInnerHTML={{ __html: filteredContent }} />
     </SplitLayout>
   );
 };

@@ -43,9 +43,11 @@ const Team = ({ girls, guys, family }) => {
     }
 
     if (scrollAnchor && scrollAnchor.current) {
-      document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
-        behavior: 'smooth',
-      });
+      setTimeout(() => {
+        document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
+          behavior: 'smooth',
+        });
+      }, timeout);
     }
 
   }, [activeGroup]);
