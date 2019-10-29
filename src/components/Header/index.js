@@ -9,9 +9,17 @@ import AmpersandIcon from '../../svg/ampersand';
 
 import styles from './Header.module.scss';
 
-const Header = ({ info, big, inNav }) => (
-  <OptionalLink to="/" when={!big && !inNav}>
-    <div {...className(styles.header, big && styles.bigHeader, !big && !inNav && styles.defaultHeader, inNav && styles.inNavHeader)}>
+const Header = ({ info, big, inNav, hero }) => (
+  <div
+    {...className(
+      styles.header,
+      big && styles.bigHeader,
+      !big && !inNav && styles.defaultHeader,
+      hero && styles.defaultHeaderOverlay,
+      inNav && styles.inNavHeader
+    )}
+  >
+    <OptionalLink to="/" when={!big && !inNav}>
       <h1 className={styles.title}>
         <span>Beth</span> <span className={styles.ampersand}><AmpersandIcon /></span> <span>Nick</span>
       </h1>
@@ -20,8 +28,8 @@ const Header = ({ info, big, inNav }) => (
         <p className={styles.date}>{info.wedding_date}</p>
         <p className={styles.venue}>at {info.venue_name}</p>
       </div>
-    </div>
-  </OptionalLink>
+    </OptionalLink>
+  </div>
 );
 
 Header.propTypes = {
@@ -31,11 +39,13 @@ Header.propTypes = {
   }),
   big: PropTypes.bool,
   inNav: PropTypes.bool,
+  hero: PropTypes.bool,
 };
 
 Header.defaultProps = {
   big: false,
   inNav: false,
+  hero: false,
 };
 
 const HeaderWithQuery = props => (

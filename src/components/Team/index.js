@@ -28,7 +28,7 @@ const getTransitionStyles = {
   },
 };
 
-const Team = ({ girls, guys, family }) => {
+const Team = ({ girls, guys, family, officiant }) => {
   const [group, setGroup] = useState([]);
   const [activeGroup, setActiveGroup] = useState('girls');
   const scrollAnchor = useRef();
@@ -40,12 +40,16 @@ const Team = ({ girls, guys, family }) => {
       setGroup(guys);
     } else if (activeGroup === 'family') {
       setGroup(family);
+    } else if (activeGroup === 'officiant') {
+      setGroup(officiant);
     }
 
     if (scrollAnchor && scrollAnchor.current) {
-      document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
-        behavior: 'smooth',
-      });
+      setTimeout(() => {
+        document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
+          behavior: 'smooth',
+        });
+      }, timeout);
     }
 
   }, [activeGroup]);
@@ -83,6 +87,7 @@ Team.propTypes = {
   girls: PropTypes.array,
   guys: PropTypes.array,
   family: PropTypes.array,
+  officiant: PropTypes.array,
 };
 
 Team.defaultProps = {

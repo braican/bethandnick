@@ -3,27 +3,30 @@
 .header {
   position: relative;
   z-index: 10;
+
+  > a {
+    display: block;
+  }
 }
 
 // Default
 // -----------
 
 .defaultHeader {
+  position: relative;
   @include box-shadow();
   padding: spacing(1.25);
   display: inline-block;
   background-color: $c--primary;
-
-  @include mq($bp-mobile) {
-    margin-top: spacing(0.5);
-    margin-left: spacing(0.5);
-  }
+  margin-top: spacing(0.5);
+  margin-left: spacing(0.5);
 
   .title,
   .info {
     display: inline-block;
-    vertical-align: baseline;
     color: $c--secondary;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .info {
@@ -35,14 +38,11 @@
     }
   }
 
-  .ampersand {
-    width: 24px;
-    svg {
-      fill: $c--secondary;
-    }
+  .ampersand svg {
+    fill: $c--secondary;
   }
 
-  a:hover > & {
+  a:hover {
     .title {
       color: $c--white;
     }
@@ -52,16 +52,25 @@
   }
 }
 
+.defaultHeaderOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 // Big
 // -----------
 
 .bigHeader {
   @include box-shadow(16px, $c--primary);
   background-color: $c--secondary;
-  padding: spacing(3) spacing(2) spacing(2);
+  padding: spacing(3) spacing(2);
 
   @include mq($bp-mobile) {
     margin-left: $tablet-split-secondary - $offset;
+  }
+
+  @include mq($bp-tablet) {
     padding: spacing(6) spacing(2) spacing(6) $offset;
   }
 
@@ -79,7 +88,7 @@
   }
 
   .ampersand svg {
-    fill: $c--primary;
+    fill: $c--white;
   }
 }
 
@@ -88,16 +97,15 @@
 .inNavHeader,
 .bigHeader {
   .title {
-    @include fluid-type(600px, 1400px, 48px, 108px);
-    line-height: 1;
-  }
+    font-size: $fz--xl;
 
-  .ampersand {
-    width: 4vw;
-    min-width: 36px;
+    @include mq($bp-mobile) {
+      @include fluid-type($bp-mobile, 1400px, 44px, 108px);
+    }
   }
 
   .info {
+    font-size: $fz--base;
     @include mq($bp-tablet) {
       font-size: $fz--lg;
     }
@@ -122,24 +130,23 @@
 
 .title {
   @include transition(color);
-  font-size: $fz--lg;
-  line-height: 1;
+  font-size: $fz--base;
+  font-family: $ff--headline;
+  line-height: 0.7;
+
+  span {
+    display: inline-block;
+    vertical-align: bottom;
+  }
 }
 
 .ampersand {
-  display: inline-block;
+  width: 0.7em;
+
   svg {
     @include transition(fill);
     width: 100%;
     display: block;
-  }
-}
-
-.title {
-  font-family: $ff--headline;
-
-  span {
-    vertical-align: baseline;
   }
 }
 
@@ -148,6 +155,10 @@
   margin: 0;
   line-height: 1.2;
   margin-top: spacing();
+
+  @include mq($bp-tablet) {
+    margin-top: spacing(2);
+  }
 
   p {
     margin: 0;

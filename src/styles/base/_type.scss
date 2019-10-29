@@ -1,10 +1,10 @@
 html {
-  font-size: $fz-base - 2;
+  font-size: 16px;
   color: $c--gray-3;
   -webkit-font-smoothing: antialiased;
 
   @include mq($bp-mobile) {
-    font-size: $fz-base;
+    font-size: 18px;
   }
 }
 
@@ -24,6 +24,15 @@ h2 {
   p + & {
     margin-top: 2em;
   }
+}
+
+.overline {
+  font-size: $fz--base;
+  color: $c--gray-c;
+  display: block;
+  font-family: $ff--base;
+  font-weight: $fw--bold;
+  margin-bottom: 0.5em;
 }
 
 h6 {

@@ -7,7 +7,7 @@ import Footer from '../../components/Footer';
 
 const HeroLayout = ({ featuredImage, pageTitle, children }) => (
   <div className="amp-accent">
-    <Header />
+    <Header hero />
 
     {featuredImage && (
       <div className="herolayout__hero">
@@ -16,8 +16,10 @@ const HeroLayout = ({ featuredImage, pageTitle, children }) => (
     )}
 
     <div className="herolayout__content">
-      {pageTitle && <h2 className="page-title">{pageTitle}</h2>}
-      {children}
+      <div className="herolayout__wrapper">
+        {pageTitle && <h2 className="page-title">{pageTitle}</h2>}
+        {children}
+      </div>
     </div>
 
     <Footer />
