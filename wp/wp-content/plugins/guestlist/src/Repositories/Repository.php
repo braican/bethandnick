@@ -15,7 +15,21 @@ class Repository {
 	 *
 	 * @var array
 	 */
-	private $result_set = [];
+	public $result_set = [];
+
+	/**
+	 * WordPress query object.
+	 *
+	 * @var WP_Query
+	 */
+	private $query;
+
+	/**
+	 * Init with an empty WP_Query.
+	 */
+	public function __construct() {
+		$this->query = new \WP_Query();
+	}
 
 	/**
 	 * Parse query params with sensible defaults.
@@ -80,14 +94,14 @@ class Repository {
 			return $this->result_set( $cached_posts );
 		}
 
-		$q = new \WP_Query( $params );
+		$posts = $this->query->query( $params );
 
 		// Cache our results.
-		if ( $q->found_posts > 0 ) {
-			wp_cache_set( $cache_key, $q->get_posts, __CLASS__ );
+		if ( count( $posts ) > 0 ) {
+			wp_cache_set( $cache_key, $posts, __CLASS__ );
 		}
 
-		return $this->result_set( $q->get_posts );
+		return $this->result_set( $posts );
 	}
 
 	/**

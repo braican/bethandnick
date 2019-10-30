@@ -8,9 +8,7 @@
 namespace Guestlist\Admin;
 
 use Guestlist\Admin\Views\EventList\EventList;
-
-define( 'GUESTLIST_ADMIN_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
-define( 'GUESTLIST_ADMIN_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
+use Guestlist\Admin\Views\Guests\Guests;
 
 /**
  * Class to handle interactions with the Guestlist admin page.
@@ -44,7 +42,6 @@ class Admin {
 	 */
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'create' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 	}
 
 	/**
@@ -62,33 +59,20 @@ class Admin {
 	 * @return void
 	 */
 	public function create() {
+		$cb = array( $this->event_list, 'load' );
+
+		if ( isset( $_GET['event' ] ) && $_GET['event'] ) {
+			$guestlist = new Guests( $_GET['event'] );
+			$cb        = array( $guestlist, 'load' );
+		}
+
 		\add_menu_page(
 			'Guestlist',
 			'Guestlist',
 			'edit_posts',
 			'guestlist',
-			array( $this->event_list, 'load' ),
+			$cb,
 			'dashicons-groups'
-		);
-	}
-
-	/**
-	 * Enqueue static scripts and styles.
-	 */
-	public function enqueue() {
-		wp_enqueue_style(
-			'guestlist_admin_css',
-			GUESTLIST_ADMIN_URI . 'static/style.css',
-			array(),
-			GUESTLIST_VERSION
-		);
-
-		wp_enqueue_script(
-			'guestlist_admin_js',
-			GUESTLIST_ADMIN_URI . 'static/scripts.js',
-			array( 'jquery' ),
-			GUESTLIST_VERSION,
-			true
 		);
 	}
 }
