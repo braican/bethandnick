@@ -2,7 +2,7 @@
 /**
  * The Guest model.
  *
- * @package guestlist
+ * @package Guestlist
  */
 
 namespace Guestlist\Models;
@@ -21,7 +21,7 @@ class Guest {
 	 */
 	public static function create_type() {
 		register_post_type(
-			'gl_guest',
+			self::TYPE,
 			array(
 				'labels'   => array(
 					'name'          => 'Guests',

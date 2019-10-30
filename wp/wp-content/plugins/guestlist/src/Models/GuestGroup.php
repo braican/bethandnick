@@ -2,7 +2,7 @@
 /**
  * The Guest Group model.
  *
- * @package guestlist
+ * @package Guestlist
  */
 
 namespace Guestlist\Models;
@@ -10,11 +10,18 @@ namespace Guestlist\Models;
 /** GuestGroup model */
 class GuestGroup {
 	/**
+	 * The type name.
+	 *
+	 * @var string
+	 */
+	const TYPE = 'gl_group';
+
+	/**
 	 * Creates the custom post type.
 	 */
 	public static function create_type() {
 		register_post_type(
-			'gl_group',
+			self::TYPE,
 			array(
 				'labels'   => array(
 					'name'          => 'Groups',

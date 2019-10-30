@@ -2,7 +2,7 @@
 /**
  * The Event model.
  *
- * @package guestlist
+ * @package Guestlist
  */
 
 namespace Guestlist\Models;

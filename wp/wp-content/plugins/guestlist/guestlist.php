@@ -31,6 +31,8 @@ define( 'GUESTLIST_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 // Load the autoloader.
 require_once GUESTLIST_PATH . 'autoloader.php';
 
+use Guestlist\Admin\Admin;
+
 /**
  * Core functionality for the plugin.
  */
