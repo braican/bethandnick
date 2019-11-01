@@ -1,39 +1,15 @@
+/* Adding a new event */
 .gl-add-event-form {
   display: none;
-  padding: 2em 0;
 }
 
-.gl-add-event-form .form-row {
-  margin-bottom: 1em;
-}
-
-.gl-add-event-form .form-row label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 0.5em;
-}
-
-.gl-add-event-form input[type="text"],
-.gl-add-event-form input[type="date"] {
-  font-size: 18px;
-  padding: 8px;
-  margin: 0;
-}
-.gl-add-event-form input[type="text"] {
-  display: block;
-  width: 100%;
-  max-width: 660px;
-}
-
-
-/* Adding a new event */
 .adding-new-event .gl-add-event-form {
   display: block;
 }
+
 .adding-new-event .js-add-new-event {
   display: none;
 }
-
 
 /* All events */
 
@@ -61,6 +37,7 @@
 .gl-events-list .gl-event h2 {
   margin: 0 0 .5em 0;
 }
+
 .gl-events-list .gl-event p {
   margin: 0;
 }

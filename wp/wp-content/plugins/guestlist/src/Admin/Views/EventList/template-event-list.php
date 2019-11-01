@@ -9,10 +9,9 @@
 
 <div class="wrap" id="view-event-list">
 	<h1 class="wp-heading-inline">Guestlist</h1>
-
 	<button class="page-title-action js-add-new-event">Add new event</button>
 
-	<div class="gl-add-event-form">
+	<div class="gl-form gl-add-event-form">
 		<form method="POST" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
 			<div class="form-row">
 				<label for="gl-new-event-name">Event name</label>
@@ -40,6 +39,7 @@
 			</div>
 
 			<input type="hidden" name="action" value="<?php echo esc_attr( $this->action ); ?>" />
+			<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'add_new_event' ) ); ?>">
 			<button class="button button-primary button-large" type="submit">
 				Add Event
 			</button>&nbsp;&nbsp;

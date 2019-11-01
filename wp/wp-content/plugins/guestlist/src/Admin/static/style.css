@@ -1,3 +1,25 @@
-.gl-group {
-  display: none;
+.gl-form {
+  padding: 2em 0;
+}
+
+.gl-form .form-row {
+  margin-bottom: 1em;
+}
+
+.gl-form .form-row label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.gl-form input[type="text"],
+.gl-form input[type="date"] {
+  font-size: 18px;
+  padding: 8px;
+  margin: 0;
+}
+.gl-form input[type="text"] {
+  display: block;
+  width: 100%;
+  max-width: 660px;
 }

@@ -1,0 +1,12 @@
+/* Adding a new event */
+.gl-add-new-guest-form {
+  display: none;
+}
+
+.adding-new-guest .gl-add-new-guest-form {
+  display: block;
+}
+
+.adding-new-guest .js-add-new-guest {
+  display: none;
+}

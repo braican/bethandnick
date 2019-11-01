@@ -9,6 +9,7 @@ namespace Guestlist\Admin\Views\Event;
 
 use Guestlist\Models\Event as EventModel;
 use Guestlist\Repositories\GuestRepo;
+use Guestlist\Admin\Notices;
 
 /** Class */
 class Event {
@@ -27,13 +28,30 @@ class Event {
 	public $guests;
 
 	/**
-	 * Init this view with the specific event.
+	 * The label for the action for the form submission.
 	 *
-	 * @param string $event_id WordPress event ID.
+	 * @var string
+	 */
+	public $action = 'guestlist_add_guest';
+
+	/**
+	 * Init this view with some hooks.
 	 *
 	 * @return void
 	 */
-	public function __construct( $event_id = null ) {
+	public function __construct() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'admin_action_' . $this->action, array( $this, 'handle_add_guest' ) );
+	}
+
+	/**
+	 * Sets up this event view with the correct event.
+	 *
+	 * @param int $event_id ID of the event we're setting up.
+	 *
+	 * @return void
+	 */
+	public function set( $event_id ) {
 		if (
 			null !== $event_id
 			&& 'publish' === get_post_status( $event_id )
@@ -43,6 +61,27 @@ class Event {
 			$guest_repo   = new GuestRepo( $event_id );
 			$this->guests = $guest_repo->all();
 		}
+	}
+
+
+	/**
+	 * Enqueue static scripts and styles.
+	 */
+	public function enqueue() {
+		wp_enqueue_style(
+			'guestlist_view_event_css',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'style.css',
+			array(),
+			GUESTLIST_VERSION
+		);
+
+		wp_enqueue_script(
+			'guestlist_view_event_js',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'scripts.js',
+			array( 'jquery' ),
+			GUESTLIST_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -87,5 +126,39 @@ class Event {
 	 */
 	public function load() {
 		include_once trailingslashit( plugin_dir_path( __FILE__ ) ) . 'template-event.php';
+	}
+
+	/**
+	 * Handles the form submission.
+	 *
+	 * @return void
+	 */
+	public function handle_add_guest() {
+		if (
+			! isset( $_POST['nonce'] )
+			|| false === wp_verify_nonce( $_POST['nonce'], 'add_guest' )
+		) {
+			die( 'The security check failed' );
+		}
+
+		// $event_name     = sanitize_text_field( $_POST['event_name'] );
+		// $event_location = sanitize_text_field( $_POST['event_location'] );
+		// $event_date     = sanitize_text_field( $_POST['event_date'] );
+
+		// $new_event = wp_insert_post(
+		// 	array(
+		// 		'post_title'  => $event_name,
+		// 		'post_status' => 'publish',
+		// 		'post_type'   => Event::TYPE,
+		// 		'meta_input'  => array(
+		// 			'event_location' => $event_location,
+		// 			'event_date'     => $event_date,
+		// 		),
+		// 	)
+		// );
+
+		Notices::add( 'Successfully added the guest.', 'success', true );
+		wp_redirect( $_SERVER['HTTP_REFERER'] );
+		exit();
 	}
 }

@@ -23,6 +23,13 @@ class Admin {
 	 */
 	public $event_list;
 
+	/**
+	 * Event
+	 *
+	 * @var \Guestlist\Admin\Views\Event\Event
+	 */
+	public $event;
+
 
 	/********* Methods *********/
 
@@ -42,6 +49,7 @@ class Admin {
 	 */
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'create' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
 	}
 
 	/**
@@ -51,6 +59,7 @@ class Admin {
 	 */
 	public function setup_views() {
 		$this->event_list = new EventList();
+		$this->event      = new Event();
 	}
 
 	/**
@@ -67,8 +76,8 @@ class Admin {
 			&& isset( $_GET['event'] )
 			&& $_GET['event']
 		) {
-			$guestlist = new Event( $_GET['event'] );
-			$cb        = array( $guestlist, 'load' );
+			$this->event->set( $_GET['event'] );
+			$cb = array( $this->event, 'load' );
 		}
 
 		\add_menu_page(
@@ -78,6 +87,18 @@ class Admin {
 			'guestlist',
 			$cb,
 			'dashicons-groups'
+		);
+	}
+
+	/**
+	 * Enqueue global scripts and styles.
+	 */
+	public function enqueue() {
+		wp_enqueue_style(
+			'guestlist_global_css',
+			trailingslashit( plugin_dir_url( __FILE__ ) ) . 'static/style.css',
+			array(),
+			GUESTLIST_VERSION
 		);
 	}
 }

@@ -19,7 +19,6 @@ class EventList {
 	 */
 	public $events;
 
-
 	/**
 	 * The label for the action for the form submission.
 	 *
@@ -112,21 +111,28 @@ class EventList {
 	 */
 	public function handle_add_event() {
 
-		$event_name     = sanitize_text_field( $_POST['event_name'] );
-		$event_location = sanitize_text_field( $_POST['event_location'] );
-		$event_date     = sanitize_text_field( $_POST['event_date'] );
+		error_log(print_r('sadsadsad', true));
 
-		$new_event = wp_insert_post(
-			array(
-				'post_title'  => $event_name,
-				'post_status' => 'publish',
-				'post_type'   => Event::TYPE,
-				'meta_input'  => array(
-					'event_location' => $event_location,
-					'event_date'     => $event_date,
-				),
-			)
-		);
+		$nonce = wp_verify_nonce( $_POST['nonce'], 'add_new_event' );
+		if ( false === $nonce ) {
+			die( 'Security check' );
+		}
+
+		// $event_name     = sanitize_text_field( $_POST['event_name'] );
+		// $event_location = sanitize_text_field( $_POST['event_location'] );
+		// $event_date     = sanitize_text_field( $_POST['event_date'] );
+
+		// $new_event = wp_insert_post(
+		// 	array(
+		// 		'post_title'  => $event_name,
+		// 		'post_status' => 'publish',
+		// 		'post_type'   => Event::TYPE,
+		// 		'meta_input'  => array(
+		// 			'event_location' => $event_location,
+		// 			'event_date'     => $event_date,
+		// 		),
+		// 	)
+		// );
 
 		wp_redirect( $_SERVER['HTTP_REFERER'] );
 		exit();
