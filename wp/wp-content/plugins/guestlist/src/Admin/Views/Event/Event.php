@@ -141,6 +141,8 @@ class Event {
 			die( 'The security check failed' );
 		}
 
+		error_log(print_r($_POST['guest_name'], true));
+
 		// $event_name     = sanitize_text_field( $_POST['event_name'] );
 		// $event_location = sanitize_text_field( $_POST['event_location'] );
 		// $event_date     = sanitize_text_field( $_POST['event_date'] );

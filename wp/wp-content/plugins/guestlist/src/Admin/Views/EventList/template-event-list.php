@@ -39,15 +39,22 @@
 			</div>
 
 			<input type="hidden" name="action" value="<?php echo esc_attr( $this->action ); ?>" />
-			<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'add_new_event' ) ); ?>">
-			<button class="button button-primary button-large" type="submit">
-				Add Event
-			</button>&nbsp;&nbsp;
+			<input
+				type="hidden"
+				name="nonce"
+				value="<?php echo esc_attr( wp_create_nonce( 'add_new_event' ) ); ?>"
+			>
 
-			<?php // phpcs:ignore ?>
-			<button class="button button-secondary js-cancel-add-new-event button-large" type="button">
-				Cancel
-			</button>
+			<div class="form-actions">
+				<button class="button button-primary button-large" type="submit">
+					Add Event
+				</button>&nbsp;&nbsp;
+
+				<?php // phpcs:ignore ?>
+				<button class="button button-secondary js-cancel-add-new-event button-large" type="button">
+					Cancel
+				</button>
+			</div>
 		</form>
 	</div>
 
