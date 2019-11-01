@@ -38,74 +38,22 @@ use Guestlist\Admin\Admin;
  */
 class Guestlist {
 	/**
-	 * Admin.
-	 *
-	 * @var \Guestlist\Admin
+	 * Setup
 	 */
-	private $admin;
-
-
-	/**
-	 * Instntiated class.
-	 *
-	 * @var \Guestlist\Guestlist
-	 */
-	public static $init;
-
-	/**
-	 * Run actions.
-	 *
-	 * @return \Guestlist\Guestlist
-	 */
-	public static function init() {
-
-		if ( null === self::$init ) {
-			self::$init = new self();
-			self::$init->run();
-		}
-
-		return self::$init;
-	}
-
-	/**
-	 * Init classes and run the hooks.
-	 *
-	 * @return void
-	 */
-	public function run() {
-		$this->admin = new Admin();
-
-		$this->admin->hooks();
-		$this->define_public_hooks();
-	}
-
-	/**
-	 * Set up hooks to run on the front-end.
-	 *
-	 * @return void
-	 */
-	private function define_public_hooks() {
-		add_action( 'init', array( $this, 'create_types' ) );
-	}
-
-	/**
-	 * Creates the different content types.
-	 *
-	 * @return void
-	 */
-	public function create_types() {
-		Models\Guest::create_type();
-		Models\Event::create_type();
-		Models\GuestGroup::create_type();
+	public function __construct() {
 	}
 }
 
-$guestlist_min_php = '5.6.0';
+/**
+ * Initialize
+ */
+add_action(
+	'admin_init',
+	function() {
+		$guestlist = new Guestlist();
+	}
+);
 
-// Check the minimum required PHP version and run the plugin.
-if ( version_compare( PHP_VERSION, $guestlist_min_php, '>=' ) ) {
-	/**
-	 * Initialize
-	 */
-	Guestlist::init();
-}
+add_action( 'init', 'Guestlist\GuestType::create' );
+add_action( 'admin_menu', 'Guestlist\Admin::create' );
+add_action( 'admin_enqueue_scripts', 'Guestlist\Admin::enqueue' );
