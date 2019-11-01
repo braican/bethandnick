@@ -40,7 +40,7 @@ spl_autoload_register(
 		 *  array. We ignore the first index since it's always the top-level package. The last
 		 *  index is always the file so we append that at the end.
 		 */
-		$fully_qualified_path = trailingslashit( plugin_dir_path( __FILE__ ) );
+		$fully_qualified_path = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'src/';
 
 		$file_path_count = count( $file_path ) - 1;
 
@@ -49,7 +49,7 @@ spl_autoload_register(
 			$fully_qualified_path .= trailingslashit( $dir );
 		}
 
-		$fully_qualified_path .= 'lib/' . $class_file;
+		$fully_qualified_path .= $class_file;
 
 		// Now we include the file.
 		if ( file_exists( $fully_qualified_path ) ) {

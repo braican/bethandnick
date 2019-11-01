@@ -1,22 +1,25 @@
 <?php
 /**
- * Dealing with the Guest post type.
+ * The Guest model.
  *
  * @package Guestlist
  */
 
-namespace Guestlist;
+namespace Guestlist\Models;
 
-/**
- * Class to handle interactions with the Guest content type.
- */
-class GuestType {
+/** Guest model */
+class Guest {
 	/**
-	 * Creates the Guest type.
+	 * The typename.
 	 *
-	 * @return void
+	 * @var string
 	 */
-	public static function create() {
+	const TYPE = 'gl_event';
+
+	/**
+	 * Creates the custom post type.
+	 */
+	public static function create_type() {
 		register_post_type(
 			self::TYPE,
 			array(
@@ -32,5 +35,3 @@ class GuestType {
 		);
 	}
 }
-
-
