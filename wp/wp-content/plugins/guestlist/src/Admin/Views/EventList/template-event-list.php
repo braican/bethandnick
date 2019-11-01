@@ -16,12 +16,22 @@
 		<form method="POST" action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
 			<div class="form-row">
 				<label for="gl-new-event-name">Event name</label>
-				<input type="text" id="gl-new-event-name" name="event_name" placeholder="Add event name">
+				<input
+					type="text"
+					id="gl-new-event-name"
+					name="event_name"
+					placeholder="Add event name"
+				>
 			</div>
 
 			<div class="form-row">
 				<label for="gl-new-event-location">Location</label>
-				<input type="text" id="gl-new-event-location" name="event_location" placeholder="Add event location">
+				<input
+					type="text"
+					id="gl-new-event-location"
+					name="event_location"
+					placeholder="Add event location"
+				>
 			</div>
 
 			<div class="form-row">
@@ -30,20 +40,31 @@
 			</div>
 
 			<input type="hidden" name="action" value="<?php echo esc_attr( $this->action ); ?>" />
-			<button class="button button-primary button-large" type="submit">Add Event</button>&nbsp;&nbsp;
-			<button class="button button-secondary js-cancel-add-new-event button-large" type="button">Cancel</button>
+			<button class="button button-primary button-large" type="submit">
+				Add Event
+			</button>&nbsp;&nbsp;
+
+			<?php // phpcs:ignore ?>
+			<button class="button button-secondary js-cancel-add-new-event button-large" type="button">
+				Cancel
+			</button>
 		</form>
 	</div>
 
 	<div class="gl-events-list">
 		<?php if ( $this->have_events() ) : ?>
-		<ul>
+		<ul class="all-events">
 			<?php foreach ( $this->get_events() as $event ) : ?>
-			<li>
+			<li class="gl-event">
 				<h2><?php echo esc_html( get_the_title( $event->ID ) ); ?></h2>
-				<p><?php echo esc_html( get_post_meta( $event->ID, 'event_location', true ) ); ?></p>
 				<p><?php echo esc_html( get_post_meta( $event->ID, 'event_date', true ) ); ?></p>
-				<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=guestlist&event=' . $event->ID ) ); ?>">Guestlist</a></p>
+
+				<?php // phpcs:ignore ?>
+				<p><?php echo esc_html( get_post_meta( $event->ID, 'event_location', true ) ); ?></p>
+				<br>
+
+				<?php // phpcs:ignore ?>
+				<p class="gl-event-link"><a href="<?php echo esc_url( admin_url( 'admin.php?page=guestlist&event=' . $event->ID ) ); ?>">Guestlist →</a></p>
 			</li>
 			<?php endforeach; ?>
 		</ul>

@@ -14,18 +14,18 @@ class GuestRepo extends Repository {
 	/**
 	 * The event to get guests from.
 	 *
-	 * @var int
+	 * @var string
 	 */
 	private $event_id;
 
 	/**
 	 * Can optionally pass the event that we should be getting guests from.
 	 *
-	 * @param int $event_id The event to get guests from.
+	 * @param string $event_id The event to get guests from.
 	 *
 	 * @return void
 	 */
-	public function __construct( int $event_id = null ) {
+	public function __construct( $event_id = null ) {
 		parent::__construct();
 
 		$this->event_id = $event_id;

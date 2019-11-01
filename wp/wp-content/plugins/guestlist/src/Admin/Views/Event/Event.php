@@ -5,18 +5,19 @@
  * @package Guestlist
  */
 
-namespace Guestlist\Admin\Views\Guests;
+namespace Guestlist\Admin\Views\Event;
 
+use Guestlist\Models\Event as EventModel;
 use Guestlist\Repositories\GuestRepo;
 
 /** Class */
-class Guests {
+class Event {
 	/**
-	 * The ID of the event.
+	 * The event.
 	 *
-	 * @var int
+	 * @var WP_Post
 	 */
-	public $event_id;
+	public $event;
 
 	/**
 	 * The Guests repo for guests in this event.
@@ -28,15 +29,18 @@ class Guests {
 	/**
 	 * Init this view with the specific event.
 	 *
-	 * @param int $event WordPress event ID.
+	 * @param string $event_id WordPress event ID.
 	 *
 	 * @return void
 	 */
-	public function __construct( int $event_id = null ) {
-		$this->event_id = $event_id;
-
-		if ( null !== $this->event_id ) {
-			$guest_repo   = new GuestRepo( $this->event_id );
+	public function __construct( $event_id = null ) {
+		if (
+			null !== $event_id
+			&& 'publish' === get_post_status( $event_id )
+			&& EventModel::TYPE === get_post_type( $event_id )
+		) {
+			$this->event  = get_post( $event_id );
+			$guest_repo   = new GuestRepo( $event_id );
 			$this->guests = $guest_repo->all();
 		}
 	}
@@ -47,8 +51,8 @@ class Guests {
 	 * @return WP_Post
 	 */
 	public function get_event() {
-		if ( null !== $this->event_id ) {
-			return get_post( $this->event_id );
+		if ( null !== $this->event ) {
+			return $this->event;
 		}
 
 		return null;
@@ -82,6 +86,6 @@ class Guests {
 	 * @return void
 	 */
 	public function load() {
-		include_once trailingslashit( plugin_dir_path( __FILE__ ) ) . 'template-guests.php';
+		include_once trailingslashit( plugin_dir_path( __FILE__ ) ) . 'template-event.php';
 	}
 }

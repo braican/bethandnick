@@ -33,3 +33,34 @@
 .adding-new-event .js-add-new-event {
   display: none;
 }
+
+
+/* All events */
+
+.gl-events-list {
+  margin-top: 2em;
+}
+
+.gl-events-list .all-events {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2em;
+}
+
+.gl-events-list .gl-event {
+  margin: 0;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 2em;
+}
+
+.gl-events-list .gl-event h2 {
+  margin: 0 0 .5em 0;
+}
+.gl-events-list .gl-event p {
+  margin: 0;
+}

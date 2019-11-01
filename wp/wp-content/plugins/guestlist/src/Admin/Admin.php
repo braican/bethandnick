@@ -8,7 +8,7 @@
 namespace Guestlist\Admin;
 
 use Guestlist\Admin\Views\EventList\EventList;
-use Guestlist\Admin\Views\Guests\Guests;
+use Guestlist\Admin\Views\Event\Event;
 
 /**
  * Class to handle interactions with the Guestlist admin page.
@@ -59,10 +59,15 @@ class Admin {
 	 * @return void
 	 */
 	public function create() {
-		$cb = array( $this->event_list, 'load' );
+		$nonce = wp_create_nonce( 'gl_admin_page' );
+		$cb    = array( $this->event_list, 'load' );
 
-		if ( isset( $_GET['event' ] ) && $_GET['event'] ) {
-			$guestlist = new Guests( $_GET['event'] );
+		if (
+			wp_verify_nonce( $nonce, 'gl_admin_page' )
+			&& isset( $_GET['event'] )
+			&& $_GET['event']
+		) {
+			$guestlist = new Event( $_GET['event'] );
 			$cb        = array( $guestlist, 'load' );
 		}
 
