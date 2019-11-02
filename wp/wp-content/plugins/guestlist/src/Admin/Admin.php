@@ -68,15 +68,11 @@ class Admin {
 	 * @return void
 	 */
 	public function create() {
-		$nonce = wp_create_nonce( 'gl_admin_page' );
-		$cb    = array( $this->event_list, 'load' );
+		$cb         = array( $this->event_list, 'load' );
+		$event_post = $this->is_event_page();
 
-		if (
-			wp_verify_nonce( $nonce, 'gl_admin_page' )
-			&& isset( $_GET['event'] )
-			&& $_GET['event']
-		) {
-			$this->event->set( $_GET['event'] );
+		if ( $event_post ) {
+			$this->event->set( $event_post );
 			$cb = array( $this->event, 'load' );
 		}
 
@@ -100,6 +96,24 @@ class Admin {
 			array(),
 			GUESTLIST_VERSION
 		);
+	}
+
+	/**
+	 * If we're looking for the events page.
+	 *
+	 * @return int|false if there is no event.
+	 */
+	private function is_event_page() {
+		$nonce = \wp_create_nonce( 'gl_admin_page' );
+
+		if ( wp_verify_nonce( $nonce, 'gl_admin_page' )
+			&& isset( $_GET['event'] )
+			&& $_GET['event']
+		) {
+			return $_GET['event'];
+		}
+
+		return false;
 	}
 }
 

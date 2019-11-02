@@ -8,8 +8,11 @@
 namespace Guestlist\Admin\Views\Event;
 
 use Guestlist\Models\Event as EventModel;
+use Guestlist\Models\Guest;
+use Guestlist\Models\GuestGroup;
 use Guestlist\Repositories\GuestRepo;
 use Guestlist\Admin\Notices;
+use Guestlist\Admin\Store;
 
 /** Class */
 class Event {
@@ -138,28 +141,77 @@ class Event {
 			! isset( $_POST['nonce'] )
 			|| false === wp_verify_nonce( $_POST['nonce'], 'add_guest' )
 		) {
-			die( 'The security check failed' );
+			die( 'The security check failed.' );
 		}
 
-		error_log(print_r($_POST['guest_name'], true));
+		if ( ! isset( $_POST['event'] ) ) {
+			die( 'Submission is invalid: an event is required.' );
+		}
 
-		// $event_name     = sanitize_text_field( $_POST['event_name'] );
-		// $event_location = sanitize_text_field( $_POST['event_location'] );
-		// $event_date     = sanitize_text_field( $_POST['event_date'] );
+		$event       = sanitize_text_field( $_POST['event'] );
+		$group_name  = sanitize_text_field( $_POST['guest_group_name'] );
+		$street      = sanitize_text_field( $_POST['guest_street'] );
+		$city        = sanitize_text_field( $_POST['guest_city'] );
+		$state       = sanitize_text_field( $_POST['guest_state'] );
+		$zip         = sanitize_text_field( $_POST['guest_zip'] );
+		$address     = "$street $city, $state $zip";
+		$group_title = "$group_name / $address";
 
-		// $new_event = wp_insert_post(
-		// 	array(
-		// 		'post_title'  => $event_name,
-		// 		'post_status' => 'publish',
-		// 		'post_type'   => Event::TYPE,
-		// 		'meta_input'  => array(
-		// 			'event_location' => $event_location,
-		// 			'event_date'     => $event_date,
-		// 		),
-		// 	)
-		// );
+		$collected_data = array(
+			'group_name'     => $group_name,
+			'street'         => $street,
+			'city'           => $city,
+			'state'          => $state,
+			'zip'            => $zip,
+			'address'        => $address,
+			'gl_guest_event' => $event,
+		);
 
-		Notices::add( 'Successfully added the guest.', 'success', true );
+		$guests = array_filter( $_POST['guest_name'] );
+
+		if ( ! $guests ) {
+			Notices::add( 'Please add at least one guest name', 'error', true );
+			Store::set( 'new_guest_data', $collected_data );
+			wp_redirect( $_SERVER['HTTP_REFERER'] );
+			exit();
+		}
+
+		$guest_ids = array();
+
+		$new_group = wp_insert_post(
+			array(
+				'post_title'  => $group_title,
+				'post_status' => 'publish',
+				'post_type'   => GuestGroup::TYPE,
+				'meta_input'  => $collected_data,
+			)
+		);
+
+		foreach ( $guests as $guest ) {
+			$guest_id = wp_insert_post(
+				array(
+					'post_title'  => sanitize_text_field( $guest ),
+					'post_status' => 'publish',
+					'post_type'   => Guest::TYPE,
+					'meta_input'  => array_merge(
+						$collected_data,
+						array( 'gl_group' => $new_group )
+					),
+				)
+			);
+
+			array_push( $guest_ids, $guest_id );
+		}
+
+		update_post_meta( $new_group, 'gl_guests', $guest_ids );
+
+		$message = 'Successfully added the guest';
+		if ( count( $guests ) > 1 ) {
+			$message .= 's';
+		}
+		$message .= '.';
+
+		Notices::add( $message, 'success', true );
 		wp_redirect( $_SERVER['HTTP_REFERER'] );
 		exit();
 	}

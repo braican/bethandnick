@@ -110,29 +110,26 @@ class EventList {
 	 * @return void
 	 */
 	public function handle_add_event() {
-
-		error_log(print_r('sadsadsad', true));
-
 		$nonce = wp_verify_nonce( $_POST['nonce'], 'add_new_event' );
 		if ( false === $nonce ) {
 			die( 'Security check' );
 		}
 
-		// $event_name     = sanitize_text_field( $_POST['event_name'] );
-		// $event_location = sanitize_text_field( $_POST['event_location'] );
-		// $event_date     = sanitize_text_field( $_POST['event_date'] );
+		$event_name     = sanitize_text_field( $_POST['event_name'] );
+		$event_location = sanitize_text_field( $_POST['event_location'] );
+		$event_date     = sanitize_text_field( $_POST['event_date'] );
 
-		// $new_event = wp_insert_post(
-		// 	array(
-		// 		'post_title'  => $event_name,
-		// 		'post_status' => 'publish',
-		// 		'post_type'   => Event::TYPE,
-		// 		'meta_input'  => array(
-		// 			'event_location' => $event_location,
-		// 			'event_date'     => $event_date,
-		// 		),
-		// 	)
-		// );
+		$new_event = wp_insert_post(
+			array(
+				'post_title'  => $event_name,
+				'post_status' => 'publish',
+				'post_type'   => Event::TYPE,
+				'meta_input'  => array(
+					'event_location' => $event_location,
+					'event_date'     => $event_date,
+				),
+			)
+		);
 
 		wp_redirect( $_SERVER['HTTP_REFERER'] );
 		exit();

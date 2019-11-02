@@ -7,8 +7,10 @@
 
 namespace Guestlist\Models;
 
+use Guestlist\Models\Post;
+
 /** Event model */
-class Event {
+class Event extends Post {
 	/**
 	 * The typename.
 	 *

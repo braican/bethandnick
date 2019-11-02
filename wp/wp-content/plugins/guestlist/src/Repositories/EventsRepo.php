@@ -42,7 +42,7 @@ class EventsRepo extends Repository {
 		}
 
 		$params = $this->get_params( $args );
-		return $this->query( $params );
+		return $this->query( $params, '\Guestlist\Models\Event' );
 	}
 
 }

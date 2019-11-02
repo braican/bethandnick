@@ -6,11 +6,15 @@
   margin-bottom: 1em;
 }
 
+.gl-form .form-section {
+  margin-bottom: 2em;
+}
+
 .gl-form .form-actions {
   margin-top: 2em;
 }
 
-.gl-form .form-row label {
+.gl-form label {
   display: block;
   font-weight: bold;
   margin-bottom: 0.5em;

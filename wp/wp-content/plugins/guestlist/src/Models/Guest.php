@@ -7,14 +7,17 @@
 
 namespace Guestlist\Models;
 
+use Guestlist\Models\Post;
+
 /** Guest model */
-class Guest {
+class Guest extends Post {
 	/**
 	 * The typename.
 	 *
 	 * @var string
 	 */
-	const TYPE = 'gl_event';
+	const TYPE = 'gl_guest';
+
 
 	/**
 	 * Creates the custom post type.
@@ -34,4 +37,37 @@ class Guest {
 			)
 		);
 	}
+
+	/**
+	 * Gets the attending status of this guest.
+	 *
+	 * @return string
+	 */
+	public function attending() {
+		$attending_status = $this->meta( 'gl_attending' );
+
+		if ( $attending_status > 0 ) {
+			return 'Yes';
+		} else if ( $attending_status < 0 ) {
+			return 'No';
+		}
+
+		return 'Not responded';
+	}
+
+	/**
+	 * Gets the selected meal of this guest.
+	 *
+	 * @return string
+	 */
+	public function meal() {
+		$meal = $this->meta( 'gl_meal' );
+
+		if ( $meal ) {
+			return $meal;
+		}
+
+		return 'Not selected';
+	}
+
 }

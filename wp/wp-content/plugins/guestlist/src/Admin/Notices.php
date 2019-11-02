@@ -1,10 +1,13 @@
 <?php
 /**
  * Gets admin notices.
+ *
+ * @package Guestlist
  */
 
 namespace Guestlist\Admin;
 
+/** Class */
 class Notices {
 	const KEY = 'gl_form_notice';
 

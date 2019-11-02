@@ -17,7 +17,7 @@
 
 .gl-form .address-fields {
   width: 100%;
-  max-width: 604px;
+  max-width: 660px;
   display: grid;
   grid-gap: .5em;
   grid-template-columns: 2fr 3fr;
@@ -30,7 +30,7 @@
 .gl-form .new-guest-input {
   position: relative;
   width: 100%;
-  max-width: 660px;
+  max-width: 716px;
   padding-right: 56px;
   box-sizing: border-box;
 }
@@ -49,4 +49,29 @@
 
 .gl-form .new-guest-input + .new-guest-input {
   margin-top: 0.5em;
+}
+
+
+.gl-guest-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.gl-guest-table td {
+  padding: 0.5em;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.gl-guest-table .group-header {
+  padding: 0.5em;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #ccc;
+  background-color: #eee;
+}
+
+.gl-guest-table tbody tr:nth-child(2n) td {
+  background-color: #f8f8f8;
 }

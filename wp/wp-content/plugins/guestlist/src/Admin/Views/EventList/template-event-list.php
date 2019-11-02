@@ -63,11 +63,11 @@
 		<ul class="all-events">
 			<?php foreach ( $this->get_events() as $event ) : ?>
 			<li class="gl-event">
-				<h2><?php echo esc_html( get_the_title( $event->ID ) ); ?></h2>
-				<p><?php echo esc_html( get_post_meta( $event->ID, 'event_date', true ) ); ?></p>
+				<h2><?php echo esc_html( get_the_title( $event ) ); ?></h2>
+				<p><?php echo esc_html( $event->meta( 'event_date' ) ); ?></p>
 
 				<?php // phpcs:ignore ?>
-				<p><?php echo esc_html( get_post_meta( $event->ID, 'event_location', true ) ); ?></p>
+				<p><?php echo esc_html( $event->meta( 'event_location' ) ); ?></p>
 				<br>
 
 				<?php // phpcs:ignore ?>
