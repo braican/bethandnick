@@ -79,11 +79,11 @@ class Repository {
 	 * Runs a query.
 	 *
 	 * @param array  $params WP Query params.
-	 * @param string $Class  A class to wrap the posts in.
+	 * @param string $class  A class to wrap the posts in.
 	 *
 	 * @return Repository
 	 */
-	protected function query( array $params, string $Class = null ) {
+	protected function query( array $params, string $class = null ) {
 		// Clear old result sets.
 		$this->reset();
 
@@ -102,7 +102,7 @@ class Repository {
 			wp_cache_set( $cache_key, $posts, __CLASS__ );
 		}
 
-		return $this->result_set( $posts, $Class );
+		return $this->result_set( $posts, $class );
 	}
 
 	/**
@@ -123,14 +123,24 @@ class Repository {
 	 *
 	 * @return Repository
 	 */
-	protected function result_set( $result_set = [], $Class = null ) {
-		if ( $Class ) {
-			$result_set = array_map( function( $thing ) use ( $Class ) {
-				return new $Class( $thing );
+	protected function result_set( $result_set = [], $class = null ) {
+		if ( $class ) {
+			$result_set = array_map( function( $thing ) use ( $class ) {
+				return new $class( $thing );
 			}, $result_set );
 		}
 
 		$this->result_set = $result_set;
 		return $this;
+	}
+
+
+	/**
+	 * Returns the number of pages the query has returned.
+	 *
+	 * @return int
+	 */
+	public function get_pages() {
+		return $this->query->max_num_pages;
 	}
 }

@@ -1,6 +1,6 @@
 /* Adding a new event */
 .gl-add-new-guest-form {
-  /* display: none; */
+  display: none;
 }
 
 .adding-new-guest .gl-add-new-guest-form {
@@ -51,12 +51,14 @@
   margin-top: 0.5em;
 }
 
+/* Guest table */
 
 .gl-guest-table {
   width: 100%;
   border-collapse: collapse;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
+  margin-top: 2em;
 }
 
 .gl-guest-table td {

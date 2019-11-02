@@ -123,6 +123,43 @@ class Event {
 	}
 
 	/**
+	 * Pagination.
+	 *
+	 * @return int
+	 */
+	public function get_page_count() {
+		return (int) $this->guests->get_pages();
+	}
+
+	/**
+	 * The current page.
+	 *
+	 * @return int
+	 */
+	public function get_current_page() {
+		if ( isset( $_GET['paged'] ) && $_GET['paged'] ) {
+			return (int) $_GET['paged'];
+		}
+
+		return 1;
+	}
+
+	/**
+	 * Get the paginated url.
+	 *
+	 * @return string
+	 */
+	public function get_paginated_link( $page ) {
+		$curent_url = add_query_arg( $_SERVER['QUERY_STRING'], '', admin_url( 'admin.php' ) );
+
+		if ( false === $page ) {
+			return remove_query_arg( 'paged', $curent_url );
+		}
+
+		return add_query_arg( 'paged', $page, $curent_url );
+	}
+
+	/**
 	 * The callback for the page display.
 	 *
 	 * @return void

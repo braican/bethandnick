@@ -184,6 +184,10 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 		</form>
 	</div>
 
+	<div class="gl-attending-info">
+
+	</div>
+
 	<div class="gl-guest-list">
 	<?php if ( $this->have_guests() ) : ?>
 		<table class="gl-guest-table">
@@ -212,6 +216,9 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 			<?php endforeach; ?>
 			</tbody>
 		</table>
+
+		<?php include_once trailingslashit( plugin_dir_path( __FILE__ ) ) . 'template-guest-pagination.php'; ?>
+
 	<?php else : ?>
 	<p>No guests have been added for this event.</p>
 	<?php endif; ?>

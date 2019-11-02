@@ -65,7 +65,13 @@ class GuestRepo extends Repository {
 	public function all( array $args = [] ) {
 		if ( ! isset( $args['posts_per_page'] ) ) {
 			// Set a high, but sane, default to prevent full table scans.
-			$args['posts_per_page'] = 50;
+			$args['posts_per_page'] = 1;
+		}
+
+		$paged = isset( $_GET['paged'] ) ? $_GET['paged'] : false;
+
+		if ( $paged && $paged > 1 ) {
+			$args['paged'] = $paged;
 		}
 
 		$params = $this->get_params( $args );
@@ -96,12 +102,12 @@ class GuestRepo extends Repository {
 	/**
 	 * Sets up the grouped guests.
 	 *
-	 * @param array $result_set Result set.
-	 *
+	 * @param array  $result_set Result set.
+	 * @param string $class      A class to wrap the posts in.
 	 *
 	 * @return Repository
 	 */
-	protected function result_set( $result_set = [], $Class = null ) {
+	protected function result_set( $result_set = [], $class = null ) {
 		$mapped_guests    = array_map( array( $this, 'map_group_guests' ), $result_set );
 		$this->result_set = array_filter( $mapped_guests );
 		return $this;
