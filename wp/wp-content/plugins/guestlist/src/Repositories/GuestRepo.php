@@ -65,7 +65,7 @@ class GuestRepo extends Repository {
 	public function all( array $args = [] ) {
 		if ( ! isset( $args['posts_per_page'] ) ) {
 			// Set a high, but sane, default to prevent full table scans.
-			$args['posts_per_page'] = 1;
+			$args['posts_per_page'] = 20;
 		}
 
 		$paged = isset( $_GET['paged'] ) ? $_GET['paged'] : false;

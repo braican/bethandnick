@@ -147,6 +147,8 @@ class Event {
 	/**
 	 * Get the paginated url.
 	 *
+	 * @param mixed $page The page value to add to the query param.
+	 *
 	 * @return string
 	 */
 	public function get_paginated_link( $page ) {

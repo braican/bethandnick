@@ -56,22 +56,19 @@
 .gl-guest-table {
   width: 100%;
   border-collapse: collapse;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border: 1px solid #ccc;
   margin-top: 2em;
 }
 
 .gl-guest-table td {
   padding: 0.5em;
-  border-left: 1px solid #ccc;
-  border-right: 1px solid #ccc;
 }
 
 .gl-guest-table .group-header {
   padding: 0.5em;
   border-top: 1px solid #aaa;
-  border-bottom: 1px solid #ccc;
   background-color: #eee;
+  font-weight: bold;
 }
 
 .gl-guest-table tbody tr:nth-child(2n) td {
