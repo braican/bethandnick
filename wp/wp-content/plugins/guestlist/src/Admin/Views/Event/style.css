@@ -66,11 +66,32 @@
 
 .gl-guest-table .group-header {
   padding: 0.5em;
-  border-top: 1px solid #aaa;
-  background-color: #eee;
+  /* border-top: 1px solid #aaa; */
+  background-color: #ddd;
   font-weight: bold;
 }
 
 .gl-guest-table tbody tr:nth-child(2n) td {
   background-color: #f8f8f8;
+}
+
+.gl-guest-table .gl-edit-guest {
+  display: none;
+}
+
+.gl-guest-table .gl-edit-guest-options {
+  margin-bottom: 1em;
+}
+
+.gl-guest-table .gl-edit-guest-options label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.gl-guest-table .gl-editing-cell .gl-edit-guest {
+  display: block;
+}
+
+.gl-guest-table .gl-editing-cell .gl-guest-info {
+  display: none;
 }

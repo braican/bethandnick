@@ -41,14 +41,20 @@ class Guest extends Post {
 	/**
 	 * Gets the attending status of this guest.
 	 *
+	 * @param boolean $raw Return the raw data, rather than the display word.
+	 *
 	 * @return string
 	 */
-	public function attending() {
+	public function attending( $raw = false ) {
 		$attending_status = $this->meta( 'gl_attending' );
+
+		if ( $raw ) {
+			return $attending_status;
+		}
 
 		if ( $attending_status > 0 ) {
 			return 'Yes';
-		} else if ( $attending_status < 0 ) {
+		} elseif ( $attending_status < 0 ) {
 			return 'No';
 		}
 

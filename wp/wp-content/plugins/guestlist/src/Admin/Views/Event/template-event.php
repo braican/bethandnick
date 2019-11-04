@@ -173,7 +173,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 				</button>
 			</div>
 
-			<input type="hidden" name="action" value="<?php echo esc_attr( $this->action ); ?>" />
+			<input type="hidden" name="action" value="<?php echo esc_attr( self::ACTION_ADD ); ?>" />
 			<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'add_guest' ) ); ?>">
 			<input type="hidden" name="event" value="<?php echo esc_attr( $gl_event->ID ); ?>">
 
@@ -208,8 +208,68 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 				<?php foreach ( $grouped_guests->guests as $guest ) : ?>
 				<tr>
 					<td><?php echo get_the_title( $guest ); ?></td>
-					<td><?php echo esc_html( $guest->attending() ); ?></td>
-					<td><?php echo esc_html( $guest->meal() ); ?></td>
+					<td data-value="<?php echo esc_attr( $guest->attending( true ) ); ?>">
+						<div class="gl-guest-info">
+							<span class="gl-guest-value js-guest-value"><?php echo esc_attr( $guest->attending() ); ?></span>
+							<a href="#" class="js-guest-edit-cell">Update</a>
+						</div>
+
+						<form class="gl-edit-guest js-edit-guest-attending-form">
+							<div class="gl-edit-guest-options">
+								<label>
+									<input name="guest_attending" value="1" type="radio">
+									Yes
+								</label>
+
+								<label>
+									<input name="guest_attending" value="-1" type="radio">
+									No
+								</label>
+							</div>
+
+							<input type="hidden" name="guest_id" value="<?php echo esc_attr( $guest->ID ); ?>">
+							<input type="hidden" name="action" value="<?php echo esc_attr( self::ACTION_EDIT_ATTENDING ); ?>">
+							<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'edit_guest_attending_' . $guest->ID ) ); ?>">
+							<input type="hidden" name="ajax_url" value="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
+
+							<button class="button button-primary">Save</button>
+							<button class="button button-secondary js-cancel-edit-guest">Cancel</button>
+						</form>
+					</td>
+
+					<td data-value="<?php echo esc_attr( $guest->meal() ); ?>">
+						<div class="gl-guest-info">
+							<span class="gl-guest-value js-guest-value"><?php echo esc_attr( $guest->meal() ); ?></span>
+							<a href="#" class="js-guest-edit-cell">Update</a>
+						</div>
+
+						<form class="gl-edit-guest js-edit-guest-meal-form">
+							<div class="gl-edit-guest-options">
+								<label>
+									<input name="guest_meal" value="Chicken" type="radio">
+									Chicken
+								</label>
+
+								<label>
+									<input name="guest_meal" value="Fish" type="radio">
+									Fish
+								</label>
+
+								<label>
+									<input name="guest_meal" value="Pasta" type="radio">
+									Pasta
+								</label>
+							</div>
+
+							<input type="hidden" name="guest_id" value="<?php echo esc_attr( $guest->ID ); ?>">
+							<input type="hidden" name="action" value="<?php echo esc_attr( self::ACTION_EDIT_MEAL ); ?>">
+							<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'edit_guest_meal_' . $guest->ID ) ); ?>">
+							<input type="hidden" name="ajax_url" value="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
+
+							<button class="button button-primary">Save</button>
+							<button class="button button-secondary js-cancel-edit-guest">Cancel</button>
+						</form>
+					</td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>

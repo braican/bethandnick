@@ -35,7 +35,21 @@ class Event {
 	 *
 	 * @var string
 	 */
-	public $action = 'guestlist_add_guest';
+	const ACTION_ADD = 'guestlist_add_guest';
+
+	/**
+	 * The action label for editing the attending status for a guest.
+	 *
+	 * @var string
+	 */
+	const ACTION_EDIT_ATTENDING = 'guestlist_edit_guest_attending';
+
+	/**
+	 * The action label for editing the meal for a guest.
+	 *
+	 * @var string
+	 */
+	const ACTION_EDIT_MEAL = 'guestlist_edit_guest_meal';
 
 	/**
 	 * Init this view with some hooks.
@@ -44,7 +58,9 @@ class Event {
 	 */
 	public function __construct() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
-		add_action( 'admin_action_' . $this->action, array( $this, 'handle_add_guest' ) );
+		add_action( 'admin_action_' . self::ACTION_ADD, array( $this, 'handle_add_guest' ) );
+		add_action( 'wp_ajax_' . self::ACTION_EDIT_ATTENDING, array( $this, 'handle_edit_attending' ) );
+		add_action( 'wp_ajax_' . self::ACTION_EDIT_MEAL, array( $this, 'handle_edit_meal' ) );
 	}
 
 	/**
@@ -253,5 +269,43 @@ class Event {
 		Notices::add( $message, 'success', true );
 		wp_redirect( $_SERVER['HTTP_REFERER'] );
 		exit();
+	}
+
+	/**
+	 * Handles the form submission for the attending edit.
+	 *
+	 * @return void
+	 */
+	public function handle_edit_attending() {
+		// check the nonce.
+		if ( ! isset( $_POST['nonce'] ) || check_ajax_referer( 'edit_guest_attending_' . $_POST['guest_id'], 'nonce', false ) === false ) {
+			wp_send_json_error();
+		}
+
+		if ( ! isset( $_POST['guest_id'] ) || ! $_POST['guest_id'] ) {
+			wp_send_json_error( 'Invalid guest ID.' );
+		}
+
+		$update = update_post_meta( $_POST['guest_id'], 'gl_attending', $_POST['guest_attending'] );
+		wp_send_json_success( $update );
+	}
+
+	/**
+	 * Handles the form submission for the meal edit.
+	 *
+	 * @return void
+	 */
+	public function handle_edit_meal() {
+		// check the nonce.
+		if ( ! isset( $_POST['nonce'] ) || check_ajax_referer( 'edit_guest_meal_' . $_POST['guest_id'], 'nonce', false ) === false ) {
+			wp_send_json_error();
+		}
+
+		if ( ! isset( $_POST['guest_id'] ) || ! $_POST['guest_id'] ) {
+			wp_send_json_error( 'Invalid guest ID.' );
+		}
+
+		$update = update_post_meta( $_POST['guest_id'], 'gl_meal', $_POST['guest_meal'] );
+		wp_send_json_success( $update );
 	}
 }
