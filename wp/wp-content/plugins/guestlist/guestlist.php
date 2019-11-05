@@ -32,6 +32,7 @@ define( 'GUESTLIST_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 require_once GUESTLIST_PATH . 'autoloader.php';
 
 use Guestlist\Admin\Admin;
+use Guestlist\Cli\Cli;
 
 /**
  * Core functionality for the plugin.
@@ -74,6 +75,7 @@ class Guestlist {
 	 */
 	public function run() {
 		$this->admin = new Admin();
+		$this->cli   = new Cli();
 
 		$this->admin->hooks();
 		$this->define_public_hooks();
