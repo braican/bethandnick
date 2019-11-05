@@ -33,6 +33,7 @@ require_once GUESTLIST_PATH . 'autoloader.php';
 
 use Guestlist\Admin\Admin;
 use Guestlist\Cli\Cli;
+use Guestlist\Api\Api;
 
 /**
  * Core functionality for the plugin.
@@ -44,6 +45,20 @@ class Guestlist {
 	 * @var \Guestlist\Admin
 	 */
 	private $admin;
+
+	/**
+	 * CLI.
+	 *
+	 * @var \Guestlist\Cli
+	 */
+	private $cli;
+
+	/**
+	 * API.
+	 *
+	 * @var \Guestlist\Api
+	 */
+	private $api;
 
 
 	/**
@@ -76,6 +91,7 @@ class Guestlist {
 	public function run() {
 		$this->admin = new Admin();
 		$this->cli   = new Cli();
+		$this->api   = new Api();
 
 		$this->admin->hooks();
 		$this->define_public_hooks();
