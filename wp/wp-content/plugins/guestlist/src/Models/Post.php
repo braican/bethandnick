@@ -30,6 +30,13 @@ class Post {
 	public $post_title;
 
 	/**
+	 * The type of post.
+	 *
+	 * @var string
+	 */
+	public $post_type;
+
+	/**
 	 * Constructor, to extend WP_Post.
 	 *
 	 * @param mixed $_post The post object or ID to get.
@@ -38,6 +45,7 @@ class Post {
 		$this->post       = get_post( $_post );
 		$this->post_title = $this->post->post_title;
 		$this->ID         = (int) $this->post->ID;
+		$this->post_type  = $this->post->post_type;
 	}
 
 

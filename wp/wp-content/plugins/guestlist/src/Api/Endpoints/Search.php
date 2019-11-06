@@ -50,11 +50,7 @@ class Search {
 		$event_id = $request->get_param( 'event' );
 		$search   = $request->get_param( 's_addr' );
 
-		$this->search( $event_id, $search );
-
-		return array(
-			'tet' => 'sfoo',
-		);
+		return $this->search( $event_id, $search );
 	}
 
 	/**
@@ -63,9 +59,30 @@ class Search {
 	 * @param int    $event_id Post ID of the event to search in.
 	 * @param string $search   String to search for.
 	 *
-	 * @return
+	 * @return array|WP_Error if there are any errors.
 	 */
 	private function search( $event_id, $search ) {
+		global $gl_algolia;
 
+		if ( null === $gl_algolia ) {
+			return new \WP_Error(
+				'no_algolia',
+				'The Algolia search has not been set up.',
+				array( 'status' => 403 )
+			);
+		}
+
+		// @TODO: make this a setting in the db.
+		$index = $gl_algolia->initIndex( 'BETHANDNICK' );
+		$res   = $index->search(
+			$search,
+			array(
+				'filters' => 'event:' . $event_id,
+			)
+		);
+
+		return array(
+			'search' => $res,
+		);
 	}
 }

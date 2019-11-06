@@ -28,8 +28,15 @@ define( 'GUESTLIST_VERSION', '0.0.1' );
 define( 'GUESTLIST_PATH', trailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'GUESTLIST_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
-// Load the autoloader.
+// Load the autoloaders.
 require_once GUESTLIST_PATH . 'autoloader.php';
+require_once GUESTLIST_PATH . 'vendor/autoload.php';
+
+global $gl_algolia;
+
+if ( defined( 'ALGOLIA_API_KEY' ) && ALGOLIA_API_KEY ) {
+	$gl_algolia = \Algolia\AlgoliaSearch\SearchClient::create( 'NH1UNPOZZR', ALGOLIA_API_KEY );
+}
 
 use Guestlist\Admin\Admin;
 use Guestlist\Cli\Cli;

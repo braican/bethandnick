@@ -25,10 +25,8 @@ class Cli {
 	 */
 	private function setup_commands() {
 		if ( defined( '\WP_CLI' ) && \WP_CLI ) {
-			\WP_CLI::add_command(
-				'guestlist import',
-				'Guestlist\Cli\ImportCommand'
-			);
+			\WP_CLI::add_command( 'guestlist import', 'Guestlist\Cli\ImportCommand' );
+			\WP_CLI::add_command( 'guestlist index_algolia', 'Guestlist\Cli\IndexAlgoliaCommand' );
 		}
 	}
 }

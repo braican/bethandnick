@@ -8,7 +8,7 @@
 namespace Guestlist\Models;
 
 /** GuestGroup model */
-class GuestGroup {
+class GuestGroup extends Post {
 	/**
 	 * The type name.
 	 *
