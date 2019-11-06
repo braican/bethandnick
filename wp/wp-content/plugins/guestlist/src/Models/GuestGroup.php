@@ -7,8 +7,10 @@
 
 namespace Guestlist\Models;
 
+use Guestlist\Models\Guest;
+
 /** GuestGroup model */
-class GuestGroup {
+class GuestGroup extends Post {
 	/**
 	 * The type name.
 	 *
@@ -33,5 +35,22 @@ class GuestGroup {
 				'supports' => array( 'title' ),
 			)
 		);
+	}
+
+	/**
+	 * Gets the guests in a Guestlist.
+	 *
+	 * @return array
+	 */
+	public function get_guests() {
+		$guests = $this->meta( 'gl_guests' );
+
+		if ( ! $guests ) {
+			return null;
+		}
+
+		return array_map( function ( $guest_id ) {
+			return new Guest( $guest_id );
+		}, $guests );
 	}
 }
