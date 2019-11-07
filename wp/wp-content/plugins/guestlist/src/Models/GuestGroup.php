@@ -53,4 +53,13 @@ class GuestGroup extends Post {
 			return new Guest( $guest_id );
 		}, $guests );
 	}
+
+	/**
+	 * Gets the full address of this guest group.
+	 *
+	 * @return string
+	 */
+	public function get_address() {
+		return $this->meta( 'address' );
+	}
 }

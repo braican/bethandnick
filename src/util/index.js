@@ -1,4 +1,5 @@
 export { isDesktop } from './responsive';
+export { catchApiError } from './services';
 
 /**
  * Transform html entities.

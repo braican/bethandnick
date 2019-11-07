@@ -202,7 +202,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 			<?php foreach ( $this->get_guests() as $grouped_guests ) : ?>
 			<tbody>
 				<tr>
-					<td colspan="3" class="group-header"><?php echo esc_html( $grouped_guests->meta( 'address' ) ); ?></td>
+					<td colspan="3" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
 				</tr>
 
 				<?php foreach ( $grouped_guests->get_guests() as $guest ) : ?>

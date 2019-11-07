@@ -18,7 +18,6 @@ class Guest extends Post {
 	 */
 	const TYPE = 'gl_guest';
 
-
 	/**
 	 * Creates the custom post type.
 	 */

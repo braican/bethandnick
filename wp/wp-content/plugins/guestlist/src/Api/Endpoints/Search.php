@@ -91,7 +91,7 @@ class Search {
 			$records,
 			array(
 				'keys'         => array( 'street', 'address' ),
-				'threshold'    => 0.4,
+				'threshold'    => 0.1,
 				'includeScore' => true,
 			)
 		);
@@ -99,9 +99,18 @@ class Search {
 		$results = $fuse->search( $search );
 
 		if ( empty( $results ) ) {
-			return new \WP_Error( 'no_results', 'No results match that search.', array( 'status' => 404 ) );
+			return new \WP_Error( 'no_results', 'No results match that search.', array( 'status' => 200 ) );
 		}
 
-		return $results;
+		return array_map( function ( $result ) {
+			$id          = $result['item']['objectID'];
+			$guest_group = new GuestGroup( $id );
+
+			return array(
+				'ID'      => $guest_group->ID,
+				'address' => $guest_group->get_address(),
+				'guests'  => $guest_group->get_guests(),
+			);
+		}, $results );
 	}
 }
