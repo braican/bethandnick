@@ -6,7 +6,8 @@ import { RsvpContext } from '../index';
 const ConfirmYes = ({ guest, meal }) => (
   <div>
     <p>Excellent. Just make sure everything below is correct and hit submit to complete your RSVP! And don't forget to mark your calendar for October 17th of this year!</p>
-
+    {guest.post_title}
+    {meal}
   </div>
 );
 
@@ -20,26 +21,34 @@ const ConfirmNo = () => (
 );
 
 const Confirm = () => {
-  const { attending, meal, guest, group } = useContext(RsvpContext);
-  const otherGuests = group.guests.filter(altGuest => altGuest.ID !== guest.ID);
+  const { guest, getGuestAttending, getGuestMeal, getOtherGuests } = useContext(RsvpContext);
+  const otherGuests = getOtherGuests();
 
   return (
     <div className="rsvp--confirm">
-      {true === attending ? <ConfirmYes guest={guest} meal={meal} /> : <ConfirmNo />}
+      {true === getGuestAttending(guest.ID) ? <ConfirmYes guest={guest} meal={getGuestMeal(guest.ID)} /> : <ConfirmNo />}
 
-      {otherGuests.length > 0 && (
+      {otherGuests && (
         <div>
-          <p>Would you like to RSVP for anyone else from {group.address}?</p>
+          <p>You've also checked in these guests:</p>
 
           <ul>
-            {otherGuests.map(altGuest => (
-              <li key={altGuest.ID}>{altGuest.post_title}</li>
-            ))}
+            {Object.keys(otherGuests).map(guestId => {
+              const otherGuest = otherGuests[guestId];
+              return (
+                <li key={guestId}>
+                  {otherGuest.post_title}
+
+                  {otherGuest.meal}
+                  {otherGuest.attending ? 'Yes' : 'No'}
+                </li>
+              );
+            })}
           </ul>
         </div>
       )}
 
-      <button className="btn">Complete my RSVP</button>
+      <button className="btn">Submit</button>
     </div>
   );
 

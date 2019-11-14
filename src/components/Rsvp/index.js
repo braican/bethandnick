@@ -39,30 +39,68 @@ const views = [
 ];
 
 const Rsvp = () => {
+  const [searchResults, setSearchResults] = useState([]);
   const [guest, setGuest] = useState(null);
   const [group, setGroup] = useState(null);
-  const [attending, setAttending] = useState(null);
-  const [meal, setMeal] = useState(null);
-  const [searchResults, setSearchResults] = useState([]);
-
+  const [rsvps, setRsvps] = useState({});
   const [rsvpStep, setRsvpStep] = useState(0);
-
   const { name: viewName, component: View } = views[rsvpStep];
+
+  const yesGuestCount = () => Object.keys(rsvps).filter(guestId => rsvps[guestId].attending === true).length;
 
   const next = () => {
     let nextStep = rsvpStep + 1;
 
-    if ('set-attending' === viewName && false === attending) {
+    if ('set-attending' === viewName && yesGuestCount() === 0) {
       nextStep += 1;
     }
 
     setRsvpStep(nextStep);
   };
 
+  const previous = () => {
+    const prevStep = rsvpStep - 1;
+    setRsvpStep(prevStep);
+  };
+
+  const updateGuestRsvp = (guestId, data) => {
+    const newRsvps = { ...rsvps };
+    const guestResponses = { ...newRsvps[guestId], ...data };
+
+    newRsvps[guestId] = guestResponses;
+    setRsvps(newRsvps);
+  };
+
+  const getGuestAttending = guestId => rsvps[guestId] ? rsvps[guestId].attending : null;
+  const getGuestMeal = guestId => rsvps[guestId] ? rsvps[guestId].meal : null;
+  const getOtherGuests = (onlyAttending = false) => {
+    const otherGuestIds = Object.keys(rsvps).filter(guestId => {
+      const isNotCurrentGuest = parseInt(guestId) !== parseInt(guest.ID);
+
+      if (onlyAttending) {
+        return isNotCurrentGuest && rsvps[guestId].attending === true;
+      }
+
+      return isNotCurrentGuest;
+    });
+
+    if (otherGuestIds.length === 0) {
+      return false;
+    }
+
+    const otherGuests = {};
+    otherGuestIds.forEach(guestId => {
+      otherGuests[guestId] = rsvps[guestId];
+    });
+
+    return otherGuests;
+  };
+
   return (
     <RsvpContext.Provider
       value={{
         next,
+        previous,
 
         guest,
         setGuest,
@@ -70,11 +108,12 @@ const Rsvp = () => {
         group,
         setGroup,
 
-        attending,
-        setAttending,
+        rsvps,
+        updateGuestRsvp,
 
-        meal,
-        setMeal,
+        getGuestAttending,
+        getGuestMeal,
+        getOtherGuests,
 
         searchResults,
         setSearchResults,

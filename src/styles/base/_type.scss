@@ -91,7 +91,7 @@ button {
   font-weight: $fw--bold;
 
   &:not(:disabled):hover {
-    @include box-shadow(4px);
+    @include box-shadow(5px);
     background-color: lighten($c--primary, 6%);
   }
 
@@ -101,6 +101,11 @@ button {
     background-color: $c--gray-9;
     pointer-events: none;
     opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: lighten($c--primary, 6%);
   }
 }
 
