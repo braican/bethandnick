@@ -4,9 +4,6 @@ import { RsvpContext } from '../index';
 const SetAttending = () => {
   const { next, guest, attending, setAttending } = useContext(RsvpContext);
 
-  console.log(attending);
-
-
   return (
     <div className="rsvp--set-attending">
       <h3>Hey {guest.post_title}!</h3>

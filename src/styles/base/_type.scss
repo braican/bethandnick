@@ -86,7 +86,7 @@ button {
   @include transition;
   @include box-shadow(3px);
   background-color: $c--primary;
-  padding: 0.5em 1em;
+  padding: 0.75em 1em;
   color: $c--white;
   font-weight: $fw--bold;
 
