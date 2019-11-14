@@ -82,6 +82,28 @@ button {
   font-size: inherit;
 }
 
+.btn {
+  @include transition;
+  @include box-shadow(3px);
+  background-color: $c--primary;
+  padding: 0.5em 1em;
+  color: $c--white;
+  font-weight: $fw--bold;
+
+  &:not(:disabled):hover {
+    @include box-shadow(4px);
+    background-color: lighten($c--primary, 6%);
+  }
+
+  &:disabled {
+    @include box-shadow(0);
+    cursor: default;
+    background-color: $c--gray-9;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
+
 .has-drop-cap:first-letter {
   color: $c--primary;
   float: left;
