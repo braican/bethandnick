@@ -15,12 +15,12 @@ const SearchResults = () => {
       <p>Who are you?</p>
 
       {searchResults.map(group => (
-        <div key={group.ID}>
+        <div key={group.id}>
           <p>{group.address}</p>
 
           <ul>
             {group.guests.map(guest => (
-              <li key={guest.ID}><button onClick={() => handleChooseGuest(guest, group)}>{guest.post_title}</button></li>
+              <li key={guest.id}><button onClick={() => handleChooseGuest(guest, group)}>{guest.name}</button></li>
             ))}
           </ul>
         </div>

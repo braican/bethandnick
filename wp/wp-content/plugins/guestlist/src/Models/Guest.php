@@ -75,4 +75,17 @@ class Guest extends Post {
 		return 'Not selected';
 	}
 
+
+	/**
+	 * Build and return the object that should be presented in the REST API.
+	 *
+	 * @return array
+	 */
+	public function api_return() {
+		return array(
+			'id'   => $this->ID,
+			'name' => $this->post_title,
+		);
+	}
+
 }

@@ -5,8 +5,8 @@ import { RsvpContext } from '../index';
 
 const ConfirmYes = ({ guest, meal }) => (
   <div>
-    <p>Excellent. Just make sure everything below is correct and hit submit to complete your RSVP! And don't forget to mark your calendar for October 17th of this year!</p>
-    {guest.post_title}
+    <p>Excellent! Don't forget to mark your calendar for October 17th of this year, we can't wait to celebrate with you.</p>
+    {guest.name}
     {meal}
   </div>
 );
@@ -17,7 +17,7 @@ ConfirmYes.propTypes = {
 };
 
 const ConfirmNo = () => (
-  <p>Oh no! We'll miss you at the party.</p>
+  <p>We're sorry you can't make it!</p>
 );
 
 const Confirm = () => {
@@ -26,7 +26,7 @@ const Confirm = () => {
 
   return (
     <div className="rsvp--confirm">
-      {true === getGuestAttending(guest.ID) ? <ConfirmYes guest={guest} meal={getGuestMeal(guest.ID)} /> : <ConfirmNo />}
+      {true === getGuestAttending(guest.id) ? <ConfirmYes guest={guest} meal={getGuestMeal(guest.id)} /> : <ConfirmNo />}
 
       {otherGuests && (
         <div>
@@ -37,7 +37,7 @@ const Confirm = () => {
               const otherGuest = otherGuests[guestId];
               return (
                 <li key={guestId}>
-                  {otherGuest.post_title}
+                  {otherGuest.name}
 
                   {otherGuest.meal}
                   {otherGuest.attending ? 'Yes' : 'No'}
@@ -47,6 +47,8 @@ const Confirm = () => {
           </ul>
         </div>
       )}
+
+      <p>If everything looks good, hit submit below to complete your RSVP.</p>
 
       <button className="btn">Submit</button>
     </div>

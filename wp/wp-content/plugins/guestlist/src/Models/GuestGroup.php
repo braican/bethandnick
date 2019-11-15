@@ -50,7 +50,8 @@ class GuestGroup extends Post {
 		}
 
 		return array_map( function ( $guest_id ) {
-			return new Guest( $guest_id );
+			$guest = new Guest( $guest_id );
+			return $guest->api_return();
 		}, $guests );
 	}
 
@@ -61,5 +62,14 @@ class GuestGroup extends Post {
 	 */
 	public function get_address() {
 		return $this->meta( 'address' );
+	}
+
+	/**
+	 * Gets the street address of this guest group.
+	 *
+	 * @return string
+	 */
+	public function get_street() {
+		return $this->meta( 'street' );
 	}
 }

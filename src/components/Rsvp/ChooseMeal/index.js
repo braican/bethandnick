@@ -12,7 +12,7 @@ const ChooseMeal = () => {
     getOtherGuests,
     getGuestAttending,
   } = useContext(RsvpContext);
-  const currentGuestAttending = getGuestAttending(guest.ID);
+  const currentGuestAttending = getGuestAttending(guest.id);
   const otherGuests = getOtherGuests(true);
   const otherGuestIds = Object.keys(otherGuests);
 
@@ -30,8 +30,8 @@ const ChooseMeal = () => {
           </p>
           <MealSelector
             name="attendee_meal"
-            checked={getGuestMeal(guest.ID)}
-            onChange={event => setGuestMeal(guest.ID, event.target.value)}
+            checked={getGuestMeal(guest.id)}
+            onChange={event => setGuestMeal(guest.id, event.target.value)}
           />
         </div>
       ) : (
@@ -50,12 +50,12 @@ const ChooseMeal = () => {
               const otherGuest = otherGuests[guestId];
               return (
                 <li key={guestId}>
-                  {otherGuest.post_title}
+                  {otherGuest.name}
 
                   <MealSelector
-                    name={`attendee_meal_${otherGuest.ID}`}
-                    checked={getGuestMeal(otherGuest.ID)}
-                    onChange={event => setGuestMeal(otherGuest.ID, event.target.value)}
+                    name={`attendee_meal_${otherGuest.id}`}
+                    checked={getGuestMeal(otherGuest.id)}
+                    onChange={event => setGuestMeal(otherGuest.id, event.target.value)}
                   />
                 </li>
               );
@@ -64,7 +64,7 @@ const ChooseMeal = () => {
         </div>
       )}
 
-      <button className="btn" disabled={getGuestMeal(guest.ID) === null} onClick={next}>
+      <button className="btn" disabled={getGuestMeal(guest.id) === null} onClick={next}>
         Next
       </button>
 

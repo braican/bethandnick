@@ -107,8 +107,9 @@ class Search {
 			$guest_group = new GuestGroup( $id );
 
 			return array(
-				'ID'      => $guest_group->ID,
+				'id'      => $guest_group->ID,
 				'address' => $guest_group->get_address(),
+				'street'  => $guest_group->get_street(),
 				'guests'  => $guest_group->get_guests(),
 			);
 		}, $results );
