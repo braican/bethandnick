@@ -63,13 +63,19 @@ class Guest extends Post {
 	/**
 	 * Gets the selected meal of this guest.
 	 *
+	 * @param boolean $raw Return the raw data, rather than the display word.
+	 *
 	 * @return string
 	 */
-	public function meal() {
+	public function meal( $raw = false ) {
 		$meal = $this->meta( 'gl_meal' );
 
 		if ( $meal ) {
 			return $meal;
+		}
+
+		if ( $raw ) {
+			return null;
 		}
 
 		return 'Not selected';

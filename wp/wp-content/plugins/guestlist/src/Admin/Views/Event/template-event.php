@@ -246,8 +246,8 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 						<form class="gl-edit-guest js-edit-guest-meal-form">
 							<div class="gl-edit-guest-options">
 								<label>
-									<input name="guest_meal" value="Chicken" type="radio">
-									Chicken
+									<input name="guest_meal" value="Meat" type="radio">
+									Meat
 								</label>
 
 								<label>

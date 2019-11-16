@@ -1,0 +1,46 @@
+@import '../../../styles/abstracts';
+
+.group {
+  position: relative;
+  padding-top: 1rem;
+  margin-top: 2rem;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 4px solid $c--secondary;
+  }
+}
+
+.address {
+  font-weight: $fw--bold;
+}
+
+.guestListItem {
+  margin-bottom: 1em;
+}
+
+.guestButton {
+  @include transition;
+  @include box-shadow(3px);
+  border: 2px solid $c--gray-c;
+  padding: 0.75em 1.5em;
+  position: relative;
+  background-color: $c--white;
+  border-radius: 4px;
+
+  &:focus,
+  &:hover {
+    @include box-shadow(5px);
+    outline: none;
+    background-color: $c--gray-f6;
+  }
+
+  &:focus {
+    border-color: $c--gray-4;
+  }
+}

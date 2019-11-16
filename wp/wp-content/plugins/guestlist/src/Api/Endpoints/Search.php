@@ -105,13 +105,27 @@ class Search {
 		return array_map( function ( $result ) {
 			$id          = $result['item']['objectID'];
 			$guest_group = new GuestGroup( $id );
-
-			return array(
+			$return = array(
 				'id'      => $guest_group->ID,
 				'address' => $guest_group->get_address(),
 				'street'  => $guest_group->get_street(),
-				'guests'  => $guest_group->get_guests(),
 			);
+
+			$guests = array();
+
+			foreach ( $guest_group->get_guests() as $guest ) {
+				$guest_data = array(
+					'id'        => $guest->ID,
+					'name'      => $guest->post_title,
+					'attending' => $guest->attending( true ),
+					'meal'      => $guest->meal( true ),
+				);
+				array_push( $guests, $guest_data );
+			}
+
+			$return['guests'] = $guests;
+
+			return $return;
 		}, $results );
 	}
 }

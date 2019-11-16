@@ -5,9 +5,6 @@ import { catchApiError } from '../../../util';
 
 import styles from './Search.module.scss';
 
-console.log(styles);
-
-
 const Search = () => {
   const [street, setStreet] = useState('');
   const [errorMessage, setErrorMessage] = useState('');

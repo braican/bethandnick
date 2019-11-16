@@ -96,7 +96,7 @@ const Rsvp = () => {
   const getGuestMeal = guestId => rsvps[guestId] ? rsvps[guestId].meal : null;
   const getOtherGuests = (onlyAttending = false) => {
     const otherGuestIds = Object.keys(rsvps).filter(guestId => {
-      const isNotCurrentGuest = parseInt(guestId) !== parseInt(guest.ID);
+      const isNotCurrentGuest = parseInt(guestId) !== parseInt(guest.id);
 
       if (onlyAttending) {
         return isNotCurrentGuest && rsvps[guestId].attending === true;

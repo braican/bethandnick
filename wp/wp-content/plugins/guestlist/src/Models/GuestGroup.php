@@ -46,12 +46,11 @@ class GuestGroup extends Post {
 		$guests = $this->meta( 'gl_guests' );
 
 		if ( ! $guests ) {
-			return null;
+			return [];
 		}
 
 		return array_map( function ( $guest_id ) {
-			$guest = new Guest( $guest_id );
-			return $guest->api_return();
+			return new Guest( $guest_id );
 		}, $guests );
 	}
 

@@ -1,0 +1,49 @@
+@import '../../../styles/abstracts';
+
+.attendingChoices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.choice {
+  width: 48%;
+
+  input[type='radio'] {
+    display: none;
+  }
+}
+
+.currentGuestOption {
+  @include transition;
+  @include box-shadow(0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1em;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  border: 2px solid $c--gray-e;
+  line-height: 1.3;
+  width: 100%;
+  font-weight: $fw--bold;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: $c--white;
+    border-color: $c--gray-d;
+  }
+
+  input:checked + & {
+    @include box-shadow(4px);
+    border-color: $c--gray-d;
+    background-color: $c--white;
+    color: $c--black;
+  }
+
+  .guestChosen & {
+    color: $c--gray-a;
+  }
+}
