@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { TransitionGroup, Transition } from 'react-transition-group';
-import { duration, transitionStyles } from '../../util/transitions';
 
 import Search from './Search';
 import SearchResults from './SearchResults';
@@ -9,6 +8,28 @@ import ChooseMeal from './ChooseMeal';
 import Confirm from './Confirm';
 
 export const RsvpContext = React.createContext();
+
+const duration = 300;
+
+const transitionStyles = {
+  entering: {
+    overflow: 'hidden',
+    width: 0,
+    height: 0,
+    opacity: 0,
+    transform: 'translateX(10px)',
+  },
+  entered: {
+    transition: `all ${duration}ms cubic-bezier(0.19, 1, 0.22, 1)`,
+    opacity: 1,
+    transform: 'translateX(0)',
+  },
+  exiting: {
+    transition: `all ${duration / 2}ms cubic-bezier(0.19, 1, 0.22, 1)`,
+    opacity: 0,
+    transform: 'translateX(-10px)',
+  },
+};
 
 const views = [
   {

@@ -3,6 +3,11 @@ import axios from 'axios';
 import { RsvpContext } from '../index';
 import { catchApiError } from '../../../util';
 
+import styles from './Search.module.scss';
+
+console.log(styles);
+
+
 const Search = () => {
   const [street, setStreet] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -35,7 +40,7 @@ const Search = () => {
     <div className="view--search">
       <p>
         We're excited to celebrate with you in October. To verify your invitation, please
-        enter the address we sent your invitation to below:
+        enter the address we sent your invitation to below (you only need the street number and name!):
       </p>
 
       {(loading || hasResults) ? (
@@ -44,10 +49,13 @@ const Search = () => {
         <form onSubmit={handleStreetSearch}>
           {errorMessage && <p>{errorMessage}</p>}
           <input
+            className={styles.searchField}
             type="text"
             name="street_name"
             onChange={e => setStreet(e.target.value)}
             value={street}
+            placeholder="Enter street address"
+            autoComplete="off"
           />
           <button className="btn" disabled={street === ''}>Search</button>
         </form>
