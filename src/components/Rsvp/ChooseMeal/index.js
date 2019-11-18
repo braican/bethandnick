@@ -57,6 +57,9 @@ const ChooseMeal = () => {
                     checked={getGuestMeal(otherGuest.id)}
                     onChange={event => setGuestMeal(otherGuest.id, event.target.value)}
                   />
+
+                  <label htmlFor="">Note any food allergies or dietary restrictions here.</label>
+                  <input type="text"/>
                 </li>
               );
             })}
