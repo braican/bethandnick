@@ -31,7 +31,6 @@
 }
 
 .otherGuestListItem {
-  padding: spacing(1) 0;
   display: block;
 
   + .otherGuestListItem {
@@ -62,7 +61,11 @@
   margin-left: spacing(1);
   font-weight: $fw--bold;
   color: rgba($c--gray-6, 0.2);
-  padding: 4px;
+  padding: spacing(1) 6px;
+
+  &:hover {
+    color: rgba($c--gray-6, 0.4);
+  }
 
   input:checked + &.otherGuestChoice__yes {
     color: $c-jungle-green;

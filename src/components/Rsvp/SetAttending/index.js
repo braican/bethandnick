@@ -1,14 +1,19 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { RsvpContext } from '../index';
 
 import { getFirstName, className } from '../../../util';
 
 import styles from './SetAttending.module.scss';
+import trsStyles from './transition.module.scss';
 
 const SetAttending = () => {
+
   const { next, previous, guest, group, updateGuestRsvp, getGuestAttending } = useContext(
     RsvpContext
   );
+  const [currentGuestSelected, setCurrentGuestSelected] = useState(false);
+
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id);
   const currGuestAttending = getGuestAttending(guest.id);
 
@@ -23,6 +28,7 @@ const SetAttending = () => {
     const newGuest = { ...guest };
 
     if (null === event || event.target.checked) {
+      setCurrentGuestSelected(true);
       newGuest.attending = true;
     } else {
       newGuest.attending = null;
@@ -36,6 +42,7 @@ const SetAttending = () => {
     const newGuest = { ...guest };
 
     if (null === event || event.target.checked) {
+      setCurrentGuestSelected(true);
       newGuest.attending = false;
     } else {
       newGuest.attending = null;
@@ -87,7 +94,12 @@ const SetAttending = () => {
         </li>
       </ul>
 
-      {otherGuests.length > 0 && (
+      <CSSTransition
+        in={otherGuests.length > 0 && currentGuestSelected}
+        timeout={300}
+        classNames={{ ...trsStyles }}
+        unmountOnExit
+      >
         <div className={styles.setOtherAttending}>
           <p>Would you like to check in for anyone else from {group.street}?</p>
 
@@ -121,15 +133,15 @@ const SetAttending = () => {
             ))}
           </ul>
         </div>
+      </CSSTransition>
+
+      {currentGuestSelected && (
+        <div className={styles.actions}>
+          <button className="btn" onClick={next}>Next</button>
+          <button className="btn--secondary" onClick={previous}>Back</button>
+        </div>
       )}
 
-      <div className={styles.actions}>
-
-        <button className="btn" disabled={null === getGuestAttending(guest.id)} onClick={next}>
-        Next
-        </button>
-        <button className="btn--secondary" onClick={previous}>Back</button>
-      </div>
     </div>
   );
 };
