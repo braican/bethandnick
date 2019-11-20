@@ -93,7 +93,11 @@ const Rsvp = () => {
   };
 
   const getGuestAttending = guestId => rsvps[guestId] ? rsvps[guestId].attending : null;
+
   const getGuestMeal = guestId => rsvps[guestId] ? rsvps[guestId].meal : null;
+
+  const getGuestRestrictions = guestId => rsvps[guestId] ? rsvps[guestId].restrictions : null;
+
   const getOtherGuests = (onlyAttending = false) => {
     const otherGuestIds = Object.keys(rsvps).filter(guestId => {
       const isNotCurrentGuest = parseInt(guestId) !== parseInt(guest.id);
@@ -134,6 +138,7 @@ const Rsvp = () => {
 
         getGuestAttending,
         getGuestMeal,
+        getGuestRestrictions,
         getOtherGuests,
 
         searchResults,

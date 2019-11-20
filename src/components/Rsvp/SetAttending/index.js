@@ -12,6 +12,13 @@ const SetAttending = () => {
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id);
   const currGuestAttending = getGuestAttending(guest.id);
 
+  /**
+   * Set the attending status. Note that since this is the first input for a guest, we need to add
+   * all of the guest info to the RSVP object.
+   *
+   * @param {object} guest The guest we're setting stuff for.
+   * @param {object} event Event from the input change.
+   */
   const setGuestCanGo = (guest, event = null) => {
     const newGuest = { ...guest };
 
@@ -121,7 +128,7 @@ const SetAttending = () => {
         <button className="btn" disabled={null === getGuestAttending(guest.id)} onClick={next}>
         Next
         </button>
-        <button onClick={previous}>Back</button>
+        <button className="btn--secondary" onClick={previous}>Back</button>
       </div>
     </div>
   );

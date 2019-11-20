@@ -95,22 +95,34 @@ button {
   color: $c--white;
   font-weight: $fw--bold;
 
-  &:not(:disabled):hover {
+  &:not(:disabled):not(.btn--disabled):hover {
     @include box-shadow(5px);
     background-color: lighten($c--primary, 6%);
   }
 
+  &.btn--disabled,
   &:disabled {
     @include box-shadow(0);
     cursor: default;
     background-color: $c--gray-9;
-    pointer-events: none;
     opacity: 0.5;
   }
 
   &:focus {
     outline: none;
+  }
+
+  &:focus:not(.btn--disabled) {
     background-color: lighten($c--primary, 6%);
+  }
+}
+
+.btn--secondary {
+  @include transition;
+  color: $c--gray-9;
+
+  &:hover {
+    color: $c--gray-4;
   }
 }
 

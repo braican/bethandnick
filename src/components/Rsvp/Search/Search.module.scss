@@ -1,13 +1,5 @@
 @import '../../../styles/abstracts';
 
 .searchField {
-  padding: 0.75em 1em;
-  border: 1px solid $c--gray-c;
-  display: block;
-  width: 100%;
-  margin-bottom: 1em;
-
-  &:focus {
-    outline: none;
-  }
+  @include rsvp-input();
 }

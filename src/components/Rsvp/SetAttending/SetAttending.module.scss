@@ -11,47 +11,12 @@
   width: 46%;
 
   input[type='radio'] {
-    height: 0;
-    width: 0;
-    position: absolute;
-    overflow: hidden;
-    left: -999px;
+    @include hidden-input();
   }
 }
 
 .currentGuestOption {
-  @include transition;
-  @include box-shadow(0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 1em;
-  height: 100%;
-  width: 100%;
-  cursor: pointer;
-  border: 2px solid $c--gray-e;
-  line-height: 1.3;
-  width: 100%;
-  font-weight: $fw--bold;
-  border-radius: 4px;
-  color: $c--gray-6;
-
-  &:hover {
-    background-color: $c--white;
-    border-color: $c--gray-d;
-  }
-
-  input:checked + & {
-    @include box-shadow(4px);
-    border-color: $c--gray-d;
-    background-color: $c--white;
-    color: $c--black;
-  }
-
-  input:focus + & {
-    border-color: $c--gray-9;
-  }
+  @include rsvp-button();
 
   .guestChosen & {
     color: $c--gray-a;
@@ -74,11 +39,7 @@
   }
 
   input[type='checkbox'] {
-    height: 0;
-    width: 0;
-    position: absolute;
-    overflow: hidden;
-    left: -999px;
+    @include hidden-input();
   }
 
   @include mq($bp-tablet) {
@@ -124,6 +85,6 @@
   margin-top: spacing(4);
 
   button + button {
-    margin-left: spacing(1);
+    margin-left: spacing(2);
   }
 }

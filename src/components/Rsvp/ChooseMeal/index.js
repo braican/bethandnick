@@ -1,23 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { RsvpContext } from '../index';
 import MealSelector from './MealSelector';
+import RestrictionsInput from './RestrictionsInput';
+
+import styles from './ChooseMeal.module.scss';
 
 const ChooseMeal = () => {
-  const {
-    next,
-    previous,
-    guest,
-    updateGuestRsvp,
-    getGuestMeal,
-    getOtherGuests,
-    getGuestAttending,
-  } = useContext(RsvpContext);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [errorMessageVisible, setErrorMessageVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const { next, previous, guest, getGuestMeal, getOtherGuests, getGuestAttending } = useContext(
+    RsvpContext
+  );
   const currentGuestAttending = getGuestAttending(guest.id);
+  const currentGuestMeal = getGuestMeal(guest.id);
   const otherGuests = getOtherGuests(true);
   const otherGuestIds = Object.keys(otherGuests);
+  const otherGuestChosenMeals = otherGuestIds.filter(id => otherGuests[id].meal !== null).length;
 
-  const setGuestMeal = (guestId, meal) => {
-    updateGuestRsvp(guestId, { meal });
+  const handleErrorMessages = () => {
+    if (currentGuestMeal === null && otherGuestChosenMeals !== otherGuestIds.length) {
+      setErrorMessage('Please choose a meal! You\'ll also need to select a meal for anyone else you\'re checking in.');
+    } else if (currentGuestMeal === null) {
+      setErrorMessage('Please choose a meal for yourself!');
+    } else if (otherGuestChosenMeals !== otherGuestIds.length) {
+      setErrorMessage('You need to select a meal for anyone else you\'re checking in.');
+    }
+  };
+
+  useEffect(() => {
+    if (currentGuestMeal !== null && otherGuestChosenMeals === otherGuestIds.length) {
+      setButtonDisabled(false);
+      setErrorMessageVisible(false);
+      setErrorMessage('');
+    } else if (errorMessageVisible) {
+      handleErrorMessages();
+    }
+  }, [getGuestAttending]);
+
+
+  const handleNext = () => {
+    if (buttonDisabled) {
+      setErrorMessageVisible(true);
+      handleErrorMessages();
+    } else {
+      setErrorMessage('');
+      next();
+    }
   };
 
   return (
@@ -25,14 +54,12 @@ const ChooseMeal = () => {
       {currentGuestAttending ? (
         <div>
           <p>
-          Awesome! We're so excited that you'll be able to attend. What do you think you'd like to eat
-          at the wedding?
+            Awesome! We're so excited that you'll be able to attend. What do you think you'd like to
+            eat at the wedding?
           </p>
-          <MealSelector
-            name="attendee_meal"
-            checked={getGuestMeal(guest.id)}
-            onChange={event => setGuestMeal(guest.id, event.target.value)}
-          />
+
+          <MealSelector guestId={guest.id} extraPadding />
+          <RestrictionsInput guestId={guest.id} />
         </div>
       ) : (
         <div>
@@ -40,26 +67,22 @@ const ChooseMeal = () => {
         </div>
       )}
 
-
       {otherGuests && (
-        <div>
-          <p>Choose a meal for the attending guest{otherGuestIds.length > 1 ? 's' : ''} you're checking in:</p>
+        <div className={styles.otherGuests}>
+          <p>
+            Since you're checking in {otherGuestIds.length > 1 ? 'others' : 'someone else'}, let's
+            get their meal{otherGuestIds.length > 1 ? 's' : ''} set up as well:
+          </p>
 
           <ul>
             {otherGuestIds.map(guestId => {
               const otherGuest = otherGuests[guestId];
               return (
-                <li key={guestId}>
-                  {otherGuest.name}
+                <li key={guestId} className={styles.otherGuestListItem}>
+                  <span>Choose a meal for{' '}<span className={styles.otherGuestName}>{otherGuest.name}:</span></span>
 
-                  <MealSelector
-                    name={`attendee_meal_${otherGuest.id}`}
-                    checked={getGuestMeal(otherGuest.id)}
-                    onChange={event => setGuestMeal(otherGuest.id, event.target.value)}
-                  />
-
-                  <label htmlFor="">Note any food allergies or dietary restrictions here.</label>
-                  <input type="text"/>
+                  <MealSelector guestId={otherGuest.id} />
+                  <RestrictionsInput guestId={otherGuest.id} />
                 </li>
               );
             })}
@@ -67,11 +90,15 @@ const ChooseMeal = () => {
         </div>
       )}
 
-      <button className="btn" disabled={getGuestMeal(guest.id) === null} onClick={next}>
-        Next
-      </button>
+      <div className={styles.actions}>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
-      <button onClick={previous}>Back</button>
+        <button className={`btn ${buttonDisabled && 'btn--disabled'}`} onClick={handleNext}>
+          Next
+        </button>
+
+        <button className='btn--secondary' onClick={previous}>Back</button>
+      </div>
     </div>
   );
 };
