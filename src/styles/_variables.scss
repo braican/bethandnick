@@ -38,13 +38,13 @@ $c--white: #ffffff;
 $c--gray-f6: #f6f6f6;
 $c--gray-e: #eeeeee;
 $c--gray-d: #dddddd;
-$c--gray-2: #222222;
-$c--gray-3: #333333;
-$c--gray-4: #444444;
-$c--gray-6: #666666;
-$c--gray-9: #999999;
-$c--gray-a: #aaaaaa;
 $c--gray-c: #cccccc;
+$c--gray-a: #aaaaaa;
+$c--gray-9: #999999;
+$c--gray-6: #666666;
+$c--gray-4: #444444;
+$c--gray-3: #333333;
+$c--gray-2: #222222;
 $c--black: $c--gray-2;
 
 // wedding colors
@@ -95,6 +95,7 @@ $in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 $in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 $in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
 $in-out-nice: cubic-bezier(0.19, 1, 0.22, 1);
+$timing-butter: cubic-bezier(0.215, 0.61, 0.355, 1);
 
 // Transition Durations
 $t-duration: 0.2s;

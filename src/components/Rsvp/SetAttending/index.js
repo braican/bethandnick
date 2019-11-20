@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { RsvpContext } from '../index';
 
-import { getFirstName } from '../../../util';
+import { getFirstName, className } from '../../../util';
 
 import styles from './SetAttending.module.scss';
 
@@ -12,16 +12,30 @@ const SetAttending = () => {
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id);
   const currGuestAttending = getGuestAttending(guest.id);
 
-  const setGuestCanGo = guest => {
-    updateGuestRsvp(guest.id, { ...guest, attending: true });
+  const setGuestCanGo = (guest, event = null) => {
+    const newGuest = { ...guest };
+
+    if (null === event || event.target.checked) {
+      newGuest.attending = true;
+    } else {
+      newGuest.attending = null;
+    }
+
+    updateGuestRsvp(guest.id, newGuest);
+
   };
 
-  const setGuestDeclines = guest => {
-    updateGuestRsvp(guest.id, { ...guest, attending: false });
+  const setGuestDeclines = (guest, event = null) => {
+    const newGuest = { ...guest };
+
+    if (null === event || event.target.checked) {
+      newGuest.attending = false;
+    } else {
+      newGuest.attending = null;
+    }
+
+    updateGuestRsvp(guest.id, newGuest);
   };
-
-  console.log(getGuestAttending());
-
 
   return (
     <div className={`rsvp--set-attending ${currGuestAttending !== null ? styles.guestChosen : ''}`}>
@@ -67,43 +81,48 @@ const SetAttending = () => {
       </ul>
 
       {otherGuests.length > 0 && (
-        <div>
-          <p>Would you like to check anyone else in from {group.street}?</p>
+        <div className={styles.setOtherAttending}>
+          <p>Would you like to check in for anyone else from {group.street}?</p>
 
           <ul>
             {otherGuests.map(otherGuest => (
-              <li key={otherGuest.id}>
-                {otherGuest.name}
+              <li key={otherGuest.id} className={styles.otherGuestListItem}>
+                <span className={styles.otherGuestName}>{otherGuest.name}</span>
 
-                <label>
-                  <span>Can attend</span>
-                  <input
-                    type="radio"
-                    name={`attendee_status_${otherGuest.id}`}
-                    checked={true === getGuestAttending(otherGuest.id)}
-                    onChange={() => setGuestCanGo(otherGuest)}
-                  />
-                </label>
+                <div>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name={`attendee_status_${otherGuest.id}`}
+                      checked={true === getGuestAttending(otherGuest.id)}
+                      onChange={event => setGuestCanGo(otherGuest, event)}
+                    />
+                    <span {...className(styles.otherGuestChoice, styles.otherGuestChoice__yes)}>Can attend</span>
+                  </label>
 
-                <label>
-                  <span>Declines</span>
-                  <input
-                    type="radio"
-                    name={`attendee_status_${otherGuest.id}`}
-                    checked={false === getGuestAttending(otherGuest.id)}
-                    onChange={() => setGuestDeclines(otherGuest)}
-                  />
-                </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      name={`attendee_status_${otherGuest.id}`}
+                      checked={false === getGuestAttending(otherGuest.id)}
+                      onChange={event => setGuestDeclines(otherGuest, event)}
+                    />
+                    <span {...className(styles.otherGuestChoice, styles.otherGuestChoice__no)}>Declines</span>
+                  </label>
+                </div>
               </li>
             ))}
           </ul>
         </div>
       )}
 
-      <button className="btn" disabled={null === getGuestAttending(guest.id)} onClick={next}>
+      <div className={styles.actions}>
+
+        <button className="btn" disabled={null === getGuestAttending(guest.id)} onClick={next}>
         Next
-      </button>
-      <button onClick={previous}>Back</button>
+        </button>
+        <button onClick={previous}>Back</button>
+      </div>
     </div>
   );
 };

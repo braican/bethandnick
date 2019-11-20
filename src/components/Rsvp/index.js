@@ -17,17 +17,17 @@ const transitionStyles = {
     width: 0,
     height: 0,
     opacity: 0,
-    transform: 'translateX(10px)',
+    transform: 'translateX(20px)',
   },
   entered: {
-    transition: `all ${duration}ms cubic-bezier(0.19, 1, 0.22, 1)`,
+    transition: `all ${duration}ms cubic-bezier(0.215, 0.61, 0.355, 1)`,
     opacity: 1,
     transform: 'translateX(0)',
   },
   exiting: {
-    transition: `all ${duration / 2}ms cubic-bezier(0.19, 1, 0.22, 1)`,
+    transition: `all ${duration}ms cubic-bezier(0.215, 0.61, 0.355, 1)`,
     opacity: 0,
-    transform: 'translateX(-10px)',
+    transform: 'translateX(-20px)',
   },
 };
 

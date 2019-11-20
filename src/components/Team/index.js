@@ -31,7 +31,7 @@ const Team = ({ girls, guys, family, officiant }) => {
         document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
           behavior: 'smooth',
         });
-      }, timeout);
+      }, 400);
     }
 
   }, [activeGroup]);
