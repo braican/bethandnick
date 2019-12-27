@@ -12,12 +12,10 @@
     display: inline-block;
     margin-right: spacing(1);
 
-    + li {
-      &:before {
-        content: '/';
-        display: inline-block;
-        margin-right: spacing(1);
-      }
+    &:before {
+      content: '/';
+      display: inline-block;
+      margin-right: spacing(1);
     }
   }
 }
