@@ -14,7 +14,7 @@
 
     + li {
       &:before {
-        content: '|';
+        content: '/';
         display: inline-block;
         margin-right: spacing(1);
       }
@@ -32,7 +32,7 @@
 }
 
 .navListItem {
-  margin-bottom: spacing(1);
+  margin-bottom: spacing(0.5);
 }
 
 .activeNavLink {
