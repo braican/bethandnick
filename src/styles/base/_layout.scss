@@ -1,6 +1,8 @@
 // Default
 // -----------
 
+$hero-layout-footer-height: 180px;
+
 main {
   display: block;
 }
@@ -22,6 +24,10 @@ main {
     background-repeat: no-repeat;
     background-position: left 0 bottom -6vh;
     background-size: contain;
+  }
+
+  &.amp-accent--hero-layout:after {
+    position: fixed;
   }
 }
 
@@ -62,6 +68,24 @@ main {
 // Hero layout
 // -----------
 
+.herolayout__wrapper {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: spacing(8);
+  margin-bottom: $hero-layout-footer-height;
+  position: relative;
+  z-index: 2;
+
+  + footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
 .herolayout__content {
   @include mq($bp-tablet) {
     margin-left: 44vw;
@@ -69,7 +93,7 @@ main {
   }
 }
 
-.herolayout__wrapper {
+.herolayout__block {
   @include box-shadow(16px);
   position: relative;
   background-color: $c--primary;
