@@ -4,18 +4,15 @@
   margin-top: spacing(2);
   color: $c--gray-9;
   padding: spacing(2);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+}
 
-  ul > li {
-    display: inline-block;
-    margin-right: spacing(1);
+.main {
+  @include mq($bp-tablet) {
+    display: flex;
+    justify-content: space-between;
 
-    &:before {
-      content: '/';
-      display: inline-block;
-      margin-right: spacing(1);
+    ul > li {
+      text-align: right;
     }
   }
 }
@@ -25,8 +22,20 @@
   padding-right: 0;
 }
 
+.copyright,
+.copyrightMobile {
+  margin-top: spacing(2);
+}
+
 .copyright {
-  margin-right: spacing(2);
+  @include mq($bp-tablet, max) {
+    display: none;
+  }
+}
+.copyrightMobile {
+  @include mq($bp-tablet) {
+    display: none;
+  }
 }
 
 .navListItem {
