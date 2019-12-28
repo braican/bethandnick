@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
+import { contentFilter } from '../util';
 
 const Page = ({ data, pageContext: { slug } }) => {
   const { content, title, acf: { page_featured_image } } = data.wordpressPage;
   const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
-  const filteredContent = content.replace(/(((S|s)eason\s\d)\s(&#8211;)\s)/g, '<span class="overline">$2</span>');
+  const filteredContent = contentFilter(content);
 
   return (
     <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
