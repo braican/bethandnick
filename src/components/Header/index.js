@@ -32,7 +32,7 @@ const Header = ({ info, big, inNav, hero }) => (
       </div>
     </OptionalLink>
 
-    {!inNav && big && <Promo floating={big} />}
+    {!inNav && big && <Promo />}
 
   </div>
 );

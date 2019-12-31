@@ -27,7 +27,7 @@ const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, act
         </li>
       ))}
     <li className={liClass}>
-      <Link to="/gallery" className={linkClass} activeClassName={activeClass} onClick={onClick}>
+      <Link to="/gallery/" className={linkClass} activeClassName={activeClass} onClick={onClick}>
         Photos
       </Link>
     </li>
