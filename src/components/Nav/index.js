@@ -33,6 +33,7 @@ const Nav = ({ theme }) => {
         <Header inNav />
 
         <Menu
+          main
           ulClass={styles.menu}
           liClass={styles.menuItem}
           linkClass={styles.link}

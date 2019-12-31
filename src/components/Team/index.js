@@ -31,6 +31,7 @@ const getTransitionStyles = {
 const Team = ({ girls, guys, family, officiant }) => {
   const [group, setGroup] = useState([]);
   const [activeGroup, setActiveGroup] = useState('girls');
+  const [loaded, setLoaded] = useState(false);
   const scrollAnchor = useRef();
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const Team = ({ girls, guys, family, officiant }) => {
       setGroup(officiant);
     }
 
-    if (scrollAnchor && scrollAnchor.current) {
+    if (loaded && scrollAnchor && scrollAnchor.current) {
       setTimeout(() => {
         document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
           behavior: 'smooth',
@@ -53,6 +54,10 @@ const Team = ({ girls, guys, family, officiant }) => {
     }
 
   }, [activeGroup]);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   return (
     <div className={styles.theTeam}>
@@ -64,12 +69,7 @@ const Team = ({ girls, guys, family, officiant }) => {
         {group && group.length > 0 && (
           <TransitionGroup>
             {group.map(person => (
-              <Transition
-                key={person.name}
-                timeout={{
-                  enter: timeout,
-                  exit: timeout,
-                }}>
+              <Transition key={person.name} timeout={timeout}>
                 {status => <div style={{ ...getTransitionStyles[status] }}><Person key={person.name} person={person} /></div>}
               </Transition>
             ))}

@@ -7,21 +7,20 @@ import styles from './Footer.module.scss';
 const Footer = () => (
   <footer className={styles.footer}>
     <div className={styles.main}>
-      <div>
+      <div className={styles.mainContent}>
         <p>Beth &amp; Nick | October 17, 2020 at <Link to="/the-venue/">The Barn at Gibbet Hill</Link>.</p>
 
-        <p className={styles.copyright}>
-      &copy; {new Date().getFullYear()} Beth &amp;{' '}
-          <a target="_blank" rel="noopener noreferrer" href="https://www.braican.com">
-        Nick
-          </a>
-        </p>
+        {/* Footer promo */}
+        <br/>
+        <p><Link className={styles.footerPromo} to="/accommodations/">Book your hotel!</Link></p>
       </div>
 
-      <Menu liClass={styles.navListItem} activeClass={styles.activeNavLink} />
+      <div className={styles.footerNav}>
+        <Menu liClass={styles.navListItem} activeClass={styles.activeNavLink} />
+      </div>
     </div>
 
-    <p className={styles.copyrightMobile}>
+    <p className={styles.copyright}>
       &copy; {new Date().getFullYear()} Beth &amp;{' '}
       <a target="_blank" rel="noopener noreferrer" href="https://www.braican.com">
         Nick

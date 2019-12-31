@@ -58,12 +58,7 @@ a {
 
   .site-footer &,
   .content__main & {
-    box-shadow: inset 0 -2px 0 $c--secondary;
-    transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-
-    &:hover {
-      box-shadow: inset 0 -3px 0 $c--secondary;
-    }
+    @include simple-link;
   }
 }
 
@@ -99,6 +94,7 @@ button {
   &:not(:disabled):not(.btn--disabled):hover {
     @include box-shadow(5px);
     background-color: lighten($c--primary, 6%);
+    color: $c--white;
   }
 
   &.btn--disabled,

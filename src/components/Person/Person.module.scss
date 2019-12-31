@@ -73,7 +73,7 @@
     width: 60%;
     order: -1;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 50%));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 46%));
     grid-column-gap: spacing(2);
     grid-auto-flow: row dense;
   }

@@ -10,11 +10,11 @@
   @include mq($bp-tablet) {
     display: flex;
     justify-content: space-between;
-
-    ul > li {
-      text-align: right;
-    }
   }
+}
+
+.mainContent a {
+  @include simple-link;
 }
 
 :global(.splitpane__content) .footer {
@@ -22,19 +22,26 @@
   padding-right: 0;
 }
 
-.copyright,
-.copyrightMobile {
-  margin-top: spacing(2);
+.footerPromo {
+  @include transition;
+  color: $c--secondary;
+  font-weight: $fw--bold;
+  box-shadow: inset 0 -2px 0 $c--secondary;
+
+  &:hover {
+    box-shadow: inset 0 -4px 0 $c--secondary;
+  }
 }
 
 .copyright {
-  @include mq($bp-tablet, max) {
-    display: none;
-  }
+  margin-top: spacing(2);
 }
-.copyrightMobile {
-  @include mq($bp-tablet) {
-    display: none;
+
+.footerNav {
+  margin-left: 2rem;
+
+  ul > li {
+    text-align: right;
   }
 }
 

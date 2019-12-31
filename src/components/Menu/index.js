@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
-const Menu = ({ allWordpressPage, ulClass, liClass, linkClass, activeClass, onClick }) => (
+import styles from './Menu.module.scss';
+
+const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, activeClass, onClick }) => (
   <ul className={ulClass}>
     <li className={liClass}>
       <Link to="/" className={linkClass} activeClassName={activeClass} onClick={onClick}>
@@ -20,6 +22,7 @@ const Menu = ({ allWordpressPage, ulClass, liClass, linkClass, activeClass, onCl
             onClick={onClick}
           >
             {node.acf.menu_label || node.title}
+            {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>}
           </Link>
         </li>
       ))}
@@ -35,6 +38,7 @@ Menu.propTypes = {
   allWordpressPage: PropTypes.shape({
     edges: PropTypes.array,
   }).isRequired,
+  main: PropTypes.bool,
   ulClass: PropTypes.string,
   liClass: PropTypes.string,
   linkClass: PropTypes.string,
