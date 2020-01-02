@@ -1,4 +1,5 @@
 export { isDesktop } from './responsive';
+export { contentFilter } from './content';
 
 /**
  * Transform html entities.
@@ -19,3 +20,6 @@ export const decodeHtmlEntities = input => String(input).replace(/&amp;/, '&');
 export const className = (...classes) => ({
   className: classes.filter(className => typeof className === 'string').join(' '),
 });
+
+export const untrailingSlashIt = str => str.replace(/\/$/, '');
+export const trailingSlashIt = str => `${untrailingSlashIt(str)  }/`;

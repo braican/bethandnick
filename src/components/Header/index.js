@@ -5,6 +5,8 @@ import { StaticQuery, graphql } from 'gatsby';
 import { className } from '../../util';
 import OptionalLink from '../Util/OptionalLink';
 
+import Promo from '../Promo';
+
 import AmpersandIcon from '../../svg/ampersand';
 
 import styles from './Header.module.scss';
@@ -29,6 +31,9 @@ const Header = ({ info, big, inNav, hero }) => (
         <p className={styles.venue}>at {info.venue_name}</p>
       </div>
     </OptionalLink>
+
+    {!inNav && big && <Promo />}
+
   </div>
 );
 

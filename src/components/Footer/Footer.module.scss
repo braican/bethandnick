@@ -6,7 +6,43 @@
   padding: spacing(2);
 }
 
+.main {
+  @include mq($bp-tablet) {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.mainContent a {
+  @include simple-link;
+}
+
 :global(.splitpane__content) .footer {
   padding-left: 0;
   padding-right: 0;
+}
+
+.footerPromo {
+  @include transition;
+  color: $c--secondary;
+  font-weight: $fw--bold;
+  box-shadow: inset 0 -2px 0 $c--secondary;
+
+  &:hover {
+    box-shadow: inset 0 -4px 0 $c--secondary;
+  }
+}
+
+.copyright {
+  margin-top: spacing(2);
+}
+
+.navListItem {
+  margin-bottom: spacing(0.5);
+}
+
+.activeNavLink {
+  font-weight: $fw--bold;
+  pointer-events: none;
+  color: $c--secondary;
 }

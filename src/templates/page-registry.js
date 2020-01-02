@@ -5,6 +5,7 @@ import { contentFilter } from '../util';
 
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
+import Registry from '../components/Registry';
 
 const Page = ({ data, pageContext: { slug } }) => {
   const { content, title, acf: { page_featured_image } } = data.wordpressPage;
@@ -15,6 +16,7 @@ const Page = ({ data, pageContext: { slug } }) => {
     <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
       <Seo title={title} />
       <div className="content__main" dangerouslySetInnerHTML={{ __html: filteredContent }} />
+      <Registry />
     </SplitLayout>
   );
 };

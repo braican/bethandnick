@@ -51,6 +51,8 @@ exports.createPages = ({ actions, graphql }) => {
         context.layout = 'hero';
       } else if (node.template === 'template-team.php') {
         template = path.resolve('./src/templates/page-team.js');
+      } else if (node.template === 'template-registry.php') {
+        template = path.resolve('./src/templates/page-registry.js');
       }
 
       createPage({
