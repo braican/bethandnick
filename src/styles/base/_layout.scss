@@ -121,7 +121,6 @@ main {
 }
 
 .herolayout__block {
-  // @include box-shadow(16px);
   position: relative;
   background-color: $c--gray-f6;
   z-index: 10;
@@ -161,7 +160,7 @@ main {
 
   .content__main {
     margin-top: spacing();
-    font-size: $fz--lg;
+    font-size: $fz--base;
     line-height: 1.4;
   }
 }
