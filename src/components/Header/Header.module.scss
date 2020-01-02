@@ -131,6 +131,18 @@
   .ampersand svg {
     fill: $c--secondary;
   }
+
+  @media (max-height: 720px) and (min-width: $bp-tablet) {
+    margin-top: -2vw;
+
+    .title {
+      font-size: 42px;
+    }
+
+    .info {
+      font-size: $fz--base;
+    }
+  }
 }
 
 // Base

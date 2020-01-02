@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 
 import Header from '../Header';
 import Menu from '../Menu';
@@ -10,7 +9,7 @@ import { className } from '../../util';
 
 import styles from './Nav.module.scss';
 
-const Nav = ({ theme }) => {
+const Nav = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   const openNav = () => {
@@ -24,7 +23,7 @@ const Nav = ({ theme }) => {
   };
 
   return (
-    <nav {...className(styles.nav, styles[`nav${theme}`])}>
+    <nav className={styles.nav}>
       <MenuToggle onClick={openNav} className={styles.menuToggle} />
 
       <div {...className(styles.navWrapper, navOpen && styles.navWrapperOpen)}>
@@ -43,14 +42,6 @@ const Nav = ({ theme }) => {
       </div>
     </nav>
   );
-};
-
-Nav.propTypes = {
-  theme: PropTypes.oneOf(['primary', 'white']),
-};
-
-Nav.defaultProps = {
-  theme: 'primary',
 };
 
 export default Nav;

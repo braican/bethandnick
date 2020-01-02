@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import PropTypes from 'prop-types';
+import { trailingSlashIt } from '../util';
 
 import PageTransition from '../components/PageTransition';
 import Nav from '../components/Nav';
 
-import { trailingSlashIt } from '../util';
-
-const BaseLayout = ({ children, pageContext, location }) => {
+const BaseLayout = ({ children, location }) => {
 
   const internalNavigate = event => {
     event.preventDefault();
-
     navigate(trailingSlashIt(event.target.getAttribute('href')));
   };
 
@@ -37,13 +35,6 @@ const BaseLayout = ({ children, pageContext, location }) => {
     };
   });
 
-  let theme = 'primary';
-
-  const whiteNav = ['home'];
-  if (whiteNav.includes(pageContext.slug)) {
-    theme = 'white';
-  }
-
   return (
     <div className="site__wrap">
       <PageTransition location={location}>
@@ -51,16 +42,13 @@ const BaseLayout = ({ children, pageContext, location }) => {
           {children}
         </div>
       </PageTransition>
-      <Nav theme={theme} />
+      <Nav />
     </div>
   );
 };
 
 BaseLayout.propTypes = {
   children: PropTypes.node,
-  pageContext: PropTypes.shape({
-    slug: PropTypes.string,
-  }).isRequired,
   location: PropTypes.object.isRequired,
 };
 

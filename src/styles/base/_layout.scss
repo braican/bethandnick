@@ -37,6 +37,10 @@ main {
 // Split
 // -----------
 
+.content__main--has-promo {
+  margin-top: 2rem;
+}
+
 .splitpane__img {
   @include content-split-secondary;
   top: 0;
@@ -59,6 +63,15 @@ main {
   @include content-split-main;
   padding: 8vw;
   padding-top: 4rem;
+  position: relative;
+
+  &.splitpane__content--bigheader {
+    padding-top: 8vw;
+  }
+
+  @include mq($bp-small-mobile, max) {
+    padding-top: 3rem !important;
+  }
 }
 
 // Hero layout
@@ -121,7 +134,6 @@ main {
 }
 
 .herolayout__block {
-  // @include box-shadow(16px);
   position: relative;
   background-color: $c--gray-f6;
   z-index: 10;
@@ -161,7 +173,7 @@ main {
 
   .content__main {
     margin-top: spacing();
-    font-size: $fz--lg;
+    font-size: $fz--base;
     line-height: 1.4;
   }
 }

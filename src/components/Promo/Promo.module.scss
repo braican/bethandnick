@@ -10,29 +10,34 @@
     position: absolute;
     overflow: hidden;
     left: 0;
+    top: 16px;
     width: 100%;
-    bottom: 0;
     color: $c--primary;
-    background-color: rgba($c--white, 0.6);
-
-    &:hover {
-      background-color: rgba($c--white, 1);
-    }
+    background-color: $c--white;
 
     span {
       display: inline-block;
       vertical-align: middle;
     }
-  }
 
-  .icon {
-    height: 1em;
-    width: 1em;
+    .icon {
+      @include transition(transform);
+      height: .8em;
+      width: .8em;
 
-    svg {
-      display: block;
-      width: 100%;
-      fill: $c--primary;
+      svg {
+        display: block;
+        width: 100%;
+        fill: $c--primary;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($c--secondary, .1);
+
+      .icon {
+        transform: translateX(2px);
+      }
     }
   }
 }
