@@ -1,0 +1,23 @@
+@import '../../styles/abstracts';
+
+.sites {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: spacing(4);
+
+  li {
+    width: 42%;
+    padding: spacing(1) 0;
+  }
+
+  a {
+    @include transition(opacity);
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
