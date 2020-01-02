@@ -58,6 +58,7 @@ main {
 .splitpane__content {
   @include content-split-main;
   padding: 8vw;
+  padding-top: 4rem;
 }
 
 // Hero layout
@@ -120,16 +121,14 @@ main {
 }
 
 .herolayout__block {
-  @include box-shadow(16px);
+  // @include box-shadow(16px);
   position: relative;
-  background-color: $c--primary;
+  background-color: $c--gray-f6;
   z-index: 10;
   padding: spacing(2);
-  color: $c--white;
 
   @include mq($bp-small-mobile) {
     margin-right: spacing(2);
-    margin-left: spacing(2);
     margin-top: -5vh;
   }
 

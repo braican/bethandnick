@@ -26,6 +26,13 @@ h2 {
   }
 }
 
+.page-title,
+.content__main h2 {
+  @include fluid-type(600px, 1600px, 36px, 86px);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
 .overline {
   font-size: $fz--base;
   color: $c--gray-c;
@@ -131,17 +138,6 @@ button {
   line-height: 1em;
   padding-right: 10px;
   margin-bottom: -0.1em;
-}
-
-.page-title {
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  color: $c--secondary;
-
-  @include mq($bp-mobile) {
-    font-size: 6vw;
-  }
 }
 
 // WordPress blocks

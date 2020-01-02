@@ -7,22 +7,6 @@
   z-index: 100;
 }
 
-.menuToggle {
-  @include transition(color);
-  color: $c--secondary;
-
-  &:hover {
-    color: $c--primary;
-  }
-}
-.navwhite .menuToggle {
-  color: $c--white;
-
-  &:hover {
-    color: $c--primary;
-  }
-}
-
 .navWrapper {
   @include transition($func: $in-out-nice);
   position: fixed;
