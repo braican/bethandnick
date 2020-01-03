@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import SplitLayout from '../layouts/Split';
 
+import Seo from '../components/Seo';
+import Rsvp from '../components/Rsvp';
+
 const RsvpPage = ({ data }) => {
-  console.log(data);
   const featuredImage = data.file ? data.file.childImageSharp.fluid : null;
 
   return (
-    <SplitLayout featuredImage={featuredImage} pageTitle={'Come celebrate with us.'}>
-      <div className="content__main">
-        If you
-      </div>
+    <SplitLayout featuredImage={featuredImage}>
+      <Seo title="Come celebrate with us" />
 
+      <div className="content__main">
+        <Rsvp />
+      </div>
     </SplitLayout>
   );
 };

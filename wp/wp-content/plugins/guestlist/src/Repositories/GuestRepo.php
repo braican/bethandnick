@@ -79,27 +79,6 @@ class GuestRepo extends Repository {
 	}
 
 	/**
-	 * Maps the guests in a group to an array of it's own.
-	 *
-	 * @param WP_Post $group Group post data.
-	 *
-	 * @return WP_Post
-	 */
-	public function map_group_guests( $group ) {
-		$group_guests = get_post_meta( $group->ID, 'gl_guests', true );
-
-		if ( ! $group_guests ) {
-			return null;
-		}
-
-		$group->address = get_post_meta( $group->ID, 'address', true );
-		$group->guests  = array_map( function( $p ) {
-			return new Guest( $p );
-		}, $group_guests );
-		return $group;
-	}
-
-	/**
 	 * Sets up the grouped guests.
 	 *
 	 * @param array  $result_set Result set.
@@ -108,8 +87,9 @@ class GuestRepo extends Repository {
 	 * @return Repository
 	 */
 	protected function result_set( $result_set = [], $class = null ) {
-		$mapped_guests    = array_map( array( $this, 'map_group_guests' ), $result_set );
-		$this->result_set = array_filter( $mapped_guests );
+		$this->result_set = array_map( function( $group ) {
+			return new GuestGroup( $group );
+		}, $result_set );
 		return $this;
 	}
 }

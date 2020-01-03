@@ -1,3 +1,11 @@
 {
-    "extends": "@upstatement"
+  "extends": "@upstatement/eslint-config/react",
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

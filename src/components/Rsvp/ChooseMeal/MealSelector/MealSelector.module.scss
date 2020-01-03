@@ -1,0 +1,24 @@
+@import '../../../../styles/abstracts';
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: spacing(2);
+  margin-top: spacing(1);
+}
+
+.optionsExtraPadding {
+  margin-top: spacing(2);
+}
+
+.option {
+  width: 31%;
+
+  input[type='radio'] {
+    @include hidden-input();
+  }
+}
+
+.optionLabel {
+  @include rsvp-button();
+}

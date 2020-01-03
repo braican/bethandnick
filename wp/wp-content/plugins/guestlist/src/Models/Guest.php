@@ -18,7 +18,6 @@ class Guest extends Post {
 	 */
 	const TYPE = 'gl_guest';
 
-
 	/**
 	 * Creates the custom post type.
 	 */
@@ -64,16 +63,35 @@ class Guest extends Post {
 	/**
 	 * Gets the selected meal of this guest.
 	 *
+	 * @param boolean $raw Return the raw data, rather than the display word.
+	 *
 	 * @return string
 	 */
-	public function meal() {
+	public function meal( $raw = false ) {
 		$meal = $this->meta( 'gl_meal' );
 
 		if ( $meal ) {
 			return $meal;
 		}
 
+		if ( $raw ) {
+			return null;
+		}
+
 		return 'Not selected';
+	}
+
+
+	/**
+	 * Build and return the object that should be presented in the REST API.
+	 *
+	 * @return array
+	 */
+	public function api_return() {
+		return array(
+			'id'   => $this->ID,
+			'name' => $this->post_title,
+		);
 	}
 
 }

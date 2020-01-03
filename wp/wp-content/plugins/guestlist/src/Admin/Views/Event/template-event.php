@@ -202,10 +202,10 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 			<?php foreach ( $this->get_guests() as $grouped_guests ) : ?>
 			<tbody>
 				<tr>
-					<td colspan="3" class="group-header"><?php echo esc_html( $grouped_guests->address ); ?></td>
+					<td colspan="3" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
 				</tr>
 
-				<?php foreach ( $grouped_guests->guests as $guest ) : ?>
+				<?php foreach ( $grouped_guests->get_guests() as $guest ) : ?>
 				<tr>
 					<td><?php echo get_the_title( $guest ); ?></td>
 					<td data-value="<?php echo esc_attr( $guest->attending( true ) ); ?>">
@@ -246,8 +246,8 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 						<form class="gl-edit-guest js-edit-guest-meal-form">
 							<div class="gl-edit-guest-options">
 								<label>
-									<input name="guest_meal" value="Chicken" type="radio">
-									Chicken
+									<input name="guest_meal" value="Meat" type="radio">
+									Meat
 								</label>
 
 								<label>

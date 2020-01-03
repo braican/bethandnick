@@ -1,4 +1,5 @@
 export { isDesktop } from './responsive';
+export { catchApiError } from './services';
 
 /**
  * Transform html entities.
@@ -19,3 +20,16 @@ export const decodeHtmlEntities = input => String(input).replace(/&amp;/, '&');
 export const className = (...classes) => ({
   className: classes.filter(className => typeof className === 'string').join(' '),
 });
+
+/**
+ * Parse a full name to return just the first name.
+ *
+ * @param string name The person's name.
+ *
+ * @return string
+ */
+export const getFirstName = name => {
+  const names = name.split(' ');
+  names.pop();
+  return names.join(' ');
+};

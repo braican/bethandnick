@@ -16,7 +16,7 @@ body {
 .h1,
 h2 {
   font-size: 3rem;
-  line-height: 1.2;
+  line-height: 1;
   margin-bottom: 0.5em;
   font-family: $ff--headline;
   margin-bottom: 1em;
@@ -71,6 +71,11 @@ a {
   line-height: 1.8;
 }
 
+input {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 button {
   cursor: pointer;
   padding: 0;
@@ -80,6 +85,45 @@ button {
   color: inherit;
   font-family: inherit;
   font-size: inherit;
+}
+
+.btn {
+  @include transition;
+  @include box-shadow(3px);
+  background-color: $c--primary;
+  padding: 0.75em 1em;
+  color: $c--white;
+  font-weight: $fw--bold;
+
+  &:not(:disabled):not(.btn--disabled):hover {
+    @include box-shadow(5px);
+    background-color: lighten($c--primary, 6%);
+  }
+
+  &.btn--disabled,
+  &:disabled {
+    @include box-shadow(0);
+    cursor: default;
+    background-color: $c--gray-9;
+    opacity: 0.5;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus:not(.btn--disabled) {
+    background-color: lighten($c--primary, 6%);
+  }
+}
+
+.btn--secondary {
+  @include transition;
+  color: $c--gray-9;
+
+  &:hover {
+    color: $c--gray-4;
+  }
 }
 
 .has-drop-cap:first-letter {

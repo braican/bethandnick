@@ -1,0 +1,37 @@
+@import '../../../styles/abstracts';
+
+.group {
+  margin-top: spacing(4);
+}
+
+.address {
+  font-weight: $fw--bold;
+  margin-bottom: spacing(2);
+}
+
+.guestListItem {
+  margin-bottom: spacing(2);
+}
+
+.guestButton {
+  @include transition;
+  @include box-shadow(3px);
+  display: block;
+  width: 100%;
+  background-color: $c--white;
+  border: 1px solid $c--gray-c;
+  padding: 0.75em 1.5em;
+  color: $c--black;
+  font-size: 1.2rem;
+  font-weight: $fw--bold;
+  border-radius: 4px;
+
+  &:hover {
+    @include box-shadow(5px);
+    color: $c--primary;
+  }
+
+  &:focus {
+    outline: 1px solid $c--gray-4;
+  }
+}
