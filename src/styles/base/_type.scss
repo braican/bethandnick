@@ -161,6 +161,7 @@ button {
     font-weight: normal;
     box-shadow: none;
     margin-left: 0.5em;
+    color: $c--secondary;
 
     &:after {
       @include transition;
@@ -171,7 +172,7 @@ button {
       vertical-align: middle;
       margin-left: 0.5em;
       transform: translateY(-2px);
-      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
+      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%233698a6%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;
@@ -180,6 +181,7 @@ button {
 
     &:hover {
       box-shadow: none;
+      color: $c--primary;
 
       &:after {
         opacity: 1;

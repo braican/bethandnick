@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 
+import { className } from '../../util';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
@@ -15,7 +16,7 @@ const SplitLayout = ({ featuredImage, bigHeader, children }) => (
       ) : null}
     </div>
 
-    <div className="splitpane__content">
+    <div {...className('splitpane__content', bigHeader && 'splitpane__content--bigheader')}>
       {children}
       <Footer />
     </div>
