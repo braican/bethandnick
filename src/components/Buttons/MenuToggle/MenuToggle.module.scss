@@ -1,12 +1,19 @@
 @import '../../../styles/abstracts';
 
 .button {
+  @include box-shadow(3px);
   @include uppercase;
+  @include transition(color);
   font-size: $fz--sm;
   padding: spacing();
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: $c--primary;
+  color: $c--secondary;
 
-  @include mq($bp-mobile) {
-    padding: spacing(2);
+  &:hover {
+    color: $c--white;
   }
 
   svg {

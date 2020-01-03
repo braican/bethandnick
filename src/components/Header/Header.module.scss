@@ -90,6 +90,12 @@
   .ampersand svg {
     fill: $c--white;
   }
+
+  @include mq($bp-tablet, max) {
+    & ~ :global(.splitpane__content) {
+      padding-top: spacing(4);
+    }
+  }
 }
 
 // Big and in nav
@@ -115,6 +121,8 @@
 // In nav
 // -----------
 .inNavHeader {
+  width: 100%;
+
   .title,
   .info {
     color: $c--secondary;
@@ -122,6 +130,18 @@
 
   .ampersand svg {
     fill: $c--secondary;
+  }
+
+  @media (max-height: 720px) and (min-width: $bp-tablet) {
+    margin-top: -2vw;
+
+    .title {
+      font-size: 42px;
+    }
+
+    .info {
+      font-size: $fz--base;
+    }
   }
 }
 
