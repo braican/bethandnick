@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
-import { contentFilter, className } from '../util';
+import { contentFilter } from '../util';
 
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
-import Promo from '../components/Promo';
+import Registry from '../components/Registry';
 
 const Page = ({ data, pageContext: { slug } }) => {
   const { content, title, acf: { page_featured_image } } = data.wordpressPage;
@@ -15,10 +15,8 @@ const Page = ({ data, pageContext: { slug } }) => {
   return (
     <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
       <Seo title={title} />
-
-      {slug === 'home' && <Promo />}
-
-      <div {...className('content__main', slug === 'home' && 'content__main--has-promo')} dangerouslySetInnerHTML={{ __html: filteredContent }} />
+      <div className="content__main" dangerouslySetInnerHTML={{ __html: filteredContent }} />
+      <Registry />
     </SplitLayout>
   );
 };

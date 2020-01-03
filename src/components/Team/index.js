@@ -13,6 +13,7 @@ export const TeamContext = React.createContext();
 const Team = ({ girls, guys, family, officiant }) => {
   const [group, setGroup] = useState([]);
   const [activeGroup, setActiveGroup] = useState('girls');
+  const [loaded, setLoaded] = useState(false);
   const scrollAnchor = useRef();
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Team = ({ girls, guys, family, officiant }) => {
       setGroup(officiant);
     }
 
-    if (scrollAnchor && scrollAnchor.current) {
+    if (loaded && scrollAnchor && scrollAnchor.current) {
       setTimeout(() => {
         document.querySelector(`#${scrollAnchor.current.id}`).scrollIntoView({
           behavior: 'smooth',
@@ -35,6 +36,10 @@ const Team = ({ girls, guys, family, officiant }) => {
     }
 
   }, [activeGroup]);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
   return (
     <div className={styles.theTeam}>

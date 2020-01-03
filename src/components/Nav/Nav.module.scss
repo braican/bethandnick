@@ -7,22 +7,6 @@
   z-index: 100;
 }
 
-.menuToggle {
-  @include transition(color);
-  color: $c--secondary;
-
-  &:hover {
-    color: $c--primary;
-  }
-}
-.navwhite .menuToggle {
-  color: $c--white;
-
-  &:hover {
-    color: $c--primary;
-  }
-}
-
 .navWrapper {
   @include transition($func: $timing-butter);
   position: fixed;
@@ -93,10 +77,10 @@
 }
 .link {
   @include uppercase;
-  font-size: $fz--lg;
+  font-size: $fz--base;
   display: block;
   line-height: 1;
-  margin: 0.5em 0;
+  margin: 0.75em 0;
   color: $c--secondary;
 
   &:hover {

@@ -26,6 +26,13 @@ h2 {
   }
 }
 
+.page-title,
+.content__main h2 {
+  @include fluid-type(600px, 1600px, 36px, 86px);
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
 .overline {
   font-size: $fz--base;
   color: $c--gray-c;
@@ -58,17 +65,16 @@ a {
 
   .site-footer &,
   .content__main & {
-    box-shadow: inset 0 -2px 0 $c--secondary;
-    transition: box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-
-    &:hover {
-      box-shadow: inset 0 -3px 0 $c--secondary;
-    }
+    @include simple-link;
   }
 }
 
 .content__main {
   line-height: 1.8;
+
+  strong {
+    font-weight: $fw--bold;
+  }
 }
 
 input {
@@ -87,9 +93,11 @@ button {
   font-size: inherit;
 }
 
+.hotel-button a,
 .btn {
   @include transition;
   @include box-shadow(3px);
+  display: inline-block;
   background-color: $c--primary;
   padding: 0.75em 1em;
   color: $c--white;
@@ -98,6 +106,7 @@ button {
   &:not(:disabled):not(.btn--disabled):hover {
     @include box-shadow(5px);
     background-color: lighten($c--primary, 6%);
+    color: $c--white;
   }
 
   &.btn--disabled,
@@ -136,17 +145,6 @@ button {
   margin-bottom: -0.1em;
 }
 
-.page-title {
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  color: $c--secondary;
-
-  @include mq($bp-mobile) {
-    font-size: 6vw;
-  }
-}
-
 // WordPress blocks
 // -----------
 
@@ -161,6 +159,71 @@ button {
 .address {
   @include uppercase;
   margin-bottom: 2em;
+
+  span a {
+    display: inline-block;
+    font-size: 0.8em;
+    font-weight: normal;
+    box-shadow: none;
+    margin-left: 0.5em;
+    color: $c--secondary;
+
+    &:after {
+      @include transition;
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-left: 0.5em;
+      transform: translateY(-2px);
+      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%233698a6%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      opacity: 0.6;
+    }
+
+    &:hover {
+      box-shadow: none;
+      color: $c--primary;
+
+      &:after {
+        opacity: 1;
+        transform: translateY(-4px);
+        background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%233698a6%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
+      }
+    }
+  }
+}
+
+.content__main .hotel-map-link {
+  color: $c--primary;
+  // box-shadow: none;
+
+  &:after {
+    @include transition;
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    margin-right: 4px;
+    transform: translateY(-2px);
+    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%233698a6%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 0.6;
+  }
+
+  &:hover {
+    &:after {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
 }
 
 .page--the-venue .content__main > .address:first-child {

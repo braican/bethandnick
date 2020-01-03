@@ -1,5 +1,6 @@
 export { isDesktop } from './responsive';
 export { catchApiError } from './services';
+export { contentFilter } from './content';
 
 /**
  * Transform html entities.
@@ -33,3 +34,6 @@ export const getFirstName = name => {
   names.pop();
   return names.join(' ');
 };
+
+export const untrailingSlashIt = str => str.replace(/\/$/, '');
+export const trailingSlashIt = str => `${untrailingSlashIt(str)  }/`;
