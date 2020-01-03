@@ -126,6 +126,10 @@ button {
   }
 }
 
+.btn--primary {
+  font-size: $fz--base;
+}
+
 .btn--secondary {
   @include transition;
   color: $c--gray-9;

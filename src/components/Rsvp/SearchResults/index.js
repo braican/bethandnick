@@ -2,11 +2,13 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { RsvpContext } from '../index';
 
+import Arrow from '../../../svg/arrow-right';
+
 import styles from './SearchResults.module.scss';
 
 const Welcome = ({ results }) => {
   if (results.length > 1) {
-    return <p>We've got more than one group of people who have a similar address...who are you?</p>;
+    return <p>We're inviting a few people who have a similar address. Please select your name below.</p>;
   }
 
   if (results.length === 0) {
@@ -57,7 +59,7 @@ const SearchResults = () => {
                     <span>{guest.name} {guest.attending < 0 ? 'has declined' : 'will be there'}</span>
                   ) : (
                     <button onClick={() => handleChooseGuest(guest, group)} className={styles.guestButton}>
-                      {guest.name}
+                      <span className={styles.guestName}>{guest.name}</span>&nbsp;<span className={styles.guestArrow}><Arrow /></span>
                     </button>
                   )}
                 </li>

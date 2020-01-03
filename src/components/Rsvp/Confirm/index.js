@@ -2,26 +2,26 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { RsvpContext } from '../index';
 
-const ConfirmYes = ({ guest, meal, restrictions }) => (
+const ConfirmYes = ({ meal, restrictions }) => (
   <div>
     <p>
       Excellent! Don't forget to mark your calendar for October 17th of this year, we can't wait to
       celebrate with you.
     </p>
-    <ul>
-      <li>{guest.name}</li>
-      <li>{meal}</li>
-      <li>{restrictions}</li>
-    </ul>
+
+    <p>
+      You've selected {meal} for your meal and you've indicated{' '}
+      {restrictions ? `the following restrictions: ${restrictions}.` : 'no restrictions.'}
+    </p>
   </div>
 );
 
 ConfirmYes.propTypes = {
-  guest: PropTypes.object.isRequired,
   meal: PropTypes.string,
+  restrictions: PropTypes.string,
 };
 
-const ConfirmNo = () => <p>We're sorry you can't make it!</p>;
+const ConfirmNo = () => <p>Oh no! We're sorry that you're unable to make it!</p>;
 
 const Confirm = () => {
   const {
@@ -31,13 +31,13 @@ const Confirm = () => {
     getGuestRestrictions,
     getOtherGuests,
   } = useContext(RsvpContext);
+
   const otherGuests = getOtherGuests();
 
   return (
     <div className="rsvp--confirm">
       {true === getGuestAttending(guest.id) ? (
         <ConfirmYes
-          guest={guest}
           meal={getGuestMeal(guest.id)}
           restrictions={getGuestRestrictions(guest.id)}
         />
@@ -54,11 +54,10 @@ const Confirm = () => {
               const otherGuest = otherGuests[guestId];
               return (
                 <li key={guestId}>
-                  {otherGuest.name} <br/>
-
-                  {otherGuest.meal} <br/>
+                  <strong>{otherGuest.name}</strong><br/>
+                  {otherGuest.attending && <><span>{otherGuest.meal}</span><br/></>}
                   {otherGuest.attending ? 'Yes' : 'No'} <br/>
-                  {otherGuest.restrictions}
+                  {otherGuest.restrictions || ''}
                 </li>
               );
             })}
@@ -68,7 +67,7 @@ const Confirm = () => {
 
       <p>If everything looks good, hit submit below to complete your RSVP.</p>
 
-      <button className="btn">Submit</button>
+      <button className="btn btn--primary">Submit</button>
     </div>
   );
 };

@@ -146,7 +146,7 @@ const Rsvp = () => {
       }}
     >
       <div className="rsvp">
-        <h1 className="h1">Welcome to the party</h1>
+        <h2>Welcome to the party</h2>
 
         <TransitionGroup>
           <Transition key={`rsvp-view-${viewName}`} timeout={duration}>

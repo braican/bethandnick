@@ -12,10 +12,11 @@ const SetAttending = () => {
   const { next, previous, guest, group, updateGuestRsvp, getGuestAttending } = useContext(
     RsvpContext
   );
-  const [currentGuestSelected, setCurrentGuestSelected] = useState(false);
 
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id);
   const currGuestAttending = getGuestAttending(guest.id);
+
+  const [currentGuestSelected, setCurrentGuestSelected] = useState(currGuestAttending !== null);
 
   /**
    * Set the attending status. Note that since this is the first input for a guest, we need to add
@@ -35,7 +36,6 @@ const SetAttending = () => {
     }
 
     updateGuestRsvp(guest.id, newGuest);
-
   };
 
   const setGuestDeclines = (guest, event = null) => {
@@ -51,11 +51,16 @@ const SetAttending = () => {
     updateGuestRsvp(guest.id, newGuest);
   };
 
+  const goBack = () => {
+    updateGuestRsvp(guest.id, { attending: null });
+    previous();
+  };
+
   return (
     <div className={`rsvp--set-attending ${currGuestAttending !== null ? styles.guestChosen : ''}`}>
-      <p>Hey {getFirstName(guest.name)}!</p>
+      <p className={styles.guestName}>Hey {getFirstName(guest.name)}!</p>
 
-      <p>We hope that you'll be able to make it to celebrate with us.</p>
+      <p>We hope that you'll be able to make it to celebrate with us. Choose whether or not you can attend below.</p>
 
       <ul className={styles.attendingChoices}>
         <li className={styles.choice}>
@@ -68,8 +73,11 @@ const SetAttending = () => {
           />
           <label className={styles.currentGuestOption} htmlFor="attendee_status_yes">
             <span>
-            I'll be there!&nbsp;
-              <span role="img" aria-label="whoop">
+              <span className={styles.happyEmoji} role="img" aria-label="whoop">
+              🎉
+              </span>
+              &nbsp;I'll be there!&nbsp;
+              <span className={styles.happyEmoji} role="img" aria-label="whoop">
               🎉
               </span>
             </span>
@@ -84,12 +92,7 @@ const SetAttending = () => {
             onChange={() => setGuestDeclines(guest)}
           />
           <label className={styles.currentGuestOption} htmlFor="attendee_status_no">
-            <span>
-            Unfortunately I can't make it&nbsp;
-              <span role="img" aria-label="sad face">
-              ☹
-              </span>
-            </span>
+            Unfortunately I can't make it
           </label>
         </li>
       </ul>
@@ -135,12 +138,11 @@ const SetAttending = () => {
         </div>
       </CSSTransition>
 
-      {currentGuestSelected && (
-        <div className={styles.actions}>
-          <button className="btn" onClick={next}>Next</button>
-          <button className="btn--secondary" onClick={previous}>Back</button>
-        </div>
-      )}
+
+      <div className={styles.actions}>
+        {currentGuestSelected &&  <button className="btn btn--primary" onClick={next}>Next</button>}
+        <button className="btn--secondary" onClick={goBack}>Back</button>
+      </div>
 
     </div>
   );

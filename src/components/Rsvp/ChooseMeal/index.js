@@ -19,17 +19,17 @@ const ChooseMeal = () => {
   const otherGuestChosenMeals = otherGuestIds.filter(id => otherGuests[id].meal !== null).length;
 
   const handleErrorMessages = () => {
-    if (currentGuestMeal === null && otherGuestChosenMeals !== otherGuestIds.length) {
+    if ((currentGuestAttending && currentGuestMeal === null) && otherGuestChosenMeals !== otherGuestIds.length) {
       setErrorMessage('Please choose a meal! You\'ll also need to select a meal for anyone else you\'re checking in.');
-    } else if (currentGuestMeal === null) {
+    } else if (currentGuestAttending && currentGuestMeal === null) {
       setErrorMessage('Please choose a meal for yourself!');
     } else if (otherGuestChosenMeals !== otherGuestIds.length) {
-      setErrorMessage('You need to select a meal for anyone else you\'re checking in.');
+      setErrorMessage('You need to select a meal for anyone that you are checking in.');
     }
   };
 
   useEffect(() => {
-    if (currentGuestMeal !== null && otherGuestChosenMeals === otherGuestIds.length) {
+    if (((currentGuestAttending && currentGuestMeal !== null) || !currentGuestAttending) && otherGuestChosenMeals === otherGuestIds.length) {
       setButtonDisabled(false);
       setErrorMessageVisible(false);
       setErrorMessage('');
@@ -63,7 +63,7 @@ const ChooseMeal = () => {
         </div>
       ) : (
         <div>
-          <p>Awww, we're disappointed you won't be able to make it.</p>
+          <p>Oh no! We're sorry that you're unable to make it!</p>
         </div>
       )}
 
@@ -93,7 +93,7 @@ const ChooseMeal = () => {
       <div className={styles.actions}>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
-        <button className={`btn ${buttonDisabled && 'btn--disabled'}`} onClick={handleNext}>
+        <button className={`btn btn--primary ${buttonDisabled && 'btn--disabled'}`} onClick={handleNext}>
           Next
         </button>
 

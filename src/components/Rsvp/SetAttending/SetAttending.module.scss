@@ -1,5 +1,12 @@
 @import '../../../styles/abstracts';
 
+.guestName {
+  font-size: $fz--lg;
+  font-weight: $fw--bold;
+  margin-bottom: 0;
+  color: $c--primary;
+}
+
 .attendingChoices {
   display: flex;
   justify-content: space-between;
@@ -21,6 +28,15 @@
   .guestChosen & {
     color: $c--gray-a;
   }
+
+  .happyEmoji {
+    @include transition(opacity);
+    opacity: 0;
+
+    input:checked + & {
+      opacity: 1;
+    }
+  }
 }
 
 // Other guest choices
@@ -32,9 +48,11 @@
 
 .otherGuestListItem {
   display: block;
+  padding-top: spacing(0.5);
+  padding-bottom: spacing(0.5);
 
   + .otherGuestListItem {
-    border-top: 1px solid $c--gray-c;
+    border-top: 1px solid $c--gray-d;
   }
 
   input[type='checkbox'] {
@@ -54,30 +72,32 @@
 }
 
 .otherGuestChoice {
-  @include transition(color);
+  @include transition(background-color color);
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
   margin-left: spacing(1);
   font-weight: $fw--bold;
   color: rgba($c--gray-6, 0.2);
-  padding: spacing(1) 6px;
+  padding: 0.25em 0.5em;
 
   &:hover {
     color: rgba($c--gray-6, 0.4);
   }
 
   input:checked + &.otherGuestChoice__yes {
-    color: $c-jungle-green;
+    background-color: $c-jungle-green;
+    color: $c--white;
   }
 
   input:checked + &.otherGuestChoice__no {
-    color: $c--gray-6;
+    background-color: $c--gray-9;
+    color: $c--white;
   }
 
   input:active + &,
   input:focus + & {
-    outline: 1px solid rgba($c--black, 0.1);
+    outline: 1px solid rgba($c--black, 0.2);
   }
 }
 
