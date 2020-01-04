@@ -1,0 +1,12 @@
+@import '../../../styles/abstracts';
+
+.confirmYes {
+  margin-top: spacing(4);
+}
+
+.lede {
+  font-weight: $fw--bold;
+  font-size: $fz--base;
+  line-height: 1.2;
+  color: $c--primary;
+}

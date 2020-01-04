@@ -71,7 +71,7 @@ const ChooseMeal = () => {
         <div className={styles.otherGuests}>
           <p>
             Since you're checking in {otherGuestIds.length > 1 ? 'others' : 'someone else'}, let's
-            get their meal{otherGuestIds.length > 1 ? 's' : ''} set up as well:
+            choose their meal{otherGuestIds.length > 1 ? 's' : ''} as well:
           </p>
 
           <ul>

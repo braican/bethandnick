@@ -1,27 +1,20 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { RsvpContext } from '../index';
+import { getFirstName } from '../../../util';
 
-const ConfirmYes = ({ meal, restrictions }) => (
-  <div>
-    <p>
-      Excellent! Don't forget to mark your calendar for October 17th of this year, we can't wait to
-      celebrate with you.
-    </p>
+import styles from './Confirm.module.scss';
 
-    <p>
-      You've selected {meal} for your meal and you've indicated{' '}
-      {restrictions ? `the following restrictions: ${restrictions}.` : 'no restrictions.'}
-    </p>
-  </div>
-);
-
-ConfirmYes.propTypes = {
-  meal: PropTypes.string,
-  restrictions: PropTypes.string,
+/**
+ * Checks to see if a user input indicates no restriction based on some whitelisted words.
+ *
+ * @param {string} input The restriction text the user added to the text field.
+ *
+ * @return boolean
+ */
+const indicatesNoRestriction = input => {
+  const noWords = ['none', 'nope', 'no', 'no restrictions', 'no restriction'];
+  return noWords.indexOf(input) > -1;
 };
-
-const ConfirmNo = () => <p>Oh no! We're sorry that you're unable to make it!</p>;
 
 const Confirm = () => {
   const {
@@ -30,44 +23,77 @@ const Confirm = () => {
     getGuestMeal,
     getGuestRestrictions,
     getOtherGuests,
+    previous,
   } = useContext(RsvpContext);
 
   const otherGuests = getOtherGuests();
 
+  const currentGuestConfirm = () => {
+    const attending = getGuestAttending(guest.id);
+    const name = getFirstName(guest.name);
+    const meal = getGuestMeal(guest.id);
+    const restrictions = getGuestRestrictions(guest.id);
+
+    return (
+      <div className={styles.currentGuest}>
+        <p className={styles.currentStatus}>
+          Alright {name}, let's just confirm:{' '}
+          {true === attending
+            ? <>you <strong>will be attending the wedding</strong> <span className={styles.happyEmoji} role="img" aria-label="whoop">🎉</span>, and you'll be having the <strong>{meal.toLowerCase()}</strong> meal option (great choice).</>
+            : <><strong>you are unable to attend</strong> <span className={styles.sadEmoji} role="img" aria-label="sad">😞</span>.</>
+          }
+        </p>
+
+        {attending && restrictions && (
+          <p>
+            {indicatesNoRestriction(restrictions.toLowerCase()) ? 'You\'ve also indicated that you have no dietary restrictions.' : `You've also indicated the following dietary restriction: ${restrictions}.`}
+          </p>
+        )}
+      </div>
+    );
+  };
+
+  const otherGuestConfirm = guestId => {
+    const { name, attending, meal, restrictions } = otherGuests[guestId];
+
+    return (
+      <li key={guestId}>
+        <p>
+          <strong>{name}</strong>{' '}
+          {attending ? (
+            <>
+              will be attending, and will have the {meal.toLowerCase()} meal&nbsp;option.
+              {restrictions
+                ? ` They have the following dietary restrictions: ${restrictions}.`
+                : ''}
+            </>
+          ) : (
+            'is unable to attend.'
+          )}
+        </p>
+      </li>
+    );
+  };
+
   return (
     <div className="rsvp--confirm">
-      {true === getGuestAttending(guest.id) ? (
-        <ConfirmYes
-          meal={getGuestMeal(guest.id)}
-          restrictions={getGuestRestrictions(guest.id)}
-        />
-      ) : (
-        <ConfirmNo />
-      )}
+      {currentGuestConfirm()}
 
       {otherGuests && (
-        <div>
-          <p>You've also checked in these guests:</p>
+        <div className={styles.otherGuests}>
+          <p>The following guests will also be checked in:</p>
 
-          <ul>
-            {Object.keys(otherGuests).map(guestId => {
-              const otherGuest = otherGuests[guestId];
-              return (
-                <li key={guestId}>
-                  <strong>{otherGuest.name}</strong><br/>
-                  {otherGuest.attending && <><span>{otherGuest.meal}</span><br/></>}
-                  {otherGuest.attending ? 'Yes' : 'No'} <br/>
-                  {otherGuest.restrictions || ''}
-                </li>
-              );
-            })}
-          </ul>
+          <ul>{Object.keys(otherGuests).map(otherGuestConfirm)}</ul>
         </div>
       )}
 
-      <p>If everything looks good, hit submit below to complete your RSVP.</p>
+      <p>If everything looks good, hit Confirm below to complete your RSVP.</p>
 
-      <button className="btn btn--primary">Submit</button>
+      <div className={styles.actions}>
+        <button className="btn btn--primary">Confirm</button>
+
+        <button className='btn--secondary' onClick={previous}>Back</button>
+      </div>
     </div>
   );
 };

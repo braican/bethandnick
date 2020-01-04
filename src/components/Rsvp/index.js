@@ -86,9 +86,14 @@ const Rsvp = () => {
 
   const updateGuestRsvp = (guestId, data) => {
     const newRsvps = { ...rsvps };
-    const guestResponses = { ...newRsvps[guestId], ...data };
 
-    newRsvps[guestId] = guestResponses;
+    if (data === null) {
+      delete newRsvps[guestId];
+    } else {
+      const guestResponses = { ...newRsvps[guestId], ...data };
+      newRsvps[guestId] = guestResponses;
+    }
+
     setRsvps(newRsvps);
   };
 

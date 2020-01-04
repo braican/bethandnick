@@ -31,11 +31,10 @@ const SetAttending = () => {
     if (null === event || event.target.checked) {
       setCurrentGuestSelected(true);
       newGuest.attending = true;
+      updateGuestRsvp(guest.id, newGuest);
     } else {
-      newGuest.attending = null;
+      updateGuestRsvp(guest.id, null);
     }
-
-    updateGuestRsvp(guest.id, newGuest);
   };
 
   const setGuestDeclines = (guest, event = null) => {
@@ -44,11 +43,10 @@ const SetAttending = () => {
     if (null === event || event.target.checked) {
       setCurrentGuestSelected(true);
       newGuest.attending = false;
+      updateGuestRsvp(guest.id, newGuest);
     } else {
-      newGuest.attending = null;
+      updateGuestRsvp(guest.id, null);
     }
-
-    updateGuestRsvp(guest.id, newGuest);
   };
 
   const goBack = () => {
