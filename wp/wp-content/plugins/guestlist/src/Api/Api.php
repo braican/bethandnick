@@ -8,6 +8,7 @@
 namespace Guestlist\Api;
 
 use Guestlist\Api\Endpoints\Search;
+use Guestlist\Api\Endpoints\Update;
 
 /** Class */
 class Api {
@@ -29,5 +30,6 @@ class Api {
 	 */
 	public function setup_endpoints() {
 		$search = new Search( '/search' );
+		$update = new Update( '/update' );
 	}
 }

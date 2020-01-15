@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import axios from 'axios';
 import { RsvpContext } from '../index';
 import { getFirstName } from '../../../util';
 
@@ -25,14 +26,22 @@ const Confirm = () => {
     getOtherGuests,
     previous,
     next,
+    rsvps,
   } = useContext(RsvpContext);
 
   const otherGuests = getOtherGuests();
 
   const saveRsvp = () => {
-    console.log('save the rsvp here');
+    axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
+      .then(resp => {
+        console.log(resp);
 
-    next();
+      })
+      .catch(({ response }) => {
+        console.error(response);
+      });
+
+    // next();
   };
 
   const currentGuestConfirm = () => {

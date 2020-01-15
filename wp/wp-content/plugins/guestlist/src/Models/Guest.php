@@ -94,4 +94,44 @@ class Guest extends Post {
 		);
 	}
 
+
+	/** ---------- Updaters ---------- */
+
+	/**
+	 * Updates the guest's attending status.
+	 *
+	 * @param boolean $is_attending Whether or not the guest is going to be attending.
+	 *
+	 * @return \Guestlist\Models\Guest
+	 */
+	public function set_attending( bool $is_attending ) {
+		$attending_status = $is_attending ? 1 : -1;
+		update_post_meta( $this->ID, 'gl_attending', $attending_status );
+		return $this;
+	}
+
+	/**
+	 * Updates the guest's meal choice.
+	 *
+	 * @param string $meal The meal the guest would like.
+	 *
+	 * @return \Guestlist\Models\Guest
+	 */
+	public function set_meal( string $meal ) {
+		update_post_meta( $this->ID, 'gl_meal', $meal );
+		return $this;
+	}
+
+	/**
+	 * Updates the guest's dietary restrictions.
+	 *
+	 * @param string $notes Any notes about a dietary restriction.
+	 *
+	 * @return \Guestlist\Models\Guest
+	 */
+	public function set_dietary_notes( string $notes ) {
+		update_post_meta( $this->ID, 'gl_dietary_notes', $notes );
+		return $this;
+	}
+
 }
