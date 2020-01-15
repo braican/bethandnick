@@ -35,7 +35,7 @@ const Search = () => {
 
   return (
     <div className="view--search">
-      <p>
+      <p className="big">
         We're excited to celebrate with you in October. To verify your invitation, please
         enter the address we sent your invitation to below (you only need the street number and name!):
       </p>
@@ -51,7 +51,7 @@ const Search = () => {
             name="street_name"
             onChange={e => setStreet(e.target.value)}
             value={street}
-            placeholder="Enter street address"
+            placeholder="Street address"
             autoComplete="off"
           />
           <button className="btn" disabled={street === ''}>Search</button>

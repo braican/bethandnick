@@ -14,12 +14,13 @@ const RestrictionsInput = ({ guestId }) => {
 
   return (
     <label>
-      <span className={styles.label}>Note any food allergies or dietary restrictions here:</span>
+      <span className={styles.label}>Note any food allergies or dietary restrictions below:</span>
       <input
         className={styles.input}
         type="text"
         value={getGuestRestrictions(guestId) || ''}
         onChange={event => setGuestRestriction(event)}
+        placeholder="Add them here..."
       />
     </label>
   );

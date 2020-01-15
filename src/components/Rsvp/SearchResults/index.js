@@ -8,7 +8,7 @@ import styles from './SearchResults.module.scss';
 
 const Welcome = ({ results }) => {
   if (results.length > 1) {
-    return <p>We're inviting a few people who have a similar address. Please select your name below.</p>;
+    return <p className="big">We're inviting a few people who have a similar address. Please select your name below.</p>;
   }
 
   if (results.length === 0) {
@@ -40,6 +40,7 @@ const SearchResults = () => {
 
   return (
     <div className="rsvp--search-results">
+
       <Welcome results={searchResults} />
 
       {searchResults.map(group => (

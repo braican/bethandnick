@@ -56,9 +56,9 @@ const SetAttending = () => {
 
   return (
     <div className={`rsvp--set-attending ${currGuestAttending !== null ? styles.guestChosen : ''}`}>
-      <p className={styles.guestName}>Hey {getFirstName(guest.name)}!</p>
+      <h3 className={styles.guestName}>Hey {getFirstName(guest.name)}!</h3>
 
-      <p>We hope that you'll be able to make it to celebrate with us. Choose whether or not you can attend below.</p>
+      <p className="big">We hope that you'll be able to make it to Groton on October 17th to celebrate with us. Choose whether or not you can attend below.</p>
 
       <ul className={styles.attendingChoices}>
         <li className={styles.choice}>
@@ -90,7 +90,7 @@ const SetAttending = () => {
             onChange={() => setGuestDeclines(guest)}
           />
           <label className={styles.currentGuestOption} htmlFor="attendee_status_no">
-            Unfortunately I can't make it
+            Unfortunately I can't make&nbsp;it
           </label>
         </li>
       </ul>
@@ -102,7 +102,7 @@ const SetAttending = () => {
         unmountOnExit
       >
         <div className={styles.setOtherAttending}>
-          <p>Would you like to check in for anyone else from {group.street}?</p>
+          <p>Would you like to check in for anyone else from <strong>{group.street}</strong>?</p>
 
           <ul>
             {otherGuests.map(otherGuest => (

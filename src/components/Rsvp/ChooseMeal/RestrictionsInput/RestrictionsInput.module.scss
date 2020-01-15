@@ -8,5 +8,8 @@
 
 .input {
   @include rsvp-input();
-  font-size: $fz--sm;
+  background-color: $c--white;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  // font-size: $fz--sm;
 }

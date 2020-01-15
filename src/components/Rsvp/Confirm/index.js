@@ -24,9 +24,16 @@ const Confirm = () => {
     getGuestRestrictions,
     getOtherGuests,
     previous,
+    next,
   } = useContext(RsvpContext);
 
   const otherGuests = getOtherGuests();
+
+  const saveRsvp = () => {
+    console.log('save the rsvp here');
+
+    next();
+  };
 
   const currentGuestConfirm = () => {
     const attending = getGuestAttending(guest.id);
@@ -37,7 +44,7 @@ const Confirm = () => {
     return (
       <div className={styles.currentGuest}>
         <p className={styles.currentStatus}>
-          Alright {name}, let's just confirm:{' '}
+          OK {name}, let's just confirm:{' '}
           {true === attending
             ? <>you <strong>will be attending the wedding</strong> <span className={styles.happyEmoji} role="img" aria-label="whoop">🎉</span>, and you'll be having the <strong>{meal.toLowerCase()}</strong> meal option (great choice).</>
             : <><strong>you are unable to attend</strong> <span className={styles.sadEmoji} role="img" aria-label="sad">😞</span>.</>
@@ -90,7 +97,7 @@ const Confirm = () => {
       <p>If everything looks good, hit Confirm below to complete your RSVP.</p>
 
       <div className={styles.actions}>
-        <button className="btn btn--primary">Confirm</button>
+        <button className="btn btn--primary" onClick={saveRsvp}>Confirm</button>
 
         <button className='btn--secondary' onClick={previous}>Back</button>
       </div>

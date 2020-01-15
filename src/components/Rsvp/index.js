@@ -6,6 +6,7 @@ import SearchResults from './SearchResults';
 import SetAttending from './SetAttending';
 import ChooseMeal from './ChooseMeal';
 import Confirm from './Confirm';
+import Success from './Success';
 
 export const RsvpContext = React.createContext();
 
@@ -56,6 +57,11 @@ const views = [
     // 4
     name: 'confirm',
     component: Confirm,
+  },
+  {
+    // 5
+    name: 'success',
+    component: Success,
   },
 ];
 
@@ -151,7 +157,9 @@ const Rsvp = () => {
       }}
     >
       <div className="rsvp">
-        <h2>Welcome to the party</h2>
+        <Transition in={viewName === 'search' || viewName === 'search-results'} timeout={duration} unmountOnExit>
+          {status => <div style={{ ...transitionStyles[status] }}><h3>Welcome to the party</h3></div>}
+        </Transition>
 
         <TransitionGroup>
           <Transition key={`rsvp-view-${viewName}`} timeout={duration}>

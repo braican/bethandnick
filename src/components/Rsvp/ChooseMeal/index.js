@@ -51,9 +51,11 @@ const ChooseMeal = () => {
 
   return (
     <div className="rsvp--choose-meal">
+      <h3>What's for dinner?</h3>
+
       {currentGuestAttending ? (
         <div>
-          <p>
+          <p className="big">
             Awesome! We're so excited that you'll be able to attend. What do you think you'd like to
             eat at the wedding?
           </p>

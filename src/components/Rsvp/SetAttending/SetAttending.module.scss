@@ -1,24 +1,29 @@
 @import '../../../styles/abstracts';
 
 .guestName {
-  font-size: $fz--lg;
-  font-weight: $fw--bold;
-  margin-bottom: 0;
   color: $c--primary;
 }
 
 .attendingChoices {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: spacing(4);
   margin-top: spacing(2);
+
+  @include mq(1200px) {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .choice {
-  width: 46%;
+  width: 100%;
+  margin-bottom: spacing(1);
 
   input[type='radio'] {
     @include hidden-input();
+  }
+
+  @include mq(1200px) {
+    width: 46%;
   }
 }
 
