@@ -37,7 +37,7 @@ const Search = () => {
     <div className="view--search">
       <p className="big">
         We're excited to celebrate with you in October. To verify your invitation, please
-        enter the address we sent your invitation to below (you only need the street number and name!):
+        enter the address we sent your invitation to below (you only need the street number and name):
       </p>
 
       {(loading || hasResults) ? (

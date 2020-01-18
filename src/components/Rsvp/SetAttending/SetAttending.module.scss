@@ -11,7 +11,6 @@
   @include mq(1420px) {
     display: flex;
     justify-content: space-between;
-    align-items: center;
   }
 }
 
@@ -43,6 +42,10 @@
   padding: spacing(1) 6px;
   border: 2px solid transparent;
   @include box-shadow(0);
+
+  @include mq(1420px) {
+    height: 100%;
+  }
 
   &:before {
     @include transition(opacity transform);

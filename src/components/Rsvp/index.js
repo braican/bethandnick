@@ -158,7 +158,7 @@ const Rsvp = () => {
     >
       <div className="rsvp">
         <Transition in={viewName === 'search' || viewName === 'search-results'} timeout={duration} unmountOnExit>
-          {status => <div style={{ ...transitionStyles[status] }}><h3>Welcome to the party</h3></div>}
+          {status => <div style={{ ...transitionStyles[status] }}><h3>Welcome to the Party</h3></div>}
         </Transition>
 
         <TransitionGroup>

@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
+import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group';
 import { RsvpContext } from '../index';
 import { getFirstName } from '../../../util';
 
+import trsStyles from '../SetAttending/transition.module.scss';
 import styles from './Confirm.module.scss';
 
 /**
@@ -29,19 +31,20 @@ const Confirm = () => {
     rsvps,
   } = useContext(RsvpContext);
 
+  const [loading, setLoading] = useState(false);
+
   const otherGuests = getOtherGuests();
 
   const saveRsvp = () => {
-    axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
-      .then(resp => {
-        console.log(resp);
+    setLoading(true);
 
-      })
-      .catch(({ response }) => {
-        console.error(response);
-      });
-
-    // next();
+    // axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
+    //   .then(() => {
+    //     // next();
+    //   })
+    //   .catch(({ response }) => {
+    //     console.error(response);
+    //   });
   };
 
   const currentGuestConfirm = () => {
@@ -105,10 +108,28 @@ const Confirm = () => {
 
       <p>If everything looks good, hit Confirm below to complete your RSVP.</p>
 
-      <div className={styles.actions}>
-        <button className="btn btn--primary" onClick={saveRsvp}>Confirm</button>
 
-        <button className='btn--secondary' onClick={previous}>Back</button>
+      <button onClick={() => setLoading(!loading)}>Toggle</button>
+
+      <div className={styles.actions}>
+
+        <SwitchTransition>
+          <CSSTransition
+            key={loading ? 'loading' : 'not-loading'}
+            timeout={300}
+            classNames={{ ...trsStyles }}
+          >
+            {loading ? (
+              <p>One sec while we save your rsvp...</p>
+            ) : (
+              <div>
+                <button className="btn btn--primary" onClick={saveRsvp}>Confirm</button>
+                <button className='btn--secondary' onClick={previous}>Back</button>
+              </div>
+            )}
+          </CSSTransition>
+        </SwitchTransition>
+
       </div>
     </div>
   );
