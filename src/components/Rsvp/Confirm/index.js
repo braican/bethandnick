@@ -75,7 +75,7 @@ const Confirm = () => {
     return (
       <li key={guestId}>
         <p>
-          <strong>{name}</strong>{' '}
+          <strong className="heavy">{name}</strong>{' '}
           {attending ? (
             <>
               will be attending, and will have the {meal.toLowerCase()} meal&nbsp;option.

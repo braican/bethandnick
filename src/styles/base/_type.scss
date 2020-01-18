@@ -84,8 +84,12 @@ a {
   line-height: 1.8;
 
   strong {
-    font-weight: $fw--bold;
+    font-weight: $fw--semibold;
     color: $c--primary;
+  }
+
+  .heavy {
+    font-weight: $fw--bold;
   }
 
   .big {
@@ -120,7 +124,7 @@ button {
   background-color: $c--primary;
   padding: 0.75em 1em;
   color: $c--white;
-  font-weight: $fw--bold;
+  font-weight: $fw--semibold;
 
   &:not(:disabled):not(.btn--disabled):hover {
     @include box-shadow(5px);

@@ -2,20 +2,73 @@
 
 .group {
   margin-top: spacing(4);
+  background-color: $c--white;
+  padding: spacing(2);
+  border-top: 4px solid $c--secondary;
 }
 
 .address {
-  font-weight: $fw--bold;
-  margin-bottom: 0.5em;
-  padding-top: 0.5em;
-  border-top: 2px solid $c--secondary;
+  font-weight: $fw--semibold;
+  margin-bottom: spacing(2);
+
+  line-height: 1.2;
+}
+
+.respondedGuests {
+  margin-top: spacing(2);
+}
+
+.respondedGuests__intro {
+  margin-bottom: spacing(0.5);
+}
+
+.respondedGuestList {
+  margin-bottom: spacing(2);
+}
+
+.respondedGuestStrong {
+  font-weight: $fw--semibold;
+}
+
+.contactText {
+  margin-bottom: 0;
+}
+
+.respondedGuestAttending,
+.respondedGuestDeclined {
+  position: relative;
+  padding-left: 26px;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+}
+
+.respondedGuestDeclined:before {
+  background-image: $icon--close;
+  height: 12px;
+  margin-top: -6px;
+}
+
+.respondedGuestAttending:before {
+  background-image: $icon--check;
+  height: 16px;
+  margin-top: -8px;
 }
 
 .guestListItem {
-  // margin-bottom: spacing(2);
   display: inline-block;
   vertical-align: top;
-  width: 48%;
+  width: 45%;
+  margin-right: 5%;
 }
 
 .guestButton {
@@ -39,13 +92,19 @@
     vertical-align: middle;
   }
 
+  .icon {
+    display: inline;
+    white-space: nowrap;
+  }
+
   .guestArrow {
     @include transition(opacity);
     display: inline-block;
-    width: 0.8em;
-    height: 0.8em;
+    width: 0.75em;
+    height: 0.75em;
     margin-left: 0.25em;
-    opacity: 0;
+    opacity: 0.2;
+    margin-top: -2px;
 
     svg {
       display: block;

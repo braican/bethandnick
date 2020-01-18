@@ -8,9 +8,10 @@
   margin-bottom: spacing(4);
   margin-top: spacing(2);
 
-  @include mq(1200px) {
+  @include mq(1420px) {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
 }
 
@@ -22,16 +23,104 @@
     @include hidden-input();
   }
 
-  @include mq(1200px) {
-    width: 46%;
+  @include mq(1420px) {
+    width: 48%;
   }
 }
 
 .currentGuestOption {
-  @include rsvp-button();
+  // @include rsvp-button();
+  @include transition(opacity color border-color background-color box-shadow);
+  cursor: pointer;
+  font-weight: $fw--bold;
+  line-height: 1.2;
+  display: block;
+  font-size: $fz--base;
+  position: relative;
+  text-align: center;
+  color: $c--secondary;
+  opacity: 0.6;
+  padding: spacing(1) 6px;
+  border: 2px solid transparent;
+  @include box-shadow(0);
 
-  .guestChosen & {
-    color: $c--gray-a;
+  &:before {
+    @include transition(opacity transform);
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: spacing(1);
+    width: 40px;
+    margin-left: -20px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+
+  &:hover {
+    opacity: 1;
+    &:before {
+      opacity: 0.4;
+    }
+  }
+
+  &.currentGuestOption__yes {
+    padding-bottom: 56px;
+    color: $c--primary;
+
+    &:before {
+      background-image: $icon--check;
+      height: 36px;
+    }
+  }
+
+  &.currentGuestOption__no {
+    padding-bottom: 52px;
+    color: $c--accent;
+
+    &:before {
+      background-image: $icon--close;
+      height: 26px;
+    }
+  }
+
+  .guestChosen input:not(:checked) + & {
+    color: $c--gray-9;
+    opacity: 0.4;
+
+    &.currentGuestOption__yes:hover {
+      color: $c--primary;
+    }
+
+    &.currentGuestOption__no:hover {
+      color: $c--accent;
+    }
+  }
+
+  input:checked + & {
+    opacity: 1;
+    background-color: $c--white;
+
+    &.currentGuestOption__yes {
+      border-color: $c--secondary;
+      @include box-shadow(4px, $c--secondary);
+    }
+
+    &.currentGuestOption__no {
+      border-color: $c--accent;
+      @include box-shadow(4px, $c--accent);
+    }
+
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  input:focus + & {
+    outline: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .happyEmoji {
@@ -55,10 +144,7 @@
   display: block;
   padding-top: spacing(0.5);
   padding-bottom: spacing(0.5);
-
-  + .otherGuestListItem {
-    border-top: 1px solid $c--gray-d;
-  }
+  border-top: 1px solid $c--gray-d;
 
   input[type='checkbox'] {
     @include hidden-input();
@@ -71,7 +157,7 @@
 }
 
 .otherGuestName {
-  font-weight: $fw--bold;
+  font-weight: $fw--semibold;
   display: block;
   flex: 1;
 }
@@ -82,27 +168,57 @@
   display: inline-block;
   vertical-align: middle;
   margin-left: spacing(1);
-  font-weight: $fw--bold;
+  font-weight: $fw--semibold;
   color: rgba($c--gray-6, 0.2);
   padding: 0.25em 0.5em;
+  position: relative;
+  padding-left: 26px;
 
   &:hover {
     color: rgba($c--gray-6, 0.4);
   }
 
+  &:before {
+    @include transition(opacity);
+    content: '';
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 0;
+  }
+
+  &.otherGuestChoice__yes:before {
+    background-image: $icon--check;
+    height: 16px;
+    margin-top: -8px;
+  }
+
+  &.otherGuestChoice__no:before {
+    background-image: $icon--close;
+    height: 12px;
+    margin-top: -6px;
+  }
+
+  input:checked + &:before {
+    opacity: 1;
+  }
+
   input:checked + &.otherGuestChoice__yes {
-    background-color: $c-jungle-green;
-    color: $c--white;
+    color: $c--secondary;
   }
 
   input:checked + &.otherGuestChoice__no {
-    background-color: $c--gray-9;
-    color: $c--white;
+    color: $c--accent;
   }
 
   input:active + &,
   input:focus + & {
-    outline: 1px solid rgba($c--black, 0.2);
+    outline: 1px solid rgba($c--black, 0.1);
   }
 }
 

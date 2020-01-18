@@ -13,7 +13,9 @@ const SetAttending = () => {
     RsvpContext
   );
 
-  const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id);
+
+
+  const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id && otherGuest.attending === null);
   const currGuestAttending = getGuestAttending(guest.id);
 
   const [currentGuestSelected, setCurrentGuestSelected] = useState(currGuestAttending !== null);
@@ -69,7 +71,7 @@ const SetAttending = () => {
             checked={true === currGuestAttending}
             onChange={() => setGuestCanGo(guest)}
           />
-          <label className={styles.currentGuestOption} htmlFor="attendee_status_yes">
+          <label {...className(styles.currentGuestOption, styles.currentGuestOption__yes)} htmlFor="attendee_status_yes">
             <span>
               <span className={styles.happyEmoji} role="img" aria-label="whoop">
               🎉
@@ -81,6 +83,7 @@ const SetAttending = () => {
             </span>
           </label>
         </li>
+
         <li className={styles.choice}>
           <input
             type="radio"
@@ -89,8 +92,8 @@ const SetAttending = () => {
             checked={false === currGuestAttending}
             onChange={() => setGuestDeclines(guest)}
           />
-          <label className={styles.currentGuestOption} htmlFor="attendee_status_no">
-            Unfortunately I can't make&nbsp;it
+          <label {...className(styles.currentGuestOption, styles.currentGuestOption__no)} htmlFor="attendee_status_no">
+            Sorry, I can't make&nbsp;it
           </label>
         </li>
       </ul>
