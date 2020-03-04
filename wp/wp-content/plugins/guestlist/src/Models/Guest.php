@@ -81,6 +81,16 @@ class Guest extends Post {
 		return 'Not selected';
 	}
 
+	/**
+	 * Gets the dietary notes.
+	 *
+	 * @return string
+	 */
+	public function dietary_notes() {
+		$notes = $this->meta( 'gl_dietary_notes' );
+		return $notes;
+	}
+
 
 	/**
 	 * Build and return the object that should be presented in the REST API.

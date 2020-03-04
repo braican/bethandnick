@@ -15,6 +15,10 @@ module.exports = {
     description: 'Beth & Nick are getting married on October 17, 2020 in Groton, Massachusetts.',
     siteUrl,
   },
+  proxy: {
+    prefix: '/.netlify/functions',
+    url: 'http://localhost:34567',
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-svg-sprite`,

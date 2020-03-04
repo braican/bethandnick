@@ -196,13 +196,14 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 					<td><strong>Name</strong></td>
 					<td><strong>Attending</strong></td>
 					<td><strong>Meal</strong></td>
+					<td><strong>Notes</strong></td>
 				</tr>
 			</thead>
 
 			<?php foreach ( $this->get_guests() as $grouped_guests ) : ?>
 			<tbody>
 				<tr>
-					<td colspan="3" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
+					<td colspan="4" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
 				</tr>
 
 				<?php foreach ( $grouped_guests->get_guests() as $guest ) : ?>
@@ -269,6 +270,9 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 							<button class="button button-primary">Save</button>
 							<button class="button button-secondary js-cancel-edit-guest">Cancel</button>
 						</form>
+					</td>
+					<td data-value="<?php echo esc_attr( $guest->dietary_notes() ); ?>">
+						<?php echo esc_attr( $guest->dietary_notes() ); ?>
 					</td>
 				</tr>
 				<?php endforeach; ?>

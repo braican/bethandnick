@@ -5,15 +5,13 @@ import { RsvpContext } from '../index';
 import { getFirstName, className } from '../../../util';
 
 import styles from './SetAttending.module.scss';
-import trsStyles from './transition.module.scss';
+import trsStyles from '../../../styles/transitions/fadeDown.module.scss';
 
 const SetAttending = () => {
 
   const { next, previous, guest, group, updateGuestRsvp, getGuestAttending } = useContext(
     RsvpContext
   );
-
-
 
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id && otherGuest.attending === null);
   const currGuestAttending = getGuestAttending(guest.id);

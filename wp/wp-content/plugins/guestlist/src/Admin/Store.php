@@ -35,7 +35,6 @@ class Store {
 		}
 	}
 
-
 	/**
 	 * Adds an admin notice.
 	 *

@@ -9,6 +9,7 @@ namespace Guestlist\Admin;
 
 use Guestlist\Admin\Views\EventList\EventList;
 use Guestlist\Admin\Views\Event\Event;
+use Guestlist\Admin\Views\Access\Access;
 
 /**
  * Class to handle interactions with the Guestlist admin page.
@@ -17,18 +18,25 @@ class Admin {
 	/********* View variables *********/
 
 	/**
-	 * Event List
+	 * Event List page
 	 *
 	 * @var \Guestlist\Admin\Views\EventList\EventList
 	 */
 	public $event_list;
 
 	/**
-	 * Event
+	 * Event page
 	 *
 	 * @var \Guestlist\Admin\Views\Event\Event
 	 */
 	public $event;
+
+	/**
+	 * Access page
+	 *
+	 * @var \Guestlist\Admin\Views\Access\Access
+	 */
+	public $access;
 
 
 	/********* Methods *********/
@@ -60,6 +68,7 @@ class Admin {
 	public function setup_views() {
 		$this->event_list = new EventList();
 		$this->event      = new Event();
+		$this->access     = new Access();
 	}
 
 	/**
@@ -83,6 +92,15 @@ class Admin {
 			'guestlist',
 			$cb,
 			'dashicons-groups'
+		);
+
+		\add_submenu_page(
+			'guestlist',
+			'API Access',
+			'API Access',
+			'edit_posts',
+			'guestlist_access',
+			array( $this->access, 'load' )
 		);
 	}
 

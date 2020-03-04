@@ -9,6 +9,7 @@ namespace Guestlist\Api\Endpoints;
 
 use Guestlist\Models\GuestGroup;
 use Guestlist\Repositories\GuestRepo;
+use Guestlist\Admin\Store;
 
 /** Class */
 class Search {
@@ -44,7 +45,6 @@ class Search {
 		);
 	}
 
-
 	/**
 	 * The function that will return the content for the endpoint.
 	 *
@@ -55,6 +55,13 @@ class Search {
 	public function get_content( \WP_REST_Request $request ) {
 		$event_id = $request->get_param( 'event' );
 		$search   = $request->get_param( 's_addr' );
+
+		$auth      = $request->get_header( 'Authorization' );
+		$api_check = Store::get( 'gl_api_key' );
+
+		if ($auth !== $api_check) {
+			return new \WP_Error( 'auth_error', 'Authorization error. Your API keys don\'t match up.', array( 'status' => 401 ) );
+		}
 
 		return $this->search( $event_id, $search );
 	}

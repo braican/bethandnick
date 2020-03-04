@@ -1,22 +1,34 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import axios from 'axios';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { RsvpContext } from '../index';
 import { catchApiError } from '../../../util';
 
 import styles from './Search.module.scss';
+import trsStyles from '../../../styles/transitions/fade.module.scss';
 
 const Search = () => {
-  const [street, setStreet] = useState('');
+  const [search, setSearch] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [hasResults, setHasResults] = useState(false);
   const [loading, setLoading] = useState(false);
   const { next, setSearchResults } = useContext(RsvpContext);
+  const searchboxContainer = useRef();
 
-  const handleStreetSearch = event => {
+  useEffect(() => {
+    if (searchboxContainer && searchboxContainer.current) {
+      const height = searchboxContainer.current.offsetHeight;
+      searchboxContainer.current.style.minHeight = `${height}px`;
+    }
+  }, []);
+
+  const handleSearch = event => {
     event.preventDefault();
     setLoading(true);
 
-    axios.get(`https://bethandnick.ups.dock/wp-json/guestlist/v1/search?event=142&s_addr=${street}`)
+    axios.get(`/.netlify/functions/search`, {
+      params: { search },
+    })
       .then( ({ data }) => {
         if (data.code && data.code === 'no_results') {
           setErrorMessage(data.message);
@@ -27,7 +39,10 @@ const Search = () => {
         setSearchResults(data);
         next();
       })
-      .catch(catchApiError)
+      .catch(err => {
+        catchApiError(err);
+        setErrorMessage('Something went wrong. Please contact Nick or Beth to RSVP.');
+      })
       .finally(() => {
         setLoading(false);
       });
@@ -40,23 +55,35 @@ const Search = () => {
         enter the address we sent your invitation to below (you only need the street number and name):
       </p>
 
-      {(loading || hasResults) ? (
-        <p>Searching....</p>
-      ) : (
-        <form onSubmit={handleStreetSearch}>
-          {errorMessage && <p>{errorMessage}</p>}
-          <input
-            className={styles.searchField}
-            type="text"
-            name="street_name"
-            onChange={e => setStreet(e.target.value)}
-            value={street}
-            placeholder="Street address"
-            autoComplete="off"
-          />
-          <button className="btn" disabled={street === ''}>Search</button>
-        </form>
-      )}
+      <div ref={searchboxContainer}>
+
+        <SwitchTransition>
+          <CSSTransition
+            key={loading || hasResults ? 'loading' : 'not-loading'}
+            timeout={300}
+            classNames={{ ...trsStyles }}
+          >
+            {(loading || hasResults) ? (
+              <p>Searching....</p>
+            ) : (
+              <form onSubmit={handleSearch}>
+                {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+                <input
+                  className={styles.searchField}
+                  type="text"
+                  name="street_name"
+                  onChange={e => setSearch(e.target.value)}
+                  value={search}
+                  placeholder="101 Main Street"
+                  autoComplete="off"
+                />
+                <button className="btn" disabled={search === ''}>Search</button>
+              </form>
+            )}
+          </CSSTransition>
+        </SwitchTransition>
+      </div>
+
     </div>
   );
 };

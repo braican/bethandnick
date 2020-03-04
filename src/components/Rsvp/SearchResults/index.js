@@ -10,9 +10,12 @@ const SearchResults = () => {
   return (
     <div className="rsvp--search-results">
 
-      <Welcome results={searchResults} />
-
-      {searchResults.map(result => <Result key={result.id} group={result} />)}
+      {searchResults && (
+        <>
+          <Welcome results={searchResults} />
+          {searchResults.map(result => <Result key={result.id} group={result} />)}
+        </>
+      )}
     </div>
   );
 };

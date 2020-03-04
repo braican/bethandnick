@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
-import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import { RsvpContext } from '../index';
 import { getFirstName } from '../../../util';
 
-import trsStyles from '../SetAttending/transition.module.scss';
+import trsStyles from '../../../styles/transitions/fadeDown.module.scss';
 import styles from './Confirm.module.scss';
 
 /**
@@ -38,13 +38,13 @@ const Confirm = () => {
   const saveRsvp = () => {
     setLoading(true);
 
-    // axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
-    //   .then(() => {
-    //     // next();
-    //   })
-    //   .catch(({ response }) => {
-    //     console.error(response);
-    //   });
+    axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
+      .then(() => {
+        next();
+      })
+      .catch(({ response }) => {
+        console.error(response);
+      });
   };
 
   const currentGuestConfirm = () => {
