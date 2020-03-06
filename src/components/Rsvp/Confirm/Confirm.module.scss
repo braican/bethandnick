@@ -5,8 +5,12 @@
 }
 
 .otherGuests {
-  margin-top: spacing(4);
-  margin-bottom: spacing(4);
+  margin-top: spacing(2);
+  margin-bottom: spacing(2);
+
+  li + li {
+    margin-top: spacing(2);
+  }
 }
 
 .happyEmoji,

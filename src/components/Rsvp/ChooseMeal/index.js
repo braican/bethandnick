@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { RsvpContext } from '../index';
 import MealSelector from './MealSelector';
 import RestrictionsInput from './RestrictionsInput';
+import OtherGuestMeal from './OtherGuestMeal';
 
 import styles from './ChooseMeal.module.scss';
 
@@ -26,8 +27,14 @@ const ChooseMeal = () => {
   const otherGuestChosenMeals = otherGuestIds.filter(id => otherGuests[id].meal !== null).length;
 
   const handleErrorMessages = () => {
-    if ((currentGuestAttending && currentGuestMeal === null) && otherGuestChosenMeals !== otherGuestIds.length) {
-      setErrorMessage('Please choose a meal! You\'ll also need to select a meal for anyone else you\'re checking in.');
+    if (
+      currentGuestAttending &&
+      currentGuestMeal === null &&
+      otherGuestChosenMeals !== otherGuestIds.length
+    ) {
+      setErrorMessage(
+        'Please choose a meal! You\'ll also need to select a meal for anyone else you\'re checking in.'
+      );
     } else if (currentGuestAttending && currentGuestMeal === null) {
       setErrorMessage('Please choose a meal for yourself!');
     } else if (otherGuestChosenMeals !== otherGuestIds.length) {
@@ -36,7 +43,10 @@ const ChooseMeal = () => {
   };
 
   useEffect(() => {
-    if (((currentGuestAttending && currentGuestMeal !== null) || !currentGuestAttending) && otherGuestChosenMeals === otherGuestIds.length) {
+    if (
+      ((currentGuestAttending && currentGuestMeal !== null) || !currentGuestAttending) &&
+      otherGuestChosenMeals === otherGuestIds.length
+    ) {
       setButtonDisabled(false);
       setErrorMessageVisible(false);
       setErrorMessage('');
@@ -44,7 +54,6 @@ const ChooseMeal = () => {
       handleErrorMessages();
     }
   }, [getGuestAttending]);
-
 
   const handleNext = () => {
     if (buttonDisabled) {
@@ -60,16 +69,16 @@ const ChooseMeal = () => {
     <div className="rsvp--choose-meal">
       <h3>What's for dinner?</h3>
 
+      {/* Current guest */}
       {currentGuestAttending ? (
         <div>
           <p className="big">
-            Awesome! We're so excited that you'll be able to attend. What would you like to
-            eat at the wedding?
+            Awesome! We're so excited that you'll be able to attend. What would you like to eat at
+            the wedding?
           </p>
 
-          <MealSelector guestId={guest.id} extraPadding />
-
-          <br/>
+          <MealSelector guestId={guest.id} />
+          <br />
           <RestrictionsInput guestId={guest.id} />
         </div>
       ) : (
@@ -78,6 +87,8 @@ const ChooseMeal = () => {
         </div>
       )}
 
+
+      {/* Other guests */}
       {otherGuests && (
         <div className={styles.otherGuests}>
           <p>
@@ -85,33 +96,30 @@ const ChooseMeal = () => {
             choose their meal{otherGuestIds.length > 1 ? 's' : ''} as&nbsp;well:
           </p>
 
-          <ul>
-            {otherGuestIds.map(guestId => {
-              const otherGuest = otherGuests[guestId];
-              return (
-                <li key={guestId} className={styles.otherGuestListItem}>
-                  <div className={styles.otherGuestListInner}>
-                    <span>Choose a meal for<br /><span className={styles.otherGuestName}>{otherGuest.name}:</span></span>
-                    <div className={styles.otherGuestMealSelector}>
-                      <MealSelector guestId={otherGuest.id} />
-                    </div>
-                  </div>
-                  <RestrictionsInput guestId={otherGuest.id} />
-                </li>
-              );
-            })}
+          <ul className={styles.otherGuestsList}>
+            {otherGuestIds.map(guestId => (
+              <li key={guestId}>
+                <OtherGuestMeal guest={otherGuests[guestId]} guestId={parseInt(guestId)} />
+              </li>
+            ))}
           </ul>
         </div>
       )}
 
+      {/* Actions */}
       <div className={styles.actions}>
         {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
 
-        <button className={`btn btn--primary ${buttonDisabled && 'btn--disabled'}`} onClick={handleNext}>
+        <button
+          className={`btn btn--primary ${buttonDisabled && 'btn--disabled'}`}
+          onClick={handleNext}
+        >
           Next
         </button>
 
-        <button className='btn--secondary' onClick={previous}>Back</button>
+        <button className="btn--secondary" onClick={previous}>
+          Back
+        </button>
       </div>
     </div>
   );

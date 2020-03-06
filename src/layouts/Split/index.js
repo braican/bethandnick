@@ -8,7 +8,7 @@ import Footer from '../../components/Footer';
 
 const SplitLayout = ({ featuredImage, bigHeader, children }) => (
   <div className="amp-accent amp-accent--split amp-accent--overflow">
-    <Header big={bigHeader} />
+    <Header big={bigHeader} fixed />
 
     <div className="splitpane__img">
       {featuredImage ? (

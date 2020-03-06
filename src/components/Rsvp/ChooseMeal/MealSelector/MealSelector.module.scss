@@ -5,10 +5,6 @@
   justify-content: space-between;
 }
 
-.optionsExtraPadding {
-  margin-top: spacing(2);
-}
-
 .option {
   width: 31%;
 
@@ -19,4 +15,9 @@
 
 .optionLabel {
   @include rsvp-button();
+
+  .optionsCompact & {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
 }

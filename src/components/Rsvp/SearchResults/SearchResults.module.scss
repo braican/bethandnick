@@ -37,13 +37,15 @@
 .respondedGuestDeclined {
   position: relative;
   padding-left: 26px;
+  line-height: 1.4;
+  margin-top: spacing(0.5);
 
   &:before {
     content: '';
     display: block;
     position: absolute;
     left: 0;
-    top: 50%;
+    top: 0.35em;
     width: 16px;
     background-repeat: no-repeat;
     background-position: center center;
@@ -54,21 +56,20 @@
 .respondedGuestDeclined:before {
   background-image: $icon--close;
   height: 12px;
-  margin-top: -6px;
 }
 
 .respondedGuestAttending:before {
   background-image: $icon--check;
   height: 16px;
-  margin-top: -8px;
 }
 
-.guestListItem {
-  display: inline-block;
-  vertical-align: top;
-  width: 45%;
-  margin-right: 5%;
-  margin-top: spacing(0.5);
+.guestList {
+  @include mq($bp-mobile) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+    grid-column-gap: spacing(2);
+    grid-auto-flow: row dense;
+  }
 }
 
 .guestButton {

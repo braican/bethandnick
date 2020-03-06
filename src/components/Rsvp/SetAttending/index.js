@@ -74,7 +74,7 @@ const SetAttending = () => {
             onChange={() => setGuestCanGo(guest)}
           />
           <label {...className(styles.currentGuestOption, styles.currentGuestOption__yes)} htmlFor="attendee_status_yes">
-            <span>
+            <p className={styles.inner}>
               <span className={styles.happyEmoji} role="img" aria-label="whoop">
               🎉
               </span>
@@ -82,7 +82,7 @@ const SetAttending = () => {
               <span className={styles.happyEmoji} role="img" aria-label="whoop">
               🎉
               </span>
-            </span>
+            </p>
           </label>
         </li>
 
@@ -95,7 +95,7 @@ const SetAttending = () => {
             onChange={() => setGuestDeclines(guest)}
           />
           <label {...className(styles.currentGuestOption, styles.currentGuestOption__no)} htmlFor="attendee_status_no">
-            Sorry, I can't make&nbsp;it
+            <p className={styles.inner}>Sorry, I can't make&nbsp;it</p>
           </label>
         </li>
       </ul>

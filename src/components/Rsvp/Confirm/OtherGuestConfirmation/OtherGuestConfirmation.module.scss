@@ -1,0 +1,39 @@
+@import '../../../../styles/abstracts';
+
+.guest {
+  line-height: 1.4;
+  padding-left: 36px;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0.2em;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: contain;
+  }
+
+  &.statusAttending:before {
+    background-image: $icon--check;
+    height: 20px;
+  }
+
+  &.statusDeclined:before {
+    background-image: $icon--close;
+    height: 16px;
+  }
+
+  p {
+    margin-bottom: 6px;
+  }
+}
+
+.guestName {
+  font-weight: $fw--bold;
+  margin-bottom: 4px;
+}

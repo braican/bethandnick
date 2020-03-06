@@ -82,6 +82,10 @@ const Rsvp = () => {
       nextStep += 1;
     }
 
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, duration);
+
     setRsvpStep(nextStep);
   };
 

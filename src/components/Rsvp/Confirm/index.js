@@ -13,6 +13,7 @@ const Confirm = () => {
   const { guest, getOtherGuests, previous, next, rsvps } = useContext(RsvpContext);
   const [loading, setLoading] = useState(false);
   const otherGuests = getOtherGuests();
+  const otherGuestIds = Object.keys(otherGuests);
 
   const saveRsvp = () => {
     setLoading(true);
@@ -29,12 +30,12 @@ const Confirm = () => {
     <div className="rsvp--confirm">
       <CurrentGuestConfirmation guest={guest} />
 
-      {otherGuests && (
+      {otherGuestIds.length > 0 && (
         <div className={styles.otherGuests}>
-          <p>The following guests will also be checked in:</p>
+          <p>You're also submitting {otherGuestIds.length > 1 ? 'RSVPs ' : 'an RSVP '} for:</p>
 
           <ul>
-            {Object.keys(otherGuests).map(guestId => (
+            {otherGuestIds.map(guestId => (
               <li key={guestId}>
                 <OtherGuestConfirmation guest={otherGuests[guestId]} />
               </li>
@@ -43,7 +44,7 @@ const Confirm = () => {
         </div>
       )}
 
-      <p>If everything looks good, hit Confirm below to complete your RSVP.</p>
+      <p>If everything looks good, hit Confirm below to complete your&nbsp;RSVP.</p>
 
       <div className={styles.actions}>
         <SwitchTransition>

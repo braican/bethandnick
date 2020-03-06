@@ -6,7 +6,7 @@ import mealOptions from '../../_data/meals';
 
 import styles from './MealSelector.module.scss';
 
-const MealSelector = ({ guestId, extraPadding }) => {
+const MealSelector = ({ guestId, compact = false }) => {
   const { updateGuestRsvp, getGuestMeal } = useContext(RsvpContext);
 
   const setGuestMeal = meal => {
@@ -14,7 +14,7 @@ const MealSelector = ({ guestId, extraPadding }) => {
   };
 
   return (
-    <ul {...className(styles.options, extraPadding && styles.optionsExtraPadding)}>
+    <ul {...className(styles.options, compact && styles.optionsCompact)}>
       {mealOptions.map(({ key, label }) => (
         <li key={key} className={styles.option}>
           <label>
@@ -35,7 +35,7 @@ const MealSelector = ({ guestId, extraPadding }) => {
 
 MealSelector.propTypes = {
   guestId: PropTypes.number.isRequired,
-  extraPadding: PropTypes.bool,
+  compact: PropTypes.bool,
 };
 
 export default MealSelector;

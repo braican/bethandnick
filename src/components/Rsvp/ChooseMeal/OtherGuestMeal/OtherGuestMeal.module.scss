@@ -1,0 +1,28 @@
+@import '../../../../styles/abstracts';
+
+.guestlistInner {
+  line-height: 1.4;
+  margin-bottom: spacing(1.5);
+
+  @include mq($bp-desktop) {
+    display: flex;
+  }
+}
+
+.guestName {
+  font-weight: $fw--bold;
+
+  @include mq($bp-desktop) {
+    display: block;
+  }
+}
+
+.mealSelector {
+  margin-top: spacing(1);
+
+  @include mq($bp-desktop) {
+    flex: 1;
+    margin-top: 0;
+    margin-left: spacing(2);
+  }
+}
