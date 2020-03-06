@@ -63,16 +63,18 @@ const ChooseMeal = () => {
       {currentGuestAttending ? (
         <div>
           <p className="big">
-            Awesome! We're so excited that you'll be able to attend. What do you think you'd like to
+            Awesome! We're so excited that you'll be able to attend. What would you like to
             eat at the wedding?
           </p>
 
           <MealSelector guestId={guest.id} extraPadding />
+
+          <br/>
           <RestrictionsInput guestId={guest.id} />
         </div>
       ) : (
         <div>
-          <p>Oh no! We're sorry that you're unable to make it!</p>
+          <p>Oh no! We're sorry that you're unable to make&nbsp;it!</p>
         </div>
       )}
 
@@ -80,7 +82,7 @@ const ChooseMeal = () => {
         <div className={styles.otherGuests}>
           <p>
             Since you're checking in {otherGuestIds.length > 1 ? 'others' : 'someone else'}, let's
-            choose their meal{otherGuestIds.length > 1 ? 's' : ''} as well:
+            choose their meal{otherGuestIds.length > 1 ? 's' : ''} as&nbsp;well:
           </p>
 
           <ul>
@@ -88,9 +90,12 @@ const ChooseMeal = () => {
               const otherGuest = otherGuests[guestId];
               return (
                 <li key={guestId} className={styles.otherGuestListItem}>
-                  <span>Choose a meal for{' '}<span className={styles.otherGuestName}>{otherGuest.name}:</span></span>
-
-                  <MealSelector guestId={otherGuest.id} />
+                  <div className={styles.otherGuestListInner}>
+                    <span>Choose a meal for<br /><span className={styles.otherGuestName}>{otherGuest.name}:</span></span>
+                    <div className={styles.otherGuestMealSelector}>
+                      <MealSelector guestId={otherGuest.id} />
+                    </div>
+                  </div>
                   <RestrictionsInput guestId={otherGuest.id} />
                 </li>
               );

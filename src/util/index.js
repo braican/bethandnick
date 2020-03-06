@@ -37,3 +37,15 @@ export const getFirstName = name => {
 
 export const untrailingSlashIt = str => str.replace(/\/$/, '');
 export const trailingSlashIt = str => `${untrailingSlashIt(str)  }/`;
+
+/**
+ * Checks to see if a user input indicates no restriction based on some whitelisted words.
+ *
+ * @param {string} input The restriction text the user added to the text field.
+ *
+ * @return boolean
+ */
+export const indicatesNoRestriction = input => {
+  const noWords = ['none', 'nope', 'no', 'no restrictions', 'no restriction'];
+  return noWords.indexOf(input) > -1;
+};

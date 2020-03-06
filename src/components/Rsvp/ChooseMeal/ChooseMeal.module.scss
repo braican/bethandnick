@@ -11,6 +11,17 @@
   padding-top: spacing(1);
 }
 
+.otherGuestListInner {
+  display: flex;
+  line-height: 1.4;
+  margin-bottom: spacing(1);
+}
+
+.otherGuestMealSelector {
+  flex: 1;
+  margin-left: spacing(2);
+}
+
 .otherGuestName {
   font-weight: $fw--bold;
 }

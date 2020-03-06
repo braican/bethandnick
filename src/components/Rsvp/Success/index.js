@@ -16,7 +16,7 @@ const Success = () => {
           <h3>Get your dancing pants ready</h3>
           <p className={styles.lede}><strong>Alright {name}, we've got you down as a&nbsp;yes.</strong></p>
           <p>
-            Don't forget to mark your calendar for October 17th of this year! We can't wait to
+            Don't forget to mark your calendar for <strong>October 17th</strong> of this year! We can't wait to
             celebrate with you.
           </p>
         </>
