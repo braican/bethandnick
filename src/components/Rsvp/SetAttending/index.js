@@ -8,10 +8,14 @@ import styles from './SetAttending.module.scss';
 import trsStyles from '../../../styles/transitions/fadeDown.module.scss';
 
 const SetAttending = () => {
-
-  const { next, previous, guest, group, updateGuestRsvp, getGuestAttending } = useContext(
-    RsvpContext
-  );
+  const {
+    next,
+    previous,
+    guest,
+    group,
+    updateGuestRsvp,
+    getGuestAttending,
+  } = useContext(RsvpContext);
 
   const otherGuests = group.guests.filter(otherGuest => otherGuest.id !== guest.id && otherGuest.attending === null);
   const currGuestAttending = getGuestAttending(guest.id);

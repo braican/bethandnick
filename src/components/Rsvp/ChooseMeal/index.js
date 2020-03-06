@@ -6,12 +6,19 @@ import RestrictionsInput from './RestrictionsInput';
 import styles from './ChooseMeal.module.scss';
 
 const ChooseMeal = () => {
+  const {
+    next,
+    previous,
+    guest,
+    getGuestMeal,
+    getOtherGuests,
+    getGuestAttending,
+  } = useContext(RsvpContext);
+
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { next, previous, guest, getGuestMeal, getOtherGuests, getGuestAttending } = useContext(
-    RsvpContext
-  );
+
   const currentGuestAttending = getGuestAttending(guest.id);
   const currentGuestMeal = getGuestMeal(guest.id);
   const otherGuests = getOtherGuests(true);

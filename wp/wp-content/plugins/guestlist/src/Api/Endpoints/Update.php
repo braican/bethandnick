@@ -77,7 +77,7 @@ class Update {
 			$guest_id      = $guest_rsvp['id'];
 			$attending     = (int) $guest_rsvp['attending'];
 			$meal          = $guest_rsvp['meal'];
-			$dietary_notes = $guest_rsvp['restrictions'];
+			$dietary_notes = isset( $guest_rsvp['restrictions'] ) ? $guest_rsvp['restrictions'] : '';
 
 			$guest = new Guest( $guest_id );
 
