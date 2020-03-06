@@ -59,7 +59,7 @@ class Search {
 		$auth      = $request->get_header( 'Authorization' );
 		$api_check = Store::get( 'gl_api_key' );
 
-		if ($auth !== $api_check) {
+		if ( $auth !== $api_check ) {
 			return new \WP_Error( 'auth_error', 'Authorization error. Your API keys don\'t match up.', array( 'status' => 401 ) );
 		}
 

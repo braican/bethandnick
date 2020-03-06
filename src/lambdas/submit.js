@@ -3,24 +3,22 @@ import https from 'https';
 
 const API_TOKEN = process.env.BETHANDNICK_API_TOKEN;
 const base = 'https://bethandnick.ups.dock';
-const route = '/wp-json/guestlist/v1/search';
-const eventId = 142;
+const route = '/wp-json/guestlist/v1/update';
 const url = base + route;
 
 export async function handler(event) {
-  try {
-    const { search } = event.queryStringParameters;
+  // Only allow POST
+  if (event.httpMethod !== 'POST') {
+    return { statusCode: 405, body: 'Method Not Allowed' };
+  }
 
+  try {
     const agent = new https.Agent({
       rejectUnauthorized: false,
     });
 
-    const { data } = await axios.get( url, {
+    const { data } = await axios.post( url, JSON.parse(event.body), {
       httpsAgent: agent,
-      params: {
-        event: eventId,
-        s_addr: search,
-      },
       headers: { 'Authorization': API_TOKEN },
     });
 

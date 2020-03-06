@@ -24,6 +24,12 @@ const Search = () => {
 
   const handleSearch = event => {
     event.preventDefault();
+
+    if (search.length <= 3) {
+      setErrorMessage('Your search query needs to be at least four characters long.');
+      return;
+    }
+
     setLoading(true);
 
     axios.get(`/.netlify/functions/search`, {
@@ -77,7 +83,7 @@ const Search = () => {
                   placeholder="101 Main Street"
                   autoComplete="off"
                 />
-                <button className="btn" disabled={search === ''}>Search</button>
+                <button className="btn btn--primary" disabled={search === ''}>Search</button>
               </form>
             )}
           </CSSTransition>

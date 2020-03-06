@@ -8,6 +8,7 @@
 namespace Guestlist\Api\Endpoints;
 
 use Guestlist\Models\Guest;
+use Guestlist\Admin\Store;
 
 /** Class */
 class Update {
@@ -60,7 +61,13 @@ class Update {
 	 * @return string|\WP_Error
 	 */
 	public function handle_request( \WP_REST_Request $request ) {
-		$data = $request->get_params();
+		$data      = $request->get_params();
+		$auth      = $request->get_header( 'Authorization' );
+		$api_check = Store::get( 'gl_api_key' );
+
+		if ( $auth !== $api_check ) {
+			return new \WP_Error( 'auth_error', 'Authorization error. Your API keys don\'t match up.', array( 'status' => 401 ) );
+		}
 
 		if ( ! isset( $data['rsvps'] ) ) {
 			return new \WP_Error( 'invalid_data', 'The request data is invalid.', array( 'status' => 400 ) );
@@ -71,8 +78,6 @@ class Update {
 			$attending     = (int) $guest_rsvp['attending'];
 			$meal          = $guest_rsvp['meal'];
 			$dietary_notes = $guest_rsvp['restrictions'];
-
-			error_log(print_r($guest_rsvp, true));
 
 			$guest = new Guest( $guest_id );
 

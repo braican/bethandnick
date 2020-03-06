@@ -38,10 +38,8 @@ const Confirm = () => {
   const saveRsvp = () => {
     setLoading(true);
 
-    axios.post('https://bethandnick.ups.dock/wp-json/guestlist/v1/update', { rsvps })
-      .then(() => {
-        next();
-      })
+    axios.post(`/.netlify/functions/submit`, { rsvps })
+      .then(next)
       .catch(({ response }) => {
         console.error(response);
       });
@@ -108,11 +106,7 @@ const Confirm = () => {
 
       <p>If everything looks good, hit Confirm below to complete your RSVP.</p>
 
-
-      <button onClick={() => setLoading(!loading)}>Toggle</button>
-
       <div className={styles.actions}>
-
         <SwitchTransition>
           <CSSTransition
             key={loading ? 'loading' : 'not-loading'}
@@ -120,7 +114,7 @@ const Confirm = () => {
             classNames={{ ...trsStyles }}
           >
             {loading ? (
-              <p>One sec while we save your rsvp...</p>
+              <p>Hold on while we save your rsvp...</p>
             ) : (
               <div>
                 <button className="btn btn--primary" onClick={saveRsvp}>Confirm</button>
