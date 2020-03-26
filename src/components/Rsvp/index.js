@@ -73,7 +73,8 @@ const Rsvp = () => {
   const [rsvpStep, setRsvpStep] = useState(0);
   const { name: viewName, component: View } = views[rsvpStep];
 
-  const yesGuestCount = () => Object.keys(rsvps).filter(guestId => rsvps[guestId].attending === true).length;
+  const yesGuestCount = () =>
+    Object.keys(rsvps).filter(guestId => rsvps[guestId].attending === true).length;
 
   const next = () => {
     let nextStep = rsvpStep + 1;
@@ -107,11 +108,11 @@ const Rsvp = () => {
     setRsvps(newRsvps);
   };
 
-  const getGuestAttending = guestId => rsvps[guestId] ? rsvps[guestId].attending : null;
+  const getGuestAttending = guestId => (rsvps[guestId] ? rsvps[guestId].attending : null);
 
-  const getGuestMeal = guestId => rsvps[guestId] ? rsvps[guestId].meal : null;
+  const getGuestMeal = guestId => (rsvps[guestId] ? rsvps[guestId].meal : null);
 
-  const getGuestRestrictions = guestId => rsvps[guestId] ? rsvps[guestId].restrictions : null;
+  const getGuestRestrictions = guestId => (rsvps[guestId] ? rsvps[guestId].restrictions : null);
 
   const getOtherGuests = (onlyAttending = false) => {
     const otherGuestIds = Object.keys(rsvps).filter(guestId => {
@@ -161,13 +162,25 @@ const Rsvp = () => {
       }}
     >
       <div className="rsvp">
-        <Transition in={viewName === 'search' || viewName === 'search-results'} timeout={duration} unmountOnExit>
-          {status => <div style={{ ...transitionStyles[status] }}><h3>Welcome to the Party</h3></div>}
+        <Transition
+          in={viewName === 'search' || viewName === 'search-results'}
+          timeout={duration}
+          unmountOnExit
+        >
+          {status => (
+            <div style={{ ...transitionStyles[status] }}>
+              <h3>Welcome to the Party</h3>
+            </div>
+          )}
         </Transition>
 
         <TransitionGroup>
           <Transition key={`rsvp-view-${viewName}`} timeout={duration}>
-            {status => <div style={{ ...transitionStyles[status] }}><View /></div>}
+            {status => (
+              <div style={{ ...transitionStyles[status] }}>
+                <View />
+              </div>
+            )}
           </Transition>
         </TransitionGroup>
       </div>

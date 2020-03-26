@@ -1,10 +1,63 @@
 import axios from 'axios';
 import https from 'https';
+import SparkPost from 'sparkpost';
 
-const API_TOKEN = process.env.BETHANDNICK_API_TOKEN;
+const API_KEY = process.env.BETHANDNICK_API_KEY;
+const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
 const base = 'https://bethandnick.ups.dock';
-const route = '/wp-json/guestlist/v1/update';
+// const route = '/wp-json/guestlist/v1/update';
+const route = '/wp-json/guestlist/v1/sadasdsds';
 const url = base + route;
+const emailClient = new SparkPost(SPARKPOST_API_KEY);
+
+const email = `
+<html>
+<body>
+  <p>test #2</p>
+</body>
+</html>
+`;
+
+async function sendEmail() {
+  console.log('send the email');
+
+  try {
+    // const send = await emailClient.transmissions.send({
+    //   content: {
+    //     from: 'nick@mail.braican.com',
+    //     reply_to: 'nick.braica@gmail.com',
+    //     subject: 'test 2',
+    //     html: email,
+    //   },
+    //   // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
+    //   recipients: [{ address: 'nick.braica@gmail.com' }],
+    // });
+    // return send;
+    return 'emails';
+  } catch (error) {
+    console.error(error);
+    throw new Error();
+  }
+}
+
+async function submitRsvp(postData) {
+  try {
+    const agent = new https.Agent({
+      rejectUnauthorized: false,
+    });
+
+    // const { data } = await axios.post(url, JSON.parse(postData), {
+    //   httpsAgent: agent,
+    //   headers: { Authorization: API_KEY },
+    // });
+
+    const data = {};
+
+    return data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+}
 
 export async function handler(event) {
   // Only allow POST
@@ -13,24 +66,26 @@ export async function handler(event) {
   }
 
   try {
-    const agent = new https.Agent({
-      rejectUnauthorized: false,
-    });
+    const rsvpResponse = await submitRsvp(event.body);
+    const emailResponse = await sendEmail();
 
-    const { data } = await axios.post( url, JSON.parse(event.body), {
-      httpsAgent: agent,
-      headers: { 'Authorization': API_TOKEN },
-    });
+    const data = {};
 
     return {
       statusCode: 200,
       body: JSON.stringify(data),
     };
+  } catch (error) {
+    if (!error.response) {
+      error.response = {
+        status: 500,
+        data: 'Error',
+      };
+    }
 
-  } catch ({ response }) {
     return {
-      statusCode: response.status,
-      body: JSON.stringify({ error: response.data }),
+      statusCode: error.response.status,
+      body: JSON.stringify({ error: error.response.data }),
     };
   }
 }

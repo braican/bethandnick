@@ -32,10 +32,11 @@ const Search = () => {
 
     setLoading(true);
 
-    axios.get(`/.netlify/functions/search`, {
-      params: { search },
-    })
-      .then( ({ data }) => {
+    axios
+      .get(`/.netlify/functions/search`, {
+        params: { search },
+      })
+      .then(({ data }) => {
         if (data.code && data.code === 'no_results') {
           setErrorMessage(data.message);
           return;
@@ -56,20 +57,36 @@ const Search = () => {
 
   return (
     <div className="view--search">
+      <button
+        onClick={() => {
+          axios
+            .post(`/.netlify/functions/submit`, {})
+            .then(resp => {
+              console.log('Done');
+
+              console.log(resp);
+            })
+            .catch(({ response }) => {
+              console.error(response);
+            });
+        }}
+      >
+        CLICK FOR TESTS
+      </button>
+
       <p className="big">
-        We're excited to celebrate with you in October. To verify your invitation, please
-        enter the address we sent your invitation to below (you only need the street number and name):
+        We're excited to celebrate with you in October. To verify your invitation, please enter the
+        address we sent your invitation to below (you only need the street number and name):
       </p>
 
       <div ref={searchboxContainer}>
-
         <SwitchTransition>
           <CSSTransition
             key={loading || hasResults ? 'loading' : 'not-loading'}
             timeout={300}
             classNames={{ ...trsStyles }}
           >
-            {(loading || hasResults) ? (
+            {loading || hasResults ? (
               <p>Searching....</p>
             ) : (
               <form onSubmit={handleSearch}>
@@ -83,13 +100,14 @@ const Search = () => {
                   placeholder="101 Main Street"
                   autoComplete="off"
                 />
-                <button className="btn btn--primary" disabled={search === ''}>Search</button>
+                <button className="btn btn--primary" disabled={search === ''}>
+                  Search
+                </button>
               </form>
             )}
           </CSSTransition>
         </SwitchTransition>
       </div>
-
     </div>
   );
 };
