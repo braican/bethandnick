@@ -2,6 +2,8 @@ import axios from 'axios';
 import https from 'https';
 import SparkPost from 'sparkpost';
 
+import { createAttendingEmail } from '../util';
+
 const API_KEY = process.env.BETHANDNICK_API_KEY;
 const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
 const base = 'https://bethandnick.ups.dock';
@@ -10,30 +12,23 @@ const route = '/wp-json/guestlist/v1/sadasdsds';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
 
-const email = `
-<html>
-<body>
-  <p>test #2</p>
-</body>
-</html>
-`;
-
 async function sendEmail() {
   console.log('send the email');
 
   try {
-    // const send = await emailClient.transmissions.send({
-    //   content: {
-    //     from: 'nick@mail.braican.com',
-    //     reply_to: 'nick.braica@gmail.com',
-    //     subject: 'test 2',
-    //     html: email,
-    //   },
-    //   // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
-    //   recipients: [{ address: 'nick.braica@gmail.com' }],
-    // });
-    // return send;
-    return 'emails';
+    const email = createAttendingEmail();
+    const send = await emailClient.transmissions.send({
+      content: {
+        from: 'nick@mail.braican.com',
+        reply_to: 'nick.braica@gmail.com',
+        subject: 'test 4',
+        html: email,
+      },
+      // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
+      recipients: [{ address: 'nick.braica@gmail.com' }],
+    });
+
+    return send;
   } catch (error) {
     console.error(error);
     throw new Error();

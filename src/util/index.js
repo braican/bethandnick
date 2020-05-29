@@ -1,6 +1,9 @@
 export { isDesktop } from './responsive';
 export { catchApiError } from './services';
 export { contentFilter } from './content';
+export { createAttendingEmail } from './emails/createAttendingEmail';
+export { createDeclinedEmail } from './emails/createDeclinedEmail';
+export { createAlertEmail } from './emails/createAlertEmail';
 
 /**
  * Transform html entities.
@@ -36,7 +39,7 @@ export const getFirstName = name => {
 };
 
 export const untrailingSlashIt = str => str.replace(/\/$/, '');
-export const trailingSlashIt = str => `${untrailingSlashIt(str)  }/`;
+export const trailingSlashIt = str => `${untrailingSlashIt(str)}/`;
 
 /**
  * Checks to see if a user input indicates no restriction based on some whitelisted words.
