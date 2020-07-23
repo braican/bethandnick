@@ -118,6 +118,16 @@
   }
 }
 
+.save_new_date {
+  @include uppercase();
+  font-size: $fz--base;
+  font-weight: $fw--bold;
+  color: $c--white;
+
+  margin-top: 2rem;
+  margin-bottom: -1.5rem;
+}
+
 // In nav
 // -----------
 .inNavHeader {
