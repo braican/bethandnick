@@ -7,7 +7,12 @@ import Arrow from '../../svg/arrow-right';
 
 const Promo = () => (
   <div className={styles.promo}>
-    <Link className={styles.link} to="/accommodations/"><span>Book your hotel now</span>&nbsp;&nbsp;<span className={styles.icon}><Arrow /></span></Link>
+    <Link className={styles.link} to="/accommodations/">
+      <span>Book your hotel now</span>&nbsp;&nbsp;
+      <span className={styles.icon}>
+        <Arrow />
+      </span>
+    </Link>
   </div>
 );
 

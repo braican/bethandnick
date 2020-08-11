@@ -1,16 +1,17 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql, Link } from 'gatsby';
 
 import styles from './Footer.module.scss';
 
-const Footer = () => (
+const Footer = ({ info }) => (
   <footer className={styles.footer}>
     <div className={styles.main}>
       <div className={styles.mainContent}>
-        <p>Beth &amp; Nick | October 17, 2020</p>
+        <p>Beth &amp; Nick | {info.wedding_date}</p>
 
         {/* Footer promo */}
-        <p><Link className={styles.footerPromo} to="/accommodations/">Book your hotel!</Link></p>
+        {/* <p><Link className={styles.footerPromo} to="/accommodations/">Book your hotel!</Link></p> */}
       </div>
     </div>
 
@@ -23,4 +24,23 @@ const Footer = () => (
   </footer>
 );
 
-export default Footer;
+Footer.propTypes = {
+  info: PropTypes.shape({
+    wedding_date: PropTypes.string,
+  }),
+};
+
+const FooterWithQuery = props => (
+  <StaticQuery
+    query={graphql`
+      query FooterStaticQuery {
+        wordpressBethandnickInfo {
+          wedding_date
+        }
+      }
+    `}
+    render={data => <Footer {...props} info={data.wordpressBethandnickInfo} />}
+  />
+);
+
+export default FooterWithQuery;

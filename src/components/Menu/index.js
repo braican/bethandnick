@@ -4,7 +4,15 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 
 import styles from './Menu.module.scss';
 
-const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, activeClass, onClick }) => (
+const Menu = ({
+  allWordpressPage,
+  main = false,
+  ulClass,
+  liClass,
+  linkClass,
+  activeClass,
+  onClick,
+}) => (
   <ul className={ulClass}>
     <li className={liClass}>
       <Link to="/" className={linkClass} activeClassName={activeClass} onClick={onClick}>
@@ -22,7 +30,7 @@ const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, act
             onClick={onClick}
           >
             {node.acf.menu_label || node.title}
-            {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>}
+            {/* {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>} */}
           </Link>
         </li>
       ))}
