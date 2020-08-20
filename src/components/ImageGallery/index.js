@@ -16,9 +16,11 @@ const ImageGallery = ({ wordpressBethandnickGallery: images }) => {
   // If we're on a desktop, enhance the gallery to the horizontal scroller.
   return (
     <div className={styles.gallery}>
-      {gallery.map(({ image, caption }) => (
-        <GalleryImage image={image} caption={caption} key={image.id} />
-      ))}
+      {gallery
+        .filter(({ image }) => image)
+        .map(({ image, caption }) => (
+          <GalleryImage image={image} caption={caption} key={image.id} />
+        ))}
     </div>
   );
 };
