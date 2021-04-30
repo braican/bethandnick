@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
 import styles from './Promo.module.scss';
 
@@ -7,12 +6,17 @@ import Arrow from '../../svg/arrow-right';
 
 const Promo = () => (
   <div className={styles.promo}>
-    <Link className={styles.link} to="/accommodations/">
+    <a
+      className={styles.link}
+      target="_blank"
+      rel="noreferrer"
+      href="https://www.marriott.com/events/start.mi?id=1610571819651&key=GRP"
+    >
       <span>Book your hotel now</span>&nbsp;&nbsp;
       <span className={styles.icon}>
         <Arrow />
       </span>
-    </Link>
+    </a>
   </div>
 );
 
