@@ -75,8 +75,13 @@ a {
   strong {
     font-weight: $fw--bold;
   }
+
+  .wp-block-button {
+    margin-bottom: 2rem;
+  }
 }
 
+.wp-block-button .wp-block-button__link,
 button {
   cursor: pointer;
   padding: 0;
@@ -88,6 +93,7 @@ button {
   font-size: inherit;
 }
 
+.wp-block-button .wp-block-button__link,
 .hotel-button a,
 .btn {
   @include transition;

@@ -5,7 +5,7 @@ import { contentFilter, className } from '../util';
 
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
-import CovidAlert from '../components/CovidAlert';
+// import CovidAlert from '../components/CovidAlert';
 import Promo from '../components/Promo';
 
 const Page = ({ data, pageContext: { slug } }) => {
@@ -23,8 +23,8 @@ const Page = ({ data, pageContext: { slug } }) => {
     <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
       <Seo title={title} />
 
-      {/* {slug === 'home' && <Promo />} */}
-      {slug === 'home' && <CovidAlert />}
+      {slug === 'home' && <Promo />}
+      {/* {slug === 'home' && <CovidAlert />} */}
 
       <div
         {...className('content__main', slug === 'home' && 'content__main--has-promo')}
