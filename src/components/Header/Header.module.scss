@@ -18,6 +18,13 @@
   margin-top: spacing(1);
   margin-left: spacing(1);
 
+  @include mq($bp-desktop) {
+    &.navFixed {
+      position: fixed;
+      top: 0;
+    }
+  }
+
   .title,
   .info {
     display: inline-block;

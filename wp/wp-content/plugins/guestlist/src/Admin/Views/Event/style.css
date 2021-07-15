@@ -1,0 +1,97 @@
+/* Adding a new event */
+.gl-add-new-guest-form {
+  display: none;
+}
+
+.adding-new-guest .gl-add-new-guest-form {
+  display: block;
+}
+
+.adding-new-guest .js-add-new-guest {
+  display: none;
+}
+
+.gl-add-new-guest-form h3 {
+  margin: 0;
+}
+
+.gl-form .address-fields {
+  width: 100%;
+  max-width: 660px;
+  display: grid;
+  grid-gap: .5em;
+  grid-template-columns: 2fr 3fr;
+}
+.gl-form .address-field--street,
+.gl-form .address-field--city {
+  grid-column: 1 / 3;;
+}
+
+.gl-form .new-guest-input {
+  position: relative;
+  width: 100%;
+  max-width: 716px;
+  padding-right: 56px;
+  box-sizing: border-box;
+}
+
+.gl-form .new-guest-input .button-remove {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  margin-top: -22px;
+  right: 0;
+}
+
+
+.gl-form .new-guest-input + .new-guest-input {
+  margin-top: 0.5em;
+}
+
+/* Guest table */
+
+.gl-guest-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-top: 2em;
+}
+
+.gl-guest-table td {
+  padding: 0.5em;
+}
+
+.gl-guest-table .group-header {
+  padding: 0.5em;
+  /* border-top: 1px solid #aaa; */
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.gl-guest-table tbody tr:nth-child(2n) td {
+  background-color: #f8f8f8;
+}
+
+.gl-guest-table .gl-edit-guest {
+  display: none;
+}
+
+.gl-guest-table .gl-edit-guest-options {
+  margin-bottom: 1em;
+}
+
+.gl-guest-table .gl-edit-guest-options label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.gl-guest-table .gl-editing-cell .gl-edit-guest {
+  display: block;
+}
+
+.gl-guest-table .gl-editing-cell .gl-guest-info {
+  display: none;
+}

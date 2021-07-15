@@ -19,5 +19,5 @@ echo
 
 echo "Starting static dev server and front end ..."
 echo
-yarn develop
+netlify dev
 echo

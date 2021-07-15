@@ -1,0 +1,14 @@
+@import '../../../../styles/abstracts';
+
+.label {
+  display: block;
+  margin-bottom: spacing(0.5);
+  font-size: $fz--sm;
+}
+
+.input {
+  @include rsvp-input();
+  background-color: $c--white;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}

@@ -2,6 +2,14 @@
 
 We gettin' married. This site will set up all that people will need to know for the wedding.
 
+## Prerequisites
+
+The following need to be installed globally on your machine:
+
+* Node
+* nvm
+* Netlify Dev
+
 ## Quick start
 
 Navigate into your new site’s directory and start it up.
@@ -10,8 +18,11 @@ Navigate into your new site’s directory and start it up.
 # use the right version of node
 nvm use
 
-# start up the gatsby environment
-yarn start
+# Install
+./bin/install.sh
+
+# Start
+./bin/start.sh
 ```
 
 ## Development utilities
