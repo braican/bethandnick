@@ -1,10 +1,6 @@
 require('dotenv').config();
 
-const {
-  NODE_ENV,
-  URL = 'https://bethandnick.us',
-  DEPLOY_PRIME_URL = URL,
-} = process.env;
+const { NODE_ENV, URL = 'https://bethandnick.us', DEPLOY_PRIME_URL = URL } = process.env;
 
 const isProduction = NODE_ENV === 'production';
 const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL;
@@ -12,7 +8,7 @@ const siteUrl = isProduction ? URL : DEPLOY_PRIME_URL;
 module.exports = {
   siteMetadata: {
     title: 'Beth & Nick are getting married',
-    description: 'Beth & Nick are getting married on October 17, 2020 in Groton, Massachusetts.',
+    description: 'Beth & Nick are getting married on December 18, 2021 in Groton, Massachusetts.',
     siteUrl,
   },
   proxy: {

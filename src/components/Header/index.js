@@ -21,15 +21,20 @@ const Header = ({ info, big = false, inNav = false, fixed = false, hero = false 
   >
     <OptionalLink to="/" when={!big && !inNav}>
       <h1 className={styles.title}>
-        <span>Beth</span> <span className={styles.ampersand}><AmpersandIcon /></span> <span>Nick</span>
+        <span>Beth</span>{' '}
+        <span className={styles.ampersand}>
+          <AmpersandIcon />
+        </span>{' '}
+        <span>Nick</span>
       </h1>
+
+      {(big || inNav) && <p className={styles.save_new_date}>Save the new date!</p>}
 
       <div className={styles.info}>
         <p className={styles.date}>{info.wedding_date}</p>
         <p className={styles.venue}>at {info.venue_name}</p>
       </div>
     </OptionalLink>
-
   </div>
 );
 

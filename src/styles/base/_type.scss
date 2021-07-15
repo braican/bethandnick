@@ -15,14 +15,20 @@ body {
 
 .h1,
 h2 {
-  font-size: 3rem;
-  line-height: 1;
+  font-size: 3.4rem;
+  line-height: 1.2;
   margin-bottom: 0.5em;
   font-family: $ff--headline;
   margin-bottom: 1em;
 
   p + & {
     margin-top: 2em;
+  }
+
+  .simplelayout__main & {
+    font-size: clamp(3.2rem, 8vw, 6rem);
+
+    margin-bottom: 0.5em;
   }
 }
 
@@ -40,14 +46,9 @@ h6 {
 }
 
 .page-title,
-.content__main h2 {
-  @include fluid-type(600px, 1600px, 40px, 86px);
-  line-height: 1.1;
-  margin-bottom: 2rem;
-}
-
+.content__main h2,
 .content__main h3 {
-  @include fluid-type(600px, 1600px, 40px, 56px);
+  font-size: 2.6rem;
   line-height: 1.1;
   margin-bottom: 2rem;
 }
@@ -102,8 +103,13 @@ a {
 input {
   font-family: inherit;
   font-size: inherit;
+
+  .wp-block-button {
+    margin-bottom: 2rem;
+  }
 }
 
+.wp-block-button .wp-block-button__link,
 button {
   cursor: pointer;
   padding: 0;
@@ -115,21 +121,11 @@ button {
   font-size: inherit;
 }
 
+.wp-block-button .wp-block-button__link,
 .hotel-button a,
 .btn {
-  @include transition;
-  @include box-shadow(3px);
+  @include button();
   display: inline-block;
-  background-color: $c--primary;
-  padding: 0.75em 1em;
-  color: $c--white;
-  font-weight: $fw--semibold;
-
-  &:not(:disabled):not(.btn--disabled):hover {
-    @include box-shadow(5px);
-    background-color: lighten($c--primary, 6%);
-    color: $c--white;
-  }
 
   &.btn--disabled,
   &:disabled {

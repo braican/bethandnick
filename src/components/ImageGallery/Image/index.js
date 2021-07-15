@@ -14,9 +14,10 @@ const GalleryImage = ({ image, caption }) => {
   const [isFullWidth, setFullWidth] = useState(false);
   const imageData = image.localFile.childImageSharp.fluid;
   const { aspectRatio } = imageData;
-  const aspectClass = aspectRatio > 1.4 ? styles.wide : aspectRatio < 1 ? styles.tall : styles.square;
+  const aspectClass =
+    aspectRatio > 1.4 ? styles.wide : aspectRatio < 1 ? styles.tall : styles.square;
 
-  const onChange = visible => {
+  const onChange = (visible) => {
     if (visible) {
       setVisible(true);
     }
@@ -24,7 +25,14 @@ const GalleryImage = ({ image, caption }) => {
 
   return (
     <VisibilitySensor key={image.id} onChange={onChange} partialVisibility={true} minTopValue={250}>
-      <div {...className(styles.image, aspectClass, isVisible && styles.imageIsVisible, isFullWidth && styles.imageFullwidth)}>
+      <div
+        {...className(
+          styles.image,
+          aspectClass,
+          isVisible && styles.imageIsVisible,
+          isFullWidth && styles.imageFullwidth
+        )}
+      >
         <div className={styles.wrapper}>
           <button className={styles.fullwidthTrigger} onClick={() => setFullWidth(!isFullWidth)}>
             <Image fluid={image.localFile.childImageSharp.fluid} />
@@ -38,6 +46,7 @@ const GalleryImage = ({ image, caption }) => {
 
 GalleryImage.propTypes = {
   image: PropTypes.shape({
+    id: PropTypes.string,
     localFile: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape({

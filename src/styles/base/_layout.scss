@@ -163,17 +163,10 @@ main {
 .simplelayout__main {
   padding: spacing(2);
   text-align: center;
-  margin-top: spacing(2);
-
-  @include mq($bp-mobile) {
-    margin-top: spacing(4);
-  }
-
-  .page-title {
-    position: relative;
-    font-size: 9vw;
-    line-height: 1;
-  }
+  min-height: 66vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
   .content__main {
     margin-top: spacing();

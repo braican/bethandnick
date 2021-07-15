@@ -4,7 +4,15 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 
 import styles from './Menu.module.scss';
 
-const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, activeClass, onClick }) => (
+const Menu = ({
+  allWordpressPage,
+  main = false,
+  ulClass,
+  liClass,
+  linkClass,
+  activeClass,
+  onClick,
+}) => (
   <ul className={ulClass}>
     <li className={liClass}>
       <Link to="/" className={linkClass} activeClassName={activeClass} onClick={onClick}>
@@ -21,8 +29,8 @@ const Menu = ({ allWordpressPage, main = false, ulClass, liClass, linkClass, act
             activeClassName={activeClass}
             onClick={onClick}
           >
-            {node.acf.menu_label || node.title}
-            {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>}
+            {node?.acf?.menu_label.replace('&#8217;', '’') || node.title.replace('&#8217;', '’')}
+            {/* {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>} */}
           </Link>
         </li>
       ))}
@@ -63,8 +71,8 @@ export const pagesQuery = graphql`
   }
 `;
 
-const MenuWithQuery = props => (
-  <StaticQuery query={pagesQuery} render={data => <Menu {...props} {...data} />} />
+const MenuWithQuery = (props) => (
+  <StaticQuery query={pagesQuery} render={(data) => <Menu {...props} {...data} />} />
 );
 
 export default MenuWithQuery;

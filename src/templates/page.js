@@ -5,20 +5,37 @@ import { contentFilter, className } from '../util';
 
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
+// import CovidAlert from '../components/CovidAlert';
 import Promo from '../components/Promo';
 
 const Page = ({ data, pageContext: { slug } }) => {
-  const { content, title, acf: { page_featured_image } } = data.wordpressPage;
-  const featuredImage = page_featured_image ? page_featured_image.localFile.childImageSharp.fluid : null;
+  const {
+    content,
+    title,
+    acf: { page_featured_image },
+  } = data.wordpressPage;
+  const featuredImage = page_featured_image
+    ? page_featured_image.localFile.childImageSharp.fluid
+    : null;
   const filteredContent = contentFilter(content);
 
+  const cleanTitle = title.replace('&#8217;', '’');
+
   return (
-    <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
-      <Seo title={title} />
+    <SplitLayout
+      featuredImage={featuredImage}
+      bigHeader={slug === 'home'}
+      pageTitle={slug !== 'home' ? cleanTitle : ''}
+    >
+      <Seo title={cleanTitle} />
 
       {slug === 'home' && <Promo />}
+      {/* {slug === 'home' && <CovidAlert />} */}
 
-      <div {...className('content__main', slug === 'home' && 'content__main--has-promo')} dangerouslySetInnerHTML={{ __html: filteredContent }} />
+      <div
+        {...className('content__main', slug === 'home' && 'content__main--has-promo')}
+        dangerouslySetInnerHTML={{ __html: filteredContent }}
+      />
     </SplitLayout>
   );
 };
