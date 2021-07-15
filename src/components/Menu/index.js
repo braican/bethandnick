@@ -29,7 +29,7 @@ const Menu = ({
             activeClassName={activeClass}
             onClick={onClick}
           >
-            {node.acf.menu_label || node.title}
+            {node?.acf?.menu_label.replace('&#8217;', '’') || node.title.replace('&#8217;', '’')}
             {/* {main && node.slug === 'accommodations' && <span className={styles.linkFootnote}>Book your hotel!</span>} */}
           </Link>
         </li>
@@ -71,8 +71,8 @@ export const pagesQuery = graphql`
   }
 `;
 
-const MenuWithQuery = props => (
-  <StaticQuery query={pagesQuery} render={data => <Menu {...props} {...data} />} />
+const MenuWithQuery = (props) => (
+  <StaticQuery query={pagesQuery} render={(data) => <Menu {...props} {...data} />} />
 );
 
 export default MenuWithQuery;
