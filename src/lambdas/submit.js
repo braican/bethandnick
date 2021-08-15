@@ -7,8 +7,8 @@ import { createAttendingEmail } from '../util';
 const API_KEY = process.env.BETHANDNICK_API_KEY;
 const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
 const base = 'https://bethandnick.ups.dock';
-// const route = '/wp-json/guestlist/v1/update';
-const route = '/wp-json/guestlist/v1/sadasdsds';
+const route = '/wp-json/guestlist/v1/update';
+// const route = '/wp-json/guestlist/v1/sadasdsds';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
 
@@ -41,12 +41,12 @@ async function submitRsvp(postData) {
       rejectUnauthorized: false,
     });
 
-    // const { data } = await axios.post(url, JSON.parse(postData), {
-    //   httpsAgent: agent,
-    //   headers: { Authorization: API_KEY },
-    // });
+    const { data } = await axios.post(url, JSON.parse(postData), {
+      httpsAgent: agent,
+      headers: { Authorization: API_KEY },
+    });
 
-    const data = {};
+    // const data = {};
 
     return data;
   } catch (error) {
@@ -62,7 +62,9 @@ export async function handler(event) {
 
   try {
     const rsvpResponse = await submitRsvp(event.body);
-    const emailResponse = await sendEmail();
+    // const emailResponse = await sendEmail();
+
+    console.log(rsvpResponse);
 
     const data = {};
 
