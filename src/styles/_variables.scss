@@ -6,6 +6,7 @@ $ff--headline: orpheuspro, serif;
 $ff--base: work-sans, sans-serif;
 
 $fw--base: 400;
+$fw--semibold: 600;
 $fw--bold: 700;
 
 $fz--sm: 0.8rem;
@@ -36,11 +37,15 @@ $offset: 6vw;
 
 $c--white: #ffffff;
 $c--gray-f6: #f6f6f6;
-$c--gray-2: #222222;
-$c--gray-3: #333333;
-$c--gray-4: #444444;
+$c--gray-e: #eeeeee;
+$c--gray-d: #dddddd;
+$c--gray-c: #cccccc;
+$c--gray-a: #aaaaaa;
 $c--gray-9: #999999;
-$c--gray-c: #aaaaaa;
+$c--gray-6: #666666;
+$c--gray-4: #444444;
+$c--gray-3: #333333;
+$c--gray-2: #222222;
 $c--black: $c--gray-2;
 
 // wedding colors
@@ -62,12 +67,18 @@ $c-quilt: #5b90bc;
 $c-jungle-green: #00908b;
 $c-mint: #56ccc8;
 
-$c--primary: $c-peacock;
-$c--secondary: $c-teal;
 // $c--accent: #690334;
 // $c--accent: #ffa45c;
 // $c--accent: #b35f1d;
 $c--accent: #890a00;
+$c--magenta: #531827;
+
+$c--gold: #b99359;
+$c--primary: $c--magenta;
+$c--primary-hover: lighten($c--primary, 6%);
+$c--shadow: darken($c--primary, 10%);
+$c--secondary: $c--gold;
+$c--secondary-hover: lighten($c--secondary, 6%);
 
 // --------------------------------------------------------------
 // Spacing
@@ -95,8 +106,15 @@ $in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 $in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 $in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
 $in-out-nice: cubic-bezier(0.19, 1, 0.22, 1);
+$timing-butter: cubic-bezier(0.215, 0.61, 0.355, 1);
 
 // Transition Durations
-$t-duration: 0.2s;
+$t-duration: 0.3s;
 $t-duration-fast: $t-duration / 2;
 $t-duration-slow: $t-duration * 2;
+
+// Icons
+// -----------
+
+$icon--check: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%233698a6%22%20d%3D%22M27%204L12%2019l-7-7-5%205%2012%2012L32%209z%22%2F%3E%3C%2Fsvg%3E);
+$icon--close: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23890a00%22%20d%3D%22M31.708%2025.708L22%2016l9.708-9.708a1%201%200%200%200%200-1.414L27.122.292a1%201%200%200%200-1.414-.001L16%209.999%206.292.291a.998.998%200%200%200-1.414.001L.292%204.878a1%201%200%200%200%200%201.414L10%2016%20.292%2025.708a.999.999%200%200%200%200%201.414l4.586%204.586a1%201%200%200%200%201.414%200L16%2022l9.708%209.708a1%201%200%200%200%201.414%200l4.586-4.586a.999.999%200%200%200%200-1.414z%22%2F%3E%3C%2Fsvg%3E);

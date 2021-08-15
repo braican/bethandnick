@@ -61,12 +61,12 @@ main {
 
 .splitpane__content {
   @include content-split-main;
-  padding: 8vw;
+  padding: 6vw;
   padding-top: 4rem;
   position: relative;
 
   &.splitpane__content--bigheader {
-    padding-top: 8vw;
+    padding-top: 6vw;
   }
 
   @include mq($bp-small-mobile, max) {
