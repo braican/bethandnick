@@ -11,7 +11,10 @@ const GalleryPage = () => (
     <div className="simplelayout__main">
       <h2 className="page-title">Photos</h2>
       <div className="content__main">
-        <p>We've got some good ones over the years.</p>
+        <p>
+          After knowing each other for over half our lives, we've got some good photos of us over
+          the years.
+        </p>
       </div>
     </div>
 
