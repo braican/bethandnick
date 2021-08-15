@@ -36,8 +36,8 @@ module.exports = {
         name: 'beth-and-nick',
         short_name: 'beth-and-nick',
         start_url: '/',
-        background_color: '#035d69',
-        theme_color: '#035d69',
+        background_color: '#531827',
+        theme_color: '#531827',
         display: 'minimal-ui',
         icon: 'src/img/favicon.png', // This path is relative to the root of the site.
       },
