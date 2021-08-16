@@ -28,7 +28,6 @@
   line-height: 1;
   margin-bottom: 0.5em;
   font-family: $ff--headline;
-  color: $c--primary;
 
   &:before {
     content: '';
@@ -88,7 +87,8 @@
   margin-bottom: spacing(4);
 
   img {
-    @include img-shadow;
+    // @include img-shadow;
+    @include box-shadow;
   }
 }
 
