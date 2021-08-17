@@ -51,7 +51,8 @@
 }
 
 .wrapper {
-  @include img-shadow;
+  // @include img-shadow;
+  @include box-shadow;
 
   @include mq($bp-tablet) {
     width: 70%;
@@ -69,37 +70,27 @@
 }
 
 .caption {
-  @include box-shadow;
+  // @include box-shadow;
   @include transition(opacity, 0.6s, 0.4s);
-  color: $c--gray-3;
+  color: $c--black;
   position: relative;
-  margin: spacing(-2) spacing() 0 spacing(2);
-  padding: spacing();
-  max-width: 20em;
+  margin: spacing(2) spacing() 0 spacing(2);
+  padding: spacing(2);
+  max-width: 24em;
   min-width: 180px;
-  background-color: $c--white;
+  background-color: $c--gray-f6;
 
   @include mq($bp-tablet) {
-    margin-left: spacing(-2);
+    margin-left: spacing(2);
     margin-top: 100px;
     margin-top: calc(40px + #{spacing(6)});
 
     .image:nth-child(odd) & {
       order: -1;
-      margin-right: spacing(-2);
+      margin-right: spacing(2);
       margin-left: 0;
     }
   }
-
-  // &:before {
-  //   content: '';
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   width: 40px;
-  //   height: 4px;
-  //   background-color: $c--secondary;
-  // }
 }
 
 .fullwidthTrigger {

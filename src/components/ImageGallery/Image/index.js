@@ -24,7 +24,7 @@ const GalleryImage = ({ image, caption }) => {
   };
 
   return (
-    <VisibilitySensor key={image.id} onChange={onChange} partialVisibility={true} minTopValue={250}>
+    <VisibilitySensor key={image.id} onChange={onChange} partialVisibility={true} minTopValue={150}>
       <div
         {...className(
           styles.image,

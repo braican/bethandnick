@@ -1,6 +1,7 @@
 @import '../../../styles/abstracts';
 
 .button {
+  @include transition(background-color);
   padding: spacing();
   background-color: $c--secondary;
 
@@ -12,7 +13,10 @@
     @include transition(fill);
   }
 
-  &:hover svg {
-    fill: $c--primary;
+  &:hover {
+    background-color: $c--secondary-hover;
+    svg {
+      fill: $c--primary;
+    }
   }
 }

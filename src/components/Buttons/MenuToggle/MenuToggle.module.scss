@@ -1,7 +1,7 @@
 @import '../../../styles/abstracts';
 
 .button {
-  @include button();
+  @include button-inverted();
   position: fixed;
   top: 1rem;
   right: 1rem;

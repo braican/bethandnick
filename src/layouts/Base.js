@@ -7,8 +7,7 @@ import PageTransition from '../components/PageTransition';
 import Nav from '../components/Nav';
 
 const BaseLayout = ({ children, location }) => {
-
-  const internalNavigate = event => {
+  const internalNavigate = (event) => {
     event.preventDefault();
     navigate(trailingSlashIt(event.target.getAttribute('href')));
   };
@@ -21,14 +20,14 @@ const BaseLayout = ({ children, location }) => {
     const internalLinks = document.querySelectorAll('a[data-internal="true"]');
 
     if (internalLinks.length) {
-      internalLinks.forEach(link => {
+      internalLinks.forEach((link) => {
         link.addEventListener('click', internalNavigate);
       });
     }
 
     return () => {
       if (internalLinks.length) {
-        internalLinks.forEach(link => {
+        internalLinks.forEach((link) => {
           link.removeEventListener('click', internalNavigate);
         });
       }
@@ -38,11 +37,9 @@ const BaseLayout = ({ children, location }) => {
   return (
     <div className="site__wrap">
       <PageTransition location={location}>
-        <div>
-          {children}
-        </div>
+        <div>{children}</div>
       </PageTransition>
-      <Nav />
+      <Nav location={location} />
     </div>
   );
 };
