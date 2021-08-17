@@ -26,7 +26,7 @@
   overflow: auto;
 
   @include mq($bp-mobile) {
-    padding: $padding;
+    padding: 6vw;
   }
 
   @include mq($bp-desktop) {
@@ -73,19 +73,15 @@
   display: block;
   line-height: 1;
   margin: 0.75em 0;
-  color: $c--secondary;
-
-  &:hover {
-    color: $c--white;
-  }
-}
-
-.linkActive {
   color: $c--white;
+
+  &:hover,
+  &.linkActive {
+    color: $c--secondary;
+  }
 }
 
 .mainnav__wedding-info {
   margin-top: 1em;
   font-size: $fz--base;
-  color: $c--secondary;
 }

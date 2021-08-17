@@ -71,6 +71,14 @@ $c-mint: #56ccc8;
 // $c--accent: #ffa45c;
 // $c--accent: #b35f1d;
 $c--accent: #890a00;
+$c--magenta: #531827;
+
+$c--gold: #b99359;
+$c--primary: $c--magenta;
+$c--primary-hover: lighten($c--primary, 6%);
+$c--shadow: darken($c--primary, 10%);
+$c--secondary: $c--gold;
+$c--secondary-hover: lighten($c--secondary, 6%);
 
 $c--magenta: #86243f;
 $c--gold: #b99359;

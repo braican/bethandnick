@@ -28,7 +28,7 @@ const Header = ({ info, big = false, inNav = false, fixed = false, hero = false 
         <span>Nick</span>
       </h1>
 
-      {(big || inNav) && <p className={styles.save_new_date}>Save the new date!</p>}
+      {(big || inNav) && <p className={styles.save_new_date}>Save the date!</p>}
 
       <div className={styles.info}>
         <p className={styles.date}>{info.wedding_date}</p>
@@ -56,7 +56,7 @@ Header.defaultProps = {
   hero: false,
 };
 
-const HeaderWithQuery = props => (
+const HeaderWithQuery = (props) => (
   <StaticQuery
     query={graphql`
       query HeaderStaticQuery {
@@ -66,7 +66,7 @@ const HeaderWithQuery = props => (
         }
       }
     `}
-    render={data => <Header {...props} info={data.wordpressBethandnickInfo} />}
+    render={(data) => <Header {...props} info={data.wordpressBethandnickInfo} />}
   />
 );
 

@@ -6,21 +6,22 @@ import { className } from '../../../util';
 import hamburgerIcon from '../../../svg/hamburger.svg';
 import styles from './MenuToggle.module.scss';
 
-const MenuButton = ({ onClick, className: classFromProps }) => {
-  console.log(hamburgerIcon.id);
-  return (
-    <button {...className(styles.button, classFromProps)} onClick={onClick}>
-      <span className={styles.label}>Menu</span>
-      <span className={styles.icon}>
-        <svg>
-          <use xlinkHref={`#${hamburgerIcon}`} />
-        </svg>
-      </span>
-    </button>
-  );
-};
+const MenuButton = ({ onClick, pathname, className: classFromProps }) => (
+  <button
+    {...className(styles.button, classFromProps, pathname === '/' && styles.buttonLighter)}
+    onClick={onClick}
+  >
+    <span className={styles.label}>Menu</span>
+    <span className={styles.icon}>
+      <svg>
+        <use xlinkHref={`#${hamburgerIcon.id}`} />
+      </svg>
+    </span>
+  </button>
+);
 
 MenuButton.propTypes = {
+  location: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
 };
