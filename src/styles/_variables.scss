@@ -80,14 +80,6 @@ $c--shadow: darken($c--primary, 10%);
 $c--secondary: $c--gold;
 $c--secondary-hover: lighten($c--secondary, 6%);
 
-$c--magenta: #86243f;
-$c--gold: #b99359;
-
-// $c--primary: $c--magenta;
-// $c--secondary: darken($c--magenta, 10%);
-$c--primary: $c--gold;
-$c--secondary: darken($c--magenta, 10%);
-
 // --------------------------------------------------------------
 // Spacing
 // --------------------------------------------------------------

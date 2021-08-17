@@ -74,6 +74,7 @@ module.exports = {
           '**/bethandnick/v1/info',
           '**/bethandnick/v1/gallery',
         ],
+        minimizeDeprecationNotice: true,
       },
     },
     {
