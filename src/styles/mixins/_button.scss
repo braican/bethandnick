@@ -1,0 +1,33 @@
+@mixin button() {
+  @include transition;
+  @include box-shadow(4px);
+  @include uppercase;
+  background-color: $c--primary;
+  padding: 0.8em 1em;
+  color: $c--white;
+  font-weight: $fw--bold;
+
+  &:not(:disabled):not(.btn--disabled):hover {
+    @include box-shadow(6px);
+    background-color: $c--primary-hover;
+    color: $c--white;
+    transform: translate3d(-2px, -2px, 0);
+  }
+}
+
+@mixin button-inverted() {
+  @include transition;
+  @include box-shadow(4px, $c--shadow);
+  @include uppercase;
+  background-color: $c--secondary;
+  padding: 0.8em 1em;
+  color: $c--white;
+  font-weight: $fw--bold;
+
+  &:not(:disabled):not(.btn--disabled):hover {
+    @include box-shadow(6px, $c--shadow);
+    background-color: $c--secondary-hover;
+    color: $c--white;
+    transform: translate3d(-2px, -2px, 0);
+  }
+}

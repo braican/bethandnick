@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from '../Header';
 import Menu from '../Menu';
@@ -9,7 +10,7 @@ import { className } from '../../util';
 
 import styles from './Nav.module.scss';
 
-const Nav = () => {
+const Nav = ({ location }) => {
   const [navOpen, setNavOpen] = useState(false);
 
   const openNav = () => {
@@ -24,7 +25,7 @@ const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-      <MenuToggle onClick={openNav} className={styles.menuToggle} />
+      <MenuToggle onClick={openNav} pathname={location.pathname} />
 
       <div {...className(styles.navWrapper, navOpen && styles.navWrapperOpen)}>
         <CloseButton className={styles.closeNav} onClick={closeNav} />
@@ -42,6 +43,10 @@ const Nav = () => {
       </div>
     </nav>
   );
+};
+
+Nav.propTypes = {
+  location: PropTypes.object.isRequired,
 };
 
 export default Nav;

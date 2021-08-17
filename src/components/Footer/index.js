@@ -7,20 +7,23 @@ import styles from './Footer.module.scss';
 const Footer = ({ info }) => (
   <footer className={styles.footer}>
     <div className={styles.main}>
-      <div className={styles.mainContent}>
-        <p>Beth &amp; Nick | {info.wedding_date}</p>
+      <div>
+        <p>
+          &copy; {new Date().getFullYear()} Beth &amp;{' '}
+          <a target="_blank" rel="noopener noreferrer" href="https://www.braican.com">
+            Nick
+          </a>{' '}
+          | {info.wedding_date}
+        </p>
 
         {/* Footer promo */}
-        {/* <p><Link className={styles.footerPromo} to="/accommodations/">Book your hotel!</Link></p> */}
+        <p className={styles.mainContent}>
+          <Link className={styles.footerPromo} to="/accommodations/">
+            Book your hotel!
+          </Link>
+        </p>
       </div>
     </div>
-
-    <p className={styles.copyright}>
-      &copy; {new Date().getFullYear()} Beth &amp;{' '}
-      <a target="_blank" rel="noopener noreferrer" href="https://www.braican.com">
-        Nick
-      </a>
-    </p>
   </footer>
 );
 
@@ -30,7 +33,7 @@ Footer.propTypes = {
   }),
 };
 
-const FooterWithQuery = props => (
+const FooterWithQuery = (props) => (
   <StaticQuery
     query={graphql`
       query FooterStaticQuery {
@@ -39,7 +42,7 @@ const FooterWithQuery = props => (
         }
       }
     `}
-    render={data => <Footer {...props} info={data.wordpressBethandnickInfo} />}
+    render={(data) => <Footer {...props} info={data.wordpressBethandnickInfo} />}
   />
 );
 

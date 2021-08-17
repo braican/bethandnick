@@ -8,21 +8,29 @@ import styles from './Person.module.scss';
 
 const Person = ({ person }) => {
   const { name, role, pictures } = person;
-  const photos = pictures.filter(pic => pic && pic.image);
+  const photos = pictures.filter((pic) => pic && pic.image);
 
   return (
     <div className={styles.person} data-person={name}>
       <div className={styles.about}>
         <div className={styles.aboutWrap}>
-          <h6 className={styles.name}>{name}</h6>
+          <h3 className={styles.name}>{name}</h3>
           <p className={styles.role}>{role}</p>
         </div>
       </div>
       <div className={styles.pics}>
-        {photos.length > 0 && photos.map(({ image }, index) => {
-          const { aspectRatio } = image.localFile.childImageSharp.fluid;
-          return <div {...className(styles.pic, aspectRatio > 1.1 && styles.picWide)} key={index}><Img style={{ overflow: 'visible' }} fluid={image.localFile.childImageSharp.fluid} /></div>;
-        })}
+        {photos.length > 0 &&
+          photos.map(({ image }, index) => {
+            const { aspectRatio } = image.localFile.childImageSharp.fluid;
+            return (
+              <div {...className(styles.pic, aspectRatio > 1.1 && styles.picWide)} key={index}>
+                <Img
+                  style={{ overflow: 'visible' }}
+                  fluid={image.localFile.childImageSharp.fluid}
+                />
+              </div>
+            );
+          })}
       </div>
     </div>
   );

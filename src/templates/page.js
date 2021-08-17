@@ -19,9 +19,15 @@ const Page = ({ data, pageContext: { slug } }) => {
     : null;
   const filteredContent = contentFilter(content);
 
+  const cleanTitle = title.replace('&#8217;', '’');
+
   return (
-    <SplitLayout featuredImage={featuredImage} bigHeader={slug === 'home'}>
-      <Seo title={title} />
+    <SplitLayout
+      featuredImage={featuredImage}
+      bigHeader={slug === 'home'}
+      pageTitle={slug !== 'home' ? cleanTitle : ''}
+    >
+      <Seo title={cleanTitle} />
 
       {slug === 'home' && <Promo />}
       {/* {slug === 'home' && <CovidAlert />} */}

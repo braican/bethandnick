@@ -6,8 +6,11 @@ import { className } from '../../../util';
 import hamburgerIcon from '../../../svg/hamburger.svg';
 import styles from './MenuToggle.module.scss';
 
-const MenuButton = ({ onClick, className: classFromProps }) => (
-  <button {...className(styles.button, classFromProps)} onClick={onClick}>
+const MenuButton = ({ onClick, pathname, className: classFromProps }) => (
+  <button
+    {...className(styles.button, classFromProps, pathname === '/' && styles.buttonLighter)}
+    onClick={onClick}
+  >
     <span className={styles.label}>Menu</span>
     <span className={styles.icon}>
       <svg>
@@ -18,6 +21,7 @@ const MenuButton = ({ onClick, className: classFromProps }) => (
 );
 
 MenuButton.propTypes = {
+  location: PropTypes.string,
   onClick: PropTypes.func,
   className: PropTypes.string,
 };

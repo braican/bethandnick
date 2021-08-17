@@ -20,18 +20,17 @@
   pointer-events: none;
   transform: translateY(-100%);
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
 
   @include mq($bp-mobile) {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    overflow: auto;
-    padding: $padding;
+    padding: 6vw;
   }
 
   @include mq($bp-desktop) {
     left: 50 - $offset;
-    padding: spacing(6) $offset $offset;
   }
 }
 
@@ -51,14 +50,7 @@
 }
 
 .menu {
-  position: absolute;
-  bottom: spacing(2);
-  left: spacing(2);
-
-  @include mq($bp-mobile) {
-    bottom: $offset;
-    left: $offset;
-  }
+  margin-top: 2rem;
 }
 
 .menuItem {
@@ -81,19 +73,15 @@
   display: block;
   line-height: 1;
   margin: 0.75em 0;
-  color: $c--secondary;
-
-  &:hover {
-    color: $c--white;
-  }
-}
-
-.linkActive {
   color: $c--white;
+
+  &:hover,
+  &.linkActive {
+    color: $c--secondary;
+  }
 }
 
 .mainnav__wedding-info {
   margin-top: 1em;
   font-size: $fz--base;
-  color: $c--secondary;
 }

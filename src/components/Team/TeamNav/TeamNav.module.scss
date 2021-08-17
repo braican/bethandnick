@@ -38,7 +38,7 @@
   }
 
   &:hover {
-    color: $c--secondary;
+    color: $c--black;
     svg {
       transform: scale(1.1);
       fill: $c--secondary;
@@ -49,7 +49,7 @@
   &.active,
   &:focus {
     outline: none;
-    color: $c--secondary;
+    color: $c--black;
 
     svg {
       transform: scale(1.1);
@@ -57,25 +57,4 @@
       stroke: $c--secondary;
     }
   }
-
-  // .navTop &:after {
-  //   @include transition;
-  //   content: '';
-  //   display: block;
-  //   width: 24px;
-  //   height: 24px;
-  //   position: absolute;
-  //   bottom: -24px;
-  //   left: 50%;
-  //   margin-left: -12px;
-  //   background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23035d69%22%20d%3D%22M18.293%2011.293L13%2016.586V5a1%201%200%200%200-2%200v11.586l-5.293-5.293a.999.999%200%201%200-1.414%201.414l7%207a1.002%201.002%200%200%200%201.414%200l7-7a.999.999%200%201%200-1.414-1.414z%22%2F%3E%3C%2Fsvg%3E);
-  //   background-repeat: no-repeat;
-  //   background-position: center center;
-  //   background-size: contain;
-  //   opacity: 0;
-  // }
-
-  // .navTop &.active:after {
-  //   opacity: 1;
-  // }
 }

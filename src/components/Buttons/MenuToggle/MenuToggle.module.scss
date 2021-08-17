@@ -1,20 +1,11 @@
 @import '../../../styles/abstracts';
 
 .button {
-  @include box-shadow(3px);
-  @include uppercase;
-  @include transition(color);
-  font-size: $fz--sm;
-  padding: spacing();
+  @include button-inverted();
   position: fixed;
-  top: 0.5rem;
-  right: 0.5rem;
-  background-color: $c--primary;
-  color: $c--secondary;
-
-  &:hover {
-    color: $c--white;
-  }
+  top: 1rem;
+  right: 1rem;
+  font-size: $fz--sm;
 
   svg {
     display: block;

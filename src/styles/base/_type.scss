@@ -15,7 +15,7 @@ body {
 
 .h1,
 h2 {
-  font-size: 3rem;
+  font-size: 3.4rem;
   line-height: 1.2;
   margin-bottom: 0.5em;
   font-family: $ff--headline;
@@ -24,11 +24,17 @@ h2 {
   p + & {
     margin-top: 2em;
   }
+
+  .simplelayout__main & {
+    font-size: clamp(3.2rem, 8vw, 6rem);
+
+    margin-bottom: 0.5em;
+  }
 }
 
 .page-title,
 .content__main h2 {
-  @include fluid-type(600px, 1600px, 36px, 86px);
+  font-size: 2.6rem;
   line-height: 1.1;
   margin-bottom: 2rem;
 }
@@ -96,19 +102,8 @@ button {
 .wp-block-button .wp-block-button__link,
 .hotel-button a,
 .btn {
-  @include transition;
-  @include box-shadow(3px);
+  @include button();
   display: inline-block;
-  background-color: $c--primary;
-  padding: 0.75em 1em;
-  color: $c--white;
-  font-weight: $fw--bold;
-
-  &:not(:disabled):not(.btn--disabled):hover {
-    @include box-shadow(5px);
-    background-color: lighten($c--primary, 6%);
-    color: $c--white;
-  }
 
   &.btn--disabled,
   &:disabled {
@@ -178,7 +173,7 @@ button {
       vertical-align: middle;
       margin-left: 0.5em;
       transform: translateY(-2px);
-      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%233698a6%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
+      background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cg%20fill%3D%22%23b99359%22%3E%3Cpath%20d%3D%22M0%206l10-4v24L0%2030zM12%201l10%206v23l-10-5zM24%207l8-6v24l-8%206z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E);
       background-repeat: no-repeat;
       background-position: center center;
       background-size: contain;

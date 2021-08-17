@@ -6,7 +6,7 @@ import { className } from '../../util';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-const SplitLayout = ({ featuredImage, bigHeader, children }) => (
+const SplitLayout = ({ featuredImage, bigHeader, pageTitle = '', children }) => (
   <div className="amp-accent amp-accent--split amp-accent--overflow">
     <Header big={bigHeader} />
 
@@ -17,6 +17,8 @@ const SplitLayout = ({ featuredImage, bigHeader, children }) => (
     </div>
 
     <div {...className('splitpane__content', bigHeader && 'splitpane__content--bigheader')}>
+      {pageTitle && <h1 className="h1">{pageTitle}</h1>}
+
       {children}
       <Footer />
     </div>
@@ -27,6 +29,7 @@ SplitLayout.propTypes = {
   featuredImage: PropTypes.object,
   bigHeader: PropTypes.bool,
   children: PropTypes.node,
+  pageTitle: PropTypes.string,
 };
 
 SplitLayout.defaultProps = {

@@ -14,17 +14,13 @@
 
 .defaultHeader {
   position: relative;
-  @include box-shadow();
-  padding: spacing(1.25);
   display: inline-block;
-  background-color: $c--primary;
-  margin-top: spacing(0.5);
-  margin-left: spacing(0.5);
+  margin-top: spacing(1);
+  margin-left: spacing(1);
+  color: $c--white;
 
   .title,
   .info {
-    display: inline-block;
-    color: $c--secondary;
     display: inline-block;
     vertical-align: middle;
   }
@@ -39,15 +35,21 @@
   }
 
   .ampersand svg {
-    fill: $c--secondary;
+    fill: currentColor;
   }
 
-  a:hover {
-    .title {
-      color: $c--white;
-    }
-    .ampersand svg {
-      fill: $c--white;
+  a {
+    @include box-shadow(6px);
+    @include transition();
+    display: block;
+    background-color: $c--primary;
+    padding: spacing(1.25);
+
+    &:hover {
+      @include box-shadow(8px);
+      transform: translate3d(-2px, -2px, 0);
+      color: inherit;
+      background-color: $c--primary-hover;
     }
   }
 }
@@ -62,9 +64,10 @@
 // -----------
 
 .bigHeader {
-  @include box-shadow(16px, $c--primary);
-  background-color: $c--secondary;
-  padding: spacing(3) spacing(2);
+  @include box-shadow(16px, $c--secondary);
+  background-color: $c--primary;
+  color: $c--white;
+  padding: spacing(4) spacing(3) spacing(2);
 
   @include mq($bp-mobile) {
     margin-left: $tablet-split-secondary - $offset;
@@ -102,14 +105,6 @@
 // -----------
 .inNavHeader,
 .bigHeader {
-  .title {
-    font-size: $fz--xl;
-
-    @include mq($bp-mobile) {
-      @include fluid-type($bp-mobile, 1400px, 44px, 108px);
-    }
-  }
-
   .info {
     font-size: $fz--base;
     @include mq($bp-tablet) {
@@ -118,11 +113,22 @@
   }
 }
 
+.inNavHeader .title {
+  font-size: 3rem;
+}
+
+.bigHeader .title {
+  font-size: $fz--xl;
+
+  @include mq($bp-mobile) {
+    @include fluid-type($bp-mobile, 1400px, 44px, 108px);
+  }
+}
+
 .save_new_date {
   @include uppercase();
-  font-size: $fz--base;
+  font-size: $fz--sm;
   font-weight: $fw--bold;
-  color: $c--white;
   margin-top: 2rem;
   margin-bottom: 0;
 }
@@ -131,19 +137,13 @@
 // -----------
 .inNavHeader {
   width: 100%;
-
-  .title,
-  .info {
-    color: $c--secondary;
-  }
+  color: $c--white;
 
   .ampersand svg {
-    fill: $c--secondary;
+    fill: currentColor;
   }
 
   @media (max-height: 720px) and (min-width: $bp-tablet) {
-    margin-top: -2vw;
-
     .title {
       font-size: 42px;
     }
@@ -158,7 +158,6 @@
 // -----------
 
 .title {
-  @include transition(color);
   font-size: $fz--base;
   font-family: $ff--headline;
   line-height: 0.7;
@@ -180,9 +179,7 @@
 }
 
 .info {
-  color: $c--primary;
   margin: 0;
-  line-height: 1.2;
   margin-top: spacing();
 
   @include mq($bp-tablet) {
