@@ -17,7 +17,14 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-svg-sprite`,
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /svg/,
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
