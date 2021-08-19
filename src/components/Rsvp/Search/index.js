@@ -57,23 +57,6 @@ const Search = () => {
 
   return (
     <div className="view--search">
-      <button
-        onClick={() => {
-          axios
-            .post(`/.netlify/functions/submit`, {})
-            .then((resp) => {
-              console.log('Done');
-
-              console.log(resp);
-            })
-            .catch(({ response }) => {
-              console.error(response);
-            });
-        }}
-      >
-        CLICK FOR TESTS
-      </button>
-
       <p className="big">
         We're excited to celebrate with you in December. To verify your invitation, please enter the
         address we sent your invitation to below (you only need the street number and name):

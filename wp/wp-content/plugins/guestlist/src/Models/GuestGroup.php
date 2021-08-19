@@ -31,7 +31,8 @@ class GuestGroup extends Post {
 					'add_new_item'  => 'Add new group',
 					'not_found'     => 'No groups found',
 				),
-				'public'   => true,
+				'public'   => false,
+				'show_ui'  => true,
 				'supports' => array( 'title' ),
 			)
 		);

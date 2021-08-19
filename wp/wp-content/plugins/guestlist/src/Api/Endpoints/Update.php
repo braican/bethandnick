@@ -77,6 +77,8 @@ class Update {
 			$guest_id      = $guest_rsvp['id'];
 			$attending     = (int) $guest_rsvp['attending'];
 			$meal          = $guest_rsvp['meal'];
+			$vegetarian    = isset( $guest_rsvp['vegetarian'] ) ? $guest_rsvp['vegetarian'] : false;
+			$gluten_free   = isset( $guest_rsvp['glutenFree'] ) ? $guest_rsvp['glutenFree'] : false;
 			$dietary_notes = isset( $guest_rsvp['restrictions'] ) ? $guest_rsvp['restrictions'] : '';
 
 			$guest = new Guest( $guest_id );
@@ -85,6 +87,14 @@ class Update {
 
 			if ( $meal ) {
 				$guest->set_meal( $meal );
+			}
+
+			if ( $vegetarian ) {
+				$guest->set_vegetarian( true );
+			}
+
+			if ( $gluten_free ) {
+				$guest->set_gluten_free( true );
 			}
 
 			if ( $dietary_notes ) {

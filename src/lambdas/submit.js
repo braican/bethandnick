@@ -46,8 +46,6 @@ async function submitRsvp(postData) {
       headers: { Authorization: API_KEY },
     });
 
-    // const data = {};
-
     return data;
   } catch (error) {
     throw new Error(error.response.data.message);

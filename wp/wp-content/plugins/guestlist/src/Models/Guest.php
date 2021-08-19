@@ -31,7 +31,8 @@ class Guest extends Post {
 					'add_new_item'  => 'Add new guest',
 					'not_found'     => 'No guests found',
 				),
-				'public'   => true,
+				'public'   => false,
+				'show_ui'  => true,
 				'supports' => array( 'title' ),
 			)
 		);
@@ -82,6 +83,26 @@ class Guest extends Post {
 	}
 
 	/**
+	 * Gets vegetarian status.
+	 *
+	 * @return string
+	 */
+	public function vegetarian() {
+		$vgf = $this->meta( 'gl_vegetarian' );
+		return $vgf;
+	}
+
+	/**
+	 * Gets gluten free status.
+	 *
+	 * @return string
+	 */
+	public function gluten_free() {
+		$vgf = $this->meta( 'gl_gluten_free' );
+		return $vgf;
+	}
+
+	/**
 	 * Gets the dietary notes.
 	 *
 	 * @return string
@@ -102,6 +123,25 @@ class Guest extends Post {
 			'id'   => $this->ID,
 			'name' => $this->post_title,
 		);
+	}
+
+	/**
+	 * Gets a string for vegetarian/gluten free.
+	 *
+	 * @return string
+	 */
+	public function get_vegetarian_gluten_free_status() {
+		$status = array();
+
+		if ( $this->vegetarian() ) {
+			array_push( $status, 'Vegetarian' );
+		}
+
+		if ( $this->gluten_free() ) {
+			array_push( $status, 'Gluten Free' );
+		}
+
+		return implode( '/', $status );
 	}
 
 
@@ -129,6 +169,30 @@ class Guest extends Post {
 	 */
 	public function set_meal( string $meal ) {
 		update_post_meta( $this->ID, 'gl_meal', $meal );
+		return $this;
+	}
+
+	/**
+	 * Update the vegetarian status.
+	 *
+	 * @param bool $vegetarian True if this guest is vegetarian.
+	 *
+	 * @return \Guestlist\Models\Guest
+	 */
+	public function set_vegetarian( bool $vegetarian ) {
+		update_post_meta( $this->ID, 'gl_vegetarian', $vegetarian );
+		return $this;
+	}
+
+	/**
+	 * Update the gluten free status.
+	 *
+	 * @param bool $gluten_free True if this guest is gluten free..
+	 *
+	 * @return \Guestlist\Models\Guest
+	 */
+	public function set_gluten_free( bool $gluten_free ) {
+		update_post_meta( $this->ID, 'gl_gluten_free', $gluten_free );
 		return $this;
 	}
 

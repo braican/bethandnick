@@ -42,7 +42,9 @@ const OtherGuestConfirmation = ({
           <strong>{meal.toLowerCase()}</strong> for dinner.
         </p>
       ) : (
-        <p className={styles.guestName}>is unable to attend.</p>
+        <p className={styles.guestName}>
+          <strong>{name}</strong> is unable to attend.
+        </p>
       )}
 
       {attending && (vegetarian || glutenFree || restrictions) && <DisplayRestrictions />}

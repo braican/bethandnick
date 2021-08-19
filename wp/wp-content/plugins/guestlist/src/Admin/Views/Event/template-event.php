@@ -83,8 +83,8 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 
 					<div class="address-field address-field--state">
 						<label for="new-guest-state">State</label>
-						<select id="new-guest-state" name="guest_state" required>
-							<?php // phpcs:disable ?>
+						<?php // phpcs:disable ?>
+						<select id="new-guest-state" name="guest_state" required style="height: auto;">
 							<option value="AL"<?php echo 'AL' === $gl_default_state ? ' selected' : ''; ?>>Alabama</option>
 							<option value="AK"<?php echo 'AK' === $gl_default_state ? ' selected' : ''; ?>>Alaska</option>
 							<option value="AZ"<?php echo 'AZ' === $gl_default_state ? ' selected' : ''; ?>>Arizona</option>
@@ -196,6 +196,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 					<td><strong>Name</strong></td>
 					<td><strong>Attending</strong></td>
 					<td><strong>Meal</strong></td>
+					<td><strong>Vegetarian/Gluten Free</strong></td>
 					<td><strong>Notes</strong></td>
 				</tr>
 			</thead>
@@ -203,7 +204,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 			<?php foreach ( $this->get_guests() as $grouped_guests ) : ?>
 			<tbody>
 				<tr>
-					<td colspan="4" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
+					<td colspan="5" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
 				</tr>
 
 				<?php foreach ( $grouped_guests->get_guests() as $guest ) : ?>
@@ -247,18 +248,18 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 						<form class="gl-edit-guest js-edit-guest-meal-form">
 							<div class="gl-edit-guest-options">
 								<label>
-									<input name="guest_meal" value="Meat" type="radio">
-									Meat
+									<input name="guest_meal" value="Chicken" type="radio">
+									Chicken
 								</label>
 
 								<label>
-									<input name="guest_meal" value="Fish" type="radio">
-									Fish
+									<input name="guest_meal" value="Swordfish" type="radio">
+									Swordfish
 								</label>
 
 								<label>
-									<input name="guest_meal" value="Pasta" type="radio">
-									Pasta
+									<input name="guest_meal" value="Vegetarian" type="radio">
+									Vegetarian
 								</label>
 							</div>
 
@@ -271,6 +272,11 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 							<button class="button button-secondary js-cancel-edit-guest">Cancel</button>
 						</form>
 					</td>
+
+					<td data-value="<?php echo esc_attr( $guest->get_vegetarian_gluten_free_status() ); ?>">
+						<?php echo esc_attr( $guest->get_vegetarian_gluten_free_status() ); ?>
+					</td>
+
 					<td data-value="<?php echo esc_attr( $guest->dietary_notes() ); ?>">
 						<?php echo esc_attr( $guest->dietary_notes() ); ?>
 					</td>
