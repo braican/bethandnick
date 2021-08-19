@@ -75,8 +75,7 @@
   }
 
   &.currentGuestOption__yes {
-    color: $c--primary;
-
+    color: $c--black;
     .inner:after {
       background-image: $icon--check;
       height: 36px;
@@ -98,7 +97,7 @@
     opacity: 0.5;
 
     &.currentGuestOption__yes:hover {
-      color: $c--primary;
+      color: $c--black;
     }
 
     &.currentGuestOption__no:hover {
@@ -112,7 +111,7 @@
     border-style: solid;
 
     &.currentGuestOption__yes {
-      border-color: $c--primary;
+      border-color: $c--secondary;
       @include box-shadow(6px, $c--secondary);
     }
 
@@ -162,6 +161,9 @@
   font-weight: $fw--semibold;
   display: block;
 }
+.otherGuestLabel + .otherGuestLabel {
+  margin-left: spacing(2);
+}
 
 .otherGuestChoice {
   @include transition(background-color color);
@@ -170,10 +172,9 @@
   vertical-align: middle;
   font-weight: $fw--semibold;
   color: rgba($c--gray-6, 0.2);
-  padding: 0.5em 28px 0.5em 0.5em;
+  padding: 0.5em 32px 0.5em 0.5em;
   position: relative;
   margin-left: -0.5em;
-  margin-right: spacing(2);
 
   &:hover {
     color: rgba($c--gray-6, 0.4);
@@ -184,7 +185,7 @@
     content: '';
     display: block;
     position: absolute;
-    right: 2px;
+    right: 8px;
     top: 50%;
     width: 16px;
     background-repeat: no-repeat;

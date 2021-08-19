@@ -1,19 +1,52 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { RsvpContext } from '../index';
-import { indicatesNoRestriction, getFirstName } from '../../../util';
+import AlertMessage from '../../AlertMessage';
+import { getFirstName } from '../../../util';
 
 import styles from './Confirm.module.scss';
 
 const CurrentGuestConfirmation = ({ guest }) => {
-  const { getGuestAttending, getGuestMeal, getGuestRestrictions } = useContext(RsvpContext);
+  const {
+    getGuestAttending,
+    getGuestMeal,
+    getGuestRestrictions,
+    getGuestVegetarian,
+    getGuestglutenFree,
+  } = useContext(RsvpContext);
 
   const attending = getGuestAttending(guest.id);
   const name = getFirstName(guest.name);
-  const meal = getGuestMeal(guest.id);
-  const restrictions = getGuestRestrictions(guest.id);
+  let meal = getGuestMeal(guest.id);
+  const vegetarian = getGuestVegetarian(guest.id);
+  const glutenFree = getGuestglutenFree(guest.id);
+  const otherRestrictions = getGuestRestrictions(guest.id);
 
-  console.log(restrictions);
+  if (meal === null && vegetarian) {
+    meal = 'vegetarian option';
+  }
+
+  const DisplayRestrictions = () => {
+    const restrictionText = otherRestrictions
+      ? `, and have noted the following: ${otherRestrictions}`
+      : '';
+
+    if (vegetarian && glutenFree) {
+      return <p>We've got you down as Vegetarian and Gluten Free{restrictionText}.</p>;
+    }
+    if (vegetarian) {
+      return <p>We've got you down as Vegetarian{restrictionText}.</p>;
+    }
+    if (glutenFree) {
+      return <p>We've got you down as Gluten Free{restrictionText}.</p>;
+    }
+
+    if (otherRestrictions) {
+      return <p>We've also noted the following: {otherRestrictions}</p>;
+    }
+
+    return null;
+  };
 
   return (
     <div className={styles.currentGuest}>
@@ -38,12 +71,13 @@ const CurrentGuestConfirmation = ({ guest }) => {
         )}
       </p>
 
-      {attending && restrictions && (
-        <p>
-          {indicatesNoRestriction(restrictions.toLowerCase())
-            ? "You've also indicated that you have no dietary restrictions."
-            : `You've also indicated the following dietary restriction: ${restrictions}.`}
-        </p>
+      {attending && <DisplayRestrictions />}
+
+      {attending && vegetarian && meal !== 'vegetarian option' && (
+        <AlertMessage>
+          Looks like you've indicated that you're a vegetarian, but have also chosen a meal with
+          meat. Just want to double check that you meant to do this.
+        </AlertMessage>
       )}
     </div>
   );

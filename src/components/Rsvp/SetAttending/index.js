@@ -26,7 +26,6 @@ const SetAttending = () => {
     const newGuest = { ...guest };
 
     if (null === event || event.target.checked) {
-      setCurrentGuestSelected(true);
       newGuest.attending = true;
       updateGuestRsvp(guest.id, newGuest);
     } else {
@@ -38,7 +37,6 @@ const SetAttending = () => {
     const newGuest = { ...guest };
 
     if (null === event || event.target.checked) {
-      setCurrentGuestSelected(true);
       newGuest.attending = false;
       updateGuestRsvp(guest.id, newGuest);
     } else {
@@ -67,7 +65,10 @@ const SetAttending = () => {
             name="attendee_status"
             id="attendee_status_yes"
             checked={true === currGuestAttending}
-            onChange={() => setGuestCanGo(guest)}
+            onChange={() => {
+              setCurrentGuestSelected(true);
+              setGuestCanGo(guest);
+            }}
           />
           <label
             {...className(styles.currentGuestOption, styles.currentGuestOption__yes)}
@@ -91,7 +92,10 @@ const SetAttending = () => {
             name="attendee_status"
             id="attendee_status_no"
             checked={false === currGuestAttending}
-            onChange={() => setGuestDeclines(guest)}
+            onChange={() => {
+              setCurrentGuestSelected(true);
+              setGuestDeclines(guest);
+            }}
           />
           <label
             {...className(styles.currentGuestOption, styles.currentGuestOption__no)}
@@ -112,7 +116,7 @@ const SetAttending = () => {
                 <span className={styles.otherGuestName}>{otherGuest.name}</span>
 
                 <div className={styles.otherGuestStatus}>
-                  <label>
+                  <label className={styles.otherGuestLabel}>
                     <input
                       type="checkbox"
                       name={`attendee_status_${otherGuest.id}`}
@@ -124,7 +128,7 @@ const SetAttending = () => {
                     </span>
                   </label>
 
-                  <label>
+                  <label className={styles.otherGuestLabel}>
                     <input
                       type="checkbox"
                       name={`attendee_status_${otherGuest.id}`}
@@ -143,11 +147,9 @@ const SetAttending = () => {
       )}
 
       <div className={styles.actions}>
-        {currentGuestSelected && (
-          <button className="btn btn--primary" onClick={next}>
-            Next
-          </button>
-        )}
+        <button className="btn btn--primary" onClick={next} disabled={!currentGuestSelected}>
+          Next
+        </button>
         <button className="btn--secondary" onClick={goBack}>
           Back
         </button>

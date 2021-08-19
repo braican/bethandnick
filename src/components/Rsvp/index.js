@@ -102,6 +102,11 @@ const Rsvp = () => {
       delete newRsvps[guestId];
     } else {
       const guestResponses = { ...newRsvps[guestId], ...data };
+
+      if (data.vegetarian) {
+        guestResponses.meal = null;
+      }
+
       newRsvps[guestId] = guestResponses;
     }
 

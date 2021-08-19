@@ -18,8 +18,6 @@ const Confirm = () => {
   const saveRsvp = () => {
     setLoading(true);
 
-    console.log(rsvps);
-
     axios
       .post(`/.netlify/functions/submit`, { rsvps })
       .then(next)

@@ -3,12 +3,20 @@ import { RsvpContext } from '../index';
 import MealSelector from './MealSelector';
 import RestrictionsInput from './RestrictionsInput';
 import OtherGuestMeal from './OtherGuestMeal';
+import AlertMessage from '../../AlertMessage';
 
 import styles from './ChooseMeal.module.scss';
 
 const ChooseMeal = () => {
-  const { next, previous, guest, getGuestMeal, getOtherGuests, getGuestAttending } =
-    useContext(RsvpContext);
+  const {
+    next,
+    previous,
+    guest,
+    getGuestMeal,
+    getOtherGuests,
+    getGuestAttending,
+    getGuestVegetarian,
+  } = useContext(RsvpContext);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
@@ -16,9 +24,12 @@ const ChooseMeal = () => {
 
   const currentGuestAttending = getGuestAttending(guest.id);
   const currentGuestMeal = getGuestMeal(guest.id);
+  const currentGuestVegetarian = getGuestVegetarian(guest.id);
   const otherGuests = getOtherGuests(true);
   const otherGuestIds = Object.keys(otherGuests);
-  const otherGuestChosenMeals = otherGuestIds.filter((id) => otherGuests[id].meal !== null).length;
+  const otherGuestChosenMeals = otherGuestIds.filter(
+    (id) => otherGuests[id].meal !== null || otherGuests[id].vegetarian === true
+  ).length;
 
   const handleErrorMessages = () => {
     if (
@@ -36,9 +47,12 @@ const ChooseMeal = () => {
     }
   };
 
+  const validCurrentGuestSelection = () =>
+    currentGuestMeal !== null || currentGuestVegetarian === true;
+
   useEffect(() => {
     if (
-      ((currentGuestAttending && currentGuestMeal !== null) || !currentGuestAttending) &&
+      ((currentGuestAttending && validCurrentGuestSelection()) || !currentGuestAttending) &&
       otherGuestChosenMeals === otherGuestIds.length
     ) {
       setButtonDisabled(false);
@@ -46,6 +60,8 @@ const ChooseMeal = () => {
       setErrorMessage('');
     } else if (errorMessageVisible) {
       handleErrorMessages();
+    } else {
+      setButtonDisabled(true);
     }
   }, [getGuestAttending]);
 
@@ -70,7 +86,7 @@ const ChooseMeal = () => {
             Awesome! We’re so excited that you'll be able to attend. What would you like for dinner?
           </p>
 
-          <MealSelector guestId={guest.id} />
+          <MealSelector guestId={guest.id} expanded />
           <RestrictionsInput guestId={guest.id} />
         </div>
       ) : (
@@ -94,7 +110,7 @@ const ChooseMeal = () => {
 
       {/* Actions */}
       <div className={styles.actions}>
-        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        {errorMessage && <AlertMessage>{errorMessage}</AlertMessage>}
 
         <button
           className={`btn btn--primary ${buttonDisabled && 'btn--disabled'}`}

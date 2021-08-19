@@ -21,6 +21,10 @@
     border-color: $c--gray-d;
   }
 
+  input:focus + & {
+    border-color: $c--gray-9;
+  }
+
   input:checked + & {
     @include box-shadow(4px);
     // border-color: $c--gray-d;
@@ -28,10 +32,5 @@
     background-color: $c--white;
     font-weight: $fw--semibold;
     color: $c--black;
-  }
-
-  input:focus + & {
-    // border-color: $c--gray-9;
-    border-color: $c--secondary;
   }
 }
