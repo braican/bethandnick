@@ -2,7 +2,7 @@ import axios from 'axios';
 import https from 'https';
 import SparkPost from 'sparkpost';
 
-import { createAttendingEmail } from '../util';
+import { createAttendingEmail, createDeclinedEmail } from '../util';
 
 const API_KEY = process.env.BETHANDNICK_API_KEY;
 const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
@@ -12,16 +12,20 @@ const route = '/wp-json/guestlist/v1/update';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
 
-async function sendEmail() {
-  console.log('send the email');
-
+async function sendEmail(data) {
   try {
-    const email = createAttendingEmail();
+    // eslint-disable-next-line
+    const { [data.activeGuestId]: activeGuest, activeGuestId, ...rest } = data;
+    const otherRsvps = Object.values(rest);
+    const email = activeGuest.attending
+      ? createAttendingEmail(activeGuest, otherRsvps)
+      : createDeclinedEmail(activeGuest, otherRsvps);
+
     const send = await emailClient.transmissions.send({
       content: {
         from: 'nick@mail.braican.com',
         reply_to: 'nick.braica@gmail.com',
-        subject: 'test 4',
+        subject: 'test 7',
         html: email,
       },
       // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
@@ -41,7 +45,7 @@ async function submitRsvp(postData) {
       rejectUnauthorized: false,
     });
 
-    const { data } = await axios.post(url, JSON.parse(postData), {
+    const { data } = await axios.post(url, postData, {
       httpsAgent: agent,
       headers: { Authorization: API_KEY },
     });
@@ -59,16 +63,13 @@ export async function handler(event) {
   }
 
   try {
-    const rsvpResponse = await submitRsvp(event.body);
-    // const emailResponse = await sendEmail();
-
-    console.log(rsvpResponse);
-
-    const data = {};
+    const data = JSON.parse(event.body);
+    await submitRsvp(data);
+    await sendEmail(data);
 
     return {
       statusCode: 200,
-      body: JSON.stringify(data),
+      body: 'ok',
     };
   } catch (error) {
     if (!error.response) {

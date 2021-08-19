@@ -16,11 +16,10 @@ const Confirm = () => {
   const otherGuestIds = Object.keys(otherGuests);
 
   const saveRsvp = () => {
-    setLoading(true);
-
+    // setLoading(true);
     axios
-      .post(`/.netlify/functions/submit`, { rsvps })
-      .then(next)
+      .post(`/.netlify/functions/submit`, { ...rsvps, activeGuestId: guest.id })
+      // .then(next)
       .catch(({ response }) => {
         console.error(response);
       });
