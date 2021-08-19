@@ -117,7 +117,7 @@ const Rsvp = () => {
   const getGuestMeal = (guestId) => (rsvps[guestId] ? rsvps[guestId].meal : null);
   const getGuestRestrictions = (guestId) => (rsvps[guestId] ? rsvps[guestId].restrictions : null);
   const getGuestVegetarian = (guestId) => (rsvps[guestId] ? rsvps[guestId].vegetarian : null);
-  const getGuestglutenFree = (guestId) => (rsvps[guestId] ? rsvps[guestId].glutenFree : null);
+  const getGuestGlutenFree = (guestId) => (rsvps[guestId] ? rsvps[guestId].glutenFree : null);
 
   const getOtherGuests = (onlyAttending = false) => {
     const otherGuestIds = Object.keys(rsvps).filter((guestId) => {
@@ -162,7 +162,7 @@ const Rsvp = () => {
         getGuestRestrictions,
         getOtherGuests,
         getGuestVegetarian,
-        getGuestglutenFree,
+        getGuestGlutenFree,
 
         searchResults,
         setSearchResults,

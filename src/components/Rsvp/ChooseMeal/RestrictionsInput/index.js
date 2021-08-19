@@ -5,7 +5,8 @@ import { RsvpContext } from '../../index';
 import styles from './RestrictionsInput.module.scss';
 
 const RestrictionsInput = ({ guestId }) => {
-  const { updateGuestRsvp, getGuestRestrictions } = useContext(RsvpContext);
+  const { updateGuestRsvp, getGuestRestrictions, getGuestVegetarian, getGuestGlutenFree } =
+    useContext(RsvpContext);
 
   const setGuestRestriction = (event) => {
     const restrictions = event.target.value;
@@ -21,7 +22,9 @@ const RestrictionsInput = ({ guestId }) => {
           <input
             className={styles.checkbox}
             type="checkbox"
+            name="vegetarian"
             onChange={(event) => updateGuestRsvp(guestId, { vegetarian: event.target.checked })}
+            defaultChecked={getGuestVegetarian(guestId)}
           />
           <span className={styles.checkLabel}>Vegetarian</span>
         </label>
@@ -32,7 +35,9 @@ const RestrictionsInput = ({ guestId }) => {
           <input
             className={styles.checkbox}
             type="checkbox"
+            name="gluten_free"
             onChange={(event) => updateGuestRsvp(guestId, { glutenFree: event.target.checked })}
+            defaultChecked={getGuestGlutenFree(guestId)}
           />
           <span className={styles.checkLabel}>Gluten Free</span>
         </label>

@@ -12,14 +12,14 @@ const CurrentGuestConfirmation = ({ guest }) => {
     getGuestMeal,
     getGuestRestrictions,
     getGuestVegetarian,
-    getGuestglutenFree,
+    getGuestGlutenFree,
   } = useContext(RsvpContext);
 
   const attending = getGuestAttending(guest.id);
   const name = getFirstName(guest.name);
   let meal = getGuestMeal(guest.id);
   const vegetarian = getGuestVegetarian(guest.id);
-  const glutenFree = getGuestglutenFree(guest.id);
+  const glutenFree = getGuestGlutenFree(guest.id);
   const otherRestrictions = getGuestRestrictions(guest.id);
 
   if (meal === null && vegetarian) {
