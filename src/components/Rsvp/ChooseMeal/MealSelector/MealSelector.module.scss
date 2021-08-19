@@ -18,8 +18,9 @@
   padding: 1em;
 
   strong {
+    @include transition(color);
     display: block;
-    color: $c--black;
+    color: $c--secondary;
     font-size: 1rem;
     margin-bottom: 6px;
 
@@ -30,6 +31,10 @@
 
   input:checked + & {
     font-weight: $fw--base;
+
+    strong {
+      color: $c--black;
+    }
 
     .checkIcon {
       opacity: 1;

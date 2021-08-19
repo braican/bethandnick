@@ -91,6 +91,10 @@ class Update {
 
 			if ( $vegetarian ) {
 				$guest->set_vegetarian( true );
+
+				if ( ! $meal ) {
+					$guest->set_meal( 'Vegetarian' );
+				}
 			}
 
 			if ( $gluten_free ) {

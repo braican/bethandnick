@@ -161,23 +161,35 @@
   font-weight: $fw--semibold;
   display: block;
 }
-.otherGuestLabel + .otherGuestLabel {
-  margin-left: spacing(2);
+.otherGuestLabel {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: spacing(0.5);
+  + .otherGuestLabel {
+    margin-left: spacing();
+  }
 }
 
 .otherGuestChoice {
-  @include transition(background-color color);
+  @include transition();
   cursor: pointer;
-  display: inline-block;
+  display: block;
   vertical-align: middle;
   font-weight: $fw--semibold;
   color: rgba($c--gray-6, 0.2);
   padding: 0.5em 32px 0.5em 0.5em;
   position: relative;
-  margin-left: -0.5em;
+  background-color: $c--gray-f6;
+  border: 2px solid $c--gray-d;
 
   &:hover {
     color: rgba($c--gray-6, 0.4);
+  }
+
+  input:active + &,
+  input:focus + & {
+    outline: none;
+    border-color: rgba($c--black, 0.5);
   }
 
   &:before {
@@ -206,8 +218,12 @@
     margin-top: -6px;
   }
 
-  input:checked + &:before {
-    opacity: 1;
+  input:checked + & {
+    border-color: currentColor;
+    @include box-shadow(2px);
+    &:before {
+      opacity: 1;
+    }
   }
 
   input:checked + &.otherGuestChoice__yes {
@@ -216,11 +232,7 @@
 
   input:checked + &.otherGuestChoice__no {
     color: $c--accent;
-  }
-
-  input:active + &,
-  input:focus + & {
-    outline: 1px solid rgba($c--black, 0.1);
+    @include box-shadow(0);
   }
 }
 

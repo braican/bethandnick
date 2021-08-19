@@ -71,20 +71,30 @@
 }
 
 .guestButton {
-  @include transition(color);
-  padding: 0.5em 0;
+  @include transition();
+  padding: 0.5em;
   font-size: 1.2rem;
   font-weight: $fw--semibold;
   color: $c--secondary;
   position: relative;
   text-align: left;
+  background-color: $c--gray-f6;
+  display: block;
+  width: 100%;
+  margin-bottom: spacing();
+  border: 2px solid $c--gray-d;
 
   &:hover {
+    @include box-shadow(2px);
     color: $c--primary;
+    border-color: $c--secondary;
+    background-color: $c--white;
+    color: $c--black;
   }
 
   &:focus {
-    outline: 1px solid rgba($c--gray-4, 0.2);
+    outline: none;
+    border-color: rgba($c--black, 0.5);
   }
 
   span {
