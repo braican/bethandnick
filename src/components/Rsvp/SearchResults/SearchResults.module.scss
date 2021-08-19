@@ -2,15 +2,12 @@
 
 .group {
   margin-top: spacing(4);
-  background-color: $c--white;
-  padding: spacing(2);
-  border-top: 4px solid $c--secondary;
 }
 
 .address {
-  font-weight: $fw--bold;
   margin-bottom: spacing();
   line-height: 1.2;
+  color: $c--gray-a;
 }
 
 .respondedGuests {

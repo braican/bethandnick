@@ -18,6 +18,8 @@ const Confirm = () => {
   const saveRsvp = () => {
     setLoading(true);
 
+    console.log(rsvps);
+
     axios
       .post(`/.netlify/functions/submit`, { rsvps })
       .then(next)
@@ -35,7 +37,7 @@ const Confirm = () => {
           <p>You're also submitting {otherGuestIds.length > 1 ? 'RSVPs ' : 'an RSVP '} for:</p>
 
           <ul>
-            {otherGuestIds.map(guestId => (
+            {otherGuestIds.map((guestId) => (
               <li key={guestId}>
                 <OtherGuestConfirmation guest={otherGuests[guestId]} />
               </li>

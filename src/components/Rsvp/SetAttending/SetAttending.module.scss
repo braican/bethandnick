@@ -1,26 +1,26 @@
 @import '../../../styles/abstracts';
 
-.guestName {
-  color: $c--primary;
-}
-
 .attendingChoices {
-  margin-bottom: spacing(4);
+  margin-bottom: spacing(2);
   margin-top: spacing(2);
 
-  @include mq(1420px) {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(258px, 2fr));
-    grid-column-gap: spacing(2);
+  @include mq(900px) {
+    display: flex;
   }
 }
 
 .choice {
-  width: 100%;
+  flex: 1;
   margin-bottom: spacing(1);
 
   input[type='radio'] {
     @include hidden-input();
+  }
+
+  @include mq(900px) {
+    + .choice {
+      margin-left: spacing();
+    }
   }
 }
 
@@ -32,14 +32,15 @@
   cursor: pointer;
   font-weight: $fw--semibold;
   line-height: 1.2;
-  font-size: $fz--base;
+  font-size: 1.2rem;
   position: relative;
   text-align: center;
   color: $c--secondary;
-  padding: spacing(1.5) spacing(1);
+  padding: spacing(1) spacing(0.5);
   border: 2px solid $c--gray-e;
   background-color: rgba($c--white, 0.5);
   @include box-shadow(0, $c--gray-d);
+  height: 100%;
 
   @include mq(1420px) {
     height: 100%;
@@ -143,29 +144,23 @@
 // -----------
 
 .setOtherAttending {
-  margin-top: spacing(4);
+  margin-top: spacing(2);
 }
 
 .otherGuestListItem {
   display: block;
-  padding-top: spacing(0.5);
-  padding-bottom: spacing(0.5);
-  border-top: 1px solid $c--gray-d;
+  padding-top: spacing();
+  padding-bottom: spacing();
 
   input[type='checkbox'] {
     @include hidden-input();
   }
-
-  @include mq($bp-tablet) {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .otherGuestName {
+  font-size: $fz--base;
   font-weight: $fw--semibold;
   display: block;
-  flex: 1;
 }
 
 .otherGuestChoice {
@@ -173,12 +168,12 @@
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
-  margin-left: spacing(1);
   font-weight: $fw--semibold;
   color: rgba($c--gray-6, 0.2);
-  padding: 0.25em 0.5em;
+  padding: 0.5em 28px 0.5em 0.5em;
   position: relative;
-  padding-left: 26px;
+  margin-left: -0.5em;
+  margin-right: spacing(2);
 
   &:hover {
     color: rgba($c--gray-6, 0.4);
@@ -189,7 +184,7 @@
     content: '';
     display: block;
     position: absolute;
-    left: 6px;
+    right: 2px;
     top: 50%;
     width: 16px;
     background-repeat: no-repeat;

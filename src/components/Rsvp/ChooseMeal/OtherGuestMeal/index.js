@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MealSelector from '../MealSelector';
 import RestrictionsInput from '../RestrictionsInput';
+import { getFirstName } from '../../../../util';
 
 import styles from './OtherGuestMeal.module.scss';
 
 const OtherGuestMeal = ({ guest: { name }, guestId }) => (
   <div className={styles.guestItem}>
     <div className={styles.guestlistInner}>
-      <span>
-          Choose a meal for{' '}
-        <span className={styles.guestName}>{name}:</span>
+      <span className={styles.guestPrompt}>
+        How about dinner for <span className={styles.guestName}>{getFirstName(name)}:</span>
       </span>
       <div className={styles.mealSelector}>
-        <MealSelector guestId={guestId} compact />
+        <MealSelector guestId={guestId} />
       </div>
     </div>
     <div>

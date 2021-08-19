@@ -58,7 +58,7 @@ Page.propTypes = {
 export default Page;
 
 export const query = graphql`
-  query($slug: String!) {
+  query ($slug: String!) {
     wordpressPage(slug: { eq: $slug }) {
       title
       content

@@ -7,17 +7,19 @@ import styles from './OtherGuestConfirmation.module.scss';
 
 const OtherGuestConfirmation = ({ guest: { attending, name, meal, restrictions } }) => (
   <div {...className(styles.guest, attending ? styles.statusAttending : styles.statusDeclined)}>
-
-    <p className={styles.guestName}>{name}</p>{' '}
-
-    {attending ? (
+    <p className={styles.guestName}>
+      <strong>{name}</strong> {attending ? 'will be attending.' : 'is unable to attend.'}
+    </p>
+    {attending && (
       <div>
-        <p>Will be attending!</p>
-        <p>Will be having the <strong>{meal.toLowerCase()}</strong> meal&nbsp;option for dinner.</p>
+        <ul>
+          <li></li>
+        </ul>
+        <p>
+          Will be having the <strong>{meal.toLowerCase()}</strong> for dinner.
+        </p>
         {restrictions && <p>Has the following dietary restrictions: {restrictions}.</p>}
       </div>
-    ) : (
-      <div>is unable to attend.</div>
     )}
   </div>
 );

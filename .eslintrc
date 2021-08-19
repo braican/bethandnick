@@ -7,5 +7,15 @@
     "react": {
       "version": "detect"
     }
+  },
+  "rules": {
+    "arrow-parens": "off",
+    "comma-dangle": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
   }
 }

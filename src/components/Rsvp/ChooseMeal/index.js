@@ -7,14 +7,8 @@ import OtherGuestMeal from './OtherGuestMeal';
 import styles from './ChooseMeal.module.scss';
 
 const ChooseMeal = () => {
-  const {
-    next,
-    previous,
-    guest,
-    getGuestMeal,
-    getOtherGuests,
-    getGuestAttending,
-  } = useContext(RsvpContext);
+  const { next, previous, guest, getGuestMeal, getOtherGuests, getGuestAttending } =
+    useContext(RsvpContext);
 
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const [errorMessageVisible, setErrorMessageVisible] = useState(false);
@@ -24,7 +18,7 @@ const ChooseMeal = () => {
   const currentGuestMeal = getGuestMeal(guest.id);
   const otherGuests = getOtherGuests(true);
   const otherGuestIds = Object.keys(otherGuests);
-  const otherGuestChosenMeals = otherGuestIds.filter(id => otherGuests[id].meal !== null).length;
+  const otherGuestChosenMeals = otherGuestIds.filter((id) => otherGuests[id].meal !== null).length;
 
   const handleErrorMessages = () => {
     if (
@@ -33,7 +27,7 @@ const ChooseMeal = () => {
       otherGuestChosenMeals !== otherGuestIds.length
     ) {
       setErrorMessage(
-        'Please choose a meal! You\'ll also need to select a meal for anyone else you\'re checking in.'
+        `Please choose a meal! You'll also need to select a meal for anyone else you're checking in.`
       );
     } else if (currentGuestAttending && currentGuestMeal === null) {
       setErrorMessage('Please choose a meal for yourself!');
@@ -73,12 +67,10 @@ const ChooseMeal = () => {
       {currentGuestAttending ? (
         <div>
           <p className="big">
-            Awesome! We're so excited that you'll be able to attend. What would you like to eat at
-            the wedding?
+            Awesome! We’re so excited that you'll be able to attend. What would you like for dinner?
           </p>
 
           <MealSelector guestId={guest.id} />
-          <br />
           <RestrictionsInput guestId={guest.id} />
         </div>
       ) : (
@@ -87,17 +79,11 @@ const ChooseMeal = () => {
         </div>
       )}
 
-
       {/* Other guests */}
       {otherGuests && (
         <div className={styles.otherGuests}>
-          <p>
-            Since you're checking in {otherGuestIds.length > 1 ? 'others' : 'someone else'}, let's
-            choose their meal{otherGuestIds.length > 1 ? 's' : ''} as&nbsp;well:
-          </p>
-
           <ul className={styles.otherGuestsList}>
-            {otherGuestIds.map(guestId => (
+            {otherGuestIds.map((guestId) => (
               <li key={guestId}>
                 <OtherGuestMeal guest={otherGuests[guestId]} guestId={parseInt(guestId)} />
               </li>

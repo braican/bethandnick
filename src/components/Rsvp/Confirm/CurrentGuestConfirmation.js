@@ -13,19 +13,36 @@ const CurrentGuestConfirmation = ({ guest }) => {
   const meal = getGuestMeal(guest.id);
   const restrictions = getGuestRestrictions(guest.id);
 
+  console.log(restrictions);
+
   return (
     <div className={styles.currentGuest}>
       <p className={styles.currentStatus}>
         OK {name}, let's just confirm:{' '}
-        {true === attending
-          ? <>you <strong>will be attending the wedding</strong> <span className={styles.happyEmoji} role="img" aria-label="whoop">🎉</span>, and you'll be having the <strong>{meal.toLowerCase()}</strong> meal option (great choice).</>
-          : <><strong>you are unable to attend</strong> <span className={styles.sadEmoji} role="img" aria-label="sad">😞</span>.</>
-        }
+        {true === attending ? (
+          <>
+            you <strong>will be attending the wedding</strong>{' '}
+            <span className={styles.happyEmoji} role="img" aria-label="whoop">
+              🎉
+            </span>
+            , and you'll be having the <strong>{meal.toLowerCase()}</strong> (great choice).
+          </>
+        ) : (
+          <>
+            <strong>you are unable to attend</strong>{' '}
+            <span className={styles.sadEmoji} role="img" aria-label="sad">
+              😞
+            </span>
+            .
+          </>
+        )}
       </p>
 
       {attending && restrictions && (
         <p>
-          {indicatesNoRestriction(restrictions.toLowerCase()) ? 'You\'ve also indicated that you have no dietary restrictions.' : `You've also indicated the following dietary restriction: ${restrictions}.`}
+          {indicatesNoRestriction(restrictions.toLowerCase())
+            ? "You've also indicated that you have no dietary restrictions."
+            : `You've also indicated the following dietary restriction: ${restrictions}.`}
         </p>
       )}
     </div>

@@ -2,19 +2,29 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { RsvpContext } from '../../index';
 import { className } from '../../../../util';
-import mealOptions from '../../_data/meals';
 
 import styles from './MealSelector.module.scss';
 
-const MealSelector = ({ guestId, compact = false }) => {
+const mealOptions = [
+  {
+    key: 'chicken',
+    label: 'Chicken',
+  },
+  {
+    key: 'fish',
+    label: 'Swordfish',
+  },
+];
+
+const MealSelector = ({ guestId }) => {
   const { updateGuestRsvp, getGuestMeal } = useContext(RsvpContext);
 
-  const setGuestMeal = meal => {
+  const setGuestMeal = (meal) => {
     updateGuestRsvp(guestId, { meal });
   };
 
   return (
-    <ul {...className(styles.options, compact && styles.optionsCompact)}>
+    <ul {...className(styles.options)}>
       {mealOptions.map(({ key, label }) => (
         <li key={key} className={styles.option}>
           <label>
@@ -35,7 +45,6 @@ const MealSelector = ({ guestId, compact = false }) => {
 
 MealSelector.propTypes = {
   guestId: PropTypes.number.isRequired,
-  compact: PropTypes.bool,
 };
 
 export default MealSelector;

@@ -74,7 +74,7 @@ const Rsvp = () => {
   const { name: viewName, component: View } = views[rsvpStep];
 
   const yesGuestCount = () =>
-    Object.keys(rsvps).filter(guestId => rsvps[guestId].attending === true).length;
+    Object.keys(rsvps).filter((guestId) => rsvps[guestId].attending === true).length;
 
   const next = () => {
     let nextStep = rsvpStep + 1;
@@ -108,14 +108,14 @@ const Rsvp = () => {
     setRsvps(newRsvps);
   };
 
-  const getGuestAttending = guestId => (rsvps[guestId] ? rsvps[guestId].attending : null);
-
-  const getGuestMeal = guestId => (rsvps[guestId] ? rsvps[guestId].meal : null);
-
-  const getGuestRestrictions = guestId => (rsvps[guestId] ? rsvps[guestId].restrictions : null);
+  const getGuestAttending = (guestId) => (rsvps[guestId] ? rsvps[guestId].attending : null);
+  const getGuestMeal = (guestId) => (rsvps[guestId] ? rsvps[guestId].meal : null);
+  const getGuestRestrictions = (guestId) => (rsvps[guestId] ? rsvps[guestId].restrictions : null);
+  const getGuestVegetarian = (guestId) => (rsvps[guestId] ? rsvps[guestId].vegetarian : null);
+  const getGuestglutenFree = (guestId) => (rsvps[guestId] ? rsvps[guestId].glutenFree : null);
 
   const getOtherGuests = (onlyAttending = false) => {
-    const otherGuestIds = Object.keys(rsvps).filter(guestId => {
+    const otherGuestIds = Object.keys(rsvps).filter((guestId) => {
       const isNotCurrentGuest = parseInt(guestId) !== parseInt(guest.id);
 
       if (onlyAttending) {
@@ -130,7 +130,7 @@ const Rsvp = () => {
     }
 
     const otherGuests = {};
-    otherGuestIds.forEach(guestId => {
+    otherGuestIds.forEach((guestId) => {
       otherGuests[guestId] = rsvps[guestId];
     });
 
@@ -156,6 +156,8 @@ const Rsvp = () => {
         getGuestMeal,
         getGuestRestrictions,
         getOtherGuests,
+        getGuestVegetarian,
+        getGuestglutenFree,
 
         searchResults,
         setSearchResults,
@@ -167,16 +169,16 @@ const Rsvp = () => {
           timeout={duration}
           unmountOnExit
         >
-          {status => (
+          {(status) => (
             <div style={{ ...transitionStyles[status] }}>
-              <h3>Welcome to the Party</h3>
+              <h1 className="h1">Welcome to the&nbsp;Party</h1>
             </div>
           )}
         </Transition>
 
         <TransitionGroup>
           <Transition key={`rsvp-view-${viewName}`} timeout={duration}>
-            {status => (
+            {(status) => (
               <div style={{ ...transitionStyles[status] }}>
                 <View />
               </div>

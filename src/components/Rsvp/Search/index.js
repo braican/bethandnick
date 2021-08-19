@@ -22,7 +22,7 @@ const Search = () => {
     }
   }, []);
 
-  const handleSearch = event => {
+  const handleSearch = (event) => {
     event.preventDefault();
 
     if (search.length <= 3) {
@@ -46,7 +46,7 @@ const Search = () => {
         setSearchResults(data);
         next();
       })
-      .catch(err => {
+      .catch((err) => {
         catchApiError(err);
         setErrorMessage('Something went wrong. Please contact Nick or Beth to RSVP.');
       })
@@ -61,7 +61,7 @@ const Search = () => {
         onClick={() => {
           axios
             .post(`/.netlify/functions/submit`, {})
-            .then(resp => {
+            .then((resp) => {
               console.log('Done');
 
               console.log(resp);
@@ -75,7 +75,7 @@ const Search = () => {
       </button>
 
       <p className="big">
-        We're excited to celebrate with you in October. To verify your invitation, please enter the
+        We're excited to celebrate with you in December. To verify your invitation, please enter the
         address we sent your invitation to below (you only need the street number and name):
       </p>
 
@@ -95,7 +95,7 @@ const Search = () => {
                   className={styles.searchField}
                   type="text"
                   name="street_name"
-                  onChange={e => setSearch(e.target.value)}
+                  onChange={(e) => setSearch(e.target.value)}
                   value={search}
                   placeholder="101 Main Street"
                   autoComplete="off"

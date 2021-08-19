@@ -14,18 +14,21 @@ const Success = () => {
       {attending ? (
         <>
           <h3>Get your dancing pants ready</h3>
-          <p className={styles.lede}><strong>Alright {name}, we've got you down as a&nbsp;yes.</strong></p>
+          <p className={styles.lede}>
+            <strong>Alright {name}, we've got you down as a&nbsp;yes.</strong>
+          </p>
           <p>
-            Don't forget to mark your calendar for <strong>October 17th</strong> of this year! We can't wait to
-            celebrate with you.
+            Don't forget to mark your calendar for <strong>December 18th</strong> of this year! We
+            can't wait to celebrate with you.
           </p>
         </>
       ) : (
         <>
           <h3>Say it ain't so!</h3>
-        <p>
-          Hey {name}, we're sorry you can't make it but thanks for letting us know. Hopefully we'll see you soon!
-        </p>
+          <p>
+            Hey {name}, we're sorry you can't make it but thanks for letting us know. Hopefully
+            we'll see you soon!
+          </p>
         </>
       )}
     </div>

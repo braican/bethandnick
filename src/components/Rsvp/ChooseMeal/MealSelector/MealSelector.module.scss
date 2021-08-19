@@ -3,21 +3,21 @@
 .options {
   display: flex;
   justify-content: space-between;
+  margin: spacing(2) 0;
 }
 
 .option {
-  width: 31%;
+  flex: 1;
 
   input[type='radio'] {
     @include hidden-input();
+  }
+
+  + .option {
+    margin-left: spacing();
   }
 }
 
 .optionLabel {
   @include rsvp-button();
-
-  .optionsCompact & {
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-  }
 }
