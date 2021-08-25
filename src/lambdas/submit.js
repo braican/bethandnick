@@ -6,7 +6,7 @@ import { createAttendingEmail, createDeclinedEmail, createAlertEmail } from '../
 
 const API_KEY = process.env.BETHANDNICK_API_KEY;
 const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
-const base = 'https://bethandnick.ups.dock';
+const base = process.env.BETHANDNICK_API_BASE;
 const route = '/wp-json/guestlist/v1/update';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
