@@ -2,6 +2,14 @@
 
 set -e
 
+# Load configuration for current environment.
+if [ -f .env ]; then
+  source .env
+else
+  echo "Missing .env file!"
+  exit 1
+fi
+
 HOST=${1:-$LINODE_HOST}
 USER=${2:-$LINODE_USER}
 BASEDIR=$(dirname "$0")
