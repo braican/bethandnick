@@ -83,6 +83,10 @@ class Update {
 
 			$guest = new Guest( $guest_id );
 
+			if ( 'Guest' === $guest->title() ) {
+				$guest->update_title( "Guest ({$guest_rsvp['name']})" );
+			}
+
 			$guest->set_attending( 1 === $attending );
 
 			if ( $meal ) {

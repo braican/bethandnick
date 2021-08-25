@@ -2,20 +2,19 @@ import axios from 'axios';
 import https from 'https';
 import SparkPost from 'sparkpost';
 
-import { createAttendingEmail, createDeclinedEmail } from '../util';
+import { createAttendingEmail, createDeclinedEmail, createAlertEmail } from '../util';
 
 const API_KEY = process.env.BETHANDNICK_API_KEY;
 const SPARKPOST_API_KEY = process.env.SPARKPOST_API_KEY;
 const base = 'https://bethandnick.ups.dock';
 const route = '/wp-json/guestlist/v1/update';
-// const route = '/wp-json/guestlist/v1/sadasdsds';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
 
 async function sendEmail(data) {
   try {
-    // eslint-disable-next-line
-    const { [data.activeGuestId]: activeGuest, activeGuestId, ...rest } = data;
+    const { rsvps } = data;
+    const { [data.activeGuestId]: activeGuest, ...rest } = rsvps;
     const otherRsvps = Object.values(rest);
     const email = activeGuest.attending
       ? createAttendingEmail(activeGuest, otherRsvps)
@@ -29,12 +28,21 @@ async function sendEmail(data) {
         html: email,
       },
       // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
+      recipients: [{ address: 'nick@upstatement.com' }],
+    });
+
+    await emailClient.transmissions.send({
+      content: {
+        from: 'nick@mail.braican.com',
+        reply_to: 'nick.braica@gmail.com',
+        subject: 'New RSVP!',
+        html: createAlertEmail(rsvps),
+      },
       recipients: [{ address: 'nick.braica@gmail.com' }],
     });
 
     return send;
   } catch (error) {
-    console.error(error);
     throw new Error();
   }
 }

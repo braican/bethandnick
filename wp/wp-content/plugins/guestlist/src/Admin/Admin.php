@@ -10,6 +10,7 @@ namespace Guestlist\Admin;
 use Guestlist\Admin\Views\EventList\EventList;
 use Guestlist\Admin\Views\Event\Event;
 use Guestlist\Admin\Views\Access\Access;
+use Guestlist\Models\Guest;
 
 /**
  * Class to handle interactions with the Guestlist admin page.
@@ -58,6 +59,8 @@ class Admin {
 	public function hooks() {
 		add_action( 'admin_menu', array( $this, 'create' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+		add_action( 'save_post', array( $this, 'save_guest_data' ) );
 	}
 
 	/**
@@ -132,6 +135,62 @@ class Admin {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Adds meta boxes.
+	 *
+	 * @return void
+	 */
+	public function add_meta_boxes() {
+		add_meta_box(
+			'gl_guest_data',
+			'Guest Information',
+			function( $post ) {
+				$guest = new Guest( $post->ID );
+				?>
+				<label for="gl_guest_attending">Attending?</label>
+				<select name="gl_guest_attending" id="gl_guest_attending">
+					<option value="">Set attending status</option>
+					<option value="1" <?php selected( $guest->attending(), 'Yes' ); ?>>Yes</option>
+					<option value="-1" <?php selected( $guest->attending(), 'No' ); ?>>No</option>
+				</select>
+				<br><br>
+				<label for="gl_guest_meal">Attending?</label>
+				<select name="gl_guest_meal" id="gl_guest_meal">
+					<option value="">Set meal option</option>
+					<option value="Chicken" <?php selected( $guest->meal(), 'Chicken' ); ?>>Chicken</option>
+					<option value="Swordfish" <?php selected( $guest->meal(), 'Swordfish' ); ?>>Swordfish</option>
+					<option value="Vegetarian" <?php selected( $guest->meal(), 'Vegetarian' ); ?>>Vegetarian</option>
+				</select>
+				<?php
+			},
+			'gl_guest'
+		);
+	}
+
+	/**
+	 * Save the Guest data to the post.
+	 *
+	 * @param int $post_id ID.
+	 *
+	 * @return void
+	 */
+	public function save_guest_data( $post_id ) {
+		if ( array_key_exists( 'gl_guest_attending', $_POST ) ) {
+			if ( empty( $_POST['gl_guest_attending'] ) ) {
+				delete_post_meta( $post_id, 'gl_attending' );
+			} else {
+				update_post_meta( $post_id, 'gl_attending', $_POST['gl_guest_attending'] );
+			}
+		}
+		if ( array_key_exists( 'gl_guest_meal', $_POST ) ) {
+			if ( empty( $_POST['gl_guest_meal'] ) ) {
+				delete_post_meta( $post_id, 'gl_meal' );
+			} else {
+				update_post_meta( $post_id, 'gl_meal', $_POST['gl_guest_meal'] );
+			}
+		}
 	}
 }
 

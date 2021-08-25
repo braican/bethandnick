@@ -30,13 +30,16 @@ const Search = () => {
       return;
     }
 
+    const getter = axios.get(`/.netlify/functions/search`, {
+      params: { search },
+    });
+
+    const trs = new Promise((resolve) => setTimeout(resolve, 500));
+
     setLoading(true);
 
-    axios
-      .get(`/.netlify/functions/search`, {
-        params: { search },
-      })
-      .then(({ data }) => {
+    Promise.all([getter, trs])
+      .then(([{ data }]) => {
         if (data.code && data.code === 'no_results') {
           setErrorMessage(data.message);
           return;

@@ -10,9 +10,13 @@ const GroupResult = ({ group }) => {
   const { next, setGuest, setGroup } = useContext(RsvpContext);
 
   const respondedGuests = [];
-  const activeGuests = guests.filter(guest => {
+  const activeGuests = guests.filter((guest) => {
     if (guest.attending !== null) {
       respondedGuests.push(guest);
+      return false;
+    }
+
+    if (guest.name === 'Guest') {
       return false;
     }
 
@@ -31,13 +35,19 @@ const GroupResult = ({ group }) => {
 
       {activeGuests.length > 0 && (
         <ul className={styles.guestList}>
-          {activeGuests.map(guest => (
+          {activeGuests.map((guest) => (
             <li key={guest.id} className={styles.guestListItem}>
               <button
                 onClick={() => handleChooseGuest(guest, group)}
                 className={styles.guestButton}
               >
-                <span>{guest.name}</span><span className={styles.icon}>&nbsp;<span className={styles.guestArrow}><Arrow /></span></span>
+                <span>{guest.name}</span>
+                <span className={styles.icon}>
+                  &nbsp;
+                  <span className={styles.guestArrow}>
+                    <Arrow />
+                  </span>
+                </span>
               </button>
             </li>
           ))}
@@ -47,12 +57,24 @@ const GroupResult = ({ group }) => {
       {respondedGuests.length > 0 && (
         <div className={styles.respondedGuests}>
           <p className={styles.respondedGuests__intro}>
-            {activeGuests.length > 0 ? <>The following guests have been checked&nbsp;in:</> : <>Looks like everyone from this address is checked&nbsp;in.</>}
+            {activeGuests.length > 0 ? (
+              <>The following guests have been checked&nbsp;in:</>
+            ) : (
+              <>Looks like everyone from this address is checked&nbsp;in.</>
+            )}
           </p>
           <ul className={styles.respondedGuestList}>
-            {respondedGuests.map(guest => (
-              <li key={guest.id} className={guest.attending < 0 ? styles.respondedGuestDeclined : styles.respondedGuestAttending}>
-                <span className={styles.respondedGuestStrong}>{guest.name}</span> {guest.attending < 0 ? 'has declined' : 'will be attending'}
+            {respondedGuests.map((guest) => (
+              <li
+                key={guest.id}
+                className={
+                  guest.attending < 0
+                    ? styles.respondedGuestDeclined
+                    : styles.respondedGuestAttending
+                }
+              >
+                <span className={styles.respondedGuestStrong}>{guest.name}</span>{' '}
+                {guest.attending < 0 ? 'has declined' : 'will be attending'}
               </li>
             ))}
           </ul>

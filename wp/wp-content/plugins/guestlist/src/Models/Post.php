@@ -78,5 +78,23 @@ class Post {
 		return null;
 	}
 
+
+	/**
+	 * Update the post title.
+	 *
+	 * @param string $new_title The new title.
+	 *
+	 * @return int Post ID.
+	 */
+	public function update_title( string $new_title ) {
+		$success = wp_update_post(
+			array(
+				'ID'         => $this->ID,
+				'post_title' => $new_title,
+			)
+		);
+
+		return $success;
+	}
 }
 

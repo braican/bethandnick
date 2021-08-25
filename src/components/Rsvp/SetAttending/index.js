@@ -1,16 +1,27 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { RsvpContext } from '../index';
 import { getFirstName, className } from '../../../util';
 
 import styles from './SetAttending.module.scss';
+import trsStyles from '../../../styles/transitions/fade.module.scss';
 
 const SetAttending = () => {
   const { next, previous, guest, group, updateGuestRsvp, getGuestAttending } =
     useContext(RsvpContext);
 
+  const guestGuestNameInput = useRef();
+
   const otherGuests = group.guests.filter(
-    (otherGuest) => otherGuest.id !== guest.id && otherGuest.attending === null
+    (otherGuest) =>
+      otherGuest.id !== guest.id && otherGuest.attending === null && otherGuest.name !== 'Guest'
   );
+
+  const guestGuest = group.guests.filter(
+    (otherGuest) =>
+      otherGuest.id !== guest.id && otherGuest.attending === null && otherGuest.name === 'Guest'
+  );
+
   const currGuestAttending = getGuestAttending(guest.id);
 
   const [currentGuestSelected, setCurrentGuestSelected] = useState(currGuestAttending !== null);
@@ -55,7 +66,6 @@ const SetAttending = () => {
 
       <p className="big">
         We hope that you'll be able to make it to Groton on December 18th to celebrate with us.
-        Choose whether or not you can attend below.
       </p>
 
       <ul className={styles.attendingChoices}>
@@ -105,6 +115,75 @@ const SetAttending = () => {
           </label>
         </li>
       </ul>
+
+      {guestGuest.length > 0 && (
+        <div>
+          <CSSTransition
+            unmountOnExit
+            in={true === currGuestAttending}
+            timeout={300}
+            classNames={{ ...trsStyles }}
+          >
+            <div className={styles.otherGuestListItem}>
+              <p>Will you be bringing a guest?</p>
+
+              <div className={styles.otherGuestStatus}>
+                <label className={styles.otherGuestLabel}>
+                  <input
+                    type="radio"
+                    name={`attendee_status_${guestGuest[0].id}`}
+                    checked={true === getGuestAttending(guestGuest[0].id)}
+                    onChange={(event) => setGuestCanGo(guestGuest[0], event)}
+                  />
+                  <span {...className(styles.otherGuestChoice, styles.otherGuestChoice__yes)}>
+                    Yep
+                  </span>
+                </label>
+
+                <label className={styles.otherGuestLabel}>
+                  <input
+                    type="radio"
+                    name={`attendee_status_${guestGuest[0].id}`}
+                    checked={false === getGuestAttending(guestGuest[0].id)}
+                    onChange={(event) => setGuestDeclines(guestGuest[0], event)}
+                  />
+                  <span {...className(styles.otherGuestChoice, styles.otherGuestChoice__no)}>
+                    Nope
+                  </span>
+                </label>
+              </div>
+            </div>
+          </CSSTransition>
+
+          <CSSTransition
+            unmountOnExit
+            in={true === getGuestAttending(guestGuest[0].id)}
+            timeout={300}
+            classNames={{ ...trsStyles }}
+            onEnter={() => {
+              if (guestGuestNameInput && guestGuestNameInput.current) {
+                guestGuestNameInput.current.focus();
+              }
+            }}
+          >
+            <div className={styles.otherGuestListItem}>
+              <p>Great! What's their name?</p>
+
+              <div className={styles.otherGuestStatus}>
+                <input
+                  ref={guestGuestNameInput}
+                  className={styles.otherGuestNameInput}
+                  type="text"
+                  placeholder="Xander Bogaerts"
+                  onChange={(event) =>
+                    updateGuestRsvp(guestGuest[0].id, { name: event.target.value })
+                  }
+                />
+              </div>
+            </div>
+          </CSSTransition>
+        </div>
+      )}
 
       {otherGuests.length > 0 && (
         <div className={styles.setOtherAttending}>

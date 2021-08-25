@@ -12,7 +12,7 @@ export { createAlertEmail } from './emails/createAlertEmail';
  *
  * @return string
  */
-export const decodeHtmlEntities = input => String(input).replace(/&amp;/, '&');
+export const decodeHtmlEntities = (input) => String(input).replace(/&amp;/, '&');
 
 /**
  * React helper to aid in adding classes for css modules.
@@ -22,7 +22,7 @@ export const decodeHtmlEntities = input => String(input).replace(/&amp;/, '&');
  * @return object
  */
 export const className = (...classes) => ({
-  className: classes.filter(className => typeof className === 'string').join(' '),
+  className: classes.filter((className) => typeof className === 'string').join(' '),
 });
 
 /**
@@ -32,14 +32,19 @@ export const className = (...classes) => ({
  *
  * @return string
  */
-export const getFirstName = name => {
+export const getFirstName = (name) => {
   const names = name.split(' ');
+
+  if (names.length < 2) {
+    return name;
+  }
+
   names.pop();
   return names.join(' ');
 };
 
-export const untrailingSlashIt = str => str.replace(/\/$/, '');
-export const trailingSlashIt = str => `${untrailingSlashIt(str)}/`;
+export const untrailingSlashIt = (str) => str.replace(/\/$/, '');
+export const trailingSlashIt = (str) => `${untrailingSlashIt(str)}/`;
 
 /**
  * Checks to see if a user input indicates no restriction based on some whitelisted words.
@@ -48,7 +53,7 @@ export const trailingSlashIt = str => `${untrailingSlashIt(str)}/`;
  *
  * @return boolean
  */
-export const indicatesNoRestriction = input => {
+export const indicatesNoRestriction = (input) => {
   const noWords = ['none', 'nope', 'no', 'no restrictions', 'no restriction'];
   return noWords.indexOf(input) > -1;
 };

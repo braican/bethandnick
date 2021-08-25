@@ -11,8 +11,7 @@
     width: 20px;
     height: 20px;
     position: absolute;
-    top: 50%;
-    margin-top: -10px;
+    top: 3px;
     left: 0;
     background-repeat: no-repeat;
     background-position: left center;
@@ -22,13 +21,11 @@
   &.statusAttending:before {
     background-image: $icon--check;
     height: 20px;
-    margin-top: -10px;
   }
 
   &.statusDeclined:before {
     background-image: $icon--close;
     height: 16px;
-    margin-top: -8px;
   }
 
   p {

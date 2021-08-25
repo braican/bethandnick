@@ -151,7 +151,8 @@
   padding-top: spacing();
   padding-bottom: spacing();
 
-  input[type='checkbox'] {
+  input[type='checkbox'],
+  input[type='radio'] {
     @include hidden-input();
   }
 }
@@ -234,6 +235,10 @@
     color: $c--accent;
     @include box-shadow(0);
   }
+}
+
+.otherGuestNameInput {
+  @include rsvp-input();
 }
 
 // Actions
