@@ -60,23 +60,25 @@ const GroupResult = ({ group }) => {
             {activeGuests.length > 0 ? (
               <>The following guests have been checked&nbsp;in:</>
             ) : (
-              <>Looks like everyone from this address is checked&nbsp;in.</>
+              <>Everyone from this address is checked&nbsp;in.</>
             )}
           </p>
           <ul className={styles.respondedGuestList}>
-            {respondedGuests.map((guest) => (
-              <li
-                key={guest.id}
-                className={
-                  guest.attending < 0
-                    ? styles.respondedGuestDeclined
-                    : styles.respondedGuestAttending
-                }
-              >
-                <span className={styles.respondedGuestStrong}>{guest.name}</span>{' '}
-                {guest.attending < 0 ? 'has declined' : 'will be attending'}
-              </li>
-            ))}
+            {respondedGuests
+              .filter((guest) => guest.name !== 'Guest (Guest)' || guest.attending > 0)
+              .map((guest) => (
+                <li
+                  key={guest.id}
+                  className={
+                    guest.attending < 0
+                      ? styles.respondedGuestDeclined
+                      : styles.respondedGuestAttending
+                  }
+                >
+                  <span className={styles.respondedGuestStrong}>{guest.name}</span>{' '}
+                  {guest.attending < 0 ? 'has declined' : 'will be attending'}
+                </li>
+              ))}
           </ul>
 
           <p className={styles.contactText}>

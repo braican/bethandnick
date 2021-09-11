@@ -74,7 +74,16 @@ export const getActiveGuestRestrictions = (guest) => {
  * @param {array} guests A list of guest responses.
  * @returns string
  */
-export const getOtherGuestMarkup = (guests) => `
+export const getOtherGuestMarkup = (guests) => {
+  const filteredGuests = guests.filter(
+    (guest) => guest.name !== 'Guest' || guest.attending === true
+  );
+
+  if (filteredGuests.length === 0) {
+    return '';
+  }
+
+  return `
 <tr>
   <td>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -98,3 +107,4 @@ export const getOtherGuestMarkup = (guests) => `
   <td height="40"></td>
 </tr>
 `;
+};

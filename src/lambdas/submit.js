@@ -11,29 +11,26 @@ const route = '/wp-json/guestlist/v1/update';
 const url = base + route;
 const emailClient = new SparkPost(SPARKPOST_API_KEY);
 
+const validateEmail = (email) =>
+  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    String(email).toLowerCase()
+  );
+
 async function sendEmail(data) {
   try {
-    const { rsvps } = data;
+    const { rsvps, optedEmail } = data;
     const { [data.activeGuestId]: activeGuest, ...rest } = rsvps;
     const otherRsvps = Object.values(rest);
     const email = activeGuest.attending
       ? createAttendingEmail(activeGuest, otherRsvps)
       : createDeclinedEmail(activeGuest, otherRsvps);
 
-    const send = await emailClient.transmissions.send({
+    const confirmationAlert = await emailClient.transmissions.send({
       content: {
-        from: 'nick@mail.braican.com',
-        reply_to: 'nick.braica@gmail.com',
-        subject: 'test 7',
-        html: email,
-      },
-      // recipients: [{ address: 'nick.braica@gmail.com' }, { address: 'nick@upstatement.com' }],
-      recipients: [{ address: 'nick@upstatement.com' }],
-    });
-
-    await emailClient.transmissions.send({
-      content: {
-        from: 'nick@mail.braican.com',
+        from: {
+          name: 'Nick Braica',
+          email: 'nick@mail.braican.com',
+        },
         reply_to: 'nick.braica@gmail.com',
         subject: 'New RSVP!',
         html: createAlertEmail(rsvps),
@@ -41,7 +38,24 @@ async function sendEmail(data) {
       recipients: [{ address: 'nick.braica@gmail.com' }],
     });
 
-    return send;
+    if (optedEmail && validateEmail(optedEmail)) {
+      await emailClient.transmissions.send({
+        content: {
+          from: {
+            name: 'Nick Braica',
+            email: 'nick@mail.braican.com',
+          },
+          reply_to: 'nick.braica@gmail.com',
+          subject: activeGuest.attending
+            ? 'Get ready to go to a wedding!'
+            : `We're sorry you can't make it.`,
+          html: email,
+        },
+        recipients: [{ address: optedEmail }],
+      });
+    }
+
+    return confirmationAlert;
   } catch (error) {
     throw new Error();
   }
