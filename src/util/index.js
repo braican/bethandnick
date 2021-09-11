@@ -33,6 +33,12 @@ export const className = (...classes) => ({
  * @return string
  */
 export const getFirstName = (name) => {
+  // Special cases.
+  switch (name) {
+    case 'Leonardo Henrique Da Luz':
+      return 'Leonardo';
+  }
+
   const names = name.split(' ');
 
   if (names.length < 2) {
