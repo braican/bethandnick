@@ -31,6 +31,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 		<a href="<?php echo esc_html( $gl_all_events_url ); ?>">← All events</a><br>
 		<h1 class="wp-heading-inline">The <?php echo get_the_title( $gl_event ); ?> guest list</h1>
 		<button class="page-title-action js-add-new-guest">Add new guest(s)</button>
+		<button class="page-title-action js-import-guests">Import</button>
 	</header>
 
 	<?php Notices::get(); ?>
@@ -292,6 +293,20 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 	<?php else : ?>
 	<p>No guests have been added for this event.</p>
 	<?php endif; ?>
+	</div>
+
+
+	<div class="gl-import-modal">
+		<form class="gl-import-modal__form js-import-form">
+			<button type="button" class="gl-import-modal__close js-close-import-modal">&times;</button>
+			<input type="file" name="import_file" accept=".csv">
+			<input type="hidden" name="action" value="<?php echo esc_attr( self::ACTION_IMPORT_FILE ); ?>" />
+			<input type="hidden" name="nonce" value="<?php echo esc_attr( wp_create_nonce( 'import_file' ) ); ?>">
+			<input type="hidden" name="ajax_url" value="<?php echo esc_attr( admin_url( 'admin-ajax.php' ) ); ?>">
+			<input type="hidden" name="event" value="<?php echo esc_attr( $gl_event->ID ); ?>">
+			<button class="button button-primary gl-import__submit" type="submit">Import</button>
+			<span class="gl-import__interstitial">Importing...</span>
+		</form>
 	</div>
 
 <?php else : ?>

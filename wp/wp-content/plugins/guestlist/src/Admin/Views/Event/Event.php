@@ -52,6 +52,13 @@ class Event {
 	const ACTION_EDIT_MEAL = 'guestlist_edit_guest_meal';
 
 	/**
+	 * Actiom label for import of file.
+	 *
+	 * @var string
+	 */
+	const ACTION_IMPORT_FILE = 'guestlist_import';
+
+	/**
 	 * Init this view with some hooks.
 	 *
 	 * @return void
@@ -61,6 +68,7 @@ class Event {
 		add_action( 'admin_action_' . self::ACTION_ADD, array( $this, 'handle_add_guest' ) );
 		add_action( 'wp_ajax_' . self::ACTION_EDIT_ATTENDING, array( $this, 'handle_edit_attending' ) );
 		add_action( 'wp_ajax_' . self::ACTION_EDIT_MEAL, array( $this, 'handle_edit_meal' ) );
+		add_action( 'wp_ajax_' . self::ACTION_IMPORT_FILE, array( $this, 'handle_import' ) );
 	}
 
 	/**
@@ -307,5 +315,90 @@ class Event {
 
 		$update = update_post_meta( $_POST['guest_id'], 'gl_meal', $_POST['guest_meal'] );
 		wp_send_json_success( $update );
+	}
+
+	/**
+	 * Handle an import.
+	 *
+	 * @return void
+	 */
+	public function handle_import() {
+		if ( ! isset( $_POST['nonce'] ) || false === wp_verify_nonce( $_POST['nonce'], 'import_file' ) ) {
+			die( 'The security check failed.' );
+		}
+
+		if ( UPLOAD_ERR_OK !== $_FILES['import_file']['error'] || ! is_uploaded_file( $_FILES['import_file']['tmp_name'] ) ) {
+			wp_send_json_error( 'Invalid file' );
+		}
+
+		$data = file_get_contents( $_FILES['import_file']['tmp_name'] );
+
+		$lines = explode( PHP_EOL, $data );
+		foreach ( $lines as $index => $line ) {
+			if ( 0 === $index ) {
+				continue;
+			}
+
+			$group_line = str_getcsv( $line );
+
+			$event       = sanitize_text_field( $_POST['event'] );
+			$group_name  = $group_line[0];
+			$street      = $group_line[6];
+			$city        = $group_line[7];
+			$state       = $group_line[8];
+			$zip         = $group_line[9];
+			$address     = "$street $city, $state $zip";
+			$group_title = "$group_name / $address";
+
+			$guests = array(
+				trim( "{$group_line[2]} {$group_line[3]}" ),
+				trim( "{$group_line[4]} {$group_line[5]}" ),
+			);
+
+			$collected_data = array(
+				'group_name'     => $group_name,
+				'street'         => $street,
+				'city'           => $city,
+				'state'          => $state,
+				'zip'            => $zip,
+				'address'        => $address,
+				'gl_guest_event' => $event,
+			);
+
+			$new_group = wp_insert_post(
+				array(
+					'post_title'  => $group_title,
+					'post_status' => 'publish',
+					'post_type'   => GuestGroup::TYPE,
+					'meta_input'  => $collected_data,
+				)
+			);
+
+			$guest_ids = array();
+
+			foreach ( $guests as $g ) {
+				if ( ! $g ) {
+					continue;
+				}
+
+				$guest_id = wp_insert_post(
+					array(
+						'post_title'  => sanitize_text_field( $g ),
+						'post_status' => 'publish',
+						'post_type'   => Guest::TYPE,
+						'meta_input'  => array_merge(
+							$collected_data,
+							array( 'gl_group' => $new_group )
+						),
+					)
+				);
+
+				array_push( $guest_ids, $guest_id );
+			}
+
+			update_post_meta( $new_group, 'gl_guests', $guest_ids );
+		}
+
+		wp_send_json_success();
 	}
 }

@@ -95,3 +95,59 @@
 .gl-guest-table .gl-editing-cell .gl-guest-info {
   display: none;
 }
+
+/** Modal **/
+
+.gl-import-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, .6);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: -1;
+  display: none;
+}
+.importing-guests .gl-import-modal{
+  z-index: 10000;
+  display: flex;
+}
+
+.gl-import-modal__form {
+  background-color: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.gl-import-modal__close {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: -1em;
+  right: -1em;
+  color: #fff;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: bold;
+}
+
+.loading .gl-import__submit {
+  display: none;
+}
+
+.gl-import__interstitial {
+  display: none;
+}
+
+.loading .gl-import__interstitial {
+  display: inline-block;
+}
