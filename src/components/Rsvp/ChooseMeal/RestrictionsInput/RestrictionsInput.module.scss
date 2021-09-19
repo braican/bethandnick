@@ -1,0 +1,65 @@
+@import '../../../../styles/abstracts';
+
+.label {
+  font-size: $fz--sm;
+  display: block;
+  margin-bottom: spacing(0.5);
+}
+
+.input {
+  @include rsvp-input();
+}
+
+.controlWrapper + .controlWrapper {
+  margin-top: spacing();
+}
+.controlWrapperLarge {
+  margin-top: spacing(2);
+}
+
+.checkbox {
+  @include hidden-input();
+}
+.checkLabel {
+  position: relative;
+  display: block;
+  padding-left: 2rem;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    border: 1px solid $c--gray-c;
+  }
+
+  &:after {
+    @include transition(opacity, $duration: 0.1s);
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    background-image: url(data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23b99359%22%20d%3D%22M27%204L12%2019l-7-7-5%205%2012%2012L32%209z%22%2F%3E%3C%2Fsvg%3E);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 72%;
+    opacity: 0;
+  }
+
+  .checkbox:focus ~ &:before {
+    border-color: $c--gray-9;
+  }
+
+  .checkbox:checked ~ &:after {
+    opacity: 1;
+  }
+}

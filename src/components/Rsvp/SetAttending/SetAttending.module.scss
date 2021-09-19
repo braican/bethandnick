@@ -1,0 +1,253 @@
+@import '../../../styles/abstracts';
+
+.attendingChoices {
+  margin-bottom: spacing(2);
+  margin-top: spacing(2);
+
+  @include mq(900px) {
+    display: flex;
+  }
+}
+
+.choice {
+  flex: 1;
+  margin-bottom: spacing(1);
+
+  input[type='radio'] {
+    @include hidden-input();
+  }
+
+  @include mq(900px) {
+    + .choice {
+      margin-left: spacing();
+    }
+  }
+}
+
+.currentGuestOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include transition(opacity color border-color border-style background-color box-shadow);
+  cursor: pointer;
+  font-weight: $fw--semibold;
+  line-height: 1.2;
+  font-size: 1.2rem;
+  position: relative;
+  text-align: center;
+  color: $c--secondary;
+  padding: spacing(1) spacing(0.5);
+  border: 2px solid $c--gray-e;
+  background-color: rgba($c--white, 0.5);
+  @include box-shadow(0, $c--gray-d);
+  height: 100%;
+
+  @include mq(1420px) {
+    height: 100%;
+  }
+
+  .inner {
+    margin: 0;
+  }
+
+  .inner:after {
+    @include transition(opacity transform);
+    content: '';
+    display: block;
+    width: 100%;
+    margin-top: spacing(0.5);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: contain;
+    opacity: 0.4;
+    transform: translate3d(0, 4px, 0);
+  }
+
+  &:hover {
+    opacity: 1;
+    background-color: rgba($c--white, 1);
+    border-color: $c--gray-d;
+    @include box-shadow(4px, $c--gray-d);
+
+    .inner:after {
+      opacity: 0.8;
+    }
+  }
+
+  &.currentGuestOption__yes {
+    color: $c--black;
+    .inner:after {
+      background-image: $icon--check;
+      height: 36px;
+    }
+  }
+
+  &.currentGuestOption__no {
+    color: $c--accent;
+
+    .inner:after {
+      background-image: $icon--close;
+      height: 26px;
+      margin-top: spacing(1);
+    }
+  }
+
+  .guestChosen input:not(:checked) + & {
+    color: $c--gray-9;
+    opacity: 0.5;
+
+    &.currentGuestOption__yes:hover {
+      color: $c--black;
+    }
+
+    &.currentGuestOption__no:hover {
+      color: $c--accent;
+    }
+  }
+
+  input:checked + & {
+    opacity: 1;
+    background-color: $c--white;
+    border-style: solid;
+
+    &.currentGuestOption__yes {
+      border-color: $c--secondary;
+      @include box-shadow(6px, $c--secondary);
+    }
+
+    &.currentGuestOption__no {
+      border-color: $c--accent;
+      @include box-shadow(6px, $c--accent);
+    }
+
+    .inner:after {
+      opacity: 1;
+    }
+  }
+
+  input:focus + & {
+    outline: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .happyEmoji {
+    @include transition(opacity);
+    opacity: 0;
+
+    input:checked + & {
+      opacity: 1;
+    }
+  }
+}
+
+// Other guest choices
+// -----------
+
+.setOtherAttending {
+  margin-top: spacing(2);
+}
+
+.otherGuestListItem {
+  display: block;
+  padding-top: spacing();
+  padding-bottom: spacing();
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    @include hidden-input();
+  }
+}
+
+.otherGuestName {
+  font-size: $fz--base;
+  font-weight: $fw--semibold;
+  display: block;
+}
+.otherGuestLabel {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: spacing(0.5);
+  + .otherGuestLabel {
+    margin-left: spacing();
+  }
+}
+
+.otherGuestChoice {
+  @include transition();
+  cursor: pointer;
+  display: block;
+  vertical-align: middle;
+  font-weight: $fw--semibold;
+  color: rgba($c--gray-6, 0.2);
+  padding: 0.5em 32px 0.5em 0.5em;
+  position: relative;
+  background-color: $c--gray-f6;
+  border: 2px solid $c--gray-d;
+
+  &:hover {
+    color: rgba($c--gray-6, 0.4);
+  }
+
+  input:active + &,
+  input:focus + & {
+    outline: none;
+    border-color: rgba($c--black, 0.5);
+  }
+
+  &:before {
+    @include transition(opacity);
+    content: '';
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 0;
+  }
+
+  &.otherGuestChoice__yes:before {
+    background-image: $icon--check;
+    height: 16px;
+    margin-top: -8px;
+  }
+
+  &.otherGuestChoice__no:before {
+    background-image: $icon--close;
+    height: 12px;
+    margin-top: -6px;
+  }
+
+  input:checked + & {
+    border-color: currentColor;
+    @include box-shadow(2px);
+    &:before {
+      opacity: 1;
+    }
+  }
+
+  input:checked + &.otherGuestChoice__yes {
+    color: $c--secondary;
+  }
+
+  input:checked + &.otherGuestChoice__no {
+    color: $c--accent;
+    @include box-shadow(0);
+  }
+}
+
+.otherGuestNameInput {
+  @include rsvp-input();
+}
+
+// Actions
+// -----------
+
+.actions {
+  margin-top: spacing(4);
+
+  button + button {
+    margin-left: spacing(2);
+  }
+}

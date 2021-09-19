@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 
 import { className } from '../../../util';
 
-import closeIcon from '../../../svg/close.svg';
+import CloseIcon from '../../../svg/close.svg';
 import styles from './Close.module.scss';
 
 const CloseButton = ({ onClick, className: classFromProps }) => (
   <button {...className(styles.button, classFromProps)} onClick={onClick}>
-    <svg>
-      <use xlinkHref={`#${closeIcon.id}`} />
-    </svg>
+    <CloseIcon />
   </button>
 );
 
@@ -25,4 +23,3 @@ CloseButton.defaultProps = {
 };
 
 export default CloseButton;
-

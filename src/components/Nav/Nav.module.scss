@@ -8,7 +8,7 @@
 }
 
 .navWrapper {
-  @include transition($func: $in-out-nice);
+  @include transition($func: $timing-butter);
   position: fixed;
   top: 0;
   left: 0;
@@ -18,7 +18,7 @@
   background-color: $c--primary;
   visibility: hidden;
   pointer-events: none;
-  transform: translateY(-100%);
+  transform: translate3d(0, -100%, 0);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 .navWrapperOpen {
   visibility: visible;
   pointer-events: auto;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
   height: 100vh;
   transition-duration: $t-duration-slow;
 }

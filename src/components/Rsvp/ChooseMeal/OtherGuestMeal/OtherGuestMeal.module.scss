@@ -1,0 +1,17 @@
+@import '../../../../styles/abstracts';
+
+.guestlistInner {
+  line-height: 1.4;
+  margin-bottom: spacing(1.5);
+}
+
+.guestPrompt {
+  font-size: $fz--base;
+}
+.guestName {
+  font-weight: $fw--bold;
+}
+
+.mealSelector + .mealSelector {
+  margin-left: spacing();
+}

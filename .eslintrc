@@ -1,9 +1,21 @@
 {
-    "extends": "@upstatement/eslint-config/react",
-    "plugins": ["react"],
-    "settings": {
-        "react": {
-            "version": "detect"
-        }
+  "extends": "@upstatement/eslint-config/react",
+  "plugins": [
+    "react"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  },
+  "rules": {
+    "arrow-parens": "off",
+    "comma-dangle": "off"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  }
 }

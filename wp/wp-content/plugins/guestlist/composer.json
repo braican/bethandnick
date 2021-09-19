@@ -1,0 +1,14 @@
+{
+    "name": "braican/guestlist",
+    "description": "A WordPress plugin that keeps track of event guest lists.",
+    "version": "0.0.1",
+    "type": "wordpress-plugin",
+    "require": {
+        "loilo/fuse": "^3.4"
+    },
+    "autoload": {
+      "psr-4": {
+          "Guestlist\\": "src/"
+      }
+  }
+}

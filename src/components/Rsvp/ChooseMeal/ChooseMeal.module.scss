@@ -1,0 +1,23 @@
+@import '../../../styles/abstracts';
+
+.otherGuests {
+  margin-top: spacing(4);
+}
+
+.otherGuestsList {
+  margin-top: spacing(2);
+  > li + li {
+    margin-top: spacing(4);
+  }
+}
+
+// Actions
+// -----------
+
+.actions {
+  margin-top: spacing(4);
+
+  button + button {
+    margin-left: spacing(2);
+  }
+}

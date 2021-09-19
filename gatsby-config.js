@@ -11,9 +11,20 @@ module.exports = {
     description: 'Beth & Nick are getting married on December 18, 2021 in Groton, Massachusetts.',
     siteUrl,
   },
+  proxy: {
+    prefix: '/.netlify/functions',
+    url: 'http://localhost:34567',
+  },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-svg-sprite`,
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /svg/,
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -70,6 +81,7 @@ module.exports = {
           '**/bethandnick/v1/info',
           '**/bethandnick/v1/gallery',
         ],
+        minimizeDeprecationNotice: true,
       },
     },
     {

@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 
 import { className } from '../../util';
 import OptionalLink from '../Util/OptionalLink';
 import AmpersandIcon from '../../svg/ampersand';
+import Arrow from '../../svg/arrow-right';
 
 import styles from './Header.module.scss';
 
-const Header = ({ info, big, inNav, hero }) => (
+const Header = ({ info, big = false, inNav = false, fixed = false, hero = false }) => (
   <div
     {...className(
       styles.header,
       big && styles.bigHeader,
       !big && !inNav && styles.defaultHeader,
       hero && styles.defaultHeaderOverlay,
-      inNav && styles.inNavHeader
+      inNav && styles.inNavHeader,
+      fixed && styles.navFixed
     )}
   >
     <OptionalLink to="/" when={!big && !inNav}>
@@ -31,8 +33,26 @@ const Header = ({ info, big, inNav, hero }) => (
 
       <div className={styles.info}>
         <p className={styles.date}>{info.wedding_date}</p>
-        <p className={styles.venue}>at {info.venue_name}</p>
+        <p className={styles.venue}>{info.venue_name}</p>
       </div>
+
+      {(big || inNav) && (
+        <p className={styles.promo}>
+          <Link
+            className={styles.link}
+            to="/rsvp"
+            onClick={() => {
+              const event = new Event('navclose');
+              document.dispatchEvent(event);
+            }}
+          >
+            <span>RSVP</span>&nbsp;&nbsp;
+            <span className={styles.icon}>
+              <Arrow />
+            </span>
+          </Link>
+        </p>
+      )}
     </OptionalLink>
   </div>
 );
@@ -44,12 +64,14 @@ Header.propTypes = {
   }),
   big: PropTypes.bool,
   inNav: PropTypes.bool,
+  fixed: PropTypes.bool,
   hero: PropTypes.bool,
 };
 
 Header.defaultProps = {
   big: false,
   inNav: false,
+  fixed: false,
   hero: false,
 };
 

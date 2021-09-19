@@ -1,0 +1,10 @@
+@import '../../../styles/abstracts';
+
+.searchField {
+  @include rsvp-input();
+  font-size: 1.6rem;
+}
+
+.error {
+  color: $c--accent;
+}
