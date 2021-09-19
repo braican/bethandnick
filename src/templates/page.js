@@ -6,7 +6,7 @@ import { contentFilter, className } from '../util';
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
 // import CovidAlert from '../components/CovidAlert';
-import Promo from '../components/Promo';
+// import Promo from '../components/Promo';
 
 const Page = ({ data, pageContext: { slug } }) => {
   const {
@@ -29,7 +29,7 @@ const Page = ({ data, pageContext: { slug } }) => {
     >
       <Seo title={cleanTitle} />
 
-      {slug === 'home' && <Promo />}
+      {/* {slug === 'home' && <Promo />} */}
       {/* {slug === 'home' && <CovidAlert />} */}
 
       <div
