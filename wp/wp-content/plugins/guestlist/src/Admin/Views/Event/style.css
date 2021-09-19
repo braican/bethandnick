@@ -1,0 +1,153 @@
+/* Adding a new event */
+.gl-add-new-guest-form {
+  display: none;
+}
+
+.adding-new-guest .gl-add-new-guest-form {
+  display: block;
+}
+
+.adding-new-guest .js-add-new-guest {
+  display: none;
+}
+
+.gl-add-new-guest-form h3 {
+  margin: 0;
+}
+
+.gl-form .address-fields {
+  width: 100%;
+  max-width: 660px;
+  display: grid;
+  grid-gap: .5em;
+  grid-template-columns: 2fr 3fr;
+}
+.gl-form .address-field--street,
+.gl-form .address-field--city {
+  grid-column: 1 / 3;;
+}
+
+.gl-form .new-guest-input {
+  position: relative;
+  width: 100%;
+  max-width: 716px;
+  padding-right: 56px;
+  box-sizing: border-box;
+}
+
+.gl-form .new-guest-input .button-remove {
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  margin-top: -22px;
+  right: 0;
+}
+
+
+.gl-form .new-guest-input + .new-guest-input {
+  margin-top: 0.5em;
+}
+
+/* Guest table */
+
+.gl-guest-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  margin-top: 2em;
+}
+
+.gl-guest-table td {
+  padding: 0.5em;
+}
+
+.gl-guest-table .group-header {
+  padding: 0.5em;
+  /* border-top: 1px solid #aaa; */
+  background-color: #ddd;
+  font-weight: bold;
+}
+
+.gl-guest-table tbody tr:nth-child(2n) td {
+  background-color: #f8f8f8;
+}
+
+.gl-guest-table .gl-edit-guest {
+  display: none;
+}
+
+.gl-guest-table .gl-edit-guest-options {
+  margin-bottom: 1em;
+}
+
+.gl-guest-table .gl-edit-guest-options label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.gl-guest-table .gl-editing-cell .gl-edit-guest {
+  display: block;
+}
+
+.gl-guest-table .gl-editing-cell .gl-guest-info {
+  display: none;
+}
+
+/** Modal **/
+
+.gl-import-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, .6);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: -1;
+  display: none;
+}
+.importing-guests .gl-import-modal{
+  z-index: 10000;
+  display: flex;
+}
+
+.gl-import-modal__form {
+  background-color: #fff;
+  padding: 20px;
+  position: relative;
+}
+
+.gl-import-modal__close {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: -1em;
+  right: -1em;
+  color: #fff;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  box-shadow: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 48px;
+  line-height: 48px;
+  font-weight: bold;
+}
+
+.loading .gl-import__submit {
+  display: none;
+}
+
+.gl-import__interstitial {
+  display: none;
+}
+
+.loading .gl-import__interstitial {
+  display: inline-block;
+}

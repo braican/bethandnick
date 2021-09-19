@@ -69,6 +69,10 @@ main {
     padding-top: 6vw;
   }
 
+  @include mq($bp-desktop) {
+    padding-top: 8vw;
+  }
+
   @include mq($bp-small-mobile, max) {
     padding-top: 3rem !important;
   }

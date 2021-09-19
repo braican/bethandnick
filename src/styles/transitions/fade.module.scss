@@ -1,0 +1,19 @@
+@import '../abstracts';
+
+.enter {
+  opacity: 0;
+}
+
+.enterActive {
+  @include transition(opacity);
+  opacity: 1;
+}
+
+.exit {
+  opacity: 1;
+}
+
+.exitActive {
+  @include transition(opacity);
+  opacity: 0;
+}

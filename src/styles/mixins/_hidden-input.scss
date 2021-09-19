@@ -1,0 +1,8 @@
+@mixin hidden-input() {
+  height: 0;
+  width: 0;
+  position: absolute;
+  overflow: hidden;
+  left: -9999px;
+  opacity: 0;
+}

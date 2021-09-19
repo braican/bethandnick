@@ -8,14 +8,15 @@ import AmpersandIcon from '../../svg/ampersand';
 
 import styles from './Header.module.scss';
 
-const Header = ({ info, big, inNav, hero }) => (
+const Header = ({ info, big = false, inNav = false, fixed = false, hero = false }) => (
   <div
     {...className(
       styles.header,
       big && styles.bigHeader,
       !big && !inNav && styles.defaultHeader,
       hero && styles.defaultHeaderOverlay,
-      inNav && styles.inNavHeader
+      inNav && styles.inNavHeader,
+      fixed && styles.navFixed
     )}
   >
     <OptionalLink to="/" when={!big && !inNav}>
@@ -44,12 +45,14 @@ Header.propTypes = {
   }),
   big: PropTypes.bool,
   inNav: PropTypes.bool,
+  fixed: PropTypes.bool,
   hero: PropTypes.bool,
 };
 
 Header.defaultProps = {
   big: false,
   inNav: false,
+  fixed: false,
   hero: false,
 };
 

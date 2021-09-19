@@ -1,0 +1,33 @@
+@import '../../../styles/abstracts';
+
+.currentStatus {
+  font-size: $fz--base;
+}
+
+.otherGuests {
+  margin-top: spacing(2);
+  margin-bottom: spacing(2);
+
+  li + li {
+    margin-top: spacing(2);
+  }
+}
+
+.happyEmoji,
+.sadEmoji {
+  font-size: 32px;
+  line-height: 0;
+}
+
+.actions {
+  margin-top: spacing(2);
+  height: 80px;
+
+  button + button {
+    margin-left: spacing(2);
+  }
+}
+
+.optInEmailInput {
+  @include rsvp-input();
+}

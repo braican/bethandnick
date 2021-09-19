@@ -1,0 +1,130 @@
+@import '../../../styles/abstracts';
+
+.group {
+  margin-top: spacing(2);
+}
+
+.address {
+  margin-bottom: spacing();
+  line-height: 1.2;
+  color: $c--gray-a;
+  font-weight: $fw--bold;
+}
+
+.respondedGuests {
+  margin-top: spacing(2);
+}
+
+.respondedGuests__intro {
+  margin-bottom: spacing(1);
+}
+
+.respondedGuestList {
+  margin-bottom: spacing(2);
+}
+
+.respondedGuestStrong {
+  font-weight: $fw--semibold;
+}
+
+.contactText {
+  margin-bottom: 0;
+}
+
+.respondedGuestAttending,
+.respondedGuestDeclined {
+  position: relative;
+  padding-left: 26px;
+  line-height: 1.4;
+  margin-top: spacing(0.5);
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    width: 16px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+  }
+}
+
+.respondedGuestDeclined:before {
+  background-image: $icon--close;
+  height: 12px;
+}
+
+.respondedGuestAttending:before {
+  background-image: $icon--check;
+  height: 16px;
+}
+
+.guestList {
+  @include mq($bp-mobile) {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+    grid-column-gap: spacing(2);
+    grid-auto-flow: row dense;
+  }
+}
+
+.guestButton {
+  @include transition();
+  padding: 0.5em;
+  font-size: 1.2rem;
+  font-weight: $fw--semibold;
+  color: $c--secondary;
+  position: relative;
+  text-align: left;
+  background-color: $c--gray-f6;
+  display: block;
+  width: 100%;
+  margin-bottom: spacing();
+  border: 2px solid $c--gray-d;
+
+  &:hover {
+    @include box-shadow(2px);
+    color: $c--primary;
+    border-color: $c--secondary;
+    background-color: $c--white;
+    color: $c--black;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: rgba($c--black, 0.5);
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  .icon {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  .guestArrow {
+    @include transition(opacity transform);
+    display: inline-block;
+    width: 0.75em;
+    height: 0.75em;
+    margin-left: 0.25em;
+    opacity: 0;
+    margin-top: -2px;
+    transform: translateX(-4px);
+
+    svg {
+      display: block;
+      width: 100%;
+      fill: $c--primary;
+    }
+  }
+
+  &:hover .guestArrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -1,0 +1,54 @@
+@import '../../../../styles/abstracts';
+
+.options {
+  margin: spacing(2) 0;
+}
+
+.option input[type='radio'],
+.option input[type='checkbox'] {
+  @include hidden-input();
+}
+
+.optionLabel {
+  @include rsvp-button();
+  display: block;
+  text-align: left;
+  font-weight: $fw--base;
+  font-size: $fz--sm;
+  padding: 1em;
+
+  strong {
+    @include transition(color);
+    display: block;
+    color: $c--secondary;
+    font-size: 1rem;
+    margin-bottom: 6px;
+
+    span {
+      vertical-align: middle;
+    }
+  }
+
+  input:checked + & {
+    font-weight: $fw--base;
+
+    strong {
+      color: $c--black;
+    }
+
+    .checkIcon {
+      opacity: 1;
+    }
+  }
+}
+
+.checkIcon {
+  @include transition(opacity);
+  display: inline-block;
+  width: 20px;
+  opacity: 0;
+}
+
+.description {
+  font-size: $fz--sm;
+}
