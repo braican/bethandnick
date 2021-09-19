@@ -42,7 +42,7 @@ class GuestRepo extends Repository {
 		$defaults = array(
 			'post_type'      => GuestGroup::TYPE,
 			'post_status'    => 'publish',
-			'posts_per_page' => 60,
+			'posts_per_page' => -1,
 			'orderby'        => 'post_title',
 			'order'          => 'ASC',
 		);
@@ -65,7 +65,7 @@ class GuestRepo extends Repository {
 	public function all( array $args = [] ) {
 		if ( ! isset( $args['posts_per_page'] ) ) {
 			// Set a high, but sane, default to prevent full table scans.
-			$args['posts_per_page'] = 20;
+			$args['posts_per_page'] = -1;
 		}
 
 		$paged = isset( $_GET['paged'] ) ? $_GET['paged'] : false;
