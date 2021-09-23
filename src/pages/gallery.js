@@ -9,7 +9,7 @@ const GalleryPage = () => (
     <Seo title="Gallery" />
 
     <div className="simplelayout__main">
-      <h2 className="page-title">Photos</h2>
+      <h1 className="h1">Photos</h1>
       <div className="content__main content__main--limited">
         <p>
           After knowing each other for over half our lives, we've got some good photos of us over
