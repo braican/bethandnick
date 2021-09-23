@@ -129,8 +129,8 @@
   }
 
   @include mq($bp-mobile, max) {
-    margin-left: 20%;
-    margin-left: calc(20% - 16px);
+    margin-left: 15%;
+    margin-left: calc(15% - 16px);
   }
 
   .title {
