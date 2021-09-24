@@ -21,6 +21,7 @@ $gl_default_city   = isset( $gl_saved_address['city'] ) ? $gl_saved_address['cit
 $gl_default_state  = isset( $gl_saved_address['state'] ) ? $gl_saved_address['state'] : '';
 $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'] : '';
 
+$gl_attending_status = isset( $_GET['gl_attending'] ) ? $_GET['gl_attending'] : null;
 ?>
 
 <div class="wrap" id="view-event">
@@ -32,6 +33,20 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 		<h1 class="wp-heading-inline">The <?php echo get_the_title( $gl_event ); ?> guest list</h1>
 		<button class="page-title-action js-add-new-guest">Add new guest(s)</button>
 		<button class="page-title-action js-import-guests">Import</button>
+
+		<form action="<?php echo esc_url( admin_url( 'admin.php' ) ); ?>">
+			<select name="gl_attending">
+				<option value="">Attending Status</option>
+				<option value="yes"<?php echo 'yes' === $gl_attending_status ? ' selected' : ''; ?>>Yes</option>
+				<option value="no"<?php echo 'no' === $gl_attending_status ? ' selected' : ''; ?>>No</option>
+				<option value="na"<?php echo 'na' === $gl_attending_status ? ' selected' : ''; ?>>Not Responded</option>
+			</select>
+
+			<input type="hidden" name="page" value="guestlist">
+			<input type="hidden" name="event" value="<?php echo $gl_event->ID; ?>">
+
+			<button class="button action">Apply</button>
+		</form>
 	</header>
 
 	<?php Notices::get(); ?>
@@ -203,12 +218,34 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 			</thead>
 
 			<?php foreach ( $this->get_guests() as $grouped_guests ) : ?>
+				<?php $gl_guests = $grouped_guests->get_guests(); ?>
+				<?php $gl_show_header = false; ?>
+
+				<?php foreach ( $gl_guests as $guest ) : ?>
+					<?php if (
+						( 'yes' === $gl_attending_status && 1 === (int) $guest->attending( true ) ) ||
+						( 'no' === $gl_attending_status && -1 === (int) $guest->attending( true ) ) ||
+						( 'na' === $gl_attending_status && empty( $guest->attending( true ) ) ) ||
+						( empty( $gl_attending_status ) )
+					) : ?>
+						<?php $gl_show_header = true; ?>
+					<?php endif; ?>
+				<?php endforeach; ?>
+
 			<tbody>
+				<?php if ( $gl_show_header ) : ?>
 				<tr>
 					<td colspan="5" class="group-header"><?php echo esc_html( $grouped_guests->get_address() ); ?></td>
 				</tr>
+				<?php endif; ?>
 
-				<?php foreach ( $grouped_guests->get_guests() as $guest ) : ?>
+				<?php foreach ( $gl_guests as $guest ) : ?>
+					<?php if (
+						( 'yes' === $gl_attending_status && 1 === (int) $guest->attending( true ) ) ||
+						( 'no' === $gl_attending_status && -1 === (int) $guest->attending( true ) ) ||
+						( 'na' === $gl_attending_status && empty( $guest->attending( true ) ) ) ||
+						( empty( $gl_attending_status ) )
+					) : ?>
 				<tr>
 					<td><?php echo get_the_title( $guest ); ?></td>
 					<td data-value="<?php echo esc_attr( $guest->attending( true ) ); ?>">
@@ -282,6 +319,7 @@ $gl_default_zip    = isset( $gl_saved_address['zip'] ) ? $gl_saved_address['zip'
 						<?php echo esc_attr( $guest->dietary_notes() ); ?>
 					</td>
 				</tr>
+					<?php endif; ?>
 				<?php endforeach; ?>
 			</tbody>
 			<?php endforeach; ?>
