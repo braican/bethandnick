@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { contentFilter, className } from '../util';
 
 import SplitLayout from '../layouts/Split';
 import Seo from '../components/Seo';
-// import CovidAlert from '../components/CovidAlert';
 // import Promo from '../components/Promo';
 
 const Page = ({ data, pageContext: { slug } }) => {
@@ -30,7 +29,6 @@ const Page = ({ data, pageContext: { slug } }) => {
       <Seo title={cleanTitle} />
 
       {/* {slug === 'home' && <Promo />} */}
-      {/* {slug === 'home' && <CovidAlert />} */}
 
       <div
         {...className('content__main', slug === 'home' && 'content__main--has-promo')}
