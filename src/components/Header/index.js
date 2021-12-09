@@ -7,6 +7,8 @@ import OptionalLink from '../Util/OptionalLink';
 import AmpersandIcon from '../../svg/ampersand';
 import Arrow from '../../svg/arrow-right';
 
+import Promo from '../Promo';
+
 import styles from './Header.module.scss';
 
 const Header = ({ info, big = false, inNav = false, fixed = false, hero = false }) => (
@@ -36,22 +38,10 @@ const Header = ({ info, big = false, inNav = false, fixed = false, hero = false 
         <p className={styles.venue}>{info.venue_name}</p>
       </div>
 
-      {(big || inNav) && (
-        <p className={styles.promo}>
-          <Link
-            className={styles.link}
-            to="/rsvp"
-            onClick={() => {
-              const event = new Event('navclose');
-              document.dispatchEvent(event);
-            }}
-          >
-            <span>RSVP</span>&nbsp;&nbsp;
-            <span className={styles.icon}>
-              <Arrow />
-            </span>
-          </Link>
-        </p>
+      {big && (
+        <div className={styles.promo}>
+          <Promo />
+        </div>
       )}
     </OptionalLink>
   </div>

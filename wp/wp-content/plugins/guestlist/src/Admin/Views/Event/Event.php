@@ -86,7 +86,7 @@ class Event {
 		) {
 			$this->event  = get_post( $event_id );
 			$guest_repo   = new GuestRepo( $event_id );
-			$this->guests = $guest_repo->all();
+			$this->guests = $guest_repo;
 		}
 	}
 
@@ -130,7 +130,7 @@ class Event {
 	 * @return array
 	 */
 	public function get_guests() {
-		return $this->guests->get();
+		return $this->guests->all()->get();
 	}
 
 	/**
@@ -140,7 +140,7 @@ class Event {
 	 */
 	public function have_guests() {
 		if ( null !== $this->guests ) {
-			return $this->guests->have_posts();
+			return $this->guests->all()->have_posts();
 		}
 
 		return false;
