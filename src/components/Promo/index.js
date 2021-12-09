@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 import styles from './Promo.module.scss';
 
@@ -6,12 +7,12 @@ import Arrow from '../../svg/arrow-right';
 
 const Promo = () => (
   <div className={styles.promo}>
-    <a className={styles.link} href="/rsvp">
-      <span>RSVP</span>&nbsp;&nbsp;
+    <Link className={styles.link} to="/health-and-covid">
+      <span>Please see our health and COVID guidelines</span>&nbsp;&nbsp;
       <span className={styles.icon}>
         <Arrow />
       </span>
-    </a>
+    </Link>
   </div>
 );
 
